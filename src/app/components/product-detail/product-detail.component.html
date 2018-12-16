@@ -1,0 +1,251 @@
+<app-header></app-header>
+<app-login></app-login>
+<div class="grid-container">
+	<div class="grid-x">
+		<div class="small-12 cell">
+			<span class="sitePath">
+				<nav aria-label="You are here:" role="navigation">
+				  <ul class="breadcrumbs">
+				    <li><a href="#">Men</a></li>
+				    <li><a href="#">Shirts</a></li>
+				    <li><a href="#">Printed</a></li>
+				    <li class="disabled">98576</li>
+				    <li>
+				      <span class="show-for-sr">Current: </span>
+				    </li>
+				  </ul>
+				</nav>
+			</span>
+		</div>
+	</div>
+	<div class="grid-x grid-padding-x grid-padding-y">
+		<div class="medium-1 cell text-center">
+			<ul class="productClipsContainer">
+				<li>
+					<img src="../assets/images/productClips/pic1.jpeg">
+				</li>
+				<li>
+					<img src="../assets/images/productClips/pic2.jpeg">
+				</li>
+				<li>
+					<img src="../assets/images/productClips/pic3.jpeg">
+				</li>
+				<li>
+					<img src="../assets/images/productClips/pic4.jpeg">
+				</li>
+			</ul>
+		</div>
+		<div class="medium-5 cell">
+			<img src="../assets/images/homepage-images/pic4.png">
+		</div>
+		<div class="medium-5 cell">
+			<div class="productName">
+				Double Layered Printed Shirt
+			</div>
+			<div class="pricingContainer">
+				<span class="itemOriginalPrice">$98.00</span>
+				<span class="itemDiscountedPrice">$49.00</span>
+				<span class="itemDiscountPercent">50% OFF</span>
+			</div>
+			<div class="sizingContainer">
+				<div class="sizingHeaders clearfix">
+					<span class="float-left">Select Your Size</span>
+				  <span class="float-right sizeChartModal" data-open="sizeChart">Size Chart</span>
+			  </div>
+			  <div class="reveal" id="sizeChart" data-reveal>
+				  <h3 class="text-center">Size Chart</h3>
+				  <div class="grid-x">
+				  	<div class="medium-6 cell text-center">
+				  		<h4>Size(US)</h4>
+				  		<div>S</div>
+				  		<div>M</div>
+				  		<div>L</div>
+				  		<div>XL</div>
+				  		<div>XXL</div>
+				  		<div>XXXL</div>
+						</div>
+				  	<div class="medium-6 cell text-center">
+				  		<h4>Chest</h4>
+				  		<div>35" - 37"</div>
+				  		<div>38" - 40"</div>
+				  		<div>41" - 43"</div>
+				  		<div>44" - 46"</div>
+				  		<div>47" - 49"</div>
+				  		<div>50" - 52"</div>
+				  	</div>
+				  </div>
+				  <button class="close-button" data-close aria-label="Close modal" type="button">
+				    <span aria-hidden="true">&times;</span>
+				  </button>
+			  </div>
+			  <div class="sizeSelectorContainer">
+			  	<a class="sizeSelector">S</a>
+			  	<a class="sizeSelector">M</a>
+			  	<a class="sizeSelector">L</a>
+			  	<a class="sizeSelector">XL</a>
+			  	<a class="sizeSelector">2XL</a>
+			  	<a class="sizeSelector">3XL</a>
+			  </div>
+			  <div class="productButtonsContainer clearfix">
+			  	<span class="wishlistContainer">
+			  		<button class="button float-left secondary secondaryBtn">
+			  			<img src="../assets/images/like.svg" class="productDecisionImgBtn">Wishlist
+			  		</button>
+			  	</span>
+			  	<span class="addToBagContainer">
+			  		<button class="button float-right primaryBtn">
+			  			<img src="../assets/images/emptyShoppingBag.svg" class="productDecisionImgBtn">Add To bag
+			  		</button>
+			  	</span>
+			  </div>
+			  <!-- <div class="productDetailContainer">
+			  	<div>Product Details</div>
+			  </div> -->
+			  <ul class="accordion" data-accordion data-allow-all-closed="true">
+				  <li class="accordion-item" data-accordion-item>
+				    <a class="accordion-title">Product Details</a>
+
+				    <div class="accordion-content" data-tab-content>
+				      <p>Panel 1. Lorem ipsum dolor</p>
+				      <a>Nowhere to Go</a>
+				    </div>
+				  </li>
+				  <li class="accordion-item" data-accordion-item>
+				    <a class="accordion-title">Delivery & Returns</a>
+
+				    <div class="accordion-content" data-tab-content>
+				      <p>Panel 1. Lorem ipsum dolor</p>
+				      <a>Nowhere to Go</a>
+				    </div>
+				  </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="grid-x align-center">
+		<div class="small-12 medium-6 text-center"><h3>You May Also Like</h3></div>
+	</div>
+
+	<div class="grid-x grid-padding-x grid-padding-y">
+		<div class="small-3 cell image-hover-wrapper">
+	    <a href="javascript:void(0)">
+	    	<img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
+	    	<span class="image-hover-wrapper-reveal">
+	    		<div>
+		    		<div>
+	    				<a routerLink="/productDetail" class="button quickShopBtn">QUICK SHOP</a>
+	  				</div>
+	  				<div>
+	    				<a routerLink="/productDetail" class="button addToCartBtn">ADD TO CART</a>
+	  				</div>
+  				</div>
+		    </span>
+    	</a>
+	    <div class="alsoLikeProductDetailContainer text-center">
+	    	<div class="alsoLikeProductDetail">
+	    		<div class="productName">Double Layered Shirt</div>
+	    		<div class="fitCategory">Regular FIt</div>
+	    	</div>
+	    	<div class="alsoLikeProductPrice">
+	    		<span class="originalPrice">$98.00</span>
+	    		<span class="discountedPrice">$49.00</span>
+	    	</div>
+	    </div>
+	  </div>
+	  <div class="small-3 cell image-hover-wrapper">
+	  	<a href="javascript:void(0)">
+	    	<img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
+	    	<span class="image-hover-wrapper-reveal">
+	    		<div>
+		    		<div>
+	    				<a routerLink="/productDetail" class="button quickShopBtn">QUICK SHOP</a>
+	  				</div>
+	  				<div>
+	    				<a routerLink="/productDetail" class="button addToCartBtn">ADD TO CART</a>
+	  				</div>
+  				</div>
+		    </span>
+    	</a>
+	    <div class="alsoLikeProductDetailContainer text-center">
+	    	<div class="alsoLikeProductDetail">
+	    		<div class="productName">Double Layered Shirt</div>
+	    		<div class="fitCategory">Regular FIt</div>
+	    	</div>
+	    	<div class="alsoLikeProductPrice">
+	    		<span class="originalPrice">$98.00</span>
+	    		<span class="discountedPrice">$49.00</span>
+	    	</div>
+	    </div>
+	  </div>
+	  <div class="small-3 cell image-hover-wrapper">
+	  	<a href="javascript:void(0)">
+	    	<img src="../assets/images/homepage-images/pic3.png" routerLink="/productDetail">
+	    	<span class="image-hover-wrapper-reveal">
+	    		<div>
+		    		<div>
+	    				<a routerLink="/productDetail" class="button quickShopBtn">QUICK SHOP</a>
+	  				</div>
+	  				<div>
+	    				<a routerLink="/productDetail" class="button addToCartBtn">ADD TO CART</a>
+	  				</div>
+  				</div>
+		    </span>
+    	</a>
+	    <div class="alsoLikeProductDetailContainer text-center">
+	    	<div class="alsoLikeProductDetail">
+	    		<div class="productName">Double Layered Shirt</div>
+	    		<div class="fitCategory">Regular FIt</div>
+	    	</div>
+	    	<div class="alsoLikeProductPrice">
+	    		<span class="originalPrice">$98.00</span>
+	    		<span class="discountedPrice">$49.00</span>
+	    	</div>
+	    </div>
+	  </div>
+	  <div class="small-3 cell image-hover-wrapper">
+	  	<a href="javascript:void(0)">
+	    	<img src="../assets/images/homepage-images/pic4.png" routerLink="/productDetail">
+	    	<span class="image-hover-wrapper-reveal">
+	    		<div>
+		    		<div>
+	    				<a routerLink="/productDetail" class="button quickShopBtn">QUICK SHOP</a>
+	  				</div>
+	  				<div>
+	    				<a routerLink="/productDetail" class="button addToCartBtn">ADD TO CART</a>
+	  				</div>
+  				</div>
+		    </span>
+    	</a>
+	    <div class="alsoLikeProductDetailContainer text-center">
+	    	<div class="alsoLikeProductDetail">
+	    		<div class="productName">Double Layered Shirt</div>
+	    		<div class="fitCategory">Regular FIt</div>
+	    	</div>
+	    	<div class="alsoLikeProductPrice">
+	    		<span class="originalPrice">$98.00</span>
+	    		<span class="discountedPrice">$49.00</span>
+	    	</div>
+	    </div>
+	  </div>
+	</div>
+</div>
+<app-footer></app-footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,67 @@
+@import '../../../assets/foundation-sites/global';
+
+.primaryBtn {
+	border-radius: rem-calc(20);
+}
+
+.secondaryBtn {
+	border-radius: rem-calc(20);
+	color: $white;
+}
+
+.yourCartContainer {
+	text-transform: uppercase;
+  padding: 20px 0;
+}
+
+.itemDetailContainer {
+	padding-left: rem-calc(10);
+}
+
+.itemName {
+	padding-bottom: rem-calc(5);
+}
+
+.itemOriginalPrice {
+	text-decoration: line-through;
+	color: #dcdcdc;	
+}
+
+.itemDiscountedPrice {
+	margin: rem-calc(0 5);	
+}
+
+.itemDiscountPercent {
+	color: #F08078;	
+}
+
+.deliveryInfoContainer {
+	text-align: center;
+	padding-bottom: rem-calc(20);
+}
+
+.deliveryMsg {
+	vertical-align: bottom;
+}
+
+.orderSummaryHeader {
+	padding: rem-calc(10 0);	
+	border-bottom: 1px solid #dcdcdc;
+}
+
+.orderSummaryContentContainer {
+  padding: rem-calc(0 20);
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.orderSummaryContent {
+	padding: rem-calc(10 0);
+}
+
+.orderSummaryContentResult {
+	padding: rem-calc(10 20);	
+}
+
+.starConditions {
+	padding: rem-calc(0 20 10 0);
+}

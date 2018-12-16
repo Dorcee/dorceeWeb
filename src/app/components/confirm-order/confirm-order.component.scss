@@ -1,0 +1,57 @@
+@import '../../../assets/foundation-sites/global';
+
+.addressHeader {
+	border-bottom: 1px solid #dcdcdc;
+	text-transform: uppercase;
+}
+
+.addressOuterContainer {
+	border-bottom: 1px solid #dcdcdc;
+	
+	.addressContainer {
+		padding-top: rem-calc(10);
+
+		&:last-of-type {
+			padding-bottom: rem-calc(10);
+		}
+	}
+}
+
+.orderSummaryHeader {
+	padding: rem-calc(10 0);	
+	border-bottom: 1px solid #dcdcdc;
+}
+
+.orderSummaryContentContainer {
+  padding: rem-calc(0 20);
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.orderSummaryContent {
+	padding: rem-calc(10 0);
+}
+
+.orderSummaryContentResult {
+	padding: rem-calc(10 20);	
+}
+
+.starConditions {
+	padding: rem-calc(0 20 10 0);
+}
+
+.primaryBtn {
+	border-radius: rem-calc(20);
+}
+
+.secondaryBtn {
+	border-radius: rem-calc(20);
+	color: $white;
+}
+
+.deliveryDetailsHeader {
+	text-transform: uppercase;
+}
+
+.deliveryItemDetails {
+	padding-left: rem-calc(10);
+}
