@@ -6,6 +6,7 @@ $image-hover-wrapper-banner-width: 75%;
 $image-hover-wrapper-banner-topspace: 25%;
 $image-hover-wrapper-banner-bg: rgba($primary-color ,0.8);
 $image-hover-wrapper-icon-size: rem-calc(24);
+$border-color: #ACACAC;
 
 .image-hover-wrapper {
   position: relative;
@@ -55,4 +56,48 @@ $image-hover-wrapper-icon-size: rem-calc(24);
   padding: 1rem;
   color: $white;
   background-color: $black;
+}
+.tabsContainer {
+  border: none;
+}
+.tabsContentContainer {
+  border: none;
+  .tabs-panel.is-active {
+    padding: 0;
+  }
+}
+.tabs-title-category {
+  display: inline-block;
+  float: none;
+  a {
+    color: #9A979A;
+    font-size: 18px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+  &.is-active {
+    a {
+      color: $black;
+      background: none;
+    }
+  }
+}
+.subscriberBoxContainer {
+  padding: rem-calc(30) 0;
+  input.subscriberEmail {
+    border: 1px solid $border-color;
+    border-right: none;
+    box-shadow: none;
+  }
+  input.button {
+    background: none;
+    color: $black;
+    border: 1px solid $border-color;
+    border-left: none;
+  }
+  .input-group {
+    margin-bottom: 0;
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $:any;
 
 @Component({
   selector: 'app-product-category',
@@ -10,7 +11,7 @@ export class ProductCategoryComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  	
+    $(document).foundation();
   }
   selected = 'option2';
   checked = false;

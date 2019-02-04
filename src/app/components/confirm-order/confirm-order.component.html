@@ -37,7 +37,7 @@
 			  	</div>
 				</mat-radio-group>
 			</div>
-			<div class="clearfix">
+			<div class="clearfix addAddressContainer">
 				<button class="button secondary float-right secondaryBtn" data-open="addressUpdate">+ ADD ADDRESS</button>
 			</div>
 			<div class="reveal" id="addressUpdate" data-reveal>
@@ -112,13 +112,13 @@
 			<div class="deliveryDetailsHeader">Delivery Details</div>
 			<div>
 				<div class="grid-x grid-padding-y">
-					<div class="medium-2 cell">
+					<div class="medium-3 cell">
 						<img src="../assets/images/homepage-images/pic4.png" alt="Bought Product">
 					</div>
-					<div class="medium-10 cell">
+					<div class="medium-9 cell">
 						<div class="deliveryItemDetails">
 							<div>Double Layered Printed Shirt</div>
-							<div class="grid-x">
+							<div class="grid-x selectedProductDetail">
 								<div class="medium-6 cell">
 									Quantity
 								</div>
@@ -126,7 +126,7 @@
 									1
 								</div>
 							</div>
-							<div class="grid-x">
+							<div class="grid-x selectedProductDetail">
 								<div class="medium-6 cell">
 									Size
 								</div>
@@ -140,13 +140,13 @@
 			</div>
 			<div>
 				<div class="grid-x grid-padding-y">
-					<div class="medium-2 cell">
+					<div class="medium-3 cell">
 						<img src="../assets/images/homepage-images/pic4.png" alt="Bought Product">
 					</div>
-					<div class="medium-10 cell">
+					<div class="medium-9 cell">
 						<div class="deliveryItemDetails">
 							<div>Double Layered Printed Shirt</div>
-							<div class="grid-x">
+							<div class="grid-x selectedProductDetail">
 								<div class="medium-6 cell">
 									Quantity
 								</div>
@@ -154,7 +154,7 @@
 									1
 								</div>
 							</div>
-							<div class="grid-x">
+							<div class="grid-x selectedProductDetail">
 								<div class="medium-6 cell">
 									Size
 								</div>
@@ -166,30 +166,32 @@
 					</div>
 				</div>
 			</div>
-			<div class="orderSummaryHeader">ORDER SUMMARY</div>
-			<div class="orderSummaryContentContainer">
-				<div class="clearfix orderSummaryContent">
-					<span class="float-left">Sub Total</span>
-					<span class="float-right">Rs. 3000</span>
+			<div class="orderSummaryOuterContainer">
+				<div class="orderSummaryHeader">ORDER SUMMARY</div>
+				<div class="orderSummaryContentContainer">
+					<div class="clearfix orderSummaryContent">
+						<span class="float-left">Sub Total</span>
+						<span class="float-right">Rs. 3000</span>
+					</div>
+					<div class="clearfix orderSummaryContent">
+						<span class="float-left">Discount</span>
+						<span class="float-right">- Rs. 1000</span>
+					</div>
+					<div class="clearfix orderSummaryContent">
+						<span class="float-left">Shipping Charges</span>
+						<span class="float-right">+ Rs. 90</span>
+					</div>
 				</div>
-				<div class="clearfix orderSummaryContent">
-					<span class="float-left">Discount</span>
-					<span class="float-right">- Rs. 1000</span>
+				<div class="clearfix orderSummaryContentResult">
+					<span class="float-left">Total</span>
+					<span class="float-right">Rs. 2090</span>
 				</div>
-				<div class="clearfix orderSummaryContent">
-					<span class="float-left">Shipping Charges</span>
-					<span class="float-right">+ Rs. 90</span>
+				<div class="clearfix starConditions">
+					<span class="float-right">*GST included</span>
 				</div>
-			</div>
-			<div class="clearfix orderSummaryContentResult">
-				<span class="float-left">Total</span>
-				<span class="float-right">Rs. 2090</span>
-			</div>
-			<div class="clearfix starConditions">
-				<span class="float-right">*GST included</span>
-			</div>
-			<div class="text-center">
-				<button class="button expanded primaryBtn">Place Order</button>
+				<div class="text-center">
+					<button class="button expanded primaryBtn">Place Order</button>
+				</div>
 			</div>
 		</div>
 	</div>

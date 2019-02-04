@@ -1,5 +1,7 @@
 @import '../../../assets/foundation-sites/global';
 
+$border-color: #dcdcdc;
+
 .primaryBtn {
 	border-radius: rem-calc(20);
 }
@@ -23,12 +25,11 @@
 }
 
 .itemOriginalPrice {
+	color: $discountPriceColor;
 	text-decoration: line-through;
-	color: #dcdcdc;	
 }
-
 .itemDiscountedPrice {
-	margin: rem-calc(0 5);	
+	margin: rem-calc(0 10);	
 }
 
 .itemDiscountPercent {
@@ -46,12 +47,12 @@
 
 .orderSummaryHeader {
 	padding: rem-calc(10 0);	
-	border-bottom: 1px solid #dcdcdc;
+	border-bottom: 1px solid $border-color;
 }
 
 .orderSummaryContentContainer {
   padding: rem-calc(0 20);
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid $border-color;
 }
 
 .orderSummaryContent {
@@ -64,4 +65,20 @@
 
 .starConditions {
 	padding: rem-calc(0 20 10 0);
+}
+
+.yourCartHeader {
+	padding-top: rem-calc(50);
+  border-bottom: 1px solid $border-color;
+  padding-bottom: rem-calc(15);
+}
+.deliveryTruckContainer {
+	margin-right: rem-calc(5);
+}
+.itemRemoveModifier {
+	border-right: 1px solid $border-color;
+	padding-right: rem-calc(5);
+}
+.itemWishlistModifier {
+	padding-left: rem-calc(5);
 }

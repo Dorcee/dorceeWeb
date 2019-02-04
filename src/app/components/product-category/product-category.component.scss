@@ -5,11 +5,74 @@
 	border-bottom: 1px solid #dcdcdc;
 	text-transform: uppercase;
 }
+.image-hover-wrapper {
+  position: relative;
+  &:hover  a .image-hover-wrapper-reveal{
+    opacity: 1;
+  }
 
+  a {
+    display: inline-block;
+    letter-spacing: normal;
+    line-height: initial;
+    position: relative;
+    margin-bottom: 0;
+    width: 100%;
+
+    img {
+      float: left;
+      overflow: hidden;
+      width: 100%;
+      cursor: auto;
+    }
+
+    .image-hover-wrapper-reveal {
+      display: flex;
+      color: $white;
+      cursor: default;
+      opacity: 0;
+      position: absolute;
+      width: 100%;
+      z-index: 80;
+      bottom: 0;
+    }
+  }
+  
+}
+.button.quickViewBtn {
+	background-color: rgba(96,0,0,.73);
+}
 .productSelector {
 	font-size: rem-calc(18);
 }
 
 .productSelectorSubHeading {
 	font-size: rem-calc(16);
+}
+.itemDiscounted {
+	color: $discountPriceColor;
+	text-decoration: line-through;
+	margin-right: rem-calc(10);
+}
+::ng-deep .fitCategorySelector .mat-checkbox-inner-container, ::ng-deep .sizeCategorySelector  .mat-checkbox-inner-container{
+	width: rem-calc(13);
+	height: rem-calc(13);
+}
+::ng-deep label.mat-checkbox-layout {
+  padding-top: rem-calc(10);
+}
+
+.productCategoryAccordionHeader {
+	
+	a {
+		color: $black;
+	}
+
+	li:hover {
+		background-color: $primary-color;
+		
+		a {
+			color: $white;
+		}
+	}
 }

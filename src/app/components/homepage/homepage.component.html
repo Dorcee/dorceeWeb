@@ -31,20 +31,20 @@
     </div>
   </div>
 
-  <ul class="tabs" data-tabs id="promotionalTabs">
-    <li class="tabs-title is-active">
+  <ul class="tabs text-center tabsContainer" data-tabs id="promotionalTabs">
+    <li class="tabs-title tabs-title-category is-active">
       <a href="#newArrivalPanel" aria-selected="true">NEW ARRIVAL</a>
     </li>
-    <li class="tabs-title">
+    <li class="tabs-title tabs-title-category">
       <a href="#topSalePanel">TOP SALE</a>
     </li>
-    <li class="tabs-title">
+    <li class="tabs-title tabs-title-category">
       <a href="#saleOffPanel">SALE OFF</a>
     </li>
   </ul>
-  <div class="tabs-content" data-tabs-content="promotionalTabs">
+  <div class="tabs-content tabsContentContainer" data-tabs-content="promotionalTabs">
     <div class="tabs-panel is-active" id="newArrivalPanel">
-      <div class="grid-x grid-padding-x grid-padding-y">
+      <div class="grid-x grid-padding-x">
         <div class="small-12 medium-6 large-3 cell image-hover-wrapper">
           <a href="javascript:void(0)">
             <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
@@ -108,7 +108,7 @@
       </div>
     </div>
     <div class="tabs-panel" id="topSalePanel">
-      <div class="grid-x grid-padding-x grid-padding-y">
+      <div class="grid-x grid-padding-x">
         <div class="small-12 medium-6 large-3 cell image-hover-wrapper">
           <a href="javascript:void(0)">
             <img src="../assets/images/homepage-images/pic3.png" routerLink="/productDetail">
@@ -172,7 +172,7 @@
       </div>
     </div>
     <div class="tabs-panel" id="saleOffPanel">
-      <div class="grid-x grid-padding-x grid-padding-y">
+      <div class="grid-x grid-padding-x">
         <div class="small-12 medium-6 large-3 cell image-hover-wrapper">
           <a href="javascript:void(0)">
             <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
@@ -237,13 +237,13 @@
     </div>
   </div>
   <div class="grid-x align-center">
-    <div class="small-6 text-center cell">
+    <div class="small-6 text-center cell subscriberBoxContainer">
       <h2>WE SHARE BEAUTIFUL NEWS!!</h2>
       <div class="">
         Receive 10% off your next order when you sign up for our newsletter.
       </div>
       <div class="input-group">
-        <input type="text" class="input-group-field" name="email" placeholder="Enter your email...">
+        <input type="text" class="input-group-field subscriberEmail" name="email" placeholder="Enter your email...">
         <div class="input-group-button">
           <input type="submit" class="button" value="Subscribe">
         </div>

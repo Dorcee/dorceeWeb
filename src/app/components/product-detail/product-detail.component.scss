@@ -98,7 +98,7 @@ $image-hover-wrapper-icon-size: rem-calc(24);
   padding-bottom: rem-calc(10);
 }
 
-.itemOriginalPrice {
+.itemDiscounted {
   text-decoration: line-through;
   color: #dcdcdc; 
 }
@@ -128,4 +128,8 @@ $image-hover-wrapper-icon-size: rem-calc(24);
   border-radius: 50%;
   text-align: center;
   padding-top: rem-calc(5);
+}
+.productDetailContainer .accordion-title{
+  border: none;
+  border-top: 1px solid $border-color;
 }

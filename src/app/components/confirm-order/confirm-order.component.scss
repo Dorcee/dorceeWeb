@@ -55,3 +55,19 @@
 .deliveryItemDetails {
 	padding-left: rem-calc(10);
 }
+
+.addAddressContainer {
+	padding-top: rem-calc(15);
+}
+.orderSummaryOuterContainer {
+	padding-top: rem-calc(50);	
+}
+::ng-deep label.mat-radio-label {
+	align-items: initial;
+}
+::ng-deep .mat-radio-container {
+	margin-top: rem-calc(5);
+}
+.selectedProductDetail {
+	padding-top: rem-calc(15);
+}
