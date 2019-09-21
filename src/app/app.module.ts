@@ -21,6 +21,11 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ConfirmOrderComponent } from './components/confirm-order/confirm-order.component';
 import { PaymentFooterComponent } from './components/payment-footer/payment-footer.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { FAQComponent } from './components/faq/faq.component';
+import { SizeGuideComponent } from './components/size-guide/size-guide.component';
+import { ShippingComponent } from './components/shipping/shipping.component';
+import { HomePageHeaderComponent } from './components/home-page-header/home-page-header.component';
 
 
 @NgModule({
@@ -35,7 +40,12 @@ import { PaymentFooterComponent } from './components/payment-footer/payment-foot
     SignUpComponent,
     CheckoutComponent,
     ConfirmOrderComponent,
-    PaymentFooterComponent
+    PaymentFooterComponent,
+    AboutUsComponent,
+    FAQComponent,
+    SizeGuideComponent,
+    ShippingComponent,
+    HomePageHeaderComponent
   ],
   imports: [
     BrowserModule,

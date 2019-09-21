@@ -12,6 +12,18 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit() {
   	$(document).foundation();
+
+  	$('.homePageSlick').not('.slick-initialized').slick({
+	    infinite: true,
+	    autoplay: true,
+	    autoplaySpeed: 2000,
+	    arrows: false
+	  });
+	  
+	  $('.productImageSlideContainer').not('.slick-initialized').slick({
+	    infinite: false,
+	  });
+	  
   }
 
 }
