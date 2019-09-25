@@ -26,6 +26,10 @@ import { FAQComponent } from './components/faq/faq.component';
 import { SizeGuideComponent } from './components/size-guide/size-guide.component';
 import { ShippingComponent } from './components/shipping/shipping.component';
 import { HomePageHeaderComponent } from './components/home-page-header/home-page-header.component';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { AddressesComponent } from './components/addresses/addresses.component';
+import { InstapageComponent } from './components/instapage/instapage.component';
 
 
 @NgModule({
@@ -45,7 +49,11 @@ import { HomePageHeaderComponent } from './components/home-page-header/home-page
     FAQComponent,
     SizeGuideComponent,
     ShippingComponent,
-    HomePageHeaderComponent
+    HomePageHeaderComponent,
+    MyOrdersComponent,
+    ProfileComponent,
+    AddressesComponent,
+    InstapageComponent
   ],
   imports: [
     BrowserModule,
