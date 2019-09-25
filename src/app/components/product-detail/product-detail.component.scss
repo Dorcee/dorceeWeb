@@ -133,3 +133,6 @@ $image-hover-wrapper-icon-size: rem-calc(24);
   border: none;
   border-top: 1px solid $border-color;
 }
+.productDetailImagesContainer {
+  overflow: hidden;
+}
