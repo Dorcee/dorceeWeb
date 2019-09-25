@@ -1,3 +1,19 @@
-<p>
-  home-page-header works!
-</p>
+<app-login></app-login>
+<div class="grid-container">
+	<div class="grid-x grid-padding-y">
+		<div class="small-4 cell homePageAboutHeader">
+			<span class="homepageHeading" routerLink="/productCategory">SHOP</span>
+			<span class="homepageHeading">ABOUT</span>
+			<span class="homepageHeading" routerLink="/dorcee_official">@dorcee_official</span>
+		</div>
+		<div class="small-4 cell text-center">
+			<img src="assets/images/dorceeLogo.svg" alt="Company Logo" routerLink="/" width="175">
+		</div>
+		<div class="small-4 cell text-right homePageLoginHeader">
+			<span class="currencyWeb">INR</span>
+			<!-- <span class="" data-open="loginModal">Login</span> -->
+			<span class="userLogin" data-open="loginModal">Login</span>
+			<img src="assets/images/emptyShoppingBagBlack.svg" alt="Basket" width="30px" routerLink="/checkout">
+		</div>
+	</div>
+</div>

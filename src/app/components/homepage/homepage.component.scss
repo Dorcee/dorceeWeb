@@ -89,11 +89,21 @@ $border-color: #ACACAC;
   }
 }
 .subscriberBoxContainer {
-  padding: rem-calc(30) 0;
+  padding: rem-calc(35) 0;
+
+  .subscriberBoxInnnerContainer {
+    font-size: 36px;
+  }
   input.subscriberEmail {
     border: 1px solid $border-color;
     border-right: none;
     box-shadow: none;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+  }
+  .subscriberEmailBtn {
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
   }
   input.button {
     background: none;
@@ -142,4 +152,8 @@ $border-color: #ACACAC;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.signUpTextContainer {
+  padding-bottom: rem-calc(5);
 }
