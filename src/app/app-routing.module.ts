@@ -10,9 +10,11 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { FAQComponent } from './components/faq/faq.component';
 import { SizeGuideComponent } from './components/size-guide/size-guide.component';
 import { ShippingComponent } from './components/shipping/shipping.component';
+import { InstapageComponent } from './components/instapage/instapage.component';
 
 const routes: Routes = [
 	{ path: '', component: HomepageComponent },
+	{ path: 'dorcee_official', component: InstapageComponent },
 	{ path: 'productDetail', component: ProductDetailComponent },
 	{ path: 'productCategory', component: ProductCategoryComponent },
 	{ path: 'checkout', component: CheckoutComponent },
