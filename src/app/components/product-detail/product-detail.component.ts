@@ -14,14 +14,14 @@ export class ProductDetailComponent implements OnInit {
   	$(document).foundation();
   	
     $('.productDetailImagesContainer').not('.slick-initialized').slick({
-	    infinite: true,
+	    infinite: false,
 	    slidesToShow: 2,
       responsive: [
         {
           breakpoint: 640,
           settings: {
             slidesToShow: 1,
-            infinite: true,
+            infinite: false,
           }
         }
       ]
