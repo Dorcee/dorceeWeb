@@ -135,4 +135,42 @@ $image-hover-wrapper-icon-size: rem-calc(24);
 }
 .productDetailImagesContainer {
   overflow: hidden;
+  position: relative;
+
+  img {
+    padding: rem-calc(10);
+  }
+}
+//To remove the text of Previous and Next in Slick Slider
+::ng-deep  .slick-prev {
+  font-size: 0;
+}
+
+::ng-deep  .slick-next {
+  font-size: 0;
+}
+
+::ng-deep  .slick-prev:after {
+  content: "<";
+  color: $black;
+  font-size: 30px;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 99;
+}
+
+::ng-deep  .slick-next:before {
+  content: ">";
+  color: $black;
+  font-size: 30px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.selectedSize {
+  background-color: $primary-color;
+  color: $white;
 }

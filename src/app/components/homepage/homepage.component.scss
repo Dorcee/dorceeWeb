@@ -73,6 +73,7 @@ $border-color: #ACACAC;
 .tabs-title-category {
   display: inline-block;
   float: none;
+  
   a {
     color: #9A979A;
     font-size: 18px;
@@ -85,11 +86,12 @@ $border-color: #ACACAC;
     a {
       color: $black;
       background: none;
+      font-size: 28px;
     }
   }
 }
 .subscriberBoxContainer {
-  padding: rem-calc(35) 0;
+  padding: rem-calc(40) 0;
 
   .subscriberBoxInnnerContainer {
     font-size: 36px;
@@ -118,19 +120,23 @@ $border-color: #ACACAC;
 .productImageSlideContainer {
   overflow: hidden;
   position: relative;
+
+  img:focus {
+    outline: none;
+  }
 }
 
 .tabsContainer {
-  padding: rem-calc(30 0 15);
+  padding: rem-calc(25 15 5 15);
 }
 
 //To remove the text of Previous and Next in Slick Slider
 ::ng-deep  .slick-prev {
-  font-size: 0px;
+  font-size: 0;
 }
 
 ::ng-deep  .slick-next {
-  font-size: 0px;
+  font-size: 0;
 }
 
 ::ng-deep  .slick-prev:after {
@@ -155,5 +161,5 @@ $border-color: #ACACAC;
 }
 
 .signUpTextContainer {
-  padding-bottom: rem-calc(5);
+  padding: rem-calc(5 0);
 }

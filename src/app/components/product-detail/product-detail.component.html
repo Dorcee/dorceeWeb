@@ -77,12 +77,12 @@
 				  </button>
 			  </div>
 			  <div class="sizeSelectorContainer">
-			  	<a class="sizeSelector">S</a>
-			  	<a class="sizeSelector">M</a>
-			  	<a class="sizeSelector">L</a>
-			  	<a class="sizeSelector">XL</a>
-			  	<a class="sizeSelector">2XL</a>
-			  	<a class="sizeSelector">3XL</a>
+			  	<a class="sizeSelector" [ngClass]="{'selectedSize': selectedItem === 'smallSize'}" (click)="selectedItem = 'smallSize'">S</a>
+			  	<a class="sizeSelector" [ngClass]="{'selectedSize': selectedItem === 'mediumSize'}" (click)="selectedItem = 'mediumSize'">M</a>
+			  	<a class="sizeSelector" [ngClass]="{'selectedSize': selectedItem === 'largeSize'}" (click)="selectedItem = 'largeSize'">L</a>
+			  	<a class="sizeSelector" [ngClass]="{'selectedSize': selectedItem === 'xLargeSize'}" (click)="selectedItem = 'xLargeSize'">XL</a>
+			  	<a class="sizeSelector" [ngClass]="{'selectedSize': selectedItem === '2xLargeSize'}" (click)="selectedItem = '2xLargeSize'">2XL</a>
+			  	<a class="sizeSelector" [ngClass]="{'selectedSize': selectedItem === '3xLargeSize'}" (click)="selectedItem = '3xLargeSize'">3XL</a>
 			  </div>
 			  <div class="productButtonsContainer clearfix">
 			  	<span class="wishlistContainer">
