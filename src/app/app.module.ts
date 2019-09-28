@@ -8,6 +8,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
+import { HttpClientModule } from  '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
@@ -31,6 +32,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AddressesComponent } from './components/addresses/addresses.component';
 import { InstapageComponent } from './components/instapage/instapage.component';
 
+import { HomeService } from './services/home.service';
 
 @NgModule({
   declarations: [
@@ -65,9 +67,12 @@ import { InstapageComponent } from './components/instapage/instapage.component';
     MatCheckboxModule,
     MatSliderModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    HomeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
