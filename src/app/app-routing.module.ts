@@ -10,6 +10,9 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { FAQComponent } from './components/faq/faq.component';
 import { SizeGuideComponent } from './components/size-guide/size-guide.component';
 import { ShippingComponent } from './components/shipping/shipping.component';
+import { AddressesComponent } from './components/addresses/addresses.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { InstapageComponent } from './components/instapage/instapage.component';
 
 const routes: Routes = [
@@ -22,7 +25,10 @@ const routes: Routes = [
 	{ path: 'aboutUs', component: AboutUsComponent },
 	{ path: 'faq', component: FAQComponent },
 	{ path: 'sizeGuide', component: SizeGuideComponent },
-	{ path: 'shippingPolicy', component: ShippingComponent }
+	{ path: 'shippingPolicy', component: ShippingComponent },
+	{ path: 'addresses', component: AddressesComponent },
+	{ path: 'profile', component: ProfileComponent },
+	{ path: 'myOrders', component: MyOrdersComponent }
 ];
 
 @NgModule({
