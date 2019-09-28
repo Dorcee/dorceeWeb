@@ -1,32 +1,34 @@
 <!-- <span class="" data-open="loginModal">Login</span> -->
-<div class="reveal" id="loginModal" data-reveal>
-	<div class="text-center">LOGIN</div>
-	<form class="example-form">
-	  <mat-form-field class="example-full-width">
-	    <input matInput placeholder="Enter Email/Mobile Number" [formControl]="loginFormControl">
-	    <!-- <mat-error *ngIf="loginFormControl.hasError('email') && !loginFormControl.hasError('required')">
-	      Please enter a valid email address
-	    </mat-error>
-	    <mat-error *ngIf="loginFormControl.hasError('required')">
-	      Email is <strong>required</strong>
-	    </mat-error> -->
-	  </mat-form-field>
-	  <mat-form-field class="example-full-width">
-	    <input matInput placeholder="Enter Password" [formControl]="loginFormControl">
-	    <!-- <mat-error *ngIf="loginFormControl.hasError('required')">
-	      Password is <strong>required</strong>
-	    </mat-error> -->
-	  </mat-form-field>
-		<div class=" text-center">
-			<button class="button">LOGIN</button>
-		</div>
-		<div class="">
-			New to dorchee? <span data-close data-open="signUpModal">Sign up</span>
-		</div>
-	</form>
-  
-  <button class="close-button" data-close aria-label="Close modal" type="button">
-    <span aria-hidden="true">&times;</span>
-  </button>
+<div class="reveal loginModalOuterContainer" id="loginModal" data-reveal>
+	<div class="grid-container loginModalContainer">
+		<div class="text-center loginHeader">LOGIN</div>
+		<form class="loginForm">
+		  <mat-form-field class="example-full-width">
+		    <input matInput placeholder="Enter Email/Mobile Number" [formControl]="loginFormControl">
+		    <!-- <mat-error *ngIf="loginFormControl.hasError('email') && !loginFormControl.hasError('required')">
+		      Please enter a valid email address
+		    </mat-error>
+		    <mat-error *ngIf="loginFormControl.hasError('required')">
+		      Email is <strong>required</strong>
+		    </mat-error> -->
+		  </mat-form-field>
+		  <mat-form-field class="example-full-width">
+		    <input matInput placeholder="Enter Password" [formControl]="loginFormControl">
+		    <!-- <mat-error *ngIf="loginFormControl.hasError('required')">
+		      Password is <strong>required</strong>
+		    </mat-error> -->
+		  </mat-form-field>
+			<div class=" text-center dorceeLoginBtnContainer">
+				<button class="button dorceeLoginBtn">LOGIN</button>
+			</div>
+			<div class="text-center">
+				New to dorcee? <span data-close data-open="signUpModal" class="signUpLink">Sign up</span>
+			</div>
+		</form>
+	  
+	  <button class="close-button closeLoginModal" data-close aria-label="Close modal" type="button">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+  </div>
 </div>
 <app-sign-up></app-sign-up>
