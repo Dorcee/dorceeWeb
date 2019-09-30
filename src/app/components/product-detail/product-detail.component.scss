@@ -83,7 +83,10 @@ $image-hover-wrapper-icon-size: rem-calc(24);
   color: white;
   border-radius: 20px;
 }
-
+.productImageSlideContainer {
+  overflow: hidden;
+  position: relative;
+}
 .productName {
   font-size: rem-calc(24);
   padding-bottom: rem-calc(5);  

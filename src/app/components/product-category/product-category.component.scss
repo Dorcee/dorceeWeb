@@ -76,3 +76,38 @@
 		}
 	}
 }
+
+.productImageSlideContainer {
+  overflow: hidden;
+  position: relative;
+}
+
+//To remove the text of Previous and Next in Slick Slider
+::ng-deep  .slick-prev {
+  font-size: 0px;
+}
+
+::ng-deep  .slick-next {
+  font-size: 0px;
+}
+
+::ng-deep  .slick-prev:after {
+  content: "<";
+  color: $black;
+  font-size: 30px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 99;
+}
+
+::ng-deep  .slick-next:before {
+  content: ">";
+  color: $black;
+  font-size: 30px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}

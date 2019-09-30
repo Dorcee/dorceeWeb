@@ -88,16 +88,46 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Pagination in all category of products -->
+
+		<!-- <ul>
+      <li *ngFor="let item of collection | paginate: { itemsPerPage: 10, currentPage: p }"> ... </li>
+    </ul>
+    <div class="medium-9 cell">
+			<pagination-controls  id="some_id"
+        (pageChange)="pageChanged($event)"
+        maxSize="5"
+        directionLinks="true"
+        autoHide="true"
+        responsive="true"
+        previousLabel="Previous"
+        nextLabel="Next"
+        screenReaderPaginationLabel="Pagination"
+        screenReaderPageLabel="page"
+        screenReaderCurrentLabel="You're on page">
+			</pagination-controls>
+		</div> -->
+
 		<div class="medium-9 cell">
+			<!-- <div class="" *ngFor="let response of productsResponse | paginate: { itemsPerPage: 5, currentPage: p }"> -->
 			<div class="grid-x grid-padding-x grid-padding-y">
 				<div class="medium-4 cell">
 					<div class="image-hover-wrapper">
-			  		<a href="javascript:void(0)">
+			  		<!-- <a href="javascript:void(0)">
 			    		<img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
 			    		<span class="image-hover-wrapper-reveal">
 		            <a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
 		          </span>
-		    		</a>
+		    		</a> -->
+		    		<div class="productImageSlideContainer">
+			        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
+			        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
+			        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
+			        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
+			        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
+			        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
+			      </div>
 		    	</div>
 			    <div class="alsoLikeProductDetailContainer text-center">
 			    	<div class="alsoLikeProductDetail">
@@ -112,12 +142,20 @@
 			  </div>
 			  <div class="medium-4 cell">
 			  	<div class="image-hover-wrapper">
-			  		<a href="javascript:void(0)">
+			  		<!-- <a href="javascript:void(0)">
 			    		<img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
 			    		<span class="image-hover-wrapper-reveal">
 		            <a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
 		          </span>
-		    		</a>
+		    		</a> -->
+		    		<div class="productImageSlideContainer">
+			        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
+			        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
+			        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
+			        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
+			        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
+			        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
+			      </div>
 		    	</div>
 			    <div class="alsoLikeProductDetailContainer text-center">
 			    	<div class="alsoLikeProductDetail">
@@ -132,12 +170,20 @@
 			  </div>
 			  <div class="medium-4 cell">
 			  	<div class="image-hover-wrapper">
-			  		<a href="javascript:void(0)">
+			  		<!-- <a href="javascript:void(0)">
 			    		<img src="../assets/images/homepage-images/pic3.png" routerLink="/productDetail">
 			    		<span class="image-hover-wrapper-reveal">
 		            <a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
 		          </span>
-		    		</a>
+		    		</a> -->
+		    		<div class="productImageSlideContainer">
+			        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
+			        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
+			        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
+			        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
+			        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
+			        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
+			      </div>
 		    	</div>
 			    <div class="alsoLikeProductDetailContainer text-center">
 			    	<div class="alsoLikeProductDetail">
@@ -331,6 +377,8 @@
 			    </div>
 			  </div> 
 			</div>		
+			<!-- </div>
+			<pagination-controls (pageChange)="p=$event"></pagination-controls> -->
 		</div>
 	</div>
 </div>

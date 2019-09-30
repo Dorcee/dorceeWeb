@@ -12,10 +12,18 @@ export class ProductCategoryComponent implements OnInit {
 
   ngOnInit() {
     $(document).foundation();
+
+    $('.productImageSlideContainer').not('.slick-initialized').slick({
+      infinite: false,
+    });
+    
   }
+  
   selected = 'option2';
   checked = false;
   indeterminate = false;
   labelPosition = 'after';
   disabled = false;
+
+  //p: number = 1;
 }
