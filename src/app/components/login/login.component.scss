@@ -32,6 +32,8 @@
 	color: $primary-color;
 	font-style: italic;
 	text-decoration: underline;
+  cursor: pointer;
+  
 	&:focus {
 		outline: none;
 	}

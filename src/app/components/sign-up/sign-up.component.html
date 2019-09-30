@@ -1,41 +1,45 @@
 
-<div class="reveal" id="signUpModal" data-reveal>
-	<div class="text-center">Sign-Up</div>
-	<form class="example-form">
-	  <mat-form-field class="example-full-width">
-	    <input matInput placeholder="Your Name" [formControl]="signUpFormControl">
-	  </mat-form-field>
-	  <mat-form-field class="example-full-width">
-	    <input matInput placeholder="Enter Mobile Number" [formControl]="signUpFormControl">
-	  </mat-form-field>
-	  <mat-form-field class="example-full-width">
-	    <input matInput placeholder="Email(optional)" [formControl]="signUpFormControl">
-	    <!-- <mat-error *ngIf="signUpFormControl.hasError('email') && !signUpFormControl.hasError('required')">
-	      Please enter a valid email address
-	    </mat-error>
-	    <mat-error *ngIf="signUpFormControl.hasError('required')">
-	      Email is <strong>required</strong>
-	    </mat-error> -->
-	  </mat-form-field>
-	  <mat-form-field class="example-full-width">
-	    <input matInput placeholder="Enter Password" [formControl]="signUpFormControl">
-	    <!-- <mat-error *ngIf="signUpFormControl.hasError('required')">
-	      Password is <strong>required</strong>
-	    </mat-error> -->
-	  </mat-form-field>
-		<div class=" text-center">
-			<button class="button" data-close data-open="verifyModal">Continue</button>
-		</div>
-		<div class="">
-			Existing User? <span data-close data-open="loginModal">Login</span>
-		</div>
-	</form>
-  
-  <button class="close-button" data-close aria-label="Close modal" type="button">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <div class="reveal" id="verifyModal" data-reveal>
-		<div class="text-center">Sign-Up</div>
+<div class="reveal signUpModalOuterContainer" id="signUpModal" data-reveal>
+	<div class="grid-container signUpModalContainer">
+		<div class="text-center signUpHeader">Sign-Up</div>
+		<form class="example-form">
+		  <mat-form-field class="example-full-width">
+		    <input matInput placeholder="Your Name" [formControl]="signUpFormControl">
+		  </mat-form-field>
+		  <mat-form-field class="example-full-width">
+		    <input matInput placeholder="Enter Mobile Number" [formControl]="signUpFormControl">
+		  </mat-form-field>
+		  <mat-form-field class="example-full-width">
+		    <input matInput placeholder="Email(optional)" [formControl]="signUpFormControl">
+		    <!-- <mat-error *ngIf="signUpFormControl.hasError('email') && !signUpFormControl.hasError('required')">
+		      Please enter a valid email address
+		    </mat-error>
+		    <mat-error *ngIf="signUpFormControl.hasError('required')">
+		      Email is <strong>required</strong>
+		    </mat-error> -->
+		  </mat-form-field>
+		  <mat-form-field class="example-full-width">
+		    <input matInput placeholder="Enter Password" [formControl]="signUpFormControl">
+		    <!-- <mat-error *ngIf="signUpFormControl.hasError('required')">
+		      Password is <strong>required</strong>
+		    </mat-error> -->
+		  </mat-form-field>
+			<div class=" text-center dorceeSignUpBtnContainer">
+				<button class="button dorceeSignUpContinueBtn" data-close data-open="verifyModal">Continue</button>
+			</div>
+			<div class="text-center">
+				Existing User? <span data-close data-open="loginModal" class="logInLink">Login</span>
+			</div>
+		</form>
+	  
+	  <button class="close-button closeSignUpModal" data-close aria-label="Close modal" type="button">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+  </div>
+</div>
+<div class="reveal signUpModalOuterContainer" id="verifyModal" data-reveal>
+	<div class="grid-container signUpModalContainer">
+		<div class="text-center signUpHeader">Sign-Up</div>
 		<form class="example-form">
 		  <mat-form-field class="example-full-width">
 		    <input matInput placeholder="Mobile Number" [formControl]="signUpFormControl">
@@ -46,15 +50,15 @@
 		      Otp is <strong>required</strong>
 		    </mat-error> -->
 		  </mat-form-field>
-			<div class=" text-center">
-				<button class="button">VERIFY</button>
+			<div class=" text-center dorceeSignUpBtnContainer">
+				<button class="button dorceeSignUpVerifyBtn">VERIFY</button>
 			</div>
-			<div class="">
-				Existing User? <span data-open="loginModal">Login</span>
+			<div class="text-center">
+				Existing User? <span data-close data-open="loginModal" class="logInLink">Login</span>
 			</div>
 		</form>
 	  
-	  <button class="close-button" data-close aria-label="Close modal" type="button">
+	  <button class="close-button closeSignUpModal" data-close aria-label="Close modal" type="button">
 	    <span aria-hidden="true">&times;</span>
 	  </button>
 	</div>
