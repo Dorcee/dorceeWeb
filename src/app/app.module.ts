@@ -8,6 +8,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
@@ -65,7 +66,8 @@ import { InstapageComponent } from './components/instapage/instapage.component';
     MatCheckboxModule,
     MatSliderModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
