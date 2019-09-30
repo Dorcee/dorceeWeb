@@ -4,7 +4,10 @@
 		<div class="text-center signUpHeader">Sign-Up</div>
 		<form class="example-form">
 		  <mat-form-field class="example-full-width">
-		    <input matInput placeholder="Your Name" [formControl]="signUpFormControl">
+		    <input matInput placeholder="First Name" [formControl]="signUpFormControl">
+		  </mat-form-field>
+		  <mat-form-field class="example-full-width">
+		    <input matInput placeholder="Last Name" [formControl]="signUpFormControl">
 		  </mat-form-field>
 		  <mat-form-field class="example-full-width">
 		    <input matInput placeholder="Enter Mobile Number" [formControl]="signUpFormControl">
@@ -16,12 +19,6 @@
 		    </mat-error>
 		    <mat-error *ngIf="signUpFormControl.hasError('required')">
 		      Email is <strong>required</strong>
-		    </mat-error> -->
-		  </mat-form-field>
-		  <mat-form-field class="example-full-width">
-		    <input matInput placeholder="Enter Password" [formControl]="signUpFormControl">
-		    <!-- <mat-error *ngIf="signUpFormControl.hasError('required')">
-		      Password is <strong>required</strong>
 		    </mat-error> -->
 		  </mat-form-field>
 			<div class=" text-center dorceeSignUpBtnContainer">

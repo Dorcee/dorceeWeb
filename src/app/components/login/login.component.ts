@@ -13,8 +13,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  loginFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  //loginFormControl = new FormControl('', [
+  //  Validators.required,
+  //  Validators.email,
+  //]);
 }
