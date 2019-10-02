@@ -1,7 +1,49 @@
+@import '../../../assets/foundation-sites/global';
+
 .example-form {
   width: 100%;
 }
 
 .example-full-width {
   width: 100%;
+}
+
+.signUpHeader {
+	font-size: 28px;
+  padding-bottom: rem-calc(15);
+}
+.signUpModalContainer {
+	padding: rem-calc(30 50);
+}
+.reveal.signUpModalOuterContainer {
+	overflow: visible;
+}
+.closeSignUpModal {
+	position: absolute;
+  top: rem-calc(-14);
+  right: rem-calc(-14);
+  color: white;
+  background-color: #600000;
+  border-radius: 25px;
+  padding: rem-calc(3 7 5);
+  z-index: 9999;
+  font-size: rem-calc(20);
+}
+.dorceeSignUpBtnContainer {
+	padding-top: rem-calc(20);
+}
+.dorceeSignUpContinueBtn, .dorceeSignUpVerifyBtn {
+	width: 60%;
+  border-radius: 20px;
+  margin-bottom: rem-calc(10);
+}
+.logInLink {
+	color: $primary-color;
+	font-style: italic;
+	text-decoration: underline;
+  cursor: pointer;
+  
+	&:focus {
+		outline: none;
+	}
 }

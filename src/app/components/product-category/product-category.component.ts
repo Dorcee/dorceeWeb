@@ -18,11 +18,17 @@ export class ProductCategoryComponent implements OnInit {
       this.products = data;
       console.log(this.products);
     });
+    $('.productImageSlideContainer').not('.slick-initialized').slick({
+      infinite: false,
+    });
   }
+
   products : any;
   selected = 'option2';
   checked = false;
   indeterminate = false;
   labelPosition = 'after';
   disabled = false;
+
+  //p: number = 1;
 }

@@ -89,16 +89,26 @@
 			</div>
 		</div>
 		<div class="medium-9 cell">
+			<!-- <div class="" *ngFor="let response of productsResponse | paginate: { itemsPerPage: 5, currentPage: p }"> -->
 			<div class="grid-x grid-padding-x grid-padding-y">
 				<div *ngFor="let product of products"  class="medium-4 cell">
 					<div class="image-hover-wrapper">
-						<a href="javascript:void(0)">
+						<!-- <a href="javascript:void(0)">
 							<img *ngIf="product.main_image" src="{{product.main_image}}"routerLink="/productDetail">
 							<span class="image-hover-wrapper-reveal">
 								<a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
 							</span>
-						</a>
+						</a> -->
 					</div>
+					<div class="productImageSlideContainer">
+				        <img *ngIf="product.main_image" src="{{product.main_image}}" routerLink="/productDetail">
+						<img *ngIf="product.thumbnail_1" src="{{product.thumbnail_1}}" routerLink="/productDetail">
+						<img *ngIf="product.thumbnail_2" src="{{product.thumbnail_2}}" routerLink="/productDetail">
+						<img *ngIf="product.thumbnail_3" src="{{product.thumbnail_3}}" routerLink="/productDetail">
+						<img *ngIf="product.thumbnail_4" src="{{product.thumbnail_4}}" routerLink="/productDetail">
+						<img *ngIf="product.thumbnail_5" src="{{product.thumbnail_5}}" routerLink="/productDetail">
+						<img *ngIf="product.thumbnail_6" src="{{product.thumbnail_6}}" routerLink="/productDetail">
+			      	</div>
 					<div class="alsoLikeProductDetailContainer text-center">
 						<div class="alsoLikeProductDetail">
 							<div class="productName">{{product.name}}</div>
@@ -112,13 +122,21 @@
 				</div>
 				<div class="medium-4 cell">
 					<div class="image-hover-wrapper">
-						<a href="javascript:void(0)">
+						<!-- <a href="javascript:void(0)">
 							<img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
 							<span class="image-hover-wrapper-reveal">
 								<a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
 							</span>
-						</a>
+						</a> -->
 					</div>
+					<div class="productImageSlideContainer">
+				        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
+				        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
+				        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
+				        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
+				        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
+				        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
+			      	</div>
 					<div class="alsoLikeProductDetailContainer text-center">
 						<div class="alsoLikeProductDetail">
 							<div class="productName">Double Layered Shirt</div>
@@ -130,207 +148,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="medium-4 cell">
-					<div class="image-hover-wrapper">
-						<a href="javascript:void(0)">
-							<img src="../assets/images/homepage-images/pic3.png" routerLink="/productDetail">
-							<span class="image-hover-wrapper-reveal">
-								<a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
-							</span>
-						</a>
-					</div>
-					<div class="alsoLikeProductDetailContainer text-center">
-						<div class="alsoLikeProductDetail">
-							<div class="productName">Double Layered Shirt</div>
-							<div class="fitCategory">Regular FIt</div>
-						</div>
-						<div class="alsoLikeProductPrice">
-							<span class="originalPrice itemDiscounted">$98.00</span>
-							<span class="discountedPrice">$49.00</span>
-						</div>
-					</div>
-				</div><!-- 
-				<div class="medium-4 cell">
-					<div class="image-hover-wrapper">
-						<a href="javascript:void(0)">
-							<img src="../assets/images/homepage-images/pic4.png" routerLink="/productDetail">
-							<span class="image-hover-wrapper-reveal">
-								<a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
-							</span>
-						</a>
-					</div>
-					<div class="alsoLikeProductDetailContainer text-center">
-						<div class="alsoLikeProductDetail">
-							<div class="productName">Double Layered Shirt</div>
-							<div class="fitCategory">Regular FIt</div>
-						</div>
-						<div class="alsoLikeProductPrice">
-							<span class="originalPrice itemDiscounted">$98.00</span>
-							<span class="discountedPrice">$49.00</span>
-						</div>
-					</div>
-				</div> 
-				<div class="medium-4 cell">
-					<div class="image-hover-wrapper">
-						<a href="javascript:void(0)">
-							<img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
-							<span class="image-hover-wrapper-reveal">
-								<a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
-							</span>
-						</a>
-					</div>
-					<div class="alsoLikeProductDetailContainer text-center">
-						<div class="alsoLikeProductDetail">
-							<div class="productName">Double Layered Shirt</div>
-							<div class="fitCategory">Regular FIt</div>
-						</div>
-						<div class="alsoLikeProductPrice">
-							<span class="originalPrice itemDiscounted">$98.00</span>
-							<span class="discountedPrice">$49.00</span>
-						</div>
-					</div>
-				</div>
-				<div class="medium-4 cell">
-					<div class="image-hover-wrapper">
-						<a href="javascript:void(0)">
-							<img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
-							<span class="image-hover-wrapper-reveal">
-								<a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
-							</span>
-						</a>
-					</div>
-					<div class="alsoLikeProductDetailContainer text-center">
-						<div class="alsoLikeProductDetail">
-							<div class="productName">Double Layered Shirt</div>
-							<div class="fitCategory">Regular FIt</div>
-						</div>
-						<div class="alsoLikeProductPrice">
-							<span class="originalPrice itemDiscounted">$98.00</span>
-							<span class="discountedPrice">$49.00</span>
-						</div>
-					</div>
-				</div>
-				<div class="medium-4 cell">
-					<div class="image-hover-wrapper">
-						<a href="javascript:void(0)">
-							<img src="../assets/images/homepage-images/pic3.png" routerLink="/productDetail">
-							<span class="image-hover-wrapper-reveal">
-								<a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
-							</span>
-						</a>
-					</div>
-					<div class="alsoLikeProductDetailContainer text-center">
-						<div class="alsoLikeProductDetail">
-							<div class="productName">Double Layered Shirt</div>
-							<div class="fitCategory">Regular FIt</div>
-						</div>
-						<div class="alsoLikeProductPrice">
-							<span class="originalPrice itemDiscounted">$98.00</span>
-							<span class="discountedPrice">$49.00</span>
-						</div>
-					</div>
-				</div>
-				<div class="medium-4 cell">
-					<div class="image-hover-wrapper">
-						<a href="javascript:void(0)">
-							<img src="../assets/images/homepage-images/pic4.png" routerLink="/productDetail">
-							<span class="image-hover-wrapper-reveal">
-								<a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
-							</span>
-						</a>
-					</div>
-					<div class="alsoLikeProductDetailContainer text-center">
-						<div class="alsoLikeProductDetail">
-							<div class="productName">Double Layered Shirt</div>
-							<div class="fitCategory">Regular FIt</div>
-						</div>
-						<div class="alsoLikeProductPrice">
-							<span class="originalPrice itemDiscounted">$98.00</span>
-							<span class="discountedPrice">$49.00</span>
-						</div>
-					</div>
-				</div> 
-				<div class="medium-4 cell">
-					<div class="image-hover-wrapper">
-						<a href="javascript:void(0)">
-							<img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
-							<span class="image-hover-wrapper-reveal">
-								<a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
-							</span>
-						</a>
-					</div>
-					<div class="alsoLikeProductDetailContainer text-center">
-						<div class="alsoLikeProductDetail">
-							<div class="productName">Double Layered Shirt</div>
-							<div class="fitCategory">Regular FIt</div>
-						</div>
-						<div class="alsoLikeProductPrice">
-							<span class="originalPrice itemDiscounted">$98.00</span>
-							<span class="discountedPrice">$49.00</span>
-						</div>
-					</div>
-				</div>
-				<div class="medium-4 cell">
-					<div class="image-hover-wrapper">
-						<a href="javascript:void(0)">
-							<img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
-							<span class="image-hover-wrapper-reveal">
-								<a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
-							</span>
-						</a>
-					</div>
-					<div class="alsoLikeProductDetailContainer text-center">
-						<div class="alsoLikeProductDetail">
-							<div class="productName">Double Layered Shirt</div>
-							<div class="fitCategory">Regular FIt</div>
-						</div>
-						<div class="alsoLikeProductPrice">
-							<span class="originalPrice itemDiscounted">$98.00</span>
-							<span class="discountedPrice">$49.00</span>
-						</div>
-					</div>
-				</div>
-				<div class="medium-4 cell">
-					<div class="image-hover-wrapper">
-						<a href="javascript:void(0)">
-							<img src="../assets/images/homepage-images/pic3.png" routerLink="/productDetail">
-							<span class="image-hover-wrapper-reveal">
-								<a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
-							</span>
-						</a>
-					</div>
-					<div class="alsoLikeProductDetailContainer text-center">
-						<div class="alsoLikeProductDetail">
-							<div class="productName">Double Layered Shirt</div>
-							<div class="fitCategory">Regular FIt</div>
-						</div>
-						<div class="alsoLikeProductPrice">
-							<span class="originalPrice itemDiscounted">$98.00</span>
-							<span class="discountedPrice">$49.00</span>
-						</div>
-					</div>
-				</div>
-				<div class="medium-4 cell">
-					<div class="image-hover-wrapper">
-						<a href="javascript:void(0)">
-							<img src="../assets/images/homepage-images/pic4.png" routerLink="/productDetail">
-							<span class="image-hover-wrapper-reveal">
-								<a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
-							</span>
-						</a>
-					</div>
-					<div class="alsoLikeProductDetailContainer text-center">
-						<div class="alsoLikeProductDetail">
-							<div class="productName">Double Layered Shirt</div>
-							<div class="fitCategory">Regular FIt</div>
-						</div>
-						<div class="alsoLikeProductPrice">
-							<span class="originalPrice itemDiscounted">$98.00</span>
-							<span class="discountedPrice">$49.00</span>
-						</div>
-					</div>
-				</div> --> 
 			</div>		
+			<!-- <pagination-controls (pageChange)="p=$event"></pagination-controls> -->
 		</div>
 	</div>
 </div>

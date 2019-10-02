@@ -26,5 +26,9 @@ export class ProductDetailComponent implements OnInit {
         }
       ]
 	  });
+
+    $('.productImageSlideContainer').not('.slick-initialized').slick({
+      infinite: false,
+    });
   }
 }
