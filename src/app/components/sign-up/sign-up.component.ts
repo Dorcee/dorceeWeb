@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormBuilder } from '@angular/forms';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,13 +9,21 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor() { }
+  constructor(public userService: UserService, public formBuilder: FormBuilder) { }
 
   ngOnInit() {
   }
   
-  signUpFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  verifyOtpForm = this.formBuilder.group({
+    phone_number: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(7), Validators.maxLength(13)]],
+    otp: ['', [Validators.required, Validators.pattern(/^[0-9]{4}$/)]],
+  });
+
+  verifyOtp() {
+    var formdata = this.verifyOtpForm.value;
+    console.log(formdata);
+    this.userService.verifyOtp(formdata).subscribe((data)=>{
+      console.log(data);
+    });
+  }
 }

@@ -36,18 +36,27 @@
   </button>
   <div class="reveal" id="verifyModal" data-reveal>
 		<div class="text-center">Sign-Up</div>
-		<form class="example-form">
+		<form class="verify-form" [formGroup]="verifyOtpForm" (ngSubmit)="verifyOtp()" >
 		  <mat-form-field class="example-full-width">
-		    <input matInput placeholder="Mobile Number" [formControl]="signUpFormControl">
+		    <input matInput placeholder="Mobile Number" formControlName="phone_number">
+		    <mat-error *ngIf="verifyOtpForm.controls['phone_number'].hasError('required')">
+		      Phone number is <strong>required</strong>
+		    </mat-error>
+		    <mat-error *ngIf="verifyOtpForm.controls['phone_number'].invalid && verifyOtpForm.controls['phone_number'].dirty && !verifyOtpForm.controls['phone_number'].hasError('required')">
+		      Phone number is <strong> not valid</strong>
+		    </mat-error>
 		  </mat-form-field>
 		  <mat-form-field class="example-full-width">
-		    <input matInput placeholder="Enter Otp" [formControl]="signUpFormControl">
-		    <!-- <mat-error *ngIf="signUpFormControl.hasError('required')">
-		      Otp is <strong>required</strong>
-		    </mat-error> -->
+		    <input matInput placeholder="Enter Otp" formControlName="otp">
+		    <mat-error *ngIf="verifyOtpForm.controls['otp'].hasError('required')">
+		      OTP is <strong>required</strong>
+		    </mat-error>
+		    <mat-error *ngIf="verifyOtpForm.controls['otp'].invalid && verifyOtpForm.controls['otp'].dirty && !verifyOtpForm.controls['otp'].hasError('required')">
+		      OTP is <strong> not valid</strong>
+		    </mat-error>
 		  </mat-form-field>
 			<div class=" text-center">
-				<button class="button">VERIFY</button>
+				<button class="button" [disabled]="!verifyOtpForm.valid">VERIFY</button>
 			</div>
 			<div class="">
 				Existing User? <span data-open="loginModal">Login</span>

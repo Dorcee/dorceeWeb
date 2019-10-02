@@ -33,6 +33,7 @@ import { AddressesComponent } from './components/addresses/addresses.component';
 import { InstapageComponent } from './components/instapage/instapage.component';
 
 import { HomeService } from './services/home.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { HomeService } from './services/home.service';
     HttpClientModule
   ],
   providers: [
-    HomeService
+    HomeService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
