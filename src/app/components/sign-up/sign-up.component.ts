@@ -19,6 +19,11 @@ export class SignUpComponent implements OnInit {
     otp: ['', [Validators.required, Validators.pattern(/^[0-9]{4}$/)]],
   });
 
+  signUpFormControl = new FormControl('', [
+      //Validators.required
+  ]);
+
+
   verifyOtp() {
     var formdata = this.verifyOtpForm.value;
     console.log(formdata);

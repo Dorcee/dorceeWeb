@@ -36,7 +36,7 @@
 <div class="reveal signUpModalOuterContainer" id="verifyModal" data-reveal>
 	<div class="grid-container signUpModalContainer">
 		<div class="text-center signUpHeader">Sign-Up</div>
-		<form class="example-form">
+		<form class="example-form" [formGroup]="verifyOtpForm">
 		  <mat-form-field class="example-full-width">
 		    <input matInput placeholder="Mobile Number" formControlName="phone_number">
 		    <mat-error *ngIf="verifyOtpForm.controls['phone_number'].hasError('required')">

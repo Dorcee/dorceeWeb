@@ -16,20 +16,29 @@ export class HomeService {
   constructor(private httpClient: HttpClient) { }
 
   private handleError (error) {
-	console.error('ApiService::handleError', error);
-	return Observable.throw(error);
+	  console.error('ApiService::handleError', error);
+	  return Observable.throw(error);
   }
 
-  public getAllProducts() {
-  	return this.httpClient.get<any>(`${API_URL}/cms/product?is_sort="newest"`, {headers})
+  public getAllProducts(key='', value='') {
+    var params = {};
+    if(key == '' || value == '') {
+      params = {'is_sort' : 'newest'};
+    } else {
+      params[key] = value;
+    }
+  	return this.httpClient.get<any>(`${API_URL}/cms/product`, {params, headers})
   	.pipe(
-       map(res => {console.log(res); return res.data; }),  // make it as observable
-       catchError(error => this.handleError(error.message || error))
+      map(res => {console.log(res); return res.data; }),  // make it as observable
+      catchError(error => this.handleError(error.message || error))
     );
-   // .pipe(map(res => res.json()));
   }
 
-  public createTodo(todo) {
-    // will use this.http.post()
+  public getAllEntities(postData) {
+    return this.httpClient.post<any>(`${API_URL}/cms/entity`, postData, {headers})
+    .pipe(
+      map(res => {console.log(res); return res.data; }),  // make it as observable
+      catchError(error => this.handleError(error.message || error))
+    );
   }
 }

@@ -18,17 +18,36 @@ export class ProductCategoryComponent implements OnInit {
       this.products = data;
       console.log(this.products);
     });
+
+    var types = {"type" : ["sizes", "categories", "fits"]};
+    this.homeservice.getAllEntities(types).subscribe((data)=>{
+      this.sizes = data.sizes;
+      this.categories = data.categories;
+      this.fits = data.fits;
+      console.log(this.sizes);
+    });
+
     $('.productImageSlideContainer').not('.slick-initialized').slick({
       infinite: false,
     });
   }
 
   products : any;
+  categories : any;
+  sizes : any;
+  fits : any;
   selected = 'option2';
   checked = false;
   indeterminate = false;
   labelPosition = 'after';
   disabled = false;
 
-  //p: number = 1;
+  getProducts(key, value) {
+    console.log(key);
+    console.log(value);
+    this.homeservice.getAllProducts(key, value).subscribe((data)=>{
+      this.products = data;
+      console.log(this.products);
+    });
+  }
 }

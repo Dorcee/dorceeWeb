@@ -5,19 +5,14 @@
 		<form class="loginForm">
 			<mat-form-field class="example-full-width">
 				<input matInput placeholder="Enter Mobile Number" [formControl]="loginFormControl">
-			    <mat-error *ngIf="loginFormControl.hasError('phone')">
-			      Please enter a valid mobile number
+
+				<mat-error *ngIf="loginFormControl.hasError('required')">
+			      Phone number is <strong>required</strong>
 			    </mat-error>
-			    <mat-error *ngIf="loginFormControl.hasError('required')">
-			      Mobile is <strong>required</strong>
-			  </mat-error>
+			    <mat-error *ngIf="loginFormControl.invalid && loginFormControl.dirty && !loginFormControl.hasError('required')">
+			      Phone number is <strong> not valid</strong>
+			    </mat-error>
 			</mat-form-field>
-			<!-- <mat-form-field class="example-full-width">
-				<input matInput placeholder="Enter Password" [formControl]="loginFormControl">
-			    <mat-error *ngIf="loginFormControl.hasError('required')">
-			      Password is <strong>required</strong>
-			  </mat-error>
-			</mat-form-field> -->
 			<div class="text-center dorceeLoginBtnContainer">
 				<button type="submit" (click)="submit()" [disabled]="!loginFormControl.valid" class="button dorceeLoginBtn">LOGIN</button>
 			</div>
