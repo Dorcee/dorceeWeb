@@ -23,14 +23,19 @@ export class HomepageComponent implements OnInit {
 			arrows: false
 		});
 		
-		$('.productImageSlideContainer').not('.slick-initialized').slick({
-			infinite: false,
-		});
-
+		
 		this.homeservice.getAllProducts().subscribe((data)=>{
 			this.products = data.slice(0, 4);
 			console.log(this.products);
     	});
 	}
+
+	ngAfterViewInit(){
+	   setTimeout(function () {
+	     $('.productImageSlideContainer').not('.slick-initialized').slick({
+	       infinite: false,
+	     });
+	   }, 1000);
+	 }
 
 }
