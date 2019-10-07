@@ -27,10 +27,16 @@ export class ProductCategoryComponent implements OnInit {
       console.log(this.sizes);
     });
 
-    $('.productImageSlideContainer').not('.slick-initialized').slick({
-      infinite: false,
-    });
+    
   }
+
+  ngAfterViewInit(){
+     setTimeout(function () {
+       $('.productImageSlideContainer').not('.slick-initialized').slick({
+         infinite: false,
+       });
+     }, 1000);
+   }
 
   products : any;
   categories : any;
