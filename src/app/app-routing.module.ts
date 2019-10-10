@@ -19,7 +19,7 @@ import { MyAccountComponent } from './components/my-account/my-account.component
 const routes: Routes = [
 	{ path: '', component: HomepageComponent },
 	{ path: 'dorcee_official', component: InstapageComponent },
-	{ path: 'productDetail', component: ProductDetailComponent },
+	{ path: 'productDetail/:id', component: ProductDetailComponent },
 	{ path: 'productCategory', component: ProductCategoryComponent },
 	{ path: 'checkout', component: CheckoutComponent },
 	{ path: 'confirmOrder', component: ConfirmOrderComponent },

@@ -29,7 +29,9 @@ export class HomeService {
     }
   	return this.httpClient.get<any>(`${API_URL}/cms/product`, {params, headers})
   	.pipe(
-      map(res => {console.log(res); return res.data; }),  // make it as observable
+      map(res => {
+        //console.log(res); 
+        return res.data; }),  // make it as observable
       catchError(error => this.handleError(error.message || error))
     );
   }
@@ -37,7 +39,9 @@ export class HomeService {
   public getAllEntities(postData) {
     return this.httpClient.post<any>(`${API_URL}/cms/entity`, postData, {headers})
     .pipe(
-      map(res => {console.log(res); return res.data; }),  // make it as observable
+      map(res => {
+        //console.log(res); 
+        return res.data; }),  // make it as observable
       catchError(error => this.handleError(error.message || error))
     );
   }

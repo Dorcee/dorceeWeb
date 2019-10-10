@@ -38,12 +38,12 @@
 		</div> -->
 		<div class="small-12 medium-5 cell">
 			<div class="productName">
-				Double Layered Printed Shirt
+				{{productDetail?.name}}
 			</div>
 			<div class="pricingContainer">
-				<span class="itemOriginalPrice itemDiscounted">$98.00</span>
-				<span class="itemDiscountedPrice">$49.00</span>
-				<span class="itemDiscountPercent">50% OFF</span>
+				<!-- <span class="itemOriginalPrice itemDiscounted">${{productDetail?.price_usd}}</span> -->
+				<span class="itemDiscountedPrice">Rs.{{productDetail?.price_inr}}</span>
+				<!-- <span class="itemDiscountPercent">50% OFF</span> -->
 			</div>
 			<div class="sizingContainer">
 				<div class="sizingHeaders clearfix">
@@ -55,7 +55,7 @@
 				  <div class="grid-x">
 				  	<div class="medium-6 cell text-center">
 				  		<h4>Size(US)</h4>
-				  		<div>S</div>
+				  		<!-- <div>S</div> -->
 				  		<div>M</div>
 				  		<div>L</div>
 				  		<div>XL</div>
@@ -64,7 +64,7 @@
 						</div>
 				  	<div class="medium-6 cell text-center">
 				  		<h4>Chest</h4>
-				  		<div>35" - 37"</div>
+				  		<!-- <div>35" - 37"</div> -->
 				  		<div>38" - 40"</div>
 				  		<div>41" - 43"</div>
 				  		<div>44" - 46"</div>
@@ -77,12 +77,15 @@
 				  </button>
 			  </div>
 			  <div class="sizeSelectorContainer">
-			  	<a class="sizeSelector" [ngClass]="{'selectedSize': selectedItem === 'smallSize'}" (click)="selectedItem = 'smallSize'">S</a>
-			  	<a class="sizeSelector" [ngClass]="{'selectedSize': selectedItem === 'mediumSize'}" (click)="selectedItem = 'mediumSize'">M</a>
-			  	<a class="sizeSelector" [ngClass]="{'selectedSize': selectedItem === 'largeSize'}" (click)="selectedItem = 'largeSize'">L</a>
-			  	<a class="sizeSelector" [ngClass]="{'selectedSize': selectedItem === 'xLargeSize'}" (click)="selectedItem = 'xLargeSize'">XL</a>
-			  	<a class="sizeSelector" [ngClass]="{'selectedSize': selectedItem === '2xLargeSize'}" (click)="selectedItem = '2xLargeSize'">2XL</a>
-			  	<a class="sizeSelector" [ngClass]="{'selectedSize': selectedItem === '3xLargeSize'}" (click)="selectedItem = '3xLargeSize'">3XL</a>
+			  	<!-- <a class="sizeSelector" [ngClass]="{'selectedSize': selectedItem === 'smallSize'}" (click)="selectedItem = 'smallSize'">S</a> -->
+
+			  	<div *ngFor="let size of sizesAvailable">
+				  	<a class="sizeSelector" *ngIf="size=='M'" [ngClass]="{'selectedSize': selectedItem === 'mediumSize'}" (click)="selectedItem = 'mediumSize'">M</a>
+				  	<a class="sizeSelector" *ngIf="size=='L'" [ngClass]="{'selectedSize': selectedItem === 'largeSize'}" (click)="selectedItem = 'largeSize'">L</a>
+				  	<a class="sizeSelector" *ngIf="size=='XL'" [ngClass]="{'selectedSize': selectedItem === 'xLargeSize'}" (click)="selectedItem = 'xLargeSize'">XL</a>
+				  	<a class="sizeSelector" *ngIf="size=='2XL'" [ngClass]="{'selectedSize': selectedItem === '2xLargeSize'}" (click)="selectedItem = '2xLargeSize'">2XL</a>
+				  	<a class="sizeSelector" *ngIf="size=='3XL'" [ngClass]="{'selectedSize': selectedItem === '3xLargeSize'}" (click)="selectedItem = '3xLargeSize'">3XL</a>
+					</div>  	
 			  </div>
 			  <div class="productButtonsContainer clearfix">
 			  	<span class="wishlistContainer">
@@ -101,8 +104,7 @@
 				    <a class="accordion-title">Product Details</a>
 
 				    <div class="accordion-content" data-tab-content>
-				      <p>Panel 1. Lorem ipsum dolor</p>
-				      <a>Nowhere to Go</a>
+				      <p>{{productDetail?.description}}</p>
 				    </div>
 				  </li>
 				  <li class="accordion-item" data-accordion-item>
