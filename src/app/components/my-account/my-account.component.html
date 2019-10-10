@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+<div class="grid-container">
+	<div class="grid-x grid-margin-x">
+    <div class="cell medium-3">
+	    <ul class="tabs text-center tabsContainer vertical" data-tabs id="myAccountTabs">
+	      <li class="tabs-title tabs-title-category is-active">
+	        <a href="#myOrdersPanel" (click)="moveToMyOrders()" aria-selected="true">My Orders</a>
+	      </li>
+	      <li class="tabs-title tabs-title-category">
+	        <a href="#profilePanel" (click)="moveToProfile()">Profile</a>
+	      </li>
+	      <!-- routerLink="/myAccount/profile" -->
+	      <li class="tabs-title tabs-title-category">
+	        <a href="#addressesPanel" (click)="moveToAddresses()">Addresses</a>
+	      </li>
+	    </ul>
+	  </div>  
+
+	  <div class="cell medium-9">
+		  <div class="tabs-content tabsContentContainer" data-tabs-content="myAccountTabs">
+
+		    <div class="tabs-panel is-active" id="myOrdersPanel" routerLink="/myAccount/myOrders">  
+				<app-my-orders></app-my-orders>					
+			</div>
+
+
+			<div class="tabs-panel" id="profilePanel">
+					<app-profile></app-profile>		      
+		    </div>
+
+		    <div class="tabs-panel" id="addressesPanel">
+		      <app-addresses></app-addresses>
+		    </div>
+
+			
+			</div>
+		</div>
+
+
+		    
+
+	</div>				
+</div>
+<app-footer></app-footer>

@@ -14,6 +14,7 @@ import { AddressesComponent } from './components/addresses/addresses.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { InstapageComponent } from './components/instapage/instapage.component';
+import { MyAccountComponent } from './components/my-account/my-account.component';
 
 const routes: Routes = [
 	{ path: '', component: HomepageComponent },
@@ -26,9 +27,10 @@ const routes: Routes = [
 	{ path: 'faq', component: FAQComponent },
 	{ path: 'sizeGuide', component: SizeGuideComponent },
 	{ path: 'shippingPolicy', component: ShippingComponent },
-	{ path: 'addresses', component: AddressesComponent },
-	{ path: 'profile', component: ProfileComponent },
-	{ path: 'myOrders', component: MyOrdersComponent }
+	// { path: 'addresses', component: AddressesComponent },
+	// { path: 'profile', component: ProfileComponent },
+	// { path: 'myOrders', component: MyOrdersComponent },
+	{ path: 'myAccount/:subPage', component: MyAccountComponent }
 ];
 
 @NgModule({

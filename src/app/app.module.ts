@@ -35,6 +35,7 @@ import { InstapageComponent } from './components/instapage/instapage.component';
 
 import { HomeService } from './services/home.service';
 import { UserService } from './services/user.service';
+import { MyAccountComponent } from './components/my-account/my-account.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { UserService } from './services/user.service';
     MyOrdersComponent,
     ProfileComponent,
     AddressesComponent,
-    InstapageComponent
+    InstapageComponent,
+    MyAccountComponent,
   ],
   imports: [
     BrowserModule,
