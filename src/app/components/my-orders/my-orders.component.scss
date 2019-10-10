@@ -1,0 +1,14 @@
+@import '../../../assets/foundation-sites/global';
+
+.myOrderTitle, .orderStatus{
+    color:$primary-color;
+}
+.deliveryDetailOfMyOrders > *{
+    font-size:rem-calc(17);
+    font-weight:300;
+    margin:rem-calc(20);
+    
+}
+.myOrdersReturnPolicy{
+    color:grey;
+}

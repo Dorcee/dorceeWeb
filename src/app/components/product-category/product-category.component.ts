@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HomeService } from '../../services/home.service';
 
 declare var $:any;
@@ -10,13 +11,15 @@ declare var $:any;
 })
 export class ProductCategoryComponent implements OnInit {
 
-  constructor(public homeservice:HomeService) { }
+  constructor(public homeservice:HomeService,
+              public router : Router
+    ) { }
 
   ngOnInit() {
     $(document).foundation();
     this.homeservice.getAllProducts().subscribe((data)=>{
       this.products = data;
-      console.log(this.products);
+      //console.log(this.products);
     });
 
     var types = {"type" : ["sizes", "categories", "fits"]};
@@ -24,10 +27,14 @@ export class ProductCategoryComponent implements OnInit {
       this.sizes = data.sizes;
       this.categories = data.categories;
       this.fits = data.fits;
-      console.log(this.sizes);
+      //console.log(this.sizes);
     });
 
     
+  }
+
+  goToProductDetailPage(id){
+    this.router.navigate(['/productDetail', id]);
   }
 
   ngAfterViewInit(){

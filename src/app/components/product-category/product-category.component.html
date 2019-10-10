@@ -75,13 +75,13 @@
 						</a> -->
 					</div>
 					<div class="productImageSlideContainer">
-				        <img *ngIf="product.main_image" src="{{product.main_image}}" routerLink="/productDetail">
-						<img *ngIf="product.thumbnail_1" src="{{product.thumbnail_1}}" routerLink="/productDetail">
-						<img *ngIf="product.thumbnail_2" src="{{product.thumbnail_2}}" routerLink="/productDetail">
-						<img *ngIf="product.thumbnail_3" src="{{product.thumbnail_3}}" routerLink="/productDetail">
-						<img *ngIf="product.thumbnail_4" src="{{product.thumbnail_4}}" routerLink="/productDetail">
-						<img *ngIf="product.thumbnail_5" src="{{product.thumbnail_5}}" routerLink="/productDetail">
-						<img *ngIf="product.thumbnail_6" src="{{product.thumbnail_6}}" routerLink="/productDetail">
+				        <img *ngIf="product.main_image" src="{{product.main_image}}" (click)="goToProductDetailPage(product.id)">
+						<img *ngIf="product.thumbnail_1" src="{{product.thumbnail_1}}" (click)="goToProductDetailPage(product.id)">
+						<img *ngIf="product.thumbnail_2" src="{{product.thumbnail_2}}" (click)="goToProductDetailPage(product.id)">
+						<img *ngIf="product.thumbnail_3" src="{{product.thumbnail_3}}" (click)="goToProductDetailPage(product.id)">
+						<img *ngIf="product.thumbnail_4" src="{{product.thumbnail_4}}" (click)="goToProductDetailPage(product.id)">
+						<img *ngIf="product.thumbnail_5" src="{{product.thumbnail_5}}" (click)="goToProductDetailPage(product.id)">
+						<img *ngIf="product.thumbnail_6" src="{{product.thumbnail_6}}" (click)="goToProductDetailPage(product.id)">
 			      	</div>
 					<div class="alsoLikeProductDetailContainer text-center">
 						<div class="alsoLikeProductDetail">
