@@ -16,19 +16,58 @@ import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { InstapageComponent } from './components/instapage/instapage.component';
 
 const routes: Routes = [
-	{ path: '', component: HomepageComponent },
-	{ path: 'dorcee_official', component: InstapageComponent },
-	{ path: 'productDetail', component: ProductDetailComponent },
-	{ path: 'productCategory', component: ProductCategoryComponent },
-	{ path: 'checkout', component: CheckoutComponent },
-	{ path: 'confirmOrder', component: ConfirmOrderComponent },
-	{ path: 'aboutUs', component: AboutUsComponent },
-	{ path: 'faq', component: FAQComponent },
-	{ path: 'sizeGuide', component: SizeGuideComponent },
-	{ path: 'shippingPolicy', component: ShippingComponent },
-	{ path: 'addresses', component: AddressesComponent },
-	{ path: 'profile', component: ProfileComponent },
-	{ path: 'myOrders', component: MyOrdersComponent }
+	{ 
+		path: '', 
+		component: HomepageComponent 
+	},
+	{ 
+		path: 'dorcee_official', 
+		component: InstapageComponent 
+	},
+	{ 
+		path: 'productDetail', 
+		component: ProductDetailComponent 
+	},
+	{ 
+		path: 'productCategory', 
+		component: ProductCategoryComponent 
+	},
+	{ 
+		path: 'checkout', 
+		component: CheckoutComponent 
+	},
+	{ 
+		path: 'confirmOrder', 
+		component: ConfirmOrderComponent 
+	},
+	{ 
+		path: 'aboutUs', 
+		component: AboutUsComponent 
+	},
+	{ 
+		path: 'faq', 
+		component: FAQComponent 
+	},
+	{ 
+		path: 'sizeGuide', 
+		component: SizeGuideComponent 
+	},
+	{ 
+		path: 'shippingPolicy', 
+		component: ShippingComponent 
+	},
+	{ 
+		path: 'addresses', 
+		component: AddressesComponent 
+	},
+	{ 
+		path: 'profile', 
+		component: ProfileComponent 
+	},
+	{ 
+		path: 'myOrders', 
+		component: MyOrdersComponent
+  }
 ];
 
 @NgModule({

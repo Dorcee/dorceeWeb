@@ -20,7 +20,7 @@
 		<div class="medium-3 cell">
 			<div class="productCategoryOuterContainer">
 				<div class="productSelectorHeading">Category</div>
-				<ul class="vertical menu accordion-menu" data-accordion-menu>
+				<ul class="vertical menu accordion-menu productSelectorSubHeading" data-accordion-menu>
 					<li class="productCategoryAccordionHeader" *ngFor="let category of categories">
 						<a (click)="getProducts('category', category.name)">{{category.name}}</a>
 						<ul class="menu vertical nested is-active productCategoryAccordionContent">
@@ -34,8 +34,8 @@
 			<div class="productFitOuterContainer">
 				<div class="productSelectorHeading">Fit</div>
 				<div class="productSelectorSubHeading">
-					<div class="fitCategoryContainer">
-						<mat-checkbox class="fitCategorySelector" *ngFor="let fit of fits">{{fit.name}}</mat-checkbox>
+					<div class="fitCategoryContainer" *ngFor="let fit of fits">
+						<mat-checkbox class="fitCategorySelector">{{fit.name}}</mat-checkbox>
 					</div>
 				</div>
 			</div>
@@ -66,31 +66,33 @@
 			<!-- <div class="" *ngFor="let response of productsResponse | paginate: { itemsPerPage: 5, currentPage: p }"> -->
 			<div class="grid-x grid-padding-x grid-padding-y">
 				<div *ngFor="let product of products"  class="medium-4 cell">
-					<div class="image-hover-wrapper">
-						<!-- <a href="javascript:void(0)">
+					<!-- <div class="image-hover-wrapper">
+						<a href="javascript:void(0)">
 							<img *ngIf="product.main_image" src="{{product.main_image}}"routerLink="/productDetail">
 							<span class="image-hover-wrapper-reveal">
 								<a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
 							</span>
-						</a> -->
-					</div>
-					<div class="productImageSlideContainer">
-				        <img *ngIf="product.main_image" src="{{product.main_image}}" routerLink="/productDetail">
-						<img *ngIf="product.thumbnail_1" src="{{product.thumbnail_1}}" routerLink="/productDetail">
-						<img *ngIf="product.thumbnail_2" src="{{product.thumbnail_2}}" routerLink="/productDetail">
-						<img *ngIf="product.thumbnail_3" src="{{product.thumbnail_3}}" routerLink="/productDetail">
-						<img *ngIf="product.thumbnail_4" src="{{product.thumbnail_4}}" routerLink="/productDetail">
-						<img *ngIf="product.thumbnail_5" src="{{product.thumbnail_5}}" routerLink="/productDetail">
-						<img *ngIf="product.thumbnail_6" src="{{product.thumbnail_6}}" routerLink="/productDetail">
-			      	</div>
-					<div class="alsoLikeProductDetailContainer text-center">
-						<div class="alsoLikeProductDetail">
-							<div class="productName">{{product.name}}</div>
-							<div class="fitCategory">{{product.category}}</div>
-						</div>
-						<div class="alsoLikeProductPrice">
-							<!-- <span class="originalPrice itemDiscounted">$98.00</span> -->
-							<span class="discountedPrice">Rs {{product.price_inr}}</span>
+						</a>
+					</div> -->
+					<div class="productContainer">
+						<div class="productImageSlideContainer">
+			        <img *ngIf="product.main_image" src="{{product.main_image}}" routerLink="/productDetail" class="productImage">
+							<img *ngIf="product.thumbnail_1" src="{{product.thumbnail_1}}" routerLink="/productDetail" class="productImage">
+							<img *ngIf="product.thumbnail_2" src="{{product.thumbnail_2}}" routerLink="/productDetail" class="productImage">
+							<img *ngIf="product.thumbnail_3" src="{{product.thumbnail_3}}" routerLink="/productDetail" class="productImage">
+							<img *ngIf="product.thumbnail_4" src="{{product.thumbnail_4}}" routerLink="/productDetail" class="productImage">
+							<img *ngIf="product.thumbnail_5" src="{{product.thumbnail_5}}" routerLink="/productDetail" class="productImage">
+							<img *ngIf="product.thumbnail_6" src="{{product.thumbnail_6}}" routerLink="/productDetail" class="productImage">
+		      	</div>
+						<div class="alsoLikeProductDetailContainer text-center">
+							<div class="alsoLikeProductDetail">
+								<div class="productName">{{product.name}}</div>
+								<div class="fitCategory">{{product.category}}</div>
+							</div>
+							<div class="alsoLikeProductPrice">
+								<!-- <span class="originalPrice itemDiscounted">$98.00</span> -->
+								<span class="discountedPrice">Rs {{product.price_inr}}</span>
+							</div>
 						</div>
 					</div>
 				</div>
