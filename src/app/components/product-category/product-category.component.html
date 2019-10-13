@@ -66,31 +66,33 @@
 			<!-- <div class="" *ngFor="let response of productsResponse | paginate: { itemsPerPage: 5, currentPage: p }"> -->
 			<div class="grid-x grid-padding-x grid-padding-y">
 				<div *ngFor="let product of products"  class="medium-4 cell">
-					<!-- <div class="image-hover-wrapper">
-						<a href="javascript:void(0)">
-							<img *ngIf="product.main_image" src="{{product.main_image}}"routerLink="/productDetail">
-							<span class="image-hover-wrapper-reveal">
-								<a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
-							</span>
-						</a> 
-					</div>-->
-					<div class="productImageSlideContainer">
-		        <img *ngIf="product.main_image" src="{{product.main_image}}" (click)="goToProductDetailPage(product.id)">
-						<img *ngIf="product.thumbnail_1" src="{{product.thumbnail_1}}" (click)="goToProductDetailPage(product.id)">
-						<img *ngIf="product.thumbnail_2" src="{{product.thumbnail_2}}" (click)="goToProductDetailPage(product.id)">
-						<img *ngIf="product.thumbnail_3" src="{{product.thumbnail_3}}" (click)="goToProductDetailPage(product.id)">
-						<img *ngIf="product.thumbnail_4" src="{{product.thumbnail_4}}" (click)="goToProductDetailPage(product.id)">
-						<img *ngIf="product.thumbnail_5" src="{{product.thumbnail_5}}" (click)="goToProductDetailPage(product.id)">
-						<img *ngIf="product.thumbnail_6" src="{{product.thumbnail_6}}" (click)="goToProductDetailPage(product.id)">
-	      	</div>
-					<div class="alsoLikeProductDetailContainer text-center">
-						<div class="alsoLikeProductDetail">
-							<div class="productName">{{product.name}}</div>
-							<div class="fitCategory">{{product.category}}</div>
-						</div>
-						<div class="alsoLikeProductPrice">
-							<!-- <span class="originalPrice itemDiscounted">$98.00</span> -->
-							<span class="discountedPrice">Rs {{product.price_inr}}</span>
+					<div class="productContainer">
+						<!-- <div class="image-hover-wrapper">
+							<a href="javascript:void(0)">
+								<img *ngIf="product.main_image" src="{{product.main_image}}"routerLink="/productDetail">
+								<span class="image-hover-wrapper-reveal">
+									<a routerLink="/productDetail" class="button viewProductBtn">View Product</a>
+								</span>
+							</a> 
+						</div>-->
+						<div class="productImageSlideContainer">
+			        <img *ngIf="product.main_image" src="{{product.main_image}}" (click)="goToProductDetailPage(product.id)">
+							<img *ngIf="product.thumbnail_1" src="{{product.thumbnail_1}}" (click)="goToProductDetailPage(product.id)">
+							<img *ngIf="product.thumbnail_2" src="{{product.thumbnail_2}}" (click)="goToProductDetailPage(product.id)">
+							<img *ngIf="product.thumbnail_3" src="{{product.thumbnail_3}}" (click)="goToProductDetailPage(product.id)">
+							<img *ngIf="product.thumbnail_4" src="{{product.thumbnail_4}}" (click)="goToProductDetailPage(product.id)">
+							<img *ngIf="product.thumbnail_5" src="{{product.thumbnail_5}}" (click)="goToProductDetailPage(product.id)">
+							<img *ngIf="product.thumbnail_6" src="{{product.thumbnail_6}}" (click)="goToProductDetailPage(product.id)">
+		      	</div>
+						<div class="alsoLikeProductDetailContainer text-center">
+							<div class="alsoLikeProductDetail">
+								<div class="productName">{{product.name}}</div>
+								<div class="fitCategory">{{product.category}}</div>
+							</div>
+							<div class="alsoLikeProductPrice">
+								<!-- <span class="originalPrice itemDiscounted">$98.00</span> -->
+								<span class="discountedPrice">Rs {{product.price_inr}}</span>
+							</div>
 						</div>
 					</div>
 				</div>
