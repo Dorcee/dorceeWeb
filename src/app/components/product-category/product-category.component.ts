@@ -15,36 +15,6 @@ export class ProductCategoryComponent implements OnInit {
               public router : Router
     ) { }
 
-  ngOnInit() {
-    $(document).foundation();
-    this.homeservice.getAllProducts().subscribe((data)=>{
-      this.products = data;
-      //console.log(this.products);
-    });
-
-    var types = {"type" : ["sizes", "categories", "fits"]};
-    this.homeservice.getAllEntities(types).subscribe((data)=>{
-      this.sizes = data.sizes;
-      this.categories = data.categories;
-      this.fits = data.fits;
-      //console.log(this.sizes);
-    });
-
-    
-  }
-
-  goToProductDetailPage(id){
-    this.router.navigate(['/productDetail', id]);
-  }
-
-  ngAfterViewInit(){
-     setTimeout(function () {
-       $('.productImageSlideContainer').not('.slick-initialized').slick({
-         infinite: false,
-       });
-     }, 1000);
-   }
-
   products : any;
   categories : any;
   sizes : any;
@@ -54,12 +24,40 @@ export class ProductCategoryComponent implements OnInit {
   indeterminate = false;
   labelPosition = 'after';
   disabled = false;
+  containerLoaded = true;
+
+  ngOnInit() {
+    
+    $(document).foundation();
+    this.homeservice.getAllProducts().subscribe((data)=>{
+      this.products = data;
+      // TODO - get it from local storage
+      var types = {"type" : ["sizes", "categories", "fits"]};
+      this.homeservice.getAllEntities(types).subscribe((data)=>{
+        this.sizes = data.sizes;
+        this.categories = data.categories;
+        this.fits = data.fits;
+        this.containerLoaded = true;
+      });
+    });  
+  }
+
+  goToProductDetailPage(id){
+    this.router.navigate(['/productDetail', id]);
+  }
+
+  ngAfterViewInit(){
+    setTimeout(function () {
+      $('.productImageSlideContainer').not('.slick-initialized').slick({
+        infinite: false,
+      });
+    }, 1000);
+  }
 
   getProducts(key, value) {
-    console.log(key);
-    console.log(value);
     this.homeservice.getAllProducts(key, value).subscribe((data)=>{
       this.products = data;
+      this.containerLoaded = true;
       console.log(this.products);
     });
   }

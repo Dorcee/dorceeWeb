@@ -31,11 +31,11 @@ export class HomepageComponent implements OnInit {
 	}
 
 	ngAfterViewInit(){
-	   setTimeout(function () {
-	     $('.productImageSlideContainer').not('.slick-initialized').slick({
-	       infinite: false,
-	     });
+	    setTimeout(function () {
+	     	$('.productImageSlideContainer').not('.slick-initialized').slick({
+	       		infinite: false,
+	     	});
 	   }, 1000);
-	 }
+	}
 
 }

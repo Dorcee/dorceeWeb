@@ -1,18 +1,20 @@
 <app-header></app-header>
 <app-login></app-login>
-<div class="grid-container">
+<div class="grid-container" *ngIf="containerLoaded">
 	<div class="grid-x">
 		<div class="small-12 cell">
 			<span class="sitePath">
 				<nav aria-label="You are here:" role="navigation">
 				  <ul class="breadcrumbs">
-				    <li><a href="#">Men</a></li>
+				    <!-- <li><a href="#">Men</a></li>
 				    <li><a href="#">Shirts</a></li>
-				    <li><a href="#">Printed</a></li>
-				    <li class="disabled">98576</li>
-				    <li>
+				    <li><a href="#">Printed</a></li> -->
+				    <li><a href="#" routerLink="/">Home</a></li>
+				    <li><a href="#" routerLink="/productCategory">Products</a></li>
+				    <li class="disabled">{{productDetail.name}}</li>
+				    <!-- <li>
 				      <span class="show-for-sr">Current: </span>
-				    </li>
+				    </li> -->
 				  </ul>
 				</nav>
 			</span>
@@ -21,21 +23,15 @@
 	<div class="grid-x grid-padding-x grid-padding-y">
 		<div class="small-12 medium-7 cell">
 			<div class="productDetailImagesContainer">
-				<img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
+				<img *ngIf="productDetail.main_image" src="{{productDetail.main_image}}" routerLink="/productDetail">
+				<img *ngIf="productDetail.thumbnail_1" src="{{productDetail.thumbnail_1}}" routerLink="/productDetail">
+				<img *ngIf="productDetail.thumbnail_2" src="{{productDetail.thumbnail_2}}" routerLink="/productDetail">
+				<img *ngIf="productDetail.thumbnail_3" src="{{productDetail.thumbnail_3}}" routerLink="/productDetail">
+				<img *ngIf="productDetail.thumbnail_4" src="{{productDetail.thumbnail_4}}" routerLink="/productDetail">
+				<img *ngIf="productDetail.thumbnail_5" src="{{productDetail.thumbnail_5}}" routerLink="/productDetail">
+				<img *ngIf="productDetail.thumbnail_6" src="{{productDetail.thumbnail_6}}" routerLink="/productDetail">
 			</div>
-			<!-- <ul class="productClipsContainer">
-				<li>
-				</li>
-			</ul> -->
 		</div>
-		<!-- <div class="medium-5 cell">
-			<img src="../assets/images/homepage-images/pic4.png">
-		</div> -->
 		<div class="small-12 medium-5 cell">
 			<div class="productName">
 				{{productDetail?.name}}
@@ -94,7 +90,7 @@
 			  		</button>
 			  	</span>
 			  	<span class="addToBagContainer">
-			  		<button class="button float-right primaryBtn">
+			  		<button class="button float-right primaryBtn" (click)="addToCart(productDetail.id)">
 			  			<img src="../assets/images/emptyShoppingBagWhite.svg" class="productDecisionImgBtn">Add To bag
 			  		</button>
 			  	</span>
