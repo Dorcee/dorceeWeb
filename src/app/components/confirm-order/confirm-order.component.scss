@@ -71,3 +71,27 @@
 .selectedProductDetail {
 	padding-top: rem-calc(15);
 }
+.addressModalHeader {
+	font-size: 28px;
+  padding-bottom: rem-calc(15);
+}
+.addressFormField {
+	width: 100%;
+}
+.reveal.addressModalOuterContainer {
+	overflow: visible;
+}
+.closeAddressModal {
+	position: absolute;
+  top: rem-calc(-14);
+  right: rem-calc(-14);
+  color: white;
+  background-color: #600000;
+  border-radius: 25px;
+  padding: rem-calc(3 7 5);
+  z-index: 9999;
+  font-size: rem-calc(20);
+}
+.addressModalContainer {
+	padding: rem-calc(30 50);
+}
