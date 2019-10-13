@@ -1,12 +1,9 @@
 @import '../../../assets/foundation-sites/global';
 
-.loginForm {
+.loginForm, .loginFormField {
   width: 100%;
 }
 
-.example-full-width {
-  width: 100%;
-}
 .reveal.loginModalOuterContainer {
 	overflow: visible;
 }

@@ -3,15 +3,14 @@
 	<div class="grid-container loginModalContainer">
 		<div class="text-center loginHeader">LOGIN</div>
 		<form class="loginForm">
-			<mat-form-field class="example-full-width">
+			<mat-form-field class="loginFormField">
 				<input matInput placeholder="Enter Mobile Number" [formControl]="loginFormControl">
-
 				<mat-error *ngIf="loginFormControl.hasError('required')">
-			      Phone number is <strong>required</strong>
-			    </mat-error>
-			    <mat-error *ngIf="loginFormControl.invalid && loginFormControl.dirty && !loginFormControl.hasError('required')">
-			      Phone number is <strong> not valid</strong>
-			    </mat-error>
+		      Phone number is <strong>required</strong>
+		    </mat-error>
+		    <mat-error *ngIf="loginFormControl.invalid && loginFormControl.dirty && !loginFormControl.hasError('required')">
+		      Phone number is <strong> not valid</strong>
+		    </mat-error>
 			</mat-form-field>
 			<div class="text-center dorceeLoginBtnContainer">
 				<button type="submit" (click)="submit()" [disabled]="!loginFormControl.valid" class="button dorceeLoginBtn">LOGIN</button>
