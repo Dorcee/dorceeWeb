@@ -1,6 +1,6 @@
 <app-header></app-header>
 <app-login></app-login>
-<div class="grid-container" *ngIf="containerLoaded">
+<div class="grid-container">
 	<div class="grid-x">
 		<div class="small-12 cell">
 			<span class="sitePath">
@@ -11,7 +11,7 @@
 				    <li><a href="#">Printed</a></li> -->
 				    <li><a href="#" routerLink="/">Home</a></li>
 				    <li><a href="#" routerLink="/productCategory">Products</a></li>
-				    <li class="disabled">{{productDetail.name}}</li>
+				    <li class="disabled" *ngIf="productDetail">{{productDetail.name}}</li>
 				    <!-- <li>
 				      <span class="show-for-sr">Current: </span>
 				    </li> -->
@@ -20,16 +20,16 @@
 			</span>
 		</div>
 	</div>
-	<div class="grid-x grid-padding-x grid-padding-y">
+	<div class="grid-x grid-padding-x grid-padding-y" *ngIf="containerLoaded && productDetail">
 		<div class="small-12 medium-7 cell">
 			<div class="productDetailImagesContainer">
-				<img *ngIf="productDetail.main_image" src="{{productDetail.main_image}}" routerLink="/productDetail">
-				<img *ngIf="productDetail.thumbnail_1" src="{{productDetail.thumbnail_1}}" routerLink="/productDetail">
-				<img *ngIf="productDetail.thumbnail_2" src="{{productDetail.thumbnail_2}}" routerLink="/productDetail">
-				<img *ngIf="productDetail.thumbnail_3" src="{{productDetail.thumbnail_3}}" routerLink="/productDetail">
-				<img *ngIf="productDetail.thumbnail_4" src="{{productDetail.thumbnail_4}}" routerLink="/productDetail">
-				<img *ngIf="productDetail.thumbnail_5" src="{{productDetail.thumbnail_5}}" routerLink="/productDetail">
-				<img *ngIf="productDetail.thumbnail_6" src="{{productDetail.thumbnail_6}}" routerLink="/productDetail">
+				<img *ngIf="productDetail.main_image" src="{{productDetail.main_image}}">
+				<img *ngIf="productDetail.thumbnail_1" src="{{productDetail.thumbnail_1}}">
+				<img *ngIf="productDetail.thumbnail_2" src="{{productDetail.thumbnail_2}}">
+				<img *ngIf="productDetail.thumbnail_3" src="{{productDetail.thumbnail_3}}">
+				<img *ngIf="productDetail.thumbnail_4" src="{{productDetail.thumbnail_4}}">
+				<img *ngIf="productDetail.thumbnail_5" src="{{productDetail.thumbnail_5}}">
+				<img *ngIf="productDetail.thumbnail_6" src="{{productDetail.thumbnail_6}}">
 			</div>
 		</div>
 		<div class="small-12 medium-5 cell">
@@ -37,8 +37,8 @@
 				{{productDetail?.name}}
 			</div>
 			<div class="pricingContainer">
-				<!-- <span class="itemOriginalPrice itemDiscounted">${{productDetail?.price_usd}}</span> -->
-				<span class="itemDiscountedPrice">Rs.{{productDetail?.price_inr}}</span>
+				<span class="itemOriginalPrice itemDiscounted">{{(loc_type == indian_location) ? 'RS. '+productDetail?.INR?.base_price : '$' + productDetail?.USD?.base_price}}</span>
+				<span class="itemDiscountedPrice">{{(loc_type == indian_location) ? 'Rs. ' + productDetail?.INR?.price : '$' + productDetail?.USD?.price}}</span>
 				<!-- <span class="itemDiscountPercent">50% OFF</span> -->
 			</div>
 			<div class="sizingContainer">
@@ -114,6 +114,9 @@
 				</ul>
 			</div>
 		</div>
+	</div>
+	<div class="grid-x grid-padding-x grid-padding-y align-center" style="color:red;" *ngIf="containerLoaded && !productDetail">
+		Product not available
 	</div>
 	<!-- <div class="grid-x align-center">
 		<div class="small-12 medium-6 text-center"><h3>You May Also Like</h3></div>

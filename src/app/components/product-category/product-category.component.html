@@ -16,6 +16,18 @@
 
 </div> -->
 <div class="grid-container" *ngIf="containerLoaded">
+	<div class="grid-x">
+		<div class="small-12 cell">
+			<span class="sitePath">
+				<nav aria-label="You are here:" role="navigation">
+				  <ul class="breadcrumbs">
+				    <li><a href="#" routerLink="/">Home</a></li>
+				    <li class="disabled">Products</li>
+				  </ul>
+				</nav>
+			</span>
+		</div>
+	</div>
 	<div class="grid-x grid-padding-x">
 		<div class="medium-3 cell">
 			<div class="productCategoryOuterContainer">
@@ -26,7 +38,7 @@
 						<ul class="menu vertical nested is-active productCategoryAccordionContent">
 							<li *ngFor="let type of category.types">
 								<a (click)="getProducts('type', type)">{{type}}</a></li>
-							<li><a href="#">View All</a></li>
+							<li><a (click)="getProducts()">View All</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -90,8 +102,8 @@
 								<div class="fitCategory">{{product.category}}</div>
 							</div>
 							<div class="alsoLikeProductPrice">
-								<!-- <span class="originalPrice itemDiscounted">$98.00</span> -->
-								<span class="discountedPrice">Rs {{product.price_inr}}</span>
+								<span class="originalPrice itemDiscounted">{{(loc_type == indian_location) ? 'RS. '+product?.INR?.base_price : '$' + product?.USD?.base_price}}</span>
+								<span class="discountedPrice">{{(loc_type == indian_location) ? 'Rs. ' + product?.INR?.price : '$' + product?.USD?.price}}</span>
 							</div>
 						</div>
 					</div>

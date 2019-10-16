@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from '../../services/home.service';
+import { environment } from 'src/environments/environment';
 
 declare var $:any;
 
@@ -25,6 +26,8 @@ export class ProductCategoryComponent implements OnInit {
   labelPosition = 'after';
   disabled = false;
   containerLoaded = true;
+  loc_type = localStorage.getItem('loc_type');
+  indian_location = environment.india_location;
 
   ngOnInit() {
     
@@ -38,6 +41,9 @@ export class ProductCategoryComponent implements OnInit {
         this.categories = data.categories;
         this.fits = data.fits;
         this.containerLoaded = true;
+      });
+      $('.productImageSlideContainer').not('.slick-initialized').slick({
+        infinite: false,
       });
     });  
   }
@@ -54,7 +60,7 @@ export class ProductCategoryComponent implements OnInit {
     }, 1000);
   }
 
-  getProducts(key, value) {
+  getProducts(key='', value='') {
     this.homeservice.getAllProducts(key, value).subscribe((data)=>{
       this.products = data;
       this.containerLoaded = true;

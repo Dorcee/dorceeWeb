@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductDetailService } from '../../services/product-detail.service';
+import { environment } from 'src/environments/environment';
 
 declare var $:any;
 var $scope;
@@ -20,6 +21,8 @@ export class ProductDetailComponent implements OnInit {
   product_id='';
   sizesAvailable:[];
   containerLoaded = false;
+  loc_type = localStorage.getItem('loc_type');
+  indian_location = environment.india_location;
 
   ngOnInit() {
   	$(document).foundation();
@@ -31,9 +34,11 @@ export class ProductDetailComponent implements OnInit {
 
     this.productDetailServices.getProductDetail(this.product_id).subscribe(data => {
       this.containerLoaded = true;
-      this.productDetail=data[0];
-      console.log(this.productDetail);
-      this.sizesAvailable=this.productDetail.size.split(',');
+      if(data[0]) {
+        this.productDetail=data[0];
+        console.log(this.productDetail);
+        this.sizesAvailable=this.productDetail.size.split(',');
+      }
     });
   }
 

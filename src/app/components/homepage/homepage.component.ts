@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../../services/home.service';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 declare var $:any;
 
@@ -11,7 +13,7 @@ declare var $:any;
 export class HomepageComponent implements OnInit {
 
 	products = [];
-	constructor(public homeservice:HomeService) { }
+	constructor(public homeservice:HomeService, public router:Router) { }
 
 	ngOnInit() {
 		$(document).foundation();
@@ -22,12 +24,23 @@ export class HomepageComponent implements OnInit {
 			autoplaySpeed: 2000,
 			arrows: false
 		});
-		
-		
-		this.homeservice.getAllProducts().subscribe((data)=>{
-			this.products = data.slice(0, 4);
-			console.log(this.products);
-    	});
+
+		if(localStorage.getItem('loc_type')) {
+			var loc_type = localStorage.getItem('loc_type');
+			this.getProducts(loc_type);
+		} else {
+			this.homeservice.getCountryFromIp().subscribe((ip_details)=>{
+				if(ip_details.countryCode == 'IN') {
+					var loc_type = environment.india_location;
+				} else {
+					var loc_type = environment.india_location;
+				}
+				localStorage.setItem('loc_type', loc_type);
+				this.getProducts(loc_type);
+	    	});			
+		}
+		console.log(loc_type);
+			
 	}
 
 	ngAfterViewInit(){
@@ -38,4 +51,14 @@ export class HomepageComponent implements OnInit {
 	   }, 1000);
 	}
 
+	getProducts(loc_type) {
+		this.homeservice.getAllProducts('loc_type', loc_type).subscribe((data)=>{
+			this.products = data.slice(0, 4);
+			console.log(this.products);
+    	});
+	}
+
+	goToProductDetailPage(id){
+    	this.router.navigate(['/productDetail', id]);
+  	}
 }
