@@ -46,11 +46,16 @@ $image-hover-wrapper-icon-size: rem-calc(24);
   }
 }
 
-.sizeSelectorContainer {
+.sizeSelectorContainer, .fitSelectorContainer {
 	display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
   padding: rem-calc(20 0);
+}
+
+.sizeSelectorContainer {  
+  border-bottom: 1px solid #dcdcdc;
+  padding-bottom: rem-calc(10);
 }
 
 .button.quickShopBtn {
@@ -124,7 +129,7 @@ $image-hover-wrapper-icon-size: rem-calc(24);
   cursor: pointer;
 }
 
-.sizeSelector {
+.sizeSelector, .fitSelector {
   width: rem-calc(35);
   height: rem-calc(35);
   border: 1px solid;
@@ -173,7 +178,7 @@ $image-hover-wrapper-icon-size: rem-calc(24);
   top: 50%;
   transform: translateY(-50%);
 }
-.selectedSize {
+.selectedSize, .selectedFit {
   background-color: $primary-color;
   color: $white;
 }
