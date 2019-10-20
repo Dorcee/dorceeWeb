@@ -142,6 +142,7 @@ $border-color: #ACACAC;
   top: 50%;
   transform: translateY(-50%);
   z-index: 99;
+  display:none;
 }
 
 ::ng-deep  .slick-next:before {
@@ -152,6 +153,7 @@ $border-color: #ACACAC;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+  display:none;
 }
 
 .signUpTextContainer {

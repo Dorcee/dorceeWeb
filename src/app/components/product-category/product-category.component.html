@@ -75,9 +75,8 @@
 			</div> -->
 		</div>
 		<div class="medium-9 cell">
-			<!-- <div class="" *ngFor="let response of productsResponse | paginate: { itemsPerPage: 5, currentPage: p }"> -->
 			<div class="grid-x grid-padding-x grid-padding-y">
-				<div *ngFor="let product of products"  class="medium-4 cell">
+				<div *ngFor="let product of products | paginate: { itemsPerPage: 12, currentPage: p }"  class="medium-4 cell">
 					<div class="productContainer">
 						<!-- <div class="image-hover-wrapper">
 							<a href="javascript:void(0)">
@@ -87,16 +86,24 @@
 								</span>
 							</a> 
 						</div>-->
-						<div class="productImageSlideContainer">
-			        		<img *ngIf="product.main_image" src="{{product.main_image}}" (click)="goToProductDetailPage(product.id)">
-							<img *ngIf="product.thumbnail_1" src="{{product.thumbnail_1}}" (click)="goToProductDetailPage(product.id)">
-							<img *ngIf="product.thumbnail_2" src="{{product.thumbnail_2}}" (click)="goToProductDetailPage(product.id)">
-							<img *ngIf="product.thumbnail_3" src="{{product.thumbnail_3}}" (click)="goToProductDetailPage(product.id)">
-							<img *ngIf="product.thumbnail_4" src="{{product.thumbnail_4}}" (click)="goToProductDetailPage(product.id)">
-							<img *ngIf="product.thumbnail_5" src="{{product.thumbnail_5}}" (click)="goToProductDetailPage(product.id)">
-							<img *ngIf="product.thumbnail_6" src="{{product.thumbnail_6}}" (click)="goToProductDetailPage(product.id)">
-		      			</div>
-						<div class="alsoLikeProductDetailContainer text-center">
+						<div class="productImageSlideContainer" id="slider{{product.id}}">
+			        
+			        <img *ngIf="product.main_image" src="{{product.main_image}}" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)">
+							
+							<img *ngIf="product.thumbnail_1" src="{{product.thumbnail_1}}" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)">
+							
+							<img *ngIf="product.thumbnail_2" src="{{product.thumbnail_2}}" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)">
+							
+							<img *ngIf="product.thumbnail_3" src="{{product.thumbnail_3}}" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)">
+							
+							<img *ngIf="product.thumbnail_4" src="{{product.thumbnail_4}}" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)">
+							
+							<img *ngIf="product.thumbnail_5" src="{{product.thumbnail_5}}" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)">
+							
+							<img *ngIf="product.thumbnail_6" src="{{product.thumbnail_6}}" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)">
+		      	</div>
+
+						<div class="alsoLikeProductDetailContainer text-center" (click)="goToProductDetailPage(product.id)">
 							<div class="alsoLikeProductDetail">
 								<div class="productName">{{product.name}}</div>
 								<div class="fitCategory">{{product.category}}</div>
@@ -109,7 +116,12 @@
 					</div>
 				</div>
 			</div>		
-			<!-- <pagination-controls (pageChange)="p=$event"></pagination-controls> -->
+			<div class="grid-x grid-padding-x">
+				<div class="small-9"></div>
+				<div class="small-3">
+					<pagination-controls (pageChange)="p=$event" directionLinks="true" responsive="true" previousLabel="Previous" nextLabel="Next" responsive="true"></pagination-controls>	
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

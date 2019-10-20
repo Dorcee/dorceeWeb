@@ -50,21 +50,28 @@ export class ProductDetailComponent implements OnInit {
     // TODO : create common function to only one file and call it everywhere
     setTimeout(function () {
       $('.productDetailImagesContainer').not('.slick-initialized').slick({
-        infinite: false,
+        infinite: true,
         slidesToShow: 2,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
         responsive: [
           {
             breakpoint: 640,
             settings: {
               slidesToShow: 1,
-              infinite: false,
+              infinite: true,
             }
           }
         ]
       });
 
       $('.productImageSlideContainer').not('.slick-initialized').slick({
-        infinite: false,
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
       });
    }, 1000);
   }

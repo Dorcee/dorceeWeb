@@ -6,39 +6,44 @@
 			<span class="sitePath">
 				<nav aria-label="You are here:" role="navigation">
 				  <ul class="breadcrumbs">
-				    <!-- <li><a href="#">Men</a></li>
+				    <li><a href="#">Men</a></li>
 				    <li><a href="#">Shirts</a></li>
-				    <li><a href="#">Printed</a></li> -->
-				    <li><a href="#" routerLink="/">Home</a></li>
-				    <li><a href="#" routerLink="/productCategory">Products</a></li>
-				    <li class="disabled" *ngIf="productDetail">{{productDetail.name}}</li>
-				    <!-- <li>
+				    <li><a href="#">Printed</a></li>
+				    <li class="disabled">98576</li>
+				    <li>
 				      <span class="show-for-sr">Current: </span>
-				    </li> -->
+				    </li>
 				  </ul>
 				</nav>
 			</span>
 		</div>
 	</div>
-	<div class="grid-x grid-padding-x grid-padding-y" *ngIf="containerLoaded && productDetail">
+	<div class="grid-x grid-padding-x grid-padding-y">
 		<div class="small-12 medium-7 cell">
 			<div class="productDetailImagesContainer">
-				<img *ngIf="productDetail.main_image" src="{{productDetail.main_image}}">
-				<img *ngIf="productDetail.thumbnail_1" src="{{productDetail.thumbnail_1}}">
-				<img *ngIf="productDetail.thumbnail_2" src="{{productDetail.thumbnail_2}}">
-				<img *ngIf="productDetail.thumbnail_3" src="{{productDetail.thumbnail_3}}">
-				<img *ngIf="productDetail.thumbnail_4" src="{{productDetail.thumbnail_4}}">
-				<img *ngIf="productDetail.thumbnail_5" src="{{productDetail.thumbnail_5}}">
-				<img *ngIf="productDetail.thumbnail_6" src="{{productDetail.thumbnail_6}}">
+				<img src="{{productDetail?.main_image}}" routerLink="/productDetail">
+        <img src="{{productDetail?.thumbnail_1}}" routerLink="/productDetail">
+        <img src="{{productDetail?.thumbnail_2}}" routerLink="/productDetail">
+        <img src="{{productDetail?.thumbnail_3}}" routerLink="/productDetail">
+        <img src="{{productDetail?.thumbnail_4}}" routerLink="/productDetail">
+        <img src="{{productDetail?.thumbnail_5}}" routerLink="/productDetail">
+        <img src="{{productDetail?.thumbnail_6}}" routerLink="/productDetail">
 			</div>
+			<!-- <ul class="productClipsContainer">
+				<li>
+				</li>
+			</ul> -->
 		</div>
+		<!-- <div class="medium-5 cell">
+			<img src="../assets/images/homepage-images/pic4.png">
+		</div> -->
 		<div class="small-12 medium-5 cell">
 			<div class="productName">
 				{{productDetail?.name}}
 			</div>
 			<div class="pricingContainer">
-				<span class="itemOriginalPrice itemDiscounted">{{(loc_type == indian_location) ? 'RS. '+productDetail?.INR?.base_price : '$' + productDetail?.USD?.base_price}}</span>
-				<span class="itemDiscountedPrice">{{(loc_type == indian_location) ? 'Rs. ' + productDetail?.INR?.price : '$' + productDetail?.USD?.price}}</span>
+				<!-- <span class="itemOriginalPrice itemDiscounted">${{productDetail?.price_usd}}</span> -->
+				<span class="itemDiscountedPrice">Rs.{{productDetail?.price_inr}}</span>
 				<!-- <span class="itemDiscountPercent">50% OFF</span> -->
 			</div>
 			<div class="sizingContainer">
@@ -90,7 +95,7 @@
 			  		</button>
 			  	</span>
 			  	<span class="addToBagContainer">
-			  		<button class="button float-right primaryBtn" (click)="addToCart(productDetail.id)">
+			  		<button class="button float-right primaryBtn">
 			  			<img src="../assets/images/emptyShoppingBagWhite.svg" class="productDecisionImgBtn">Add To bag
 			  		</button>
 			  	</span>
@@ -115,75 +120,25 @@
 			</div>
 		</div>
 	</div>
-	<div class="grid-x grid-padding-x grid-padding-y align-center" style="color:red;" *ngIf="containerLoaded && !productDetail">
-		Product not available
-	</div>
 	<!-- <div class="grid-x align-center">
 		<div class="small-12 medium-6 text-center"><h3>You May Also Like</h3></div>
 	</div>
 
 	<div class="grid-x grid-padding-x grid-padding-y">
 		<div class="small-3 cell image-hover-wrapper">
-    	<div class="productImageSlideContainer">
-        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
-      </div>
-	    <div class="alsoLikeProductDetailContainer text-center">
-	    	<div class="alsoLikeProductDetail">
-	    		<div class="productName">Double Layered Shirt</div>
-	    		<div class="fitCategory">Regular FIt</div>
-	    	</div>
-	    	<div class="alsoLikeProductPrice">
-	    		<span class="originalPrice itemDiscounted">$98.00</span>
-	    		<span class="itemDiscountedPrice">$49.00</span>
-	    	</div>
-	    </div>
-	  </div>
-	  <div class="small-3 cell image-hover-wrapper">
-    	<div class="productImageSlideContainer">
-        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
-      </div>
-	    <div class="alsoLikeProductDetailContainer text-center">
-	    	<div class="alsoLikeProductDetail">
-	    		<div class="productName">Double Layered Shirt</div>
-	    		<div class="fitCategory">Regular FIt</div>
-	    	</div>
-	    	<div class="alsoLikeProductPrice">
-	    		<span class="originalPrice itemDiscounted">$98.00</span>
-	    		<span class="itemDiscountedPrice">$49.00</span>
-	    	</div>
-	    </div>
-	  </div>
-	  <div class="small-3 cell image-hover-wrapper">
-    	<div class="productImageSlideContainer">
-        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
-        <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">
-      </div>
-	    <div class="alsoLikeProductDetailContainer text-center">
-	    	<div class="alsoLikeProductDetail">
-	    		<div class="productName">Double Layered Shirt</div>
-	    		<div class="fitCategory">Regular FIt</div>
-	    	</div>
-	    	<div class="alsoLikeProductPrice">
-	    		<span class="originalPrice itemDiscounted">$98.00</span>
-	    		<span class="itemDiscountedPrice">$49.00</span>
-	    	</div>
-	    </div>
-	  </div>
-	  <div class="small-3 cell image-hover-wrapper">
+	    <a href="javascript:void(0)">
+	    	<img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
+	    	<span class="image-hover-wrapper-reveal">
+	    		<div>
+		    		<div>
+	    				<a routerLink="/productDetail" class="button quickShopBtn">QUICK SHOP</a>
+	  				</div>
+	  				<div>
+	    				<a routerLink="/productDetail" class="button addToCartBtn">ADD TO CART</a>
+	  				</div>
+  				</div>
+		    </span>
+    	</a>
     	<div class="productImageSlideContainer">
         <img src="../assets/images/homepage-images/pic1.png" routerLink="/productDetail">
         <img src="../assets/images/homepage-images/pic2.png" routerLink="/productDetail">

@@ -51,6 +51,23 @@ export class HomepageComponent implements OnInit {
 	   }, 1000);
 	}
 
+	changeStyle($event,ID){
+    // console.log(ID); 
+    if($event.type == 'mouseover'){ 
+      setTimeout(function () {
+        $('#slider'+ID+'.productImageSlideContainer').slick('slickPlay');
+      }, 1000);
+    } 
+  }
+  changeBackStyle($event,id){
+    // console.log($event.type); 
+    if($event.type == 'mouseout'){ 
+      setTimeout(function () {
+        $('#slider'+id+'.productImageSlideContainer').slick('slickPause');
+      }, 1000);
+    }
+  }
+	
 	getProducts(loc_type) {
 		this.homeservice.getAllProducts('loc_type', loc_type).subscribe((data)=>{
 			this.products = data.slice(0, 4);

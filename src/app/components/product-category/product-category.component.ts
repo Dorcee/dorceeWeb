@@ -11,11 +11,10 @@ declare var $:any;
   styleUrls: ['./product-category.component.scss']
 })
 export class ProductCategoryComponent implements OnInit {
-
   constructor(public homeservice:HomeService,
               public router : Router
     ) { }
-
+  p: number = 1;
   products : any;
   categories : any;
   sizes : any;
@@ -30,7 +29,7 @@ export class ProductCategoryComponent implements OnInit {
   indian_location = environment.india_location;
 
   ngOnInit() {
-    
+
     $(document).foundation();
     this.homeservice.getAllProducts().subscribe((data)=>{
       this.products = data;
@@ -48,16 +47,34 @@ export class ProductCategoryComponent implements OnInit {
     });  
   }
 
-  goToProductDetailPage(id){
-    this.router.navigate(['/productDetail', id]);
-  }
-
   ngAfterViewInit(){
-    setTimeout(function () {
+    setTimeout(function() {
       $('.productImageSlideContainer').not('.slick-initialized').slick({
         infinite: false,
       });
     }, 1000);
+  }
+
+  changeStyle($event,ID){
+    // console.log(ID); 
+    if($event.type == 'mouseover'){ 
+      setTimeout(function () {
+        $('#slider'+ID+'.productImageSlideContainer').slick('slickPlay');
+      }, 1000);
+    } 
+  }
+  changeBackStyle($event,id){
+    // console.log($event.type); 
+    if($event.type == 'mouseout'){ 
+      setTimeout(function () {
+        $('#slider'+id+'.productImageSlideContainer').slick('slickPause');
+      }, 1000);
+    }
+  }
+
+
+  goToProductDetailPage(id){
+    this.router.navigate(['/productDetail', id]);
   }
 
   getProducts(key='', value='') {
