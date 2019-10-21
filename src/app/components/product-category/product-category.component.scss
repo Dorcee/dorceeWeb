@@ -107,6 +107,7 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 99;
+  display:none;
 }
 
 ::ng-deep  .slick-next:before {
@@ -117,6 +118,7 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+  display:none;
 }
 ::ng-deep {
   .mat-checkbox-checked.mat-accent .mat-checkbox-background {
