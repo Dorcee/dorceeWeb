@@ -41,16 +41,19 @@ export class ProductCategoryComponent implements OnInit {
         this.fits = data.fits;
         this.containerLoaded = true;
       });
-      $('.productImageSlideContainer').not('.slick-initialized').slick({
+      /*$('.productImageSlideContainer').not('.slick-initialized').slick({
         infinite: false,
-      });
+      });*/
     });  
   }
 
   ngAfterViewInit(){
     setTimeout(function() {
       $('.productImageSlideContainer').not('.slick-initialized').slick({
-        infinite: false,
+        infinite: true,
+        arrows: false,
+        autoplaySpeed: 1000,
+        dots: true
       });
     }, 1000);
   }
@@ -60,7 +63,7 @@ export class ProductCategoryComponent implements OnInit {
     if($event.type == 'mouseover'){ 
       setTimeout(function () {
         $('#slider'+ID+'.productImageSlideContainer').slick('slickPlay');
-      }, 1000);
+      }, 10);
     } 
   }
   changeBackStyle($event,id){
@@ -68,7 +71,7 @@ export class ProductCategoryComponent implements OnInit {
     if($event.type == 'mouseout'){ 
       setTimeout(function () {
         $('#slider'+id+'.productImageSlideContainer').slick('slickPause');
-      }, 1000);
+      }, 10);
     }
   }
 
