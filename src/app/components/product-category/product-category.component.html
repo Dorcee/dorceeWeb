@@ -33,8 +33,8 @@
 			<div class="productCategoryOuterContainer">
 				<div class="productSelectorHeading">Category</div>
 				<ul class="vertical menu accordion-menu productSelectorSubHeading" data-accordion-menu>
-					<li class="productCategoryAccordionHeader" *ngFor="let category of categories">
-						<a (click)="getProducts('category', category.name)">{{category.name}}</a>
+					<li class="productCategoryAccordionHeaderContainer" *ngFor="let category of categories">
+						<a class="productCategoryAccordionHeader" (click)="getProducts('category', category.name)">{{category.name}}</a>
 						<ul class="menu vertical nested is-active productCategoryAccordionContent">
 							<li *ngFor="let type of category.types">
 								<a (click)="getProducts('type', type)">{{type}}</a></li>
