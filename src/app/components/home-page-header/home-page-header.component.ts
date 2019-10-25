@@ -9,7 +9,13 @@ export class HomePageHeaderComponent implements OnInit {
 
   constructor() { }
 
+  userDetails = JSON.parse(localStorage.getItem('user_details')); 
+
   ngOnInit() {
   }
 
+  ngAfterContentChecked() {
+  	this.userDetails = JSON.parse(localStorage.getItem('user_details')); 
+    // TODO : find another hook that does not call again and again, it calls in miliseconds
+  }
 }

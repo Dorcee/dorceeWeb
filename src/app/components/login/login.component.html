@@ -2,18 +2,30 @@
 <div class="reveal loginModalOuterContainer" id="loginModal" data-reveal>
 	<div class="grid-container loginModalContainer">
 		<div class="text-center loginHeader">LOGIN</div>
-		<form class="loginForm">
+		<form class="loginForm" [formGroup]="loginFormControl">
 			<mat-form-field class="loginFormField">
-				<input matInput placeholder="Enter Mobile Number" [formControl]="loginFormControl">
-				<mat-error *ngIf="loginFormControl.hasError('required')">
-		      Phone number is <strong>required</strong>
-		    </mat-error>
-		    <mat-error *ngIf="loginFormControl.invalid && loginFormControl.dirty && !loginFormControl.hasError('required')">
-		      Phone number is <strong> not valid</strong>
-		    </mat-error>
+				<input matInput placeholder="Enter Mobile Number" formControlName="phone_number" (change)="removeErrors()">
+		    	<mat-hint *ngIf="phone_error">{{phone_error}}</mat-hint>
+				<mat-error *ngIf="loginFormControl.controls['phone_number'].hasError('required')">
+		      		Phone number is <strong>required</strong>
+		    	</mat-error>
+			    <mat-error *ngIf="loginFormControl.controls['phone_number'].invalid && loginFormControl.controls['phone_number'].dirty && !loginFormControl.controls['phone_number'].hasError('required')">
+			      Phone number is <strong> not valid</strong>
+			    </mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="loginFormField" *ngIf="otp_field">
+				<input matInput placeholder="Enter OTP" formControlName="otp">
+				<mat-hint *ngIf="otp_error">{{otp_error}}</mat-hint>
+				<mat-error *ngIf="loginFormControl.controls['otp'].hasError('required')">
+		      		OTP is <strong>required</strong>
+	    		</mat-error>
+			    <mat-error *ngIf="loginFormControl.controls['otp'].invalid && loginFormControl.controls['otp'].dirty && !loginFormControl.controls['otp'].hasError('required')">
+			     	OTP is <strong> not valid</strong>
+			    </mat-error>
 			</mat-form-field>
 			<div class="text-center dorceeLoginBtnContainer">
-				<button type="submit" (click)="submit()" [disabled]="!loginFormControl.valid" class="button dorceeLoginBtn">LOGIN</button>
+				<button type="submit" (click)="submit()" [disabled]="!loginFormControl.valid" class="button dorceeLoginBtn">{{(otp_field == 0) ? 'Send OTP' : 'LOGIN' }}</button>
 			</div>
 			<div class="text-center">
 				New to dorcee? <span data-close data-open="signUpModal" class="signUpLink">Sign up</span>
