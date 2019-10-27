@@ -128,22 +128,22 @@
 			  </div>
 		  </div>
 		</div>
-		<div class="small-12 medium-4 cell">
+		<div class="small-12 medium-4 cell" *ngIf="contentLoaded && (cart_items.length > 0)">
 			<div class="deliveryDetailsHeader">Delivery Details</div>
-			<div>
+			<div *ngFor="let cart_item of cart_items; let index=index">
 				<div class="grid-x grid-padding-y">
 					<div class="medium-3 cell">
-						<img src="../assets/images/homepage-images/pic4.png" alt="Bought Product">
+						<img *ngIf="cart_item.product.main_image" src="{{cart_item.product.main_image}}" alt="Bought Product">
 					</div>
 					<div class="medium-9 cell">
 						<div class="deliveryItemDetails">
-							<div>Double Layered Printed Shirt</div>
+							<div>{{cart_item.product.name}}</div>
 							<div class="grid-x selectedProductDetail">
 								<div class="medium-6 cell">
 									Quantity
 								</div>
 								<div class="medium-6 cell">
-									1
+									{{ cart_item.qty }}
 								</div>
 							</div>
 							<div class="grid-x selectedProductDetail">
@@ -151,41 +151,22 @@
 									Size
 								</div>
 								<div class="medium-6 cell">
-									L
+									{{ cart_item.size }}
+								</div>
+							</div>
+							<div class="grid-x selectedProductDetail">
+								<div class="medium-6 cell">
+									Fit
+								</div>
+								<div class="medium-6 cell">
+									{{ (fits | find: {'value' : cart_item.fit})?.name }}
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div>
-				<div class="grid-x grid-padding-y">
-					<div class="medium-3 cell">
-						<img src="../assets/images/homepage-images/pic4.png" alt="Bought Product">
-					</div>
-					<div class="medium-9 cell">
-						<div class="deliveryItemDetails">
-							<div>Double Layered Printed Shirt</div>
-							<div class="grid-x selectedProductDetail">
-								<div class="medium-6 cell">
-									Quantity
-								</div>
-								<div class="medium-6 cell">
-									1
-								</div>
-							</div>
-							<div class="grid-x selectedProductDetail">
-								<div class="medium-6 cell">
-									Size
-								</div>
-								<div class="medium-6 cell">
-									L
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 			<div class="orderSummaryOuterContainer">
 				<div class="orderSummaryHeader">ORDER SUMMARY</div>
 				<div class="orderSummaryContentContainer">
@@ -213,6 +194,8 @@
 					<button class="button expanded primaryBtn" (click)="payNow()">Place Order</button>
 				</div>
 			</div>
+		</div>
+		<div class="small-12 medium-4 cell" *ngIf="contentLoaded && (cart_items.length == 0)"> No Items added to he Cart.
 		</div>
 	</div>
 </div>

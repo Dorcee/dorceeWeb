@@ -111,16 +111,21 @@ export class ProductDetailComponent implements OnInit {
     } else {
       var cart_items = JSON.parse(localStorage.getItem('cart_items'));
       if(cart_items) {
-        if(cart_items.find(item => item.id == id)) {
-          alert('already added this product.');
+        var find_item = '';
+        if(find_item = cart_items.find(item => {return item.id == id && 
+          item.size == this.selectedSize && 
+          item.fit == this.selectedFit;})) {
+          console.log(find_item);
+          // TODO : we can auto increase quantity of that product from here by using findIndex().
+          alert('Already added this product.');
         } else {
-          cart_items.push({id: id, size: this.selectedSize, fit: this.selectedFit});
+          cart_items.push({id: id, size: this.selectedSize, fit: this.selectedFit, qty: 1});
           localStorage.setItem('cart_items', JSON.stringify(cart_items));
           alert('Successfully added the product.');
         }
       } else {
         let cart_items = <any[]> Array();
-        cart_items.push({id: id, size: this.selectedSize, fit: this.selectedFit});
+        cart_items.push({id: id, size: this.selectedSize, fit: this.selectedFit, qty: 1});
         localStorage.setItem('cart_items', JSON.stringify(cart_items));
         alert('Successfully added the product.');
       }

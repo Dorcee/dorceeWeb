@@ -74,8 +74,8 @@
 			</div>
 			<div class="sizeSelectorContainer">
 				<div *ngFor="let size of sizesAvailable">
-					<a class="sizeSelector" [ngClass]="{'selectedSize': selectedSize === size}" (click)="selectedSize = size" *ngIf="(allSizes | find: {'value' : size})">
-						{{(allSizes | find: {'value' : size})?.value }}
+					<a class="sizeSelector" [ngClass]="{'selectedSize': selectedSize === size}" (click)="selectedSize = size" *ngIf="(allSizes | find: {'value' : size}) let find_size">
+						{{find_size.value }}
 					</a>
 				</div>  	
 			</div>
@@ -85,8 +85,8 @@
 
 			<div class="fitSelectorContainer">
 				<div *ngFor="let fit of fitsAvailable">
-					<a class="fitSelector" [ngClass]="{'selectedFit': selectedFit === fit}" (click)="selectedFit = fit" *ngIf="(allFits | find: {'value' : fit})">
-						{{(allFits | find: {'value' : fit})?.name }}
+					<a class="fitSelector" [ngClass]="{'selectedFit': selectedFit === fit}" (click)="selectedFit = fit" *ngIf="(allFits | find: {'value' : fit}) let find_fit">
+						{{find_fit?.name }}
 					</a>
 				</div>  	
 			</div>
@@ -122,7 +122,7 @@
 		</div>
 	</div>
 </div>
-<div class="grid-x grid-padding-x grid-padding-y align-center" style="color:red;" *ngIf="containerLoaded && !productDetail">
+<div class="grid-x grid-padding-x grid-padding-y align-center flash-error" *ngIf="containerLoaded && !productDetail">
 	Product not available
 </div>
 	<!-- <div class="grid-x align-center">

@@ -47,7 +47,7 @@
 				</mat-error>
 			</mat-form-field>
 			<div class=" text-center dorceeSignUpBtnContainer">
-				<button class="button dorceeSignUpContinueBtn" (click)="signup()">Continue</button>
+				<button class="button dorceeSignUpContinueBtn" (click)="signup()" [disabled]="!signUpFormControl.valid">Continue</button>
 			</div>
 			<div class="text-center">
 				Existing User? <span data-close data-open="loginModal" class="logInLink">Login</span>

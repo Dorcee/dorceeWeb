@@ -24,6 +24,7 @@ export class SignUpComponent implements OnInit {
     phone_number: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(7), Validators.maxLength(13)]],
     otp: ['', [Validators.required, Validators.pattern(/^[0-9]{4}$/)]],
   });
+  // TODO : remove verify form -not in use
 
   signUpFormControl = this.formBuilder.group({
     fname: ['', [Validators.required]],
