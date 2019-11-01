@@ -47,7 +47,7 @@ export class ProductCategoryComponent implements OnInit {
   ngAfterViewInit(){
     setTimeout(function() {
       $('.productImageSlideContainer').not('.slick-initialized').slick({
-        infinite: true,
+        infinite: true
       });
     }, 1000);
   }

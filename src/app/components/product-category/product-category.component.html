@@ -87,7 +87,8 @@
 							</a> 
 						</div>-->
 						<div class="productImageSlideContainer" id="slider{{product.id}}">
-			        <img *ngIf="product.main_image" src="{{product.main_image}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)">
+					
+					        <img *ngIf="product.main_image" src="{{product.main_image}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)">
 							
 							<img *ngIf="product.thumbnail_1" src="{{product.thumbnail_1}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)">
 							
@@ -100,7 +101,7 @@
 							<img *ngIf="product.thumbnail_5" src="{{product.thumbnail_5}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)">
 							
 							<img *ngIf="product.thumbnail_6" src="{{product.thumbnail_6}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)">
-		      	</div>
+						</div>	
 
 						<a class="alsoLikeProductDetailContainer text-center" (click)="goToProductDetailPage(product.id)">
 							<div class="alsoLikeProductDetail">

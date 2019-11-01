@@ -19,20 +19,6 @@ export class MyAccountComponent implements OnInit {
 
   ngOnInit() {
   	$(document).foundation();
-  	
-
-  	
-
-  	// $('#profilePanel').on('toggled', function (event, tab) {
-   //  	console.log('tab'+tab);
-   //  	var tabID = $(tab).attr('id');
-   //  	console.log("2"+tabID);
-
-    
-  	// });
-  	// this.route.params.subscribe((params: Params) => {
-   //    this.model=this.userData;
-  	// });     
   }
  
  	ngAfterContentChecked(){

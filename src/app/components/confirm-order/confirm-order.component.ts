@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { WindowRef } from '../../services/windowRef';
+
 import { environment } from 'src/environments/environment';
 import { HomeService } from '../../services/home.service';
+
+import { AddressService } from '../../services/address.service';
 
 declare var $:any;
 
@@ -12,19 +15,25 @@ declare var $:any;
   styleUrls: ['./confirm-order.component.scss']
 })
 export class ConfirmOrderComponent implements OnInit {
-
-  constructor(public windowRef: WindowRef, private homeService: HomeService) { }
+  constructor(
+    public windowRef: WindowRef,
+    private formBuilder:FormBuilder,
+    private homeService: HomeService,
+    private addressService: AddressService
+  ) { }
   cart_items = JSON.parse(localStorage.getItem('cart_items')) || [];
   fits: any;
   products: any;
   contentLoaded = 0;
+  addressForm: FormGroup; 
+  userDetails:any;
+  addressDetail:any;
 
   ngOnInit() {
   	$(document).foundation();
     if(this.cart_items) {
-    console.log(this.cart_items);
       this.homeService.getAllProducts().subscribe((data)=>{
-            this.products = data;
+        this.products = data;
         var types = {"type" : ["fits"]};
         this.homeService.getAllEntities(types).subscribe((data)=>{
           this.fits = data.fits;
@@ -40,11 +49,6 @@ export class ConfirmOrderComponent implements OnInit {
       this.contentLoaded = 1;
     }
   }
-
-  addressFormControl = new FormControl('', [
-    //Validators.required,
-    //Validators.email,
-  ]);
 
   Razorpay: any; 
 
@@ -73,5 +77,77 @@ export class ConfirmOrderComponent implements OnInit {
 
     var rzp1 = new this.windowRef.nativeWindow.Razorpay(options);
     rzp1.open();
+  }
+
+
+  showModalToAddAddress(token){
+    $('#addressUpdate').foundation('open');
+    this.userDetails = JSON.parse(localStorage.getItem('user_details'));
+    console.log(this.userDetails);
+    if(token=='Add'){
+      console.log(token);
+      this.addressForm = this.formBuilder.group({
+        flat_number:'', 
+        area: '', 
+        pin_code: '', 
+        city: '', 
+        state: '', 
+        type :'', 
+        is_default: "0"
+       // category:['', [Validators.required]],
+      });
+    } else {
+      console.log(token);
+      // below form control names need to be change
+      this.addressForm = this.formBuilder.group({
+        flat_number:'', 
+        area: '', 
+        pin_code: '', 
+        city: '', 
+        state: '', 
+        type :'', 
+        is_default: "0"
+       // category:['', [Validators.required]],
+      });
+    }
+  }
+
+  onAddAddressSubmit(){
+    this.homeService.getCountryFromIp().subscribe((data)=>{
+      console.log(data);
+      if(data.country.toLowerCase()==this.addressForm.controls['type'].value.toLowerCase()) {
+        if(data.country.toLowerCase()=='india') {
+          this.addressForm.controls['type'].setValue('INR');
+        } else {
+          this.addressForm.controls['type'].setValue('USD');
+        } 
+      }
+      else {
+        if(confirm("Are you sure about address you type?")) {
+          if(this.addressForm.controls['type'].value.toLowerCase()=='india') {
+            this.addressForm.controls['type'].setValue('INR');
+          } else {
+            this.addressForm.controls['type'].setValue('USD');
+          }   
+        };
+      }
+      console.log(this.addressForm.controls['type'].value);
+    
+      var addressFormData = this.addressForm.value;
+
+      console.log(addressFormData);
+      console.log(this.userDetails.id);
+     
+      this.addressService.addAddress(addressFormData,this.userDetails.id).subscribe((data)=>{
+        console.log(data);
+
+        this.addressService.getAddress(this.userDetails.id).subscribe((data)=>{
+          console.log(data);
+          this.addressDetail = data;
+        });
+      });
+    });
+
+   // $('#addressUpdate').foundation('close');
   }
 }
