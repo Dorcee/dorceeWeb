@@ -14,25 +14,30 @@ export class UserService {
 
 	constructor(private httpClient: HttpClient) { }
 
-	private handleError (error) {
-		console.error('ApiService::handleError', error);
-		return Observable.throw(error);
+	private handleError (res) {
+		if (res.status === 400) {
+            console.log(res.error);
+			return throwError({status: false, message: res.error.data || res.error.error});
+        } else {
+			console.error('ApiService::handleError', res);
+			return throwError(res);
+        }
 	}
 
 	public registerUser(postData) {
 		return this.httpClient.post<any>(`${API_URL}/web/register`, postData, {headers})
 		.pipe(
 			map(res => {console.log(res); return res.data; }),  // make it as observable
-			catchError(error => this.handleError(error.message || error))
+			catchError(error => this.handleError(error))
 		);
 	}
 
 	public generateOtp(postData) {
 		console.log(postData);
-		return this.httpClient.post<any>(`${API_URL}/web/otp/generate`, postData, {headers})
+		return this.httpClient.post<any>(`${API_URL}/web/login`, postData, {headers})
 		.pipe(
-			map(res => {console.log(res); return res; }),  // make it as observable
-			catchError(error => this.handleError(error.message || error))
+			map(res => {console.log(res); return res; }),
+			catchError(error => this.handleError(error))
 		);
 	}
 
@@ -40,8 +45,8 @@ export class UserService {
 		console.log(postData);
 		return this.httpClient.post<any>(`${API_URL}/web/otp/verify`, postData, {headers})
 		.pipe(
-			map(res => {console.log(res); return res; }),  // make it as observable
-			catchError(error => this.handleError(error.message || error))
+			map(res => {console.log(res); return res; }),
+			catchError(error => this.handleError(error))
 		);
 	}
 }

@@ -47,6 +47,7 @@ export class HomepageComponent implements OnInit {
 	    setTimeout(function () {
 	     	$('.productImageSlideContainer').not('.slick-initialized').slick({
 	       		infinite: false,
+	       		autoplaySpeed: 1000
 	     	});
 	   }, 1000);
 	}
@@ -56,7 +57,7 @@ export class HomepageComponent implements OnInit {
     if($event.type == 'mouseover'){ 
       setTimeout(function () {
         $('#slider'+ID+'.productImageSlideContainer').slick('slickPlay');
-      }, 1000);
+      }, 10);
     } 
   }
   changeBackStyle($event,id){
@@ -64,14 +65,14 @@ export class HomepageComponent implements OnInit {
     if($event.type == 'mouseout'){ 
       setTimeout(function () {
         $('#slider'+id+'.productImageSlideContainer').slick('slickPause');
-      }, 1000);
+      }, 10);
     }
   }
 	
 	getProducts(loc_type) {
 		this.homeservice.getAllProducts('loc_type', loc_type).subscribe((data)=>{
 			this.products = data.slice(0, 4);
-			console.log(this.products);
+			//console.log(this.products);
     	});
 	}
 

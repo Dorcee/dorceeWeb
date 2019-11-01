@@ -1,60 +1,86 @@
 <div class="reveal signUpModalOuterContainer" id="signUpModal" data-reveal>
 	<div class="grid-container signUpModalContainer">
 		<div class="text-center signUpHeader">Sign-Up</div>
-		<form class="example-form">
-		  <mat-form-field class="example-full-width">
-		    <input matInput placeholder="First Name" [formControl]="signUpFormControl">
-		  </mat-form-field>
-		  <mat-form-field class="example-full-width">
-		    <input matInput placeholder="Last Name" [formControl]="signUpFormControl">
-		  </mat-form-field>
-		  <mat-form-field class="example-full-width">
-		    <input matInput placeholder="Enter Mobile Number" [formControl]="signUpFormControl">
-		  </mat-form-field>
-		  <mat-form-field class="example-full-width">
-		    <input matInput placeholder="Email(optional)" [formControl]="signUpFormControl">
-		    <!-- <mat-error *ngIf="signUpFormControl.hasError('email') && !signUpFormControl.hasError('required')">
-		      Please enter a valid email address
-		    </mat-error>
-		    <mat-error *ngIf="signUpFormControl.hasError('required')">
-		      Email is <strong>required</strong>
-		    </mat-error> -->
-		  </mat-form-field>
+		<form class="example-form" [formGroup]="signUpFormControl">
+			<mat-form-field class="example-full-width">
+				<input matInput placeholder="First Name" formControlName="fname">
+				<mat-error *ngIf="signUpFormControl.controls['fname'].hasError('required')">
+					First Name is <strong>required</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="example-full-width">
+				<input matInput placeholder="Last Name" formControlName="lname">
+				<mat-error *ngIf="signUpFormControl.controls['lname'].hasError('required')">
+					Last Name is <strong>required</strong>
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="example-full-width">
+				<input matInput placeholder="Email(optional)" formControlName="email">
+				<mat-error *ngIf="signUpFormControl.controls['email'].hasError('email') && !signUpFormControl.controls['email'].hasError('required')">
+					Please enter a valid email address
+				</mat-error>
+				<mat-error *ngIf="signUpFormControl.controls['email'].hasError('required')">
+					Email is <strong>required</strong>
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="example-full-width">
+				<input matInput placeholder="Enter Mobile Number" formControlName="phone_number" (change)="removeErrors()">
+				<mat-hint *ngIf="phone_error">{{phone_error}}</mat-hint>
+				<mat-error *ngIf="signUpFormControl.controls['phone_number'].hasError('required')">
+					Phone number is <strong>required</strong>
+				</mat-error>
+				<mat-error *ngIf="signUpFormControl.controls['phone_number'].invalid && signUpFormControl.controls['phone_number'].dirty && !signUpFormControl.controls['phone_number'].hasError('required')">
+					Phone number is <strong> not valid</strong>
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="example-full-width" *ngIf="otp_field">
+				<input matInput placeholder="Enter OTP" formControlName="otp">
+				<mat-hint *ngIf="otp_error">{{otp_error}}</mat-hint>
+				<mat-error *ngIf="signUpFormControl.controls['otp'].hasError('required')">
+					OTP is <strong>required</strong>
+				</mat-error>
+				<mat-error *ngIf="signUpFormControl.controls['otp'].invalid && signUpFormControl.controls['otp'].dirty && !signUpFormControl.controls['otp'].hasError('required')">
+					OTP is <strong> not valid</strong>
+				</mat-error>
+			</mat-form-field>
 			<div class=" text-center dorceeSignUpBtnContainer">
-				<button class="button dorceeSignUpContinueBtn" data-close data-open="verifyModal">Continue</button>
+				<button class="button dorceeSignUpContinueBtn" (click)="signup()" [disabled]="!signUpFormControl.valid">Continue</button>
 			</div>
 			<div class="text-center">
 				Existing User? <span data-close data-open="loginModal" class="logInLink">Login</span>
 			</div>
 		</form>
-	  
-	  <button class="close-button closeSignUpModal" data-close aria-label="Close modal" type="button">
-	    <span aria-hidden="true">&times;</span>
-	  </button>
-  </div>
+
+		<button class="close-button closeSignUpModal" data-close aria-label="Close modal" type="button">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
 </div>
 <div class="reveal signUpModalOuterContainer" id="verifyModal" data-reveal>
 	<div class="grid-container signUpModalContainer">
 		<div class="text-center signUpHeader">Sign-Up</div>
 		<form class="example-form" [formGroup]="verifyOtpForm">
-		  <mat-form-field class="example-full-width">
-		    <input matInput placeholder="Mobile Number" formControlName="phone_number">
-		    <mat-error *ngIf="verifyOtpForm.controls['phone_number'].hasError('required')">
-		      Phone number is <strong>required</strong>
-		    </mat-error>
-		    <mat-error *ngIf="verifyOtpForm.controls['phone_number'].invalid && verifyOtpForm.controls['phone_number'].dirty && !verifyOtpForm.controls['phone_number'].hasError('required')">
-		      Phone number is <strong> not valid</strong>
-		    </mat-error>
-		  </mat-form-field>
-		  <mat-form-field class="example-full-width">
-		    <input matInput placeholder="Enter Otp" formControlName="otp">
-		    <mat-error *ngIf="verifyOtpForm.controls['otp'].hasError('required')">
-		      OTP is <strong>required</strong>
-		    </mat-error>
-		    <mat-error *ngIf="verifyOtpForm.controls['otp'].invalid && verifyOtpForm.controls['otp'].dirty && !verifyOtpForm.controls['otp'].hasError('required')">
-		      OTP is <strong> not valid</strong>
-		    </mat-error>
-		  </mat-form-field>
+			<mat-form-field class="example-full-width">
+				<input matInput placeholder="Mobile Number" formControlName="phone_number">
+				<mat-error *ngIf="verifyOtpForm.controls['phone_number'].hasError('required')">
+					Phone number is <strong>required</strong>
+				</mat-error>
+				<mat-error *ngIf="verifyOtpForm.controls['phone_number'].invalid && verifyOtpForm.controls['phone_number'].dirty && !verifyOtpForm.controls['phone_number'].hasError('required')">
+					Phone number is <strong> not valid</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="example-full-width">
+				<input matInput placeholder="Enter Otp" formControlName="otp">
+				<mat-error *ngIf="verifyOtpForm.controls['otp'].hasError('required')">
+					OTP is <strong>required</strong>
+				</mat-error>
+				<mat-error *ngIf="verifyOtpForm.controls['otp'].invalid && verifyOtpForm.controls['otp'].dirty && !verifyOtpForm.controls['otp'].hasError('required')">
+					OTP is <strong> not valid</strong>
+				</mat-error>
+			</mat-form-field>
 			<div class=" text-center dorceeSignUpBtnContainer">
 				<button class="button dorceeSignUpVerifyBtn" [disabled]="!verifyOtpForm.valid">VERIFY</button>
 			</div>
@@ -62,13 +88,13 @@
 				Existing User? <span data-close data-open="loginModal" class="logInLink">Login</span>
 			</div>
 		</form>
-	  
-	  <button class="close-button closeSignUpModal" data-close aria-label="Close modal" type="button">
-	    <span aria-hidden="true">&times;</span>
-	  </button>
+
+		<button class="close-button closeSignUpModal" data-close aria-label="Close modal" type="button">
+			<span aria-hidden="true">&times;</span>
+		</button>
 	</div>
 </div>
 <!-- 
 	Need to put this in based on the condition that if clicked on login then this will be added else it will not be added and same will be updated in Login HTML file.
 	<app-login></app-login>
- -->
+-->

@@ -5,7 +5,7 @@
 		<div class="small-12 cell">
 			<span class="sitePath">
 				<nav aria-label="You are here:" role="navigation">
-				  <ul class="breadcrumbs">
+					<ul class="breadcrumbs">
 				    <!-- <li><a href="#">Men</a></li>
 				    <li><a href="#">Shirts</a></li>
 				    <li><a href="#">Printed</a></li> -->
@@ -14,110 +14,117 @@
 				    <li class="disabled" *ngIf="productDetail">{{productDetail.name}}</li>
 				    <!-- <li>
 				      <span class="show-for-sr">Current: </span>
-				    </li> -->
-				  </ul>
-				</nav>
-			</span>
-		</div>
-	</div>
-	<div class="grid-x grid-padding-x grid-padding-y" *ngIf="containerLoaded && productDetail">
-		<div class="small-12 medium-7 cell">
-			<div class="productDetailImagesContainer">
-				<img *ngIf="productDetail.main_image" src="{{productDetail.main_image}}">
-				<img *ngIf="productDetail.thumbnail_1" src="{{productDetail.thumbnail_1}}">
-				<img *ngIf="productDetail.thumbnail_2" src="{{productDetail.thumbnail_2}}">
-				<img *ngIf="productDetail.thumbnail_3" src="{{productDetail.thumbnail_3}}">
-				<img *ngIf="productDetail.thumbnail_4" src="{{productDetail.thumbnail_4}}">
-				<img *ngIf="productDetail.thumbnail_5" src="{{productDetail.thumbnail_5}}">
-				<img *ngIf="productDetail.thumbnail_6" src="{{productDetail.thumbnail_6}}">
-			</div>
-		</div>
-		<div class="small-12 medium-5 cell">
-			<div class="productName">
-				{{productDetail?.name}}
-			</div>
-			<div class="pricingContainer">
-				<span class="itemOriginalPrice itemDiscounted">{{(loc_type == indian_location) ? 'RS. '+productDetail?.INR?.base_price : '$' + productDetail?.USD?.base_price}}</span>
-				<span class="itemDiscountedPrice">{{(loc_type == indian_location) ? 'Rs. ' + productDetail?.INR?.price : '$' + productDetail?.USD?.price}}</span>
-				<!-- <span class="itemDiscountPercent">50% OFF</span> -->
-			</div>
-			<div class="sizingContainer">
-				<div class="sizingHeaders clearfix">
-					<span class="float-left">Select Your Size</span>
-				  <span class="float-right sizeChartModal" data-open="sizeChart">Size Chart</span>
-			  </div>
-			  <div class="reveal" id="sizeChart" data-reveal>
-				  <h3 class="text-center">Size Chart</h3>
-				  <div class="grid-x">
-				  	<div class="medium-6 cell text-center">
-				  		<h4>Size(US)</h4>
-				  		<!-- <div>S</div> -->
-				  		<div>M</div>
-				  		<div>L</div>
-				  		<div>XL</div>
-				  		<div>XXL</div>
-				  		<div>XXXL</div>
-						</div>
-				  	<div class="medium-6 cell text-center">
-				  		<h4>Chest</h4>
-				  		<!-- <div>35" - 37"</div> -->
-				  		<div>38" - 40"</div>
-				  		<div>41" - 43"</div>
-				  		<div>44" - 46"</div>
-				  		<div>47" - 49"</div>
-				  		<div>50" - 52"</div>
-				  	</div>
-				  </div>
-				  <button class="close-button" data-close aria-label="Close modal" type="button">
-				    <span aria-hidden="true">&times;</span>
-				  </button>
-			  </div>
-			  <div class="sizeSelectorContainer">
-			  	<!-- <a class="sizeSelector" [ngClass]="{'selectedSize': selectedItem === 'smallSize'}" (click)="selectedItem = 'smallSize'">S</a> -->
-
-			  	<div *ngFor="let size of sizesAvailable">
-				  	<a class="sizeSelector" *ngIf="size=='M'" [ngClass]="{'selectedSize': selectedItem === 'mediumSize'}" (click)="selectedItem = 'mediumSize'">M</a>
-				  	<a class="sizeSelector" *ngIf="size=='L'" [ngClass]="{'selectedSize': selectedItem === 'largeSize'}" (click)="selectedItem = 'largeSize'">L</a>
-				  	<a class="sizeSelector" *ngIf="size=='XL'" [ngClass]="{'selectedSize': selectedItem === 'xLargeSize'}" (click)="selectedItem = 'xLargeSize'">XL</a>
-				  	<a class="sizeSelector" *ngIf="size=='2XL'" [ngClass]="{'selectedSize': selectedItem === '2xLargeSize'}" (click)="selectedItem = '2xLargeSize'">2XL</a>
-				  	<a class="sizeSelector" *ngIf="size=='3XL'" [ngClass]="{'selectedSize': selectedItem === '3xLargeSize'}" (click)="selectedItem = '3xLargeSize'">3XL</a>
-					</div>  	
-			  </div>
-			  <div class="productButtonsContainer clearfix">
-			  	<span class="wishlistContainer">
-			  		<button class="button float-left secondary secondaryBtn">
-			  			<img src="../assets/images/like.svg" class="productDecisionImgBtn">Wishlist
-			  		</button>
-			  	</span>
-			  	<span class="addToBagContainer">
-			  		<button class="button float-right primaryBtn" (click)="addToCart(productDetail.id)">
-			  			<img src="../assets/images/emptyShoppingBagWhite.svg" class="productDecisionImgBtn">Add To bag
-			  		</button>
-			  	</span>
-			  </div>
-			  <ul class="accordion productDetailContainer" data-accordion data-allow-all-closed="true">
-				  <li class="accordion-item" data-accordion-item>
-				    <a class="accordion-title">Product Details</a>
-
-				    <div class="accordion-content" data-tab-content>
-				      <p>{{productDetail?.description}}</p>
-				    </div>
-				  </li>
-				  <li class="accordion-item" data-accordion-item>
-				    <a class="accordion-title">Delivery & Returns</a>
-
-				    <div class="accordion-content" data-tab-content>
-				      <p>Panel 1. Lorem ipsum dolor</p>
-				      <a>Nowhere to Go</a>
-				    </div>
-				  </li>
+				  </li> -->
 				</ul>
-			</div>
+			</nav>
+		</span>
+	</div>
+</div>
+<div class="grid-x grid-padding-x grid-padding-y" *ngIf="containerLoaded && productDetail">
+	<div class="small-12 medium-7 cell">
+		<div class="productDetailImagesContainer">
+			<img *ngIf="productDetail.main_image" src="{{productDetail.main_image}}">
+			<img *ngIf="productDetail.thumbnail_1" src="{{productDetail.thumbnail_1}}">
+			<img *ngIf="productDetail.thumbnail_2" src="{{productDetail.thumbnail_2}}">
+			<img *ngIf="productDetail.thumbnail_3" src="{{productDetail.thumbnail_3}}">
+			<img *ngIf="productDetail.thumbnail_4" src="{{productDetail.thumbnail_4}}">
+			<img *ngIf="productDetail.thumbnail_5" src="{{productDetail.thumbnail_5}}">
+			<img *ngIf="productDetail.thumbnail_6" src="{{productDetail.thumbnail_6}}">
 		</div>
 	</div>
-	<div class="grid-x grid-padding-x grid-padding-y align-center" style="color:red;" *ngIf="containerLoaded && !productDetail">
-		Product not available
+	<div class="small-12 medium-5 cell">
+		<div class="productName">
+			{{productDetail?.name}}
+		</div>
+		<div class="pricingContainer">
+			<span class="itemOriginalPrice itemDiscounted">{{(loc_type == indian_location) ? 'RS. '+productDetail?.INR?.base_price : '$' + productDetail?.USD?.base_price}}</span>
+			<span class="itemDiscountedPrice">{{(loc_type == indian_location) ? 'Rs. ' + productDetail?.INR?.price : '$' + productDetail?.USD?.price}}</span>
+			<!-- <span class="itemDiscountPercent">50% OFF</span> -->
+		</div>
+		<div class="sizingContainer">
+			<div class="sizingHeaders clearfix">
+				<span class="float-left">Select Your Size</span>
+				<span class="float-right sizeChartModal" data-open="sizeChart">Size Chart</span>
+			</div>
+			<div class="reveal" id="sizeChart" data-reveal>
+				<h3 class="text-center">Size Chart</h3>
+				<div class="grid-x">
+					<div class="medium-6 cell text-center">
+						<h4>Size(US)</h4>
+						<!-- <div>S</div> -->
+						<div>M</div>
+						<div>L</div>
+						<div>XL</div>
+						<div>XXL</div>
+						<div>XXXL</div>
+					</div>
+					<div class="medium-6 cell text-center">
+						<h4>Chest</h4>
+						<!-- <div>35" - 37"</div> -->
+						<div>38" - 40"</div>
+						<div>41" - 43"</div>
+						<div>44" - 46"</div>
+						<div>47" - 49"</div>
+						<div>50" - 52"</div>
+					</div>
+				</div>
+				<button class="close-button" data-close aria-label="Close modal" type="button">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="sizeSelectorContainer">
+				<div *ngFor="let size of sizesAvailable">
+					<a class="sizeSelector" [ngClass]="{'selectedSize': selectedSize === size}" (click)="selectedSize = size" *ngIf="(allSizes | find: {'value' : size}) let find_size">
+						{{find_size.value }}
+					</a>
+				</div>  	
+			</div>
+			<div class="sizingHeaders clearfix">
+				<span class="float-left">Select Your fit</span>
+			</div>
+
+			<div class="fitSelectorContainer">
+				<div *ngFor="let fit of fitsAvailable">
+					<a class="fitSelector" [ngClass]="{'selectedFit': selectedFit === fit}" (click)="selectedFit = fit" *ngIf="(allFits | find: {'value' : fit}) let find_fit">
+						{{find_fit?.name }}
+					</a>
+				</div>  	
+			</div>
+			<div class="productButtonsContainer clearfix">
+				<!-- <span class="wishlistContainer">
+					<button class="button float-left secondary secondaryBtn">
+						<img src="../assets/images/like.svg" class="productDecisionImgBtn">Wishlist
+					</button>
+				</span> -->
+				<span class="addToBagContainer">
+					<button class="button float-right primaryBtn" (click)="addToCart(productDetail.id)">
+						<img src="../assets/images/emptyShoppingBagWhite.svg" class="productDecisionImgBtn">Add To bag
+					</button>
+				</span>
+			</div>
+			<ul class="accordion productDetailContainer" data-accordion data-allow-all-closed="true">
+				<li class="accordion-item" data-accordion-item>
+					<a class="accordion-title">Product Details</a>
+
+					<div class="accordion-content" data-tab-content>
+						<p>{{productDetail?.description}}</p>
+					</div>
+				</li>
+				<li class="accordion-item" data-accordion-item>
+					<a class="accordion-title">Delivery & Returns</a>
+
+					<div class="accordion-content" data-tab-content>
+						<p>Panel 1. Lorem ipsum dolor</p>
+						<a>Nowhere to Go</a>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
+</div>
+<div class="grid-x grid-padding-x grid-padding-y align-center flash-error" *ngIf="containerLoaded && !productDetail">
+	Product not available
+</div>
 	<!-- <div class="grid-x align-center">
 		<div class="small-12 medium-6 text-center"><h3>You May Also Like</h3></div>
 	</div>

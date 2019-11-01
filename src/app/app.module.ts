@@ -32,14 +32,17 @@ import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AddressesComponent } from './components/addresses/addresses.component';
 import { InstapageComponent } from './components/instapage/instapage.component';
+import { MyAccountComponent } from './components/my-account/my-account.component';
 
 import { WindowRef } from './services/windowRef';
 import { HomeService } from './services/home.service';
 import { UserService } from './services/user.service';
-import { MyAccountComponent } from './components/my-account/my-account.component';
+
+import { FindPipe } from './tools/find.pipe';
 
 @NgModule({
   declarations: [
+    FindPipe,
     AppComponent,
     HomepageComponent,
     HeaderComponent,

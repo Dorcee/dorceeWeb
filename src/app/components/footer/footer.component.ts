@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 declare var $:any;
 
@@ -9,10 +10,13 @@ declare var $:any;
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor( private router:Router ) { }
 
   ngOnInit() {
   	$(document).foundation();
   }
 
+  footerNavigationToMyAccount(){
+  	window.scroll(0,0);
+  }
 }

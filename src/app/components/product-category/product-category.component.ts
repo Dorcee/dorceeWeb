@@ -47,7 +47,7 @@ export class ProductCategoryComponent implements OnInit {
   ngAfterViewInit(){
     setTimeout(function() {
       $('.productImageSlideContainer').not('.slick-initialized').slick({
-        infinite: true,
+        infinite: true
       });
     }, 1000);
   }
@@ -57,7 +57,7 @@ export class ProductCategoryComponent implements OnInit {
     if($event.type == 'mouseenter'){ 
       setTimeout(function () {
         $('#slider'+ID+'.productImageSlideContainer').slick('slickPlay');
-      }, 1000);
+      }, 10);
     } 
   }
   changeBackStyle($event,id){
@@ -65,7 +65,7 @@ export class ProductCategoryComponent implements OnInit {
     if($event.type == 'mouseleave'){ 
       setTimeout(function () {
         $('#slider'+id+'.productImageSlideContainer').slick('slickPause');
-      }, 1000);
+      }, 10);
     }
   }
 

@@ -33,8 +33,8 @@
 			<div class="productCategoryOuterContainer">
 				<div class="productSelectorHeading">Category</div>
 				<ul class="vertical menu accordion-menu productSelectorSubHeading" data-accordion-menu>
-					<li class="productCategoryAccordionHeader" *ngFor="let category of categories">
-						<a (click)="getProducts('category', category.name)">{{category.name}}</a>
+					<li class="productCategoryAccordionHeaderContainer" *ngFor="let category of categories">
+						<a class="productCategoryAccordionHeader" (click)="getProducts('category', category.name)">{{category.name}}</a>
 						<ul class="menu vertical nested is-active productCategoryAccordionContent">
 							<li *ngFor="let type of category.types">
 								<a (click)="getProducts('type', type)">{{type}}</a></li>
@@ -87,8 +87,8 @@
 							</a> 
 						</div>-->
 						<div class="productImageSlideContainer" id="slider{{product.id}}">
-			        
-			        <img *ngIf="product.main_image" src="{{product.main_image}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)">
+					
+					        <img *ngIf="product.main_image" src="{{product.main_image}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)">
 							
 							<img *ngIf="product.thumbnail_1" src="{{product.thumbnail_1}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)">
 							
@@ -101,9 +101,9 @@
 							<img *ngIf="product.thumbnail_5" src="{{product.thumbnail_5}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)">
 							
 							<img *ngIf="product.thumbnail_6" src="{{product.thumbnail_6}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)">
-		      	</div>
+						</div>	
 
-						<div class="alsoLikeProductDetailContainer text-center" (click)="goToProductDetailPage(product.id)">
+						<a class="alsoLikeProductDetailContainer text-center" (click)="goToProductDetailPage(product.id)">
 							<div class="alsoLikeProductDetail">
 								<div class="productName">{{product.name}}</div>
 								<div class="fitCategory">{{product.category}}</div>
@@ -112,7 +112,7 @@
 								<span class="originalPrice itemDiscounted">{{(loc_type == indian_location) ? 'RS. '+product?.INR?.base_price : '$' + product?.USD?.base_price}}</span>
 								<span class="discountedPrice">{{(loc_type == indian_location) ? 'Rs. ' + product?.INR?.price : '$' + product?.USD?.price}}</span>
 							</div>
-						</div>
+						</a>
 					</div>
 				</div>
 			</div>		

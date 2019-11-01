@@ -29,48 +29,50 @@
 						  	<div>Jaipur - 302001</div>
 						  	<div>Mobile - +91-9967758592</div>
 						  </mat-radio-button>
-					  </div>
-					  <div class="float-right">
-							<button class="button secondary secondaryBtn" data-open="addressUpdate">EDIT</button>
-				  	</div>
-			  	</div>
-				  <div class="clearfix addressContainer">
-					  <div class="float-left">
-					  	<mat-radio-button value="2">
-						  	<div>Abhilash Bhargava</div>
-						  	<div>K-6 Ashok Marg C-Scheme</div>
-						  	<div>Opposite BSNL Office</div>
-						  	<div>Jaipur - 302001</div>
-						  	<div>Mobile - +91-9967758592</div>
-						  </mat-radio-button>
-				  	</div>
+					    </div>
+					    <div class="float-right">
+							<button class="button secondary secondaryBtn" data-open="addressUpdate" (click)="showModalToAddAddress('Edit')">EDIT</button>
+				  		</div>
+			  		</div>
+				    <div class="clearfix addressContainer">
+					    <div class="float-left">
+						  	<mat-radio-button value="2">
+							  	<div>Abhilash Bhargava</div>
+							  	<div>K-6 Ashok Marg C-Scheme</div>
+							  	<div>Opposite BSNL Office</div>
+							  	<div>Jaipur - 302001</div>
+							  	<div>Mobile - +91-9967758592</div>
+						    </mat-radio-button>
+				  		</div>
 				  	
-				  	<div class="float-right">
-							<button class="button secondary secondaryBtn" data-open="addressUpdate">EDIT</button>
+					  	<div class="float-right">
+							<button class="button secondary secondaryBtn" data-open="addressUpdate" (click)="showModalToAddAddress('Edit')">EDIT</button>
+					  	</div>
 				  	</div>
-			  	</div>
 				</mat-radio-group>
 			</div>
 			<div class="clearfix addAddressContainer">
-				<button class="button secondary float-right secondaryBtn" data-open="addressUpdate">+ ADD ADDRESS</button>
+				<button class="button secondary float-right secondaryBtn" (click)="showModalToAddAddress('Add')">+ ADD ADDRESS</button>
 			</div>
+
+
 			<div class="reveal addressModalOuterContainer" id="addressUpdate" data-reveal>
-				<div class="grid-container addressModalContainer">
+				<div class="grid-container addressModalContainer" *ngIf="userDetails">
 				  <div class="text-center addressModalHeader">ADDRESS</div>
-				  <form class="addressForm">
+				  <form [formGroup]="addressForm">
 				  	<div class="grid-x">
 					  	<div class="medium-12 cell text-center">
-								<mat-form-field class="addressFormField">
-							    <input matInput placeholder="Flat No / Building / Road" [formControl]="addressFormControl">
-							  </mat-form-field>
-						  </div>
+							<mat-form-field class="addressFormField">
+							    <input matInput placeholder="Flat No / Building / Road" formControlName="flat_number">
+							</mat-form-field>
+						</div>
 				  	</div>
 				  	<div class="grid-x">
 				  		<div class="medium-12 cell text-center">
-								<mat-form-field class="addressFormField">
-							    <input matInput placeholder="Area / Locality / Landmark" [formControl]="addressFormControl">
-							  </mat-form-field>
-						  </div>
+							<mat-form-field class="addressFormField">
+							    <input matInput placeholder="Area / Locality / Landmark" formControlName="area">
+							</mat-form-field>
+						</div>
 				  	</div>
 					  <div class="grid-x">
 					  	<!-- <div class="medium-12 cell text-center">
@@ -90,35 +92,41 @@
 							</div> -->
 					  	<div class="medium-12 cell text-center">
 					  		<mat-form-field class="addressFormField">
-							    <input matInput placeholder="Code ( Pin or Postal )" [formControl]="addressFormControl">
-							  </mat-form-field>
+							    <input matInput placeholder="Code ( Pin or Postal )" formControlName="pin_code">
+							</mat-form-field>
 					  	</div>
 					  </div>
-				  	<div class="grid-x">
+				  	  <div class="grid-x">
 					  	<div class="medium-12 cell text-center">
 					  		<mat-form-field class="addressFormField">
-							    <input matInput placeholder="City" [formControl]="addressFormControl">
-							  </mat-form-field>
-							</div>
+							    <input matInput placeholder="City" formControlName="city">
+				            </mat-form-field>
+						</div>
 					  	<div class="medium-12 cell text-center">
 					  		<mat-form-field class="addressFormField">
-							    <input matInput placeholder="State" [formControl]="addressFormControl">
-							  </mat-form-field>
+							    <input matInput placeholder="State" formControlName="state">
+							</mat-form-field>
+					  	</div>
+					  	<div class="medium-12 cell text-center">
+					  		<mat-form-field class="addressFormField">
+							    <input matInput placeholder="Country" formControlName="type">
+							</mat-form-field>
 					  	</div>
 					  </div>
 					  <div class="grid-x">
-						  <mat-radio-group>
+						  <mat-radio-group formControlName="is_default">
 							  <mat-radio-button value="1">Set as Default</mat-radio-button>
-							</mat-radio-group>
-						</div>
+						  </mat-radio-group>
+				      </div>
 						<div class="grid-x">
 							<div class="medium-5 cell text-right">
-								<button class="button" data-close>CANCEL</button>
+								<input type="button" class="button" data-close value="CANCEL">
 							</div>
 							<div class="medium-2 cell">
 							</div>
 							<div class="medium-5 cell text-left">
-								<button class="button">SAVE</button>
+								<!-- <button type="submit" class="button submitButton" [disabled]="uploadForm.invalid"> Submit </button> -->
+								<button type="submit" class="button" data-close aria-label="Close modal" (click)="onAddAddressSubmit(addressForm)">SAVE</button>
 							</div>
 						</div>
 					</form>
@@ -128,22 +136,24 @@
 			  </div>
 		  </div>
 		</div>
-		<div class="small-12 medium-4 cell">
+
+
+		<div class="small-12 medium-4 cell" *ngIf="contentLoaded && (cart_items.length > 0)">
 			<div class="deliveryDetailsHeader">Delivery Details</div>
-			<div>
+			<div *ngFor="let cart_item of cart_items; let index=index">
 				<div class="grid-x grid-padding-y">
 					<div class="medium-3 cell">
-						<img src="../assets/images/homepage-images/pic4.png" alt="Bought Product">
+						<img *ngIf="cart_item.product.main_image" src="{{cart_item.product.main_image}}" alt="Bought Product">
 					</div>
 					<div class="medium-9 cell">
 						<div class="deliveryItemDetails">
-							<div>Double Layered Printed Shirt</div>
+							<div>{{cart_item.product.name}}</div>
 							<div class="grid-x selectedProductDetail">
 								<div class="medium-6 cell">
 									Quantity
 								</div>
 								<div class="medium-6 cell">
-									1
+									{{ cart_item.qty }}
 								</div>
 							</div>
 							<div class="grid-x selectedProductDetail">
@@ -151,41 +161,22 @@
 									Size
 								</div>
 								<div class="medium-6 cell">
-									L
+									{{ cart_item.size }}
+								</div>
+							</div>
+							<div class="grid-x selectedProductDetail">
+								<div class="medium-6 cell">
+									Fit
+								</div>
+								<div class="medium-6 cell">
+									{{ (fits | find: {'value' : cart_item.fit})?.name }}
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div>
-				<div class="grid-x grid-padding-y">
-					<div class="medium-3 cell">
-						<img src="../assets/images/homepage-images/pic4.png" alt="Bought Product">
-					</div>
-					<div class="medium-9 cell">
-						<div class="deliveryItemDetails">
-							<div>Double Layered Printed Shirt</div>
-							<div class="grid-x selectedProductDetail">
-								<div class="medium-6 cell">
-									Quantity
-								</div>
-								<div class="medium-6 cell">
-									1
-								</div>
-							</div>
-							<div class="grid-x selectedProductDetail">
-								<div class="medium-6 cell">
-									Size
-								</div>
-								<div class="medium-6 cell">
-									L
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 			<div class="orderSummaryOuterContainer">
 				<div class="orderSummaryHeader">ORDER SUMMARY</div>
 				<div class="orderSummaryContentContainer">
@@ -213,6 +204,8 @@
 					<button class="button expanded primaryBtn" (click)="payNow()">Place Order</button>
 				</div>
 			</div>
+		</div>
+		<div class="small-12 medium-4 cell" *ngIf="contentLoaded && (cart_items.length == 0)"> No Items added to he Cart.
 		</div>
 	</div>
 </div>
