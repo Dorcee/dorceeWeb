@@ -57,7 +57,7 @@ export class ConfirmOrderComponent implements OnInit {
     var options = {
       "key": environment.razorpayKeyID,
       "amount": "2000", // 2000 paise = INR 20
-      "currency": "INR",
+      "currency": "INR", // environment.india_location
       "name": "Dorcee",
       "description": "Purchase Description",
       "handler": function (response){
@@ -87,14 +87,13 @@ export class ConfirmOrderComponent implements OnInit {
     if(token=='Add'){
       console.log(token);
       this.addressForm = this.formBuilder.group({
-        flat_number:'', 
-        area: '', 
-        pin_code: '', 
-        city: '', 
-        state: '', 
-        type :'', 
+        flat_number:['', [Validators.required]], 
+        area: ['', [Validators.required]], 
+        pin_code: ['', [Validators.required]], //USA regex-/^[0-9]{5}(?:-[0-9]{4})?$/ 
+        city: ['', [Validators.required]],
+        state: ['', [Validators.required]], 
+        type :['', [Validators.required]], 
         is_default: "0"
-       // category:['', [Validators.required]],
       });
     } else {
       console.log(token);
@@ -117,37 +116,44 @@ export class ConfirmOrderComponent implements OnInit {
       console.log(data);
       if(data.country.toLowerCase()==this.addressForm.controls['type'].value.toLowerCase()) {
         if(data.country.toLowerCase()=='india') {
-          this.addressForm.controls['type'].setValue('INR');
+          this.addressForm.controls['type'].setValue(environment.india_location);
         } else {
-          this.addressForm.controls['type'].setValue('USD');
+          this.addressForm.controls['type'].setValue(environment.other_location);
         } 
+       this.AddingAddress();
       }
       else {
-        if(confirm("Are you sure about address you type?")) {
+        if(confirm("Are you sure about the address you typed?")) {
           if(this.addressForm.controls['type'].value.toLowerCase()=='india') {
-            this.addressForm.controls['type'].setValue('INR');
+            this.addressForm.controls['type'].setValue(environment.india_location);
           } else {
-            this.addressForm.controls['type'].setValue('USD');
+            this.addressForm.controls['type'].setValue(environment.other_location);
           }   
-        };
+          this.AddingAddress();
+        }
+        else {
+          console.log("Adding Address canceled");
+        }
       }
-      console.log(this.addressForm.controls['type'].value);
     
-      var addressFormData = this.addressForm.value;
+     });
 
-      console.log(addressFormData);
-      console.log(this.userDetails.id);
-     
-      this.addressService.addAddress(addressFormData,this.userDetails.id).subscribe((data)=>{
+  }
+  
+  AddingAddress(){
+    var addressFormData = this.addressForm.value;
+
+    console.log(this.addressForm.controls['type'].value);
+    console.log(addressFormData);
+    console.log(this.userDetails.id);
+   
+    this.addressService.addAddress(addressFormData,this.userDetails.id).subscribe((data)=>{
+      console.log(data);
+
+      this.addressService.getAddress(this.userDetails.id).subscribe((data)=>{
         console.log(data);
-
-        this.addressService.getAddress(this.userDetails.id).subscribe((data)=>{
-          console.log(data);
-          this.addressDetail = data;
-        });
+        this.addressDetail = data;
       });
     });
-
-   // $('#addressUpdate').foundation('close');
   }
 }
