@@ -40,16 +40,15 @@ export class HomepageComponent implements OnInit {
 	    	});			
 		}
 		console.log(loc_type);
-			
 	}
 
 	ngAfterViewInit(){
-	    setTimeout(function () {
-	     	$('.productImageSlideContainer').not('.slick-initialized').slick({
-	       		infinite: false,
-	       		autoplaySpeed: 1000
-	     	});
-	   }, 1000);
+    setTimeout(function () {
+     	$('.productImageSlideContainer').not('.slick-initialized').slick({
+     		infinite: true,
+     		autoplaySpeed: 1000
+     	});
+    }, 1000);
 	}
 
 	changeStyle($event,ID){
