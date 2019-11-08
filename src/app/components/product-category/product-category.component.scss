@@ -26,6 +26,10 @@
 
 .productName {
   cursor: pointer;
+  color: $black;
+}
+.fitCategory {
+  color: $black;
 }
 .image-hover-wrapper {
   position: relative;
@@ -78,6 +82,15 @@
 	text-decoration: line-through;
 	margin-right: rem-calc(10);
 }
+
+::ng-deep  .slick-prev {
+  display:none;
+}
+
+::ng-deep  .slick-next {
+  display:none;
+}
+
 ::ng-deep .fitCategorySelector .mat-checkbox-inner-container, ::ng-deep .sizeCategorySelector  .mat-checkbox-inner-container{
 	width: rem-calc(13);
 	height: rem-calc(13);

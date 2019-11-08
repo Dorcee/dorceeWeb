@@ -30,8 +30,6 @@ export class ProductCategoryComponent implements OnInit {
   indian_location = environment.india_location;
 
   ngOnInit() {
-
-    $(document).foundation();
     this.homeservice.getAllProducts().subscribe((data)=>{
       this.products = data;
       // TODO - get it from local storage
@@ -46,9 +44,12 @@ export class ProductCategoryComponent implements OnInit {
   }
 
   ngAfterViewInit(){
+    $(document).foundation();
     setTimeout(function() {
       $('.productImageSlideContainer').not('.slick-initialized').slick({
-        infinite: true
+        infinite: true,
+        arrows: false,
+        autoplaySpeed: 1000,
       });
     }, 1000);
   }
