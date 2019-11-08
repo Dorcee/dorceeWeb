@@ -13,7 +13,8 @@ declare var $:any;
 export class ProductCategoryComponent implements OnInit {
   constructor(public homeservice:HomeService,
               public router : Router
-    ) { }
+  ) { }
+  
   p: number = 1;
   products : any;
   categories : any;

@@ -129,13 +129,19 @@ $image-hover-wrapper-icon-size: rem-calc(24);
   cursor: pointer;
 }
 
-.sizeSelector, .fitSelector {
+.sizeSelector {
   width: rem-calc(35);
   height: rem-calc(35);
   border: 1px solid;
   border-radius: 50%;
   text-align: center;
   padding-top: rem-calc(5);
+  display: block;
+}
+.fitSelector {
+  border: 1px solid $primary-color;
+  padding: rem-calc(5 15);
+  border-radius: 20px;
 }
 .productDetailContainer .accordion-title{
   border: none;
@@ -167,6 +173,7 @@ $image-hover-wrapper-icon-size: rem-calc(24);
   top: 50%;
   transform: translateY(-50%);
   z-index: 99;
+  cursor: pointer;
 }
 
 ::ng-deep  .slick-next:before {
@@ -177,6 +184,7 @@ $image-hover-wrapper-icon-size: rem-calc(24);
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
+  cursor: pointer;
 }
 .selectedSize, .selectedFit {
   background-color: $primary-color;
