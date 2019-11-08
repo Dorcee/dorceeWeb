@@ -39,6 +39,7 @@ import { HomeService } from './services/home.service';
 import { UserService } from './services/user.service';
 
 import { FindPipe } from './tools/find.pipe';
+import { InfoHeaderComponent } from './components/info-header/info-header.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { FindPipe } from './tools/find.pipe';
     AddressesComponent,
     InstapageComponent,
     MyAccountComponent,
+    InfoHeaderComponent,
   ],
   imports: [
     BrowserModule,
