@@ -4,7 +4,6 @@ import { WindowRef } from '../../services/windowRef';
 
 import { environment } from 'src/environments/environment';
 import { HomeService } from '../../services/home.service';
-
 import { AddressService } from '../../services/address.service';
 
 declare var $:any;
