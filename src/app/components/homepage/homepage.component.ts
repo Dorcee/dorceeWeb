@@ -72,7 +72,7 @@ export class HomepageComponent implements OnInit {
 	getProducts(loc_type) {
 		this.homeservice.getAllProducts('loc_type', loc_type).subscribe((data)=>{
 			this.products = data.slice(0, 4);
-			console.log(this.products);
+			//console.log(this.products);
     	});
 	}
 

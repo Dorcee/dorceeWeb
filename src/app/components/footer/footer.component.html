@@ -19,9 +19,9 @@
       <span class="footerCategoryHeader">Your Order</span>
       <div class="footerCategoryContainer">
         <!-- [routerLink]="['/hero', hero.id] -->
-        <div class="footerCategory" routerLink="/myAccount/profile">My Account</div>
-        <div class="footerCategory" routerLink="/myAccount/myOrders">Order Status</div>
-        <div class="footerCategory" routerLink="/myAccount/myOrders">Request a Return</div>
+        <div class="footerCategory" (click)="footerNavigationToMyAccount()" routerLink="/myAccount/profile">My Account</div>
+        <div class="footerCategory" (click)="footerNavigationToMyAccount()" routerLink="/myAccount/myOrders">Order Status</div>
+        <div class="footerCategory" (click)="footerNavigationToMyAccount()" routerLink="/myAccount/myOrders">Request a Return</div>
       </div>
     </div>
     <div class="small-3 cell">

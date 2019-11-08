@@ -29,96 +29,110 @@
 						  	<div>Jaipur - 302001</div>
 						  	<div>Mobile - +91-9967758592</div>
 						  </mat-radio-button>
-					  </div>
-					  <div class="float-right">
-							<button class="button secondary secondaryBtn" data-open="addressUpdate">EDIT</button>
-				  	</div>
-			  	</div>
-				  <div class="clearfix addressContainer">
-					  <div class="float-left">
-					  	<mat-radio-button value="2">
-						  	<div>Abhilash Bhargava</div>
-						  	<div>K-6 Ashok Marg C-Scheme</div>
-						  	<div>Opposite BSNL Office</div>
-						  	<div>Jaipur - 302001</div>
-						  	<div>Mobile - +91-9967758592</div>
-						  </mat-radio-button>
-				  	</div>
+					    </div>
+					    <div class="float-right">
+							<button class="button secondary secondaryBtn" data-open="addressUpdate" (click)="showModalToAddAddress('Edit')">EDIT</button>
+				  		</div>
+			  		</div>
+				    <div class="clearfix addressContainer">
+					    <div class="float-left">
+						  	<mat-radio-button value="2">
+							  	<div>Abhilash Bhargava</div>
+							  	<div>K-6 Ashok Marg C-Scheme</div>
+							  	<div>Opposite BSNL Office</div>
+							  	<div>Jaipur - 302001</div>
+							  	<div>Mobile - +91-9967758592</div>
+						    </mat-radio-button>
+				  		</div>
 				  	
-				  	<div class="float-right">
-							<button class="button secondary secondaryBtn" data-open="addressUpdate">EDIT</button>
+					  	<div class="float-right">
+							<button class="button secondary secondaryBtn" data-open="addressUpdate" (click)="showModalToAddAddress('Edit')">EDIT</button>
+					  	</div>
 				  	</div>
-			  	</div>
 				</mat-radio-group>
 			</div>
 			<div class="clearfix addAddressContainer">
-				<button class="button secondary float-right secondaryBtn" data-open="addressUpdate">+ ADD ADDRESS</button>
+				<button class="button secondary float-right secondaryBtn" (click)="showModalToAddAddress('Add')">+ ADD ADDRESS</button>
 			</div>
+
+
 			<div class="reveal addressModalOuterContainer" id="addressUpdate" data-reveal>
-				<div class="grid-container addressModalContainer">
+				<div class="grid-container addressModalContainer" *ngIf="userDetails">
 				  <div class="text-center addressModalHeader">ADDRESS</div>
-				  <form class="addressForm">
+				  <form [formGroup]="addressForm">
 				  	<div class="grid-x">
 					  	<div class="medium-12 cell text-center">
-								<mat-form-field class="addressFormField">
-							    <input matInput placeholder="Flat No / Building / Road" [formControl]="addressFormControl">
-							  </mat-form-field>
-						  </div>
+							<mat-form-field class="addressFormField">
+							    <input matInput placeholder="Flat No / Building / Road" formControlName="flat_number">
+							    <mat-error *ngIf="addressForm.controls['flat_number'].hasError('required')">
+						     		flat number is <strong>required</strong>
+						    	</mat-error>
+							</mat-form-field>
+						</div>
 				  	</div>
 				  	<div class="grid-x">
 				  		<div class="medium-12 cell text-center">
-								<mat-form-field class="addressFormField">
-							    <input matInput placeholder="Area / Locality / Landmark" [formControl]="addressFormControl">
-							  </mat-form-field>
-						  </div>
+							<mat-form-field class="addressFormField">
+							    <input matInput placeholder="Area / Locality / Landmark" formControlName="area">
+							    <mat-error *ngIf="addressForm.controls['area'].hasError('required')">
+						     		Area is <strong>required</strong>
+						    	</mat-error>
+							</mat-form-field>
+						</div>
 				  	</div>
 					  <div class="grid-x">
-					  	<!-- <div class="medium-12 cell text-center">
-					  		<mat-form-field class="addressFormField">
-							    <input matInput placeholder="First Name" [formControl]="addressFormControl">
-							  </mat-form-field>
-							</div>
 					  	<div class="medium-12 cell text-center">
 					  		<mat-form-field class="addressFormField">
-							    <input matInput placeholder="Last Name" [formControl]="addressFormControl">
-							  </mat-form-field>
-					  	</div>
-					  	<div class="medium-12 cell text-center">
-					  		<mat-form-field class="addressFormField">
-							    <input matInput placeholder="Mobile" [formControl]="addressFormControl">
-							  </mat-form-field>
-							</div> -->
-					  	<div class="medium-12 cell text-center">
-					  		<mat-form-field class="addressFormField">
-							    <input matInput placeholder="Code ( Pin or Postal )" [formControl]="addressFormControl">
-							  </mat-form-field>
+							    <input matInput placeholder="Code ( Pin or Postal )" formControlName="pin_code">
+							    <mat-error *ngIf="addressForm.controls['pin_code'].hasError('required')">
+						     		Pin code is <strong>required</strong>
+						    	</mat-error>
+						    	<mat-error *ngIf="addressForm.controls['pin_code'].invalid && addressForm.controls['pin_code'].dirty && !addressForm.controls['pin_code'].hasError('required')">
+							      Pin Code is <strong> not valid</strong>
+							    </mat-error>
+							</mat-form-field>
 					  	</div>
 					  </div>
-				  	<div class="grid-x">
+				  	  <div class="grid-x">
 					  	<div class="medium-12 cell text-center">
 					  		<mat-form-field class="addressFormField">
-							    <input matInput placeholder="City" [formControl]="addressFormControl">
-							  </mat-form-field>
-							</div>
+							    <input matInput placeholder="City" formControlName="city">
+				        	<mat-error *ngIf="addressForm.controls['city'].hasError('required')">
+						     		City is <strong>required</strong>
+						    	</mat-error>
+				        </mat-form-field>
+						</div>
 					  	<div class="medium-12 cell text-center">
 					  		<mat-form-field class="addressFormField">
-							    <input matInput placeholder="State" [formControl]="addressFormControl">
-							  </mat-form-field>
+							    <input matInput placeholder="State" formControlName="state">
+									<mat-error *ngIf="addressForm.controls['state'].hasError('required')">
+						     		State Name is <strong>required</strong>
+						    	</mat-error>
+								</mat-form-field>
+					  	</div>
+					  	<div class="medium-12 cell text-center">
+					  		<mat-form-field class="addressFormField">
+							    <input matInput placeholder="Country" formControlName="type">
+									<mat-error *ngIf="addressForm.controls['type'].hasError('required')">
+						     		Country name is <strong>required</strong>
+						    	</mat-error>
+								</mat-form-field>
 					  	</div>
 					  </div>
 					  <div class="grid-x">
-						  <mat-radio-group>
+						  <mat-radio-group formControlName="is_default">
 							  <mat-radio-button value="1">Set as Default</mat-radio-button>
-							</mat-radio-group>
-						</div>
+						  </mat-radio-group>
+				    </div>
 						<div class="grid-x">
 							<div class="medium-5 cell text-right">
-								<button class="button" data-close>CANCEL</button>
+								<input type="button" class="button" data-close value="CANCEL">
 							</div>
 							<div class="medium-2 cell">
 							</div>
 							<div class="medium-5 cell text-left">
-								<button class="button">SAVE</button>
+								<!-- <button type="submit" class="button submitButton" [disabled]="uploadForm.invalid"> Submit </button> -->
+								<button type="submit" class="button" data-close aria-label="Close modal" (click)="onAddAddressSubmit(addressForm)" [disabled]="addressForm.invalid">SAVE</button>
 							</div>
 						</div>
 					</form>

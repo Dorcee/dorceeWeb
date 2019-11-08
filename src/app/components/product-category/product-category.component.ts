@@ -41,26 +41,20 @@ export class ProductCategoryComponent implements OnInit {
         this.fits = data.fits;
         this.containerLoaded = true;
       });
-      /*$('.productImageSlideContainer').not('.slick-initialized').slick({
-        infinite: false,
-      });*/
     });  
   }
 
   ngAfterViewInit(){
     setTimeout(function() {
       $('.productImageSlideContainer').not('.slick-initialized').slick({
-        infinite: true,
-        arrows: false,
-        autoplaySpeed: 1000,
-        dots: true
+        infinite: true
       });
     }, 1000);
   }
 
   changeStyle($event,ID){
     // console.log(ID); 
-    if($event.type == 'mouseover'){ 
+    if($event.type == 'mouseenter'){ 
       setTimeout(function () {
         $('#slider'+ID+'.productImageSlideContainer').slick('slickPlay');
       }, 10);
@@ -68,7 +62,7 @@ export class ProductCategoryComponent implements OnInit {
   }
   changeBackStyle($event,id){
     // console.log($event.type); 
-    if($event.type == 'mouseout'){ 
+    if($event.type == 'mouseleave'){ 
       setTimeout(function () {
         $('#slider'+id+'.productImageSlideContainer').slick('slickPause');
       }, 10);
