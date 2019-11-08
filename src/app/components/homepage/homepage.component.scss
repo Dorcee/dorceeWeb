@@ -129,11 +129,11 @@ $border-color: #ACACAC;
 
 //To remove the text of Previous and Next in Slick Slider
 ::ng-deep  .slick-prev {
-  font-size: 0px;
+  display:none;
 }
 
 ::ng-deep  .slick-next {
-  font-size: 0px;
+  display:none;
 }
 
 ::ng-deep  .slick-prev:after {

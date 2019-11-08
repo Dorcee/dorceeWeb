@@ -46,7 +46,8 @@ export class HomepageComponent implements OnInit {
     setTimeout(function () {
      	$('.productImageSlideContainer').not('.slick-initialized').slick({
      		infinite: true,
-     		autoplaySpeed: 1000
+     		autoplaySpeed: 1000,
+     		arrows: false,
      	});
     }, 1000);
 	}

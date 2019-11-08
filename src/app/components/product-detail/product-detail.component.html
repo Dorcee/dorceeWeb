@@ -42,45 +42,49 @@
 			<!-- <span class="itemDiscountPercent">50% OFF</span> -->
 		</div>
 		<div class="sizingContainer">
-			<div class="sizingHeaders clearfix">
-				<span class="float-left">Select Your Size</span>
-				<span class="float-right sizeChartModal" data-open="sizeChart">Size Chart</span>
-			</div>
-			<div class="reveal" id="sizeChart" data-reveal>
-				<h3 class="text-center">Size Chart</h3>
-				<div class="grid-x">
-					<div class="medium-6 cell text-center">
-						<h4>Size(US)</h4>
-						<!-- <div>S</div> -->
-						<div>M</div>
-						<div>L</div>
-						<div>XL</div>
-						<div>XXL</div>
-						<div>XXXL</div>
-					</div>
-					<div class="medium-6 cell text-center">
-						<h4>Chest</h4>
-						<!-- <div>35" - 37"</div> -->
-						<div>38" - 40"</div>
-						<div>41" - 43"</div>
-						<div>44" - 46"</div>
-						<div>47" - 49"</div>
-						<div>50" - 52"</div>
-					</div>
+			<div class="sizingInnerContainer">
+				<div class="sizingHeaders clearfix">
+					<span class="float-left">Select Your Size:</span>
+					<span class="float-right sizeChartModal" data-open="sizeChart">Size Chart</span>
 				</div>
-				<button class="close-button" data-close aria-label="Close modal" type="button">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<div class="reveal" id="sizeChart" data-reveal>
+					<h3 class="text-center">Size Chart</h3>
+					<div class="grid-x">
+						<div class="medium-6 cell text-center">
+							<h4>Size(US)</h4>
+							<!-- <div>S</div> -->
+							<div>M</div>
+							<div>L</div>
+							<div>XL</div>
+							<div>XXL</div>
+							<div>XXXL</div>
+						</div>
+						<div class="medium-6 cell text-center">
+							<h4>Chest</h4>
+							<!-- <div>35" - 37"</div> -->
+							<div>38" - 40"</div>
+							<div>41" - 43"</div>
+							<div>44" - 46"</div>
+							<div>47" - 49"</div>
+							<div>50" - 52"</div>
+						</div>
+					</div>
+					<button class="close-button" data-close aria-label="Close modal" type="button">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="sizeSelectorContainer">
+					<div *ngFor="let size of sizesAvailable">
+						<a class="sizeSelector" [ngClass]="{'selectedSize': selectedSize === size}" (click)="selectedSize = size" *ngIf="(allSizes | find: {'value' : size}) let find_size">
+							{{find_size.value }}
+						</a>
+					</div>  	
+				</div>
 			</div>
-			<div class="sizeSelectorContainer">
-				<div *ngFor="let size of sizesAvailable">
-					<a class="sizeSelector" [ngClass]="{'selectedSize': selectedSize === size}" (click)="selectedSize = size" *ngIf="(allSizes | find: {'value' : size}) let find_size">
-						{{find_size.value }}
-					</a>
-				</div>  	
-			</div>
-			<div class="sizingHeaders clearfix">
-				<span class="float-left">Select Your fit</span>
+		</div>
+		<div class="fitContainer">
+			<div class="fitHeaders clearfix">
+				<span class="float-left">Select Your fit:</span>
 			</div>
 
 			<div class="fitSelectorContainer">
@@ -102,24 +106,23 @@
 					</button>
 				</span>
 			</div>
-			<ul class="accordion productDetailContainer" data-accordion data-allow-all-closed="true">
-				<li class="accordion-item" data-accordion-item>
-					<a class="accordion-title">Product Details</a>
-
-					<div class="accordion-content" data-tab-content>
-						<p>{{productDetail?.description}}</p>
-					</div>
-				</li>
-				<li class="accordion-item" data-accordion-item>
-					<a class="accordion-title">Delivery & Returns</a>
-
-					<div class="accordion-content" data-tab-content>
-						<p>Panel 1. Lorem ipsum dolor</p>
-						<a>Nowhere to Go</a>
-					</div>
-				</li>
-			</ul>
 		</div>
+		<ul class="accordion productDetailContainer" data-accordion data-allow-all-closed="true">
+			<li class="accordion-item" data-accordion-item>
+				<a class="accordion-title">Product Details</a>
+
+				<div class="accordion-content" data-tab-content>
+					<p>{{productDetail?.description}}</p>
+				</div>
+			</li>
+			<li class="accordion-item" data-accordion-item>
+				<a class="accordion-title">Delivery & Returns</a>
+
+				<div class="accordion-content" data-tab-content>
+					<p>To know about the delivery and Return policy for our products, <a href="/shippingPolicy">click here.</a></p>
+				</div>
+			</li>
+		</ul>
 	</div>
 </div>
 <div class="grid-x grid-padding-x grid-padding-y align-center flash-error" *ngIf="containerLoaded && !productDetail">

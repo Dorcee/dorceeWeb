@@ -32,11 +32,11 @@ export class ProductDetailComponent implements OnInit {
   selectedSize: any;
 
   ngOnInit() {
-  	$(document).foundation();
+  	
 
     this.activatedRoute.params.subscribe(params => {
       this.product_id = params['id'];
-      console.log(`${this.product_id}`);
+      //console.log(`${this.product_id}`);
     });
 
     /* TODO : make it via ommon function at every page */
@@ -55,15 +55,15 @@ export class ProductDetailComponent implements OnInit {
       this.containerLoaded = true;
       if(data[0]) {
         this.productDetail=data[0];
-        console.log(this.productDetail);
+        //console.log(this.productDetail);
         this.sizesAvailable=this.productDetail.size.split(',');
         this.fitsAvailable=this.productDetail.fit.split(',');
         var types = {"type" : ["sizes", "categories", "fits"]};
         this.homeservice.getAllEntities(types).subscribe((data)=>{
           this.allSizes = data.sizes;
           this.allFits = data.fits;
-          console.log(this.allSizes);
-          console.log(this.allFits);
+          //console.log(this.allSizes);
+          //console.log(this.allFits);
         });
       }
     });
@@ -71,6 +71,10 @@ export class ProductDetailComponent implements OnInit {
 
   ngAfterViewInit() {
     this.setSlickDesign();
+    
+    setTimeout(function () {
+      $(document).foundation();
+    }, 1000);
   }
 
   setSlickDesign(){
@@ -115,7 +119,7 @@ export class ProductDetailComponent implements OnInit {
         if(find_item = cart_items.find(item => {return item.id == id && 
           item.size == this.selectedSize && 
           item.fit == this.selectedFit;})) {
-          console.log(find_item);
+          //console.log(find_item);
           // TODO : we can auto increase quantity of that product from here by using findIndex().
           alert('Already added this product.');
         } else {
@@ -129,7 +133,7 @@ export class ProductDetailComponent implements OnInit {
         localStorage.setItem('cart_items', JSON.stringify(cart_items));
         alert('Successfully added the product.');
       }
-      console.log(localStorage.getItem('cart_items'));
+      //console.log(localStorage.getItem('cart_items'));
     }
   }
 }

@@ -50,12 +50,11 @@ $image-hover-wrapper-icon-size: rem-calc(24);
 	display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  padding: rem-calc(20 0);
+  padding: rem-calc(15 0);
 }
 
 .sizeSelectorContainer {  
   border-bottom: 1px solid #dcdcdc;
-  padding-bottom: rem-calc(10);
 }
 
 .button.quickShopBtn {
@@ -97,8 +96,8 @@ $image-hover-wrapper-icon-size: rem-calc(24);
   padding-bottom: rem-calc(5);  
 }
 
-.sizingHeaders {
-  padding-top: rem-calc(10);
+.sizingHeaders, .fitHeaders {
+  padding-top: rem-calc(15);
 }
 
 .pricingContainer {  
@@ -130,17 +129,17 @@ $image-hover-wrapper-icon-size: rem-calc(24);
 }
 
 .sizeSelector {
-  width: rem-calc(35);
-  height: rem-calc(35);
+  width: rem-calc(40);
+  height: rem-calc(40);
   border: 1px solid;
   border-radius: 50%;
   text-align: center;
-  padding-top: rem-calc(5);
+  padding-top: rem-calc(8);
   display: block;
 }
 .fitSelector {
   border: 1px solid $primary-color;
-  padding: rem-calc(5 15);
+  padding: rem-calc(8 16);
   border-radius: 20px;
 }
 .productDetailContainer .accordion-title{
@@ -166,25 +165,31 @@ $image-hover-wrapper-icon-size: rem-calc(24);
 
 ::ng-deep  .slick-prev:after {
   content: "<";
-  color: $black;
+  color: $primary-color;
   font-size: 30px;
   position: absolute;
-  left: 10px;
+  left: 0px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 99;
   cursor: pointer;
+  background-color: $white;
+  border-radius: 20px;
+  padding: rem-calc(5 10);
 }
 
 ::ng-deep  .slick-next:before {
   content: ">";
-  color: $black;
+  color: $primary-color;
   font-size: 30px;
   position: absolute;
-  right: 10px;
+  right: 0px;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+  background-color: $white;
+  border-radius: 20px;
+  padding: rem-calc(5 10);
 }
 .selectedSize, .selectedFit {
   background-color: $primary-color;
