@@ -40,6 +40,7 @@ import { UserService } from './services/user.service';
 
 import { FindPipe } from './tools/find.pipe';
 import { InfoHeaderComponent } from './components/info-header/info-header.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { InfoHeaderComponent } from './components/info-header/info-header.compon
     InstapageComponent,
     MyAccountComponent,
     InfoHeaderComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

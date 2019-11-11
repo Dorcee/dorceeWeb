@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../../services/home.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { LoaderComponent } from '../loader/loader.component';
 
 declare var $:any;
 
@@ -11,6 +12,7 @@ declare var $:any;
 	styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
+	loading:boolean=true;
 
 	products = [];
 	constructor(public homeservice:HomeService, public router:Router) { }
@@ -43,13 +45,15 @@ export class HomepageComponent implements OnInit {
 	}
 
 	ngAfterViewInit(){
-    setTimeout(function () {
-     	$('.productImageSlideContainer').not('.slick-initialized').slick({
-     		infinite: true,
-     		autoplaySpeed: 1000,
-     		arrows: false,
-     	});
-    }, 1000);
+	    setTimeout(function () {
+	     	$('.productImageSlideContainer').not('.slick-initialized').slick({
+	     		infinite: true,
+	     		autoplaySpeed: 1000,
+	     		arrows: false,
+	     	});
+    	}, 1000);
+        this.loading=false;
+
 	}
 
 	changeStyle($event,ID){

@@ -1,0 +1,53 @@
+@import "compass/css3";
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content; 
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  } 
+}
+
+svg{
+  //width: 300px;
+  display: block;
+  margin: auto;
+}
+
+.path {
+  stroke-dasharray: 450;
+  -webkit-animation: dash 4s linear forwards;
+     -moz-animation: dash 4s linear forwards;
+          animation: dash 4s linear forwards;
+}
+
+@include keyframes(dash) {
+  0% {
+    stroke-dashoffset: 500;
+    stroke-width: .2;
+    fill: #fff;
+  }
+  70% {
+    stroke-dashoffset: 0;
+    stroke-width: .2;
+    fill: #fff;
+  }
+  80% {
+    stroke-width: .2;
+  }
+  90%{
+    stroke-width: 0; 
+  }
+  100%{
+    fill: #600000; 
+    stroke-width: 0;
+  }
+  
+}
