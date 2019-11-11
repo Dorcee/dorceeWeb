@@ -1,0 +1,119 @@
+@import '../../../assets/foundation-sites/global';
+
+.loaderContainer {
+  
+  position:fixed;
+  background: rgba(235,235,235,.8);  
+  top: 0;
+  left: 0;
+  right:0;
+  bottom:0;
+  z-index: 9999999;
+  display: flex;
+  align-items: center;
+}
+.loaderImage {
+  width:25%;
+  height:20%;
+}
+
+svg {
+  display: block;
+  margin: auto;
+}
+
+.path {
+  stroke-dasharray: 450;
+  -webkit-animation: dash 4s linear forwards infinite;
+  -moz-animation: dash 4s linear forwards infinite;
+  animation: dash 4s linear forwards infinite;
+}
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 500;
+    stroke-width: .2;
+    fill: #fff;
+  }
+  70% {
+    stroke-dashoffset: 0;
+    stroke-width: .2;
+    fill: #fff;
+  }
+  80% {
+    stroke-width: .2;
+  }
+  90% {
+    stroke-width: 0;
+  }
+  100% {
+    fill: #600000;
+    stroke-width: 0;
+  }
+}
+@-moz-keyframes dash {
+  0% {
+    stroke-dashoffset: 500;
+    stroke-width: .2;
+    fill: #fff;
+  }
+  70% {
+    stroke-dashoffset: 0;
+    stroke-width: .2;
+    fill: #fff;
+  }
+  80% {
+    stroke-width: .2;
+  }
+  90% {
+    stroke-width: 0;
+  }
+  100% {
+    fill: #600000;
+    stroke-width: 0;
+  }
+}
+@-ms-keyframes dash {
+  0% {
+    stroke-dashoffset: 500;
+    stroke-width: .2;
+    fill: #fff;
+  }
+  70% {
+    stroke-dashoffset: 0;
+    stroke-width: .2;
+    fill: #fff;
+  }
+  80% {
+    stroke-width: .2;
+  }
+  90% {
+    stroke-width: 0;
+  }
+  100% {
+    fill: #600000;
+    stroke-width: 0;
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 500;
+    stroke-width: .2;
+    fill: #fff;
+  }
+  70% {
+    stroke-dashoffset: 0;
+    stroke-width: .2;
+    fill: #fff;
+  }
+  80% {
+    stroke-width: .2;
+  }
+  90% {
+    stroke-width: 0;
+  }
+  100% {
+    fill: #600000;
+    stroke-width: 0;
+  }
+}

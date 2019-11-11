@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProductDetailService } from '../../services/product-detail.service';
 import { HomeService } from '../../services/home.service';
 import { environment } from 'src/environments/environment';
+import { LoaderComponent } from '../loader/loader.component';
 
 declare var $:any;
 var $scope;
@@ -13,7 +14,8 @@ var $scope;
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-  
+  loading:boolean = true;
+    
   constructor( private productDetailServices : ProductDetailService,
                private activatedRoute : ActivatedRoute,
                private homeservice: HomeService
@@ -71,7 +73,8 @@ export class ProductDetailComponent implements OnInit {
 
   ngAfterViewInit() {
     this.setSlickDesign();
-    
+    this.loading=false;
+
     setTimeout(function () {
       $(document).foundation();
     }, 1000);
