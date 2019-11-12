@@ -20,7 +20,9 @@ export class ProductDetailService {
   }
 
   getProductDetail(product_id): Observable<any> {
-    return this.httpClient.get<any>(`${API_URL}/cms/product/${product_id}`).pipe(
+    var loc_type = localStorage.getItem('loc_type');
+    return this.httpClient.get<any>(`${API_URL}/web/product/${product_id}?loc_type=${loc_type}`
+      ).pipe(
       map(res => {
       	//console.log(res); 
       	return res.data; }),

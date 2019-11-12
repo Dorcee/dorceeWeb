@@ -21,16 +21,16 @@ export class HomeService {
   }
 
   public getAllProducts(key='', value='') {
-    var params = {};
+    var loc_type = localStorage.getItem('loc_type');
+    var params = {'loc_type' : loc_type};  //TODO : dynamic
     if(key == '' || value == '') {
-      params = {'is_sort' : 'newest'};
+      params['is_sort'] = 'newest';
     } else {
       params[key] = value;
     }
-  	return this.httpClient.get<any>(`${API_URL}/cms/product`, {params, headers})
+  	return this.httpClient.get<any>(`${API_URL}/web/product`, {params, headers})
   	.pipe(
       map(res => {
-        //console.log(res); 
         return res.data; }),  // make it as observable
       catchError(error => this.handleError(error.message || error))
     );

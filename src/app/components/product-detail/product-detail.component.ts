@@ -53,8 +53,9 @@ export class ProductDetailComponent implements OnInit {
 
     this.productDetailServices.getProductDetail(this.product_id).subscribe(data => {
       this.containerLoaded = true;
-      if(data[0]) {
-        this.productDetail=data[0];
+      console.log(data);
+      if(data) {
+        this.productDetail=data;
         //console.log(this.productDetail);
         this.sizesAvailable=this.productDetail.size.split(',');
         this.fitsAvailable=this.productDetail.fit.split(',');
