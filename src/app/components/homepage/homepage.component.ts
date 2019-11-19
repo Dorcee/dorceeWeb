@@ -47,7 +47,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit(){
-<<<<<<< HEAD
     setTimeout(function () {
      	$('.productImageSlideContainer').not('.slick-initialized').slick({
      		infinite: true,
@@ -56,17 +55,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
      	});
   	}, 1000);
   	this.loading=false;
-=======
-	    setTimeout(function () {
-	     	$('.productImageSlideContainer').not('.slick-initialized').slick({
-	     		infinite: true,
-	     		autoplaySpeed: 1000,
-	     		arrows: false,
-	     	});
-    	}, 1000);
-        this.loading=false;
-
->>>>>>> 836346f73fcabba338dd523cf01c3778af1f1fdc
 	}
 
 	changeStyle($event,ID){
