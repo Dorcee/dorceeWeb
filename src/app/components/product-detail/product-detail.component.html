@@ -1,5 +1,10 @@
+<div [ngStyle]="{'display':loading === 'true' ? 'flex' : 'none' }">
+  <app-loader></app-loader>
+</div>
+
 <app-header></app-header>
 <app-login></app-login>
+
 <div class="grid-container">
 	<div class="grid-x">
 		<div class="small-12 cell">
@@ -76,7 +81,7 @@
 				<div class="sizeSelectorContainer">
 					<div *ngFor="let size of sizesAvailable">
 						<a class="sizeSelector" [ngClass]="{'selectedSize': selectedSize === size}" (click)="selectedSize = size" *ngIf="(allSizes | find: {'value' : size}) let find_size">
-							{{find_size.value }}
+							{{ find_size.value }}
 						</a>
 					</div>  	
 				</div>

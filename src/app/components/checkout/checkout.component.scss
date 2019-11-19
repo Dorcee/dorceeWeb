@@ -86,3 +86,9 @@ $border-color: #dcdcdc;
 	margin-right: 20px;
     margin-top: 10px;
 }
+
+@include breakpoint(medium only) {
+	.itemDetailContainer {
+		padding-left: 0;
+	}
+}

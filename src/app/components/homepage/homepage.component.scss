@@ -74,12 +74,13 @@ $border-color: #ACACAC;
     padding: 0;
   }
 }
+.newArrivalHeader {
+  font-size: rem-calc(36);
+}
 .tabs-title-category {
-  
   display: inline-block;
   float: none;
   
-
   a {
     color: #9A979A;
     font-size: rem-calc(36);
@@ -99,7 +100,7 @@ $border-color: #ACACAC;
   padding: rem-calc(35) 0;
 
   .subscriberBoxInnnerContainer {
-    font-size: 36px;
+    font-size: rem-calc(36);
   }
   input.subscriberEmail {
     border: 1px solid $border-color;
@@ -139,7 +140,7 @@ $border-color: #ACACAC;
 ::ng-deep  .slick-prev:after {
   content: "<";
   color: $black;
-  font-size: 30px;
+  font-size: rem-calc(30);
   position: absolute;
   left: 0;
   top: 50%;
@@ -151,7 +152,7 @@ $border-color: #ACACAC;
 ::ng-deep  .slick-next:before {
   content: ">";
   color: $black;
-  font-size: 30px;
+  font-size: rem-calc(30);
   position: absolute;
   right: 0;
   top: 50%;
@@ -161,4 +162,10 @@ $border-color: #ACACAC;
 
 .signUpTextContainer {
   padding-bottom: rem-calc(5);
+}
+
+//Only Media Queries below this line -
+
+@include breakpoint(medium only) {
+  
 }
