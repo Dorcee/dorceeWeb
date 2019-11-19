@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from '../../services/home.service';
 import { environment } from 'src/environments/environment';
+import { LoaderComponent } from '../loader/loader.component';
 
 declare var $:any;
 
@@ -15,6 +16,7 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
               public router : Router
   ) { }
   
+  loading:boolean = true;
   p: number = 1;
   loading:boolean=true;
   products : any;
@@ -44,8 +46,13 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
     });  
   }
 
+  ngAfterContentInit(){
+   // console.log(this.loading);
+   //  this.loading=false;
+   //  console.log(this.loading); 
+  }
+
   ngAfterViewInit(){
-    $(document).foundation();
     setTimeout(function() {
       $('.productImageSlideContainer').not('.slick-initialized').slick({
         infinite: true,
