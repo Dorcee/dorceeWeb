@@ -1,5 +1,5 @@
-<div *ngIf="loading">
-	<app-loader></app-loader>
+<div [ngStyle]="{'display':loading === 'true' ? 'flex' : 'none' }">
+  <app-loader></app-loader>
 </div>
 
 <app-header></app-header>

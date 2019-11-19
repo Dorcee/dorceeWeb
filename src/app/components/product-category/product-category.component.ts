@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from '../../services/home.service';
 import { environment } from 'src/environments/environment';
-import { LoaderComponent } from '../loader/loader.component';
 
 declare var $:any;
 
@@ -11,13 +10,13 @@ declare var $:any;
   templateUrl: './product-category.component.html',
   styleUrls: ['./product-category.component.scss']
 })
-export class ProductCategoryComponent implements OnInit {
-  constructor(public homeservice:HomeService,
+export class ProductCategoryComponent implements OnInit, AfterViewInit {
+  constructor(public homeservice : HomeService,
               public router : Router
   ) { }
   
-  loading:boolean = true;
   p: number = 1;
+  loading:boolean=true;
   products : any;
   categories : any;
   sizes : any;
@@ -45,13 +44,8 @@ export class ProductCategoryComponent implements OnInit {
     });  
   }
 
-  ngAfterContentInit(){
-   // console.log(this.loading);
-   //  this.loading=false;
-   //  console.log(this.loading); 
-  }
-
   ngAfterViewInit(){
+    $(document).foundation();
     setTimeout(function() {
       $('.productImageSlideContainer').not('.slick-initialized').slick({
         infinite: true,

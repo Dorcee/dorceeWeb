@@ -1,4 +1,4 @@
-<div *ngIf="loading">
+<div [ngStyle]="{'display':loading === 'true' ? 'flex' : 'none' }">
   <app-loader></app-loader>
 </div>
 
@@ -66,10 +66,10 @@
       </div>
     </div>
   </div>
-  <div class="grid-container" *ngIf="products.length > 0">
+  <div class="grid-container hide-for-small-only" *ngIf="products.length > 0">
     <ul class="tabs text-center tabsContainer" data-tabs id="promotionalTabs">
       <li class="tabs-title tabs-title-category is-active">
-        <a href="#newArrivalPanel" aria-selected="true">NEW ARRIVAL</a>
+        <div class="newArrivalHeader">NEW ARRIVAL</div>
       </li>
       <!-- <li class="tabs-title tabs-title-category">
         <a href="#topSalePanel">TOP SALE</a>
@@ -79,9 +79,9 @@
       </li> -->
     </ul>
     <div class="tabs-content tabsContentContainer" data-tabs-content="promotionalTabs">
-      <div class="tabs-panel is-active" id="newArrivalPanel">
+      <div class="tabs-panel is-active">
         <div class="grid-x grid-padding-x">
-          <div *ngFor="let product of products" class="small-12 medium-6 large-3 cell image-hover-wrapper">
+          <div *ngFor="let product of products" class="medium-3 large-3 cell image-hover-wrapper">
             <div class="productImageSlideContainer" id="slider{{product.id}}">
               
               <img *ngIf="product.main_image" src="{{product.main_image}}" (click)="goToProductDetailPage(product.id)" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)">
@@ -232,7 +232,7 @@
     </div>
   </div>
   <div class="grid-x align-center">
-    <div class="small-6 text-center cell subscriberBoxContainer">
+    <div class="small-10 medium-6 text-center cell subscriberBoxContainer">
       <span class="subscriberBoxInnnerContainer">GET TO KNOW US!</span>
       <div class="signUpTextContainer">
         Sign up for our newsletter and be the first to learn about our collections, special offers and events.

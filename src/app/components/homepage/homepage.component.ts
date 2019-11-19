@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HomeService } from '../../services/home.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
@@ -11,10 +11,11 @@ declare var $:any;
 	templateUrl: './homepage.component.html',
 	styleUrls: ['./homepage.component.scss']
 })
-export class HomepageComponent implements OnInit {
+export class HomepageComponent implements OnInit, AfterViewInit {
+	
 	loading:boolean=true;
-
 	products = [];
+
 	constructor(public homeservice:HomeService, public router:Router) { }
 
 	ngOnInit() {
@@ -24,7 +25,8 @@ export class HomepageComponent implements OnInit {
 			infinite: true,
 			autoplay: true,
 			autoplaySpeed: 2000,
-			arrows: false
+			arrows: false,
+			fade: true
 		});
 
 		if(localStorage.getItem('loc_type')) {
@@ -41,19 +43,18 @@ export class HomepageComponent implements OnInit {
 				this.getProducts(loc_type);
 	    	});			
 		}
-		console.log(loc_type);
+		//console.log(loc_type);
 	}
 
 	ngAfterViewInit(){
-	    setTimeout(function () {
-	     	$('.productImageSlideContainer').not('.slick-initialized').slick({
-	     		infinite: true,
-	     		autoplaySpeed: 1000,
-	     		arrows: false,
-	     	});
-    	}, 1000);
-        this.loading=false;
-
+    setTimeout(function () {
+     	$('.productImageSlideContainer').not('.slick-initialized').slick({
+     		infinite: true,
+     		autoplaySpeed: 1000,
+     		arrows: false,
+     	});
+  	}, 1000);
+  	this.loading=false;
 	}
 
 	changeStyle($event,ID){
