@@ -18,7 +18,6 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
   
   loading:boolean = true;
   p: number = 1;
-  loading:boolean=true;
   products : any;
   categories : any;
   sizes : any;
