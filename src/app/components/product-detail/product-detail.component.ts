@@ -34,8 +34,6 @@ export class ProductDetailComponent implements OnInit {
   selectedSize: any;
 
   ngOnInit() {
-  	
-
     this.activatedRoute.params.subscribe(params => {
       this.product_id = params['id'];
       //console.log(`${this.product_id}`);
@@ -65,17 +63,48 @@ export class ProductDetailComponent implements OnInit {
         this.homeservice.getAllEntities(types).subscribe((data)=>{
           this.allSizes = data.sizes;
           this.allFits = data.fits;
-          //console.log(this.allSizes);
           //console.log(this.allFits);
+          //console.log(this.fitsAvailable);
         });
+
       }
     });
+
+       
   }
+
+  // sizeSelecting(allSizes,SizeAve) {
+  //  // console.log(allSizes);
+  //   //console.log(SizeAve);
+  //   let z=0;
+  //   for(let y in allSizes){
+  //     start:
+  //     for(let x of SizeAve) {
+  //       if(allSizes[y].value==x){
+  //        this.sizesToShow[z]={"key":"Ave","value":allSizes[y].value};
+  //        z++;
+  //       }
+  //     }
+  //     if(this.sizesToShow[0].key=='Ave' || this.sizesToShow[0].key=='NotAve' ){
+  //       if(allSizes[y].value==this.sizesToShow[z-1].value) {
+  //        // console.log('duplicate value');
+  //         //console.log(allSizes[y].value);
+  //       } else {
+  //         //console.log(allSizes[y].value);
+  //         this.sizesToShow[z]={"key":"NotAve","value":allSizes[y].value};
+  //         z++;  
+  //       }
+  //     } else {
+  //       this.sizesToShow[z]={"key":"NotAve","value":allSizes[y].value};
+  //       z++;
+  //     } 
+  //   }
+  //   //console.log(this.sizesToShow);
+  // }
 
   ngAfterViewInit() {
     this.setSlickDesign();
     this.loading=false;
-
     setTimeout(function () {
       $(document).foundation();
     }, 1000);

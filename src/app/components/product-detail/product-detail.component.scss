@@ -194,3 +194,11 @@ $image-hover-wrapper-icon-size: rem-calc(24);
   background-color: $primary-color;
   color: $white;
 }
+
+.disabledSize, .disabledFit {
+  background-color: $white;
+  border-color:grey;
+  color: grey;
+  cursor: not-allowed;
+}
+
