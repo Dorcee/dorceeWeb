@@ -7,9 +7,9 @@ export class FindPipe implements PipeTransform {
 
   transform(values: any[], args?: any) {
     return values.find(item => {
-    	// console.log(args);
-    	//console.log('args');
-    	return item.value == args.value;
+    	console.log(args);
+    	console.log('args');
+    	return item == args.value;
     });
   }
 

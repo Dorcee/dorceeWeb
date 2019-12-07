@@ -42,8 +42,8 @@
 			{{productDetail?.name}}
 		</div>
 		<div class="pricingContainer">
-			<span class="itemOriginalPrice itemDiscounted">{{(loc_type == indian_location) ? 'RS. '+productDetail?.INR?.base_price : '$' + productDetail?.USD?.base_price}}</span>
-			<span class="itemDiscountedPrice">{{(loc_type == indian_location) ? 'Rs. ' + productDetail?.INR?.price : '$' + productDetail?.USD?.price}}</span>
+			<!-- <span class="itemOriginalPrice itemDiscounted">{{(loc_type == indian_location) ? 'RS. '+productDetail?.INR?.base_price : '$' + productDetail?.USD?.base_price}}</span> -->
+			<span class="itemDiscountedPrice">{{productDetail.price}}</span>
 			<!-- <span class="itemDiscountPercent">50% OFF</span> -->
 		</div>
 		<div class="sizingContainer">
@@ -78,10 +78,30 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
+
+				<!-- <div class="sizeSelectorContainer">
+					<div *ngFor="let size of sizesToShow">
+						<div *ngIf="size.key=='Ave'">
+							<a class="sizeSelector" [ngClass]="{'selectedSize': selectedSize == size}" (click)="selectedSize = size">
+								{{ size.value }}
+							</a>	
+						</div>
+						<div *ngIf="size.key=='NotAve'">
+							<a class="sizeSelector" [ngClass]="{'disabledSize' : size.key=='NotAve' }" disable>
+								{{ size.value }}
+							</a>	
+						</div>
+					</div>
+
+				</div> -->
+
 				<div class="sizeSelectorContainer">
-					<div *ngFor="let size of sizesAvailable">
-						<a class="sizeSelector" [ngClass]="{'selectedSize': selectedSize === size}" (click)="selectedSize = size" *ngIf="(allSizes | find: {'value' : size}) let find_size">
-							{{ find_size.value }}
+					<div *ngFor="let size of allSizes">
+						<a class="sizeSelector" [ngClass]="{'selectedSize': selectedSize === size}" (click)="selectedSize = size" *ngIf="(sizesAvailable | find: size) let find_size">
+							{{ size.value }}
+						</a>
+						<a class="sizeSelector disabledSize" *ngIf="!(sizesAvailable | find: size) let find_size">
+							{{ size.value }}
 						</a>
 					</div>  	
 				</div>
@@ -93,9 +113,13 @@
 			</div>
 
 			<div class="fitSelectorContainer">
-				<span *ngFor="let fit of fitsAvailable">
-					<a class="fitSelector" [ngClass]="{'selectedFit': selectedFit === fit}" (click)="selectedFit = fit" *ngIf="(allFits | find: {'value' : fit})">
-						{{(allFits | find: {'value' : fit})?.name }}
+				<span *ngFor="let fit of allFits">
+					<a class="fitSelector" [ngClass]="{'selectedFit': selectedFit === fit}" (click)="selectedFit = fit" *ngIf="(fitsAvailable | find:fit ) let find_fit">
+						{{fit.name }}
+					</a>
+
+					<a class="fitSelector disabledFit" *ngIf="!(fitsAvailable | find:fit ) let find_fit">
+						{{fit.name }}
 					</a>
 				</span>  	
 			</div>
