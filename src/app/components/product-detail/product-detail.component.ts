@@ -32,6 +32,8 @@ export class ProductDetailComponent implements OnInit {
   allFits = [];
   selectedFit: any;
   selectedSize: any;
+  sizeAcceptance:boolean=true;
+  fitAcceptance:boolean=true;
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -142,11 +144,23 @@ export class ProductDetailComponent implements OnInit {
    }, 1000);
   }
 
+  sizeSelected(size) {
+    this.selectedSize = size;
+    this.sizeAcceptance=true;
+  }
+
+  fitSelected(fit) {
+    this.selectedFit = fit;
+    this.fitAcceptance=true;
+  }
+
   addToCart(id) {
     if(!this.selectedSize) {
-      alert('Please select your size.');
+      this.sizeAcceptance=false;
+      //alert('Please select your size.');
     } else if(!this.selectedFit) {
-      alert('Please select your fit.');
+      this.fitAcceptance=false;
+      //alert('Please select your fit.');
     } else {
       var cart_items = JSON.parse(localStorage.getItem('cart_items'));
       if(cart_items) {

@@ -202,3 +202,10 @@ $image-hover-wrapper-icon-size: rem-calc(24);
   cursor: not-allowed;
 }
 
+.errorMessageContainer {
+  background-color: #f0fff0;
+}
+
+.errorMessage {
+  color:$primary-color;
+}
