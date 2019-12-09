@@ -97,7 +97,7 @@
 
 				<div class="sizeSelectorContainer">
 					<div *ngFor="let size of allSizes">
-						<a class="sizeSelector" [ngClass]="{'selectedSize': selectedSize === size}" (click)="selectedSize = size" *ngIf="(sizesAvailable | find: size) let find_size">
+						<a class="sizeSelector" [ngClass]="{'selectedSize': selectedSize === size}" (click)="sizeSelected(size)" *ngIf="(sizesAvailable | find: size) let find_size">
 							{{ size.value }}
 						</a>
 						<a class="sizeSelector disabledSize" *ngIf="!(sizesAvailable | find: size) let find_size">
@@ -114,7 +114,7 @@
 
 			<div class="fitSelectorContainer">
 				<span *ngFor="let fit of allFits">
-					<a class="fitSelector" [ngClass]="{'selectedFit': selectedFit === fit}" (click)="selectedFit = fit" *ngIf="(fitsAvailable | find:fit ) let find_fit">
+					<a class="fitSelector" [ngClass]="{'selectedFit': selectedFit === fit}" (click)="fitSelected(fit)" *ngIf="(fitsAvailable | find:fit ) let find_fit">
 						{{fit.name }}
 					</a>
 
@@ -134,6 +134,19 @@
 						<img src="../assets/images/emptyShoppingBagWhite.svg" class="productDecisionImgBtn">Add To bag
 					</button>
 				</span>
+			</div>
+
+			<div class="errorMessageContainer">
+				<div class="errorMessage" *ngIf="sizeAcceptance==false">
+					<div>
+						Please select your size.
+					</div>
+				</div>
+				<div class="errorMessage" *ngIf="fitAcceptance==false">
+					<div>
+						Please select your fit.
+					</div>
+				</div>
 			</div>
 		</div>
 		<ul class="accordion productDetailContainer" data-accordion data-allow-all-closed="true">
