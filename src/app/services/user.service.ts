@@ -33,19 +33,25 @@ export class UserService {
 	}
 
 	public generateOtp(postData) {
-		console.log(postData);
+		//console.log(postData);
 		return this.httpClient.post<any>(`${API_URL}/web/login`, postData, {headers})
 		.pipe(
-			map(res => {console.log(res); return res; }),
+			map(res => {
+				//console.log(res); 
+				return res; 
+			}),
 			catchError(error => this.handleError(error))
 		);
 	}
 
 	public verifyOtp(postData) {
-		console.log(postData);
+		//console.log(postData);
 		return this.httpClient.post<any>(`${API_URL}/web/otp/verify`, postData, {headers})
 		.pipe(
-			map(res => {console.log(res); return res; }),
+			map(res => {
+				//console.log(res); 
+				return res; 
+			}),
 			catchError(error => this.handleError(error))
 		);
 	}
