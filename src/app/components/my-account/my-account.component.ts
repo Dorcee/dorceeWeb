@@ -13,19 +13,21 @@ declare var $:any;
 })
 export class MyAccountComponent implements OnInit {
 	subPage='';
+	user_details:any;
   constructor(private route:ActivatedRoute,
   			  private router : Router
   	) { }
 
   ngOnInit() {
   	$(document).foundation();
+  	this.user_details=JSON.parse(localStorage.getItem('user_details'));
+  	//console.log(this.user_details);
   }
  
- 	ngAfterContentChecked(){
+ 	ngAfterViewChecked(){
  		this.subPage=this.route.snapshot.params.subPage;
-	  	console.log("subPage "+this.subPage);
-	  	
-	  	if(this.subPage=="profile"){
+	  	//console.log("subPage "+this.subPage);  	
+	  if(this.subPage=="profile"){
 			$("#myAccountTabs").foundation("selectTab",$("#profilePanel"));
 		}
 		else if(this.subPage=="myOrders"){

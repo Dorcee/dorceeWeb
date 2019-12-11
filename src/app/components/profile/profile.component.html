@@ -1,60 +1,55 @@
-  <div class="grid-x">
-    <div class="grid-x grid-padding-y grid-padding-x">
-     
-      <div class="small-12 medium-6 cell">
-      	<label>First Name:
-      	<mat-form-field appearance="standard">
-			    <!-- <mat-label>First Name</mat-label> -->
-			    <input matInput placeholder="First Name" type="text">
-			  </mat-form-field>
-  			</label>
+<div *ngIf="user_details"> 
+  <form [formGroup]="profileForm" (ngSubmit)="editProfile(profileForm)">  
+    <div class="grid-x">
+      <div class="grid-x grid-padding-x">
+       
+        <div class="small-12 medium-6 cell">
+          <mat-form-field>
+            <input matInput placeholder="First Name" formControlName="firstName">
+          </mat-form-field>
+        </div>
+
+        <div class="small-12 medium-6 cell">
+          <mat-form-field>
+            <input matInput placeholder="Last Name" formControlName="lastName">
+          </mat-form-field>
+        </div>
+
+        <div class="small-12 medium-6 cell">
+          <label>Gender</label>
+          <mat-radio-group formControlName="gender">
+            <mat-radio-button value="Male">Male</mat-radio-button>
+            <mat-radio-button value="Female">Female</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="small-12 medium-6 cell">
+          <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email">
+          </mat-form-field>
+        </div>
+
+        <div class="small-12 medium-6 cell">
+          <mat-form-field>
+            <input matInput placeholder="Number" formControlName="phone_number">
+          </mat-form-field>
+        </div>
+
+        <div class="small-12 medium-6 cell">
+          <!-- <mat-form-field>
+            <input matInput type="password" placeholder="Password" appPassword>
+          </mat-form-field> -->
+          <div *ngIf="!editable">
+            <input type="submit" value="Change?">  
+          </div>
+          <div *ngIf="editable">
+            <input type="submit" value="Save">  
+          </div>
+          
+        </div>
+
       </div>
+    </div>    
 
-      <div class="small-12 medium-6 cell">
-     		<label>Last Name:
-      	<mat-form-field appearance="standard">
-			    <!-- <mat-label>First Name</mat-label> -->
-			    <input matInput placeholder="Last Name" >
-			  </mat-form-field>
-			</label>
-      </div>
-
-      <div class="small-12 medium-6 cell">
-      	<label>Gender:
-		      <mat-radio-group>
-		        <mat-radio-button value="Male">Male</mat-radio-button>
-		        <mat-radio-button value="Female">Female</mat-radio-button>
-		      </mat-radio-group>
-		    </label>  
-      </div>
-
-      <div class="small-12 medium-6 cell">
-      	<label>Email:
-	      	<mat-form-field appearance="standard">
-				    <!-- <mat-label>First Name</mat-label> -->
-				    <input matInput placeholder="Email" type="email">
-				  </mat-form-field>
-			</label>
-      </div>
-
-      <div class="small-12 medium-6 cell">
-      	<label>Number:
-      	<mat-form-field appearance="standard">
-			    <!-- <mat-label>First Name</mat-label> -->
-			    <input matInput placeholder="Number" type="number">
-			  </mat-form-field>
-			</label>
-      </div>
-
-      <div class="small-12 medium-6 cell">
-      	<label>Password:	
-      	<mat-form-field appearance="standard">
-			    <!-- <mat-label>First Name</mat-label> -->
-			    <input matInput placeholder="Password" type="password">
-			  </mat-form-field>
-			</label>
-      </div>
-
-    </div>
-  </div>    
-
+  </form>  
+</div>
