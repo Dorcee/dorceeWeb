@@ -21,7 +21,7 @@ export class MyAccountComponent implements OnInit {
   ngOnInit() {
   	$(document).foundation();
   	this.user_details=JSON.parse(localStorage.getItem('user_details'));
-  	console.log(this.user_details.id);
+  	//console.log(this.user_details);
   }
  
  	ngAfterViewChecked(){

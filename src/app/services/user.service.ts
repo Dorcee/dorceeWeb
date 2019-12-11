@@ -16,7 +16,7 @@ export class UserService {
 
 	private handleError (res) {
 		if (res.status === 400) {
-            console.log(res.error);
+            console.error(res.error);
 			return throwError({status: false, message: res.error.data || res.error.error});
         } else {
 			console.error('ApiService::handleError', res);
@@ -27,7 +27,10 @@ export class UserService {
 	public registerUser(postData) {
 		return this.httpClient.post<any>(`${API_URL}/web/register`, postData, {headers})
 		.pipe(
-			map(res => {console.log(res); return res.data; }),  // make it as observable
+			map(res => {
+				//console.log(res); 
+				return res.data; 
+			}),  // make it as observable
 			catchError(error => this.handleError(error))
 		);
 	}

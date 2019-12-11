@@ -35,16 +35,16 @@ export class ProfileComponent implements OnInit {
   editProfile() {
     if(!this.editable) {
       this.editable=true;
-      console.log(this.editable);
+     // console.log(this.editable);
       this.profileForm.enable();  
     } else {
-      console.log("saving Details");
+     // console.log("saving Details");
       this.editable=false;
-      console.log(this.editable);
+     // console.log(this.editable);
       this.profileForm.disable(); 
 
       //Api call for saving details of user
-      console.log(this.profileForm.value);
+     // console.log(this.profileForm.value);
 
     }
   }
