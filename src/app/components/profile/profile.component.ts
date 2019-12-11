@@ -22,11 +22,11 @@ export class ProfileComponent implements OnInit {
     //console.log(this.user_details);
 	  
     this.profileForm = this.formBuilder.group({
-	    firstName: this.user_details.fname,
-	    lastName: this.user_details.lname,
+	    firstName: [this.user_details.fname,[Validators.required]],
+	    lastName: [this.user_details.lname,[Validators.required]],
 	    gender:this.user_details.gender,
-	    email:this.user_details.email,
-	    phone_number:this.user_details.phone_number
+	    email:[this.user_details.email,[ Validators.email]],
+	    phone_number:[this.user_details.phone_number, [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(7), Validators.maxLength(13)]],
 	  });
 
     this.profileForm.disable();
@@ -37,15 +37,17 @@ export class ProfileComponent implements OnInit {
       this.editable=true;
      // console.log(this.editable);
       this.profileForm.enable();  
-    } else {
-     // console.log("saving Details");
+    } else if(this.profileForm.valid) {
+      //console.log("saving Details");
       this.editable=false;
-     // console.log(this.editable);
+      //console.log(this.editable);
       this.profileForm.disable(); 
 
       //Api call for saving details of user
-     // console.log(this.profileForm.value);
+      //console.log(this.profileForm.value);
 
+    } else {
+      //console.log('Form is not valid');
     }
   }
 
