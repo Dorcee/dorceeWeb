@@ -1,0 +1,15 @@
+@import '../../../assets/foundation-sites/global';
+
+.customButton {
+	border:dashed;
+	border-width:rem-calc(2);
+}
+.cardLink {
+	margin:rem-calc(7);
+	text-decoration : underline;
+}
+
+.cardContainer {
+	padding-left:rem-calc(30);
+	padding-right:rem-calc(30);
+}

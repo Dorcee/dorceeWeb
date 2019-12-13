@@ -16,10 +16,10 @@ export class UserService {
 
 	private handleError (res) {
 		if (res.status === 400) {
-            console.error(res.error);
+            //console.error(res.error);
 			return throwError({status: false, message: res.error.data || res.error.error});
         } else {
-			console.error('ApiService::handleError', res);
+			//console.error('ApiService::handleError', res);
 			return throwError(res);
         }
 	}
