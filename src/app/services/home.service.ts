@@ -17,7 +17,7 @@ export class HomeService {
 
   private handleError (error) {
 	  console.error('ApiService::handleError', error);
-	  return Observable.throw(error);
+	  return throwError(error);
   }
 
   public getAllProducts(key='', value='') {

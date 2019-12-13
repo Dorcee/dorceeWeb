@@ -146,11 +146,13 @@ export class ProductDetailComponent implements OnInit {
 
   sizeSelected(size) {
     this.selectedSize = size;
+   // console.log(this.selectedSize);
     this.sizeAcceptance=true;
   }
 
   fitSelected(fit) {
     this.selectedFit = fit;
+   // console.log(this.selectedFit);
     this.fitAcceptance=true;
   }
 
