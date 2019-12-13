@@ -28,6 +28,8 @@ export class ConfirmOrderComponent implements OnInit {
   getUserAccessToken:any; 
   userDetails:any;
   addressDetail:any;
+  addressToken:string;
+  addressId:number;
 
   ngOnInit() {
   	$(document).foundation();
@@ -35,7 +37,7 @@ export class ConfirmOrderComponent implements OnInit {
     //console.log(this.getUserAccessToken);
 
     this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
-      console.log(data);
+      //console.log(data);
       this.addressDetail = data;
     });
 
@@ -50,7 +52,7 @@ export class ConfirmOrderComponent implements OnInit {
               this.cart_items[index]['product'] = product;
           });
           this.contentLoaded = 1;
-          console.log(this.cart_items);
+         // console.log(this.cart_items);
         });
       });
     } else {
@@ -88,33 +90,39 @@ export class ConfirmOrderComponent implements OnInit {
   }
 
 
-  showModalToAddAddress(token){
+  showModalToAddAddress(token,addressDetail){
     $('#addressUpdate').foundation('open');
     this.userDetails = JSON.parse(localStorage.getItem('user_details'));
     console.log(this.userDetails);
+    this.addressToken=token;
+
     if(token=='Add'){
       console.log(token);
       this.addressForm = this.formBuilder.group({
+        // firstName:['', [Validators.required]],
+        // lastName:['', [Validators.required]],
         flat_number:['', [Validators.required]], 
         area: ['', [Validators.required]], 
         pin_code: ['', [Validators.required]], //USA regex-/^[0-9]{5}(?:-[0-9]{4})?$/ 
         city: ['', [Validators.required]],
         state: ['', [Validators.required]], 
         type :['', [Validators.required]], 
-        is_default: "0"
+        is_default: ''
       });
     } else {
       console.log(token);
-      // below form control names need to be change
+      this.addressId=addressDetail.id;
+  
       this.addressForm = this.formBuilder.group({
-        flat_number:'', 
-        area: '', 
-        pin_code: '', 
-        city: '', 
-        state: '', 
-        type :'', 
-        is_default: "0"
-       // category:['', [Validators.required]],
+        // firstName:['', [Validators.required]],
+        // lastName:['', [Validators.required]],
+        flat_number:[addressDetail.flat_number, [Validators.required]], 
+        area: [addressDetail.area, [Validators.required]], 
+        pin_code: [addressDetail.pin_code, [Validators.required]], //USA regex-/^[0-9]{5}(?:-[0-9]{4})?$/ 
+        city: [addressDetail.city, [Validators.required]],
+        state: [addressDetail.state, [Validators.required]], 
+        type :[addressDetail.type, [Validators.required]], 
+        is_default: [addressDetail.is_default]
       });
     }
   }
@@ -128,7 +136,12 @@ export class ConfirmOrderComponent implements OnInit {
         } else {
           this.addressForm.controls['type'].setValue(environment.other_location);
         } 
-       this.AddingAddress();
+         if(this.addressToken=='Add'){
+           this.AddingAddress();
+         }
+         else {
+           this.UpdatingAddress();
+         }
       }
       else {
         if(confirm("Are you sure about the address you typed?")) {
@@ -137,7 +150,12 @@ export class ConfirmOrderComponent implements OnInit {
           } else {
             this.addressForm.controls['type'].setValue(environment.other_location);
           }   
-          this.AddingAddress();
+          if(this.addressToken=='Add'){
+            this.AddingAddress();
+          }
+          else {
+            this.UpdatingAddress();
+          }
         }
         else {
           console.log("Adding Address canceled");
@@ -151,15 +169,31 @@ export class ConfirmOrderComponent implements OnInit {
   AddingAddress(){
     var addressFormData = this.addressForm.value;
 
-    console.log(this.addressForm.controls['type'].value);
-    console.log(addressFormData);
-    console.log(this.userDetails.id);
+    // console.log(this.addressForm.controls['type'].value);
+    // console.log(addressFormData);
+    // console.log(this.userDetails.id);
    
-    this.addressService.addAddress(addressFormData,this.userDetails.id).subscribe((data)=>{
+    this.addressService.addAddress(addressFormData,this.getUserAccessToken).subscribe((data)=>{
       console.log(data);
 
-      this.addressService.getAddress(this.userDetails.id).subscribe((data)=>{
-        console.log(data);
+      this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
+        //console.log(data);
+        this.addressDetail = data;
+      });
+    });
+  }
+
+  UpdatingAddress() {
+    var addressFormData = this.addressForm.value;
+    // console.log(this.addressForm.controls['type'].value);
+    // console.log(addressFormData);
+    // console.log(this.userDetails.id);
+   
+    this.addressService.EditAddress(addressFormData,this.getUserAccessToken,this.addressId).subscribe((data)=>{
+      console.log(data);
+
+      this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
+        //console.log(data);
         this.addressDetail = data;
       });
     });

@@ -16,7 +16,7 @@ export class CheckoutComponent implements OnInit {
 	contentLoaded = 0;
 	ngOnInit() {
 		if(this.cart_items) {
-		console.log(this.cart_items);
+		//console.log(this.cart_items);
 			this.homeService.getAllProducts().subscribe((data)=>{
 	      		this.products = data;
 				var types = {"type" : ["fits"]};
@@ -27,7 +27,7 @@ export class CheckoutComponent implements OnInit {
 		    			this.cart_items[index]['product'] = product;
 					});
 					this.contentLoaded = 1;
-					console.log(this.cart_items);
+					//console.log(this.cart_items);
 				});
 			});
 		} else {
