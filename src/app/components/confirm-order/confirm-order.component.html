@@ -23,9 +23,9 @@
 						<div class="float-left">
 							<!-- .mat-radio-label - align-items:center --change this property to get the radio button to be at top align with text -->
 						  <mat-radio-button value="{{address.is_default}}">
-						  	<div>{{address.flat_number}}</div>
-						  	<div>{{address.area}}</div>
-						  	<div>{{address.city}} - {{address.pin_code}} {{address.state}}</div>
+						  	<div>{{address.flat_number | titlecase}}</div>
+						  	<div>{{address.area | titlecase}}</div>
+						  	<div>{{address.city | titlecase}} - {{address.pin_code}} {{address.state | titlecase}}</div>
 						  	<!-- <div>Mobile - +91-9967758592</div> -->
 						  </mat-radio-button>
 					    </div>
@@ -51,7 +51,7 @@
 				</mat-radio-group>
 			</div>
 			<div class="clearfix addAddressContainer">
-				<button class="button secondary float-right secondaryBtn" (click)="showModalToAddAddress('Add','noAddress')">+ ADD ADDRESS</button>
+				<button class="button secondary float-right secondaryBtn" data-open="addressUpdate" (click)="showModalToAddAddress('Add','noAddress')">+ ADD ADDRESS</button>
 			</div>
 
 
@@ -98,7 +98,7 @@
 								<mat-form-field class="addressFormField">
 								    <input matInput placeholder="Flat No / Building / Road" formControlName="flat_number">
 								    <mat-error *ngIf="addressForm.controls['flat_number'].hasError('required')">
-							     		flat number is <strong>required</strong>
+							     		Flat number is <strong>required</strong>
 							    	</mat-error>
 								</mat-form-field>
 							</div>
@@ -114,7 +114,7 @@
 							</div>
 						</div>
 					  	<div class="grid-x grid-padding-x">
-						  	<div class="medium-12 cell text-center">
+						  	<div class="medium-6 cell text-center">
 						  		<mat-form-field class="addressFormField">
 								    <input matInput placeholder="City" formControlName="city">
 						        	<mat-error *ngIf="addressForm.controls['city'].hasError('required')">
@@ -122,20 +122,20 @@
 								    	</mat-error>
 						        </mat-form-field>
 							</div>
-						</div>
-						<div class="grid-x grid-padding-x">
-						  	<div class="medium-6 cell text-center">
+							<div class="medium-6 cell text-center">
 						  		<mat-form-field class="addressFormField">
 								    <input matInput placeholder="State" formControlName="state">
-										<mat-error *ngIf="addressForm.controls['state'].hasError('required')">
+									<mat-error *ngIf="addressForm.controls['state'].hasError('required')">
 							     		State Name is <strong>required</strong>
 							    	</mat-error>
 								</mat-form-field>
 						  	</div>
-						  	<div class="medium-6 cell text-center">
+						</div>
+						<div class="grid-x grid-padding-x">
+						  	<div class="medium-12 cell text-center">
 						  		<mat-form-field class="addressFormField">
 								    <input matInput placeholder="Country" formControlName="type">
-										<mat-error *ngIf="addressForm.controls['type'].hasError('required')">
+									<mat-error *ngIf="addressForm.controls['type'].hasError('required')">
 							     		Country Name is <strong>required</strong>
 							    	</mat-error>
 								</mat-form-field>
@@ -152,9 +152,7 @@
 							<div class="medium-5 cell text-right">
 								<input type="button" class="button" data-close value="CANCEL">
 							</div>
-							<div class="medium-2 cell">
-							</div>
-							<div class="medium-5 cell text-left">
+							<div class="medium-5 cell text-center">
 								<!-- <button type="submit" class="button submitButton" [disabled]="uploadForm.invalid"> Submit </button> -->
 								<button type="submit" class="button" data-close aria-label="Close modal" (click)="onAddAddressSubmit(addressForm)" [disabled]="addressForm.invalid">SAVE</button>
 							</div>

@@ -21,7 +21,7 @@ export class AddressService {
   constructor(private httpClient: HttpClient) { }
 
   private handleError (error) {
-    console.error('ApiService::handleError', error);
+    //console.error('ApiService::handleError', error);
     return throwError(error);
   }
 
@@ -41,13 +41,13 @@ export class AddressService {
 
   public EditAddress(updateAddressForm,access_token,address_id) {
     //console.log(access_token);
-    console.log(address_id);
+    //console.log(address_id);
     httpOptions.headers=httpOptions.headers.set( 'Authorization',access_token );
 
   	return this.httpClient.put<any>(`${API_URL}/web/address/${address_id}`,updateAddressForm, httpOptions)
   	.pipe(
       map(res => {
-        console.log(res); 
+        //console.log(res); 
         return res.data; }),  // make it as observable
       catchError(error => this.handleError(error.message || error))
     );
