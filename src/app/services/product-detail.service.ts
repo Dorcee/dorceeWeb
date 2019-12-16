@@ -16,7 +16,7 @@ export class ProductDetailService {
 
   private handleError (error) {
 	  console.error('ApiService::handleError', error);
-	  return Observable.throw(error);
+	  return throwError(error);
   }
 
   getProductDetail(product_id): Observable<any> {

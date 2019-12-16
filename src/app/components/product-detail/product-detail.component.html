@@ -97,7 +97,7 @@
 
 				<div class="sizeSelectorContainer">
 					<div *ngFor="let size of allSizes">
-						<a class="sizeSelector" [ngClass]="{'selectedSize': selectedSize === size}" (click)="sizeSelected(size)" *ngIf="(sizesAvailable | find: size) let find_size">
+						<a class="sizeSelector" [ngClass]="{'selectedSize': selectedSize === size.value}" (click)="sizeSelected(size.value)" *ngIf="(sizesAvailable | find: size) let find_size">
 							{{ size.value }}
 						</a>
 						<a class="sizeSelector disabledSize" *ngIf="!(sizesAvailable | find: size) let find_size">
@@ -114,7 +114,7 @@
 
 			<div class="fitSelectorContainer">
 				<span *ngFor="let fit of allFits">
-					<a class="fitSelector" [ngClass]="{'selectedFit': selectedFit === fit}" (click)="fitSelected(fit)" *ngIf="(fitsAvailable | find:fit ) let find_fit">
+					<a class="fitSelector" [ngClass]="{'selectedFit': selectedFit === fit.name}" (click)="fitSelected(fit.name)" *ngIf="(fitsAvailable | find:fit ) let find_fit">
 						{{fit.name }}
 					</a>
 

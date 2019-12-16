@@ -42,8 +42,8 @@
 							<div class="itemDetailContainer">
 								<div class="itemName">{{cart_item.product.name}}</div>
 								<div class="itemPriceContainer">
-									<span class="itemOriginalPrice">{{(loc_type == indian_location) ? 'RS. '+cart_item.product?.INR?.base_price : '$' + cart_item.product?.USD?.base_price}}</span>
-									<span class="itemDiscountedPrice">{{(loc_type == indian_location) ? 'Rs. ' + cart_item.product?.INR?.price : '$' + cart_item.product?.USD?.price}}</span>
+									<!-- <span class="itemOriginalPrice">{{'RS. '+cart_item.product.base_price}}</span> -->
+									<span class="itemDiscountedPrice">{{'Rs. ' + cart_item.product.price}}</span>
 									<!-- <span class="itemDiscountPercent">50% OFF</span> -->
 								</div>
 								<div class="itemModifier">
