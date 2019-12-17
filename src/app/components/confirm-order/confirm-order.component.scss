@@ -54,6 +54,7 @@
 
 .deliveryItemDetails {
 	padding-left: rem-calc(10);
+	overflow-y:scroll;
 }
 
 .addAddressContainer {
@@ -72,7 +73,7 @@
 	padding-top: rem-calc(15);
 }
 .addressModalHeader {
-	font-size: 28px;
+  font-size: 28px;
   padding-bottom: rem-calc(15);
 }
 .addressFormField {
@@ -82,11 +83,11 @@
 	overflow: visible;
 }
 .closeAddressModal {
-	position: absolute;
+  position: absolute;
   top: rem-calc(-14);
   right: rem-calc(-14);
   color: white;
-  background-color: #600000;
+  background-color: $primary-color;
   border-radius: 25px;
   padding: rem-calc(3 7 5);
   z-index: 9999;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentChecked,AfterViewChecked,AfterContentInit,AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { WindowRef } from '../../services/windowRef';
 
@@ -62,6 +62,23 @@ export class ConfirmOrderComponent implements OnInit {
 
   Razorpay: any; 
 
+  ngAfterContentInit(){
+    console.log("content init");
+  }
+
+  ngAfterContentChecked(){
+    console.log("content checked");
+  }
+
+  ngAfterViewInit(){
+    console.log("view init");
+  }
+
+  ngAfterViewChecked(){
+    console.log("view checked");
+  }
+
+
   payNow() {
     // TODO : create an api to send data and get order_id of razorpay, then use it in placing order.
     var options = {
@@ -71,7 +88,7 @@ export class ConfirmOrderComponent implements OnInit {
       "name": "Dorcee",
       "description": "Purchase Description",
       "handler": function (response){
-        console.log(response);
+        //console.log(response);
           alert(response.razorpay_payment_id);
       },
       "prefill": {
@@ -93,11 +110,11 @@ export class ConfirmOrderComponent implements OnInit {
   showModalToAddAddress(token,addressDetail){
     $('#addressUpdate').foundation('open');
     this.userDetails = JSON.parse(localStorage.getItem('user_details'));
-    console.log(this.userDetails);
+    //console.log(this.userDetails);
     this.addressToken=token;
 
     if(token=='Add'){
-      console.log(token);
+      //console.log(token);
       this.addressForm = this.formBuilder.group({
         // firstName:['', [Validators.required]],
         // lastName:['', [Validators.required]],
@@ -110,9 +127,13 @@ export class ConfirmOrderComponent implements OnInit {
         is_default: ''
       });
     } else {
-      console.log(token);
+     // console.log(token);
       this.addressId=addressDetail.id;
-  
+      if(addressDetail.type=='INR' || addressDetail.type.toLowerCase()=='india') {
+        addressDetail.type='India';
+      } else {
+        addressDetail.type='Outside India';
+      }
       this.addressForm = this.formBuilder.group({
         // firstName:['', [Validators.required]],
         // lastName:['', [Validators.required]],
@@ -129,7 +150,7 @@ export class ConfirmOrderComponent implements OnInit {
 
   onAddAddressSubmit(){
     this.homeService.getCountryFromIp().subscribe((data)=>{
-      console.log(data);
+     // console.log(data);
       if(data.country.toLowerCase()==this.addressForm.controls['type'].value.toLowerCase()) {
         if(data.country.toLowerCase()=='india') {
           this.addressForm.controls['type'].setValue(environment.india_location);
@@ -143,6 +164,19 @@ export class ConfirmOrderComponent implements OnInit {
            this.UpdatingAddress();
          }
       }
+      // else if(confirm("Are you sure about the address you typed?")) {
+      //   if(this.addressForm.controls['type'].value.toLowerCase()=='india') {
+      //     this.addressForm.controls['type'].setValue(environment.india_location);
+      //   } else {
+      //     this.addressForm.controls['type'].setValue(environment.other_location);
+      //   }   
+      //   if(this.addressToken=='Add'){
+      //     this.AddingAddress();
+      //   }
+      //   else {
+      //     this.UpdatingAddress();
+      //   }
+      // }
       else {
         if(confirm("Are you sure about the address you typed?")) {
           if(this.addressForm.controls['type'].value.toLowerCase()=='india') {
@@ -157,9 +191,9 @@ export class ConfirmOrderComponent implements OnInit {
             this.UpdatingAddress();
           }
         }
-        else {
-          console.log("Adding Address canceled");
-        }
+        // else {
+        //   console.log("Adding Address canceled");
+        // }
       }
     
      });
@@ -174,7 +208,7 @@ export class ConfirmOrderComponent implements OnInit {
     // console.log(this.userDetails.id);
    
     this.addressService.addAddress(addressFormData,this.getUserAccessToken).subscribe((data)=>{
-      console.log(data);
+      //console.log(data);
 
       this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
         //console.log(data);
@@ -190,7 +224,7 @@ export class ConfirmOrderComponent implements OnInit {
     // console.log(this.userDetails.id);
    
     this.addressService.EditAddress(addressFormData,this.getUserAccessToken,this.addressId).subscribe((data)=>{
-      console.log(data);
+      //console.log(data);
 
       this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
         //console.log(data);
