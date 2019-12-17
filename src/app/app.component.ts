@@ -1,3 +1,4 @@
+//import module from '../../webpack.config';
 import { Component } from '@angular/core';
 
 @Component({

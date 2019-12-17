@@ -4,12 +4,52 @@
 	border:dashed;
 	border-width:rem-calc(2);
 }
-.cardLink {
-	margin:rem-calc(5);
-	text-decoration : underline;
+.addressModalHeader {
+  font-size:rem-calc(28);
+  padding-bottom: rem-calc(15);
 }
-
-.cardContainer {
-	padding-left:rem-calc(30);
-	padding-right:rem-calc(30);
+.addressFormField {
+	width: 100%;
+}
+.reveal.addressModalOuterContainer {
+	overflow: visible;
+}
+.closeAddressModal {
+  position: absolute;
+  top: rem-calc(-14);
+  right: rem-calc(-14);
+  color: white;
+  background-color: $primary-color;
+  border-radius: 25px;
+  padding: rem-calc(3 7 5);
+  z-index: 9999;
+  font-size: rem-calc(20);
+}
+.addressModalContainer {
+	padding: rem-calc(30 50);
+}
+.addressCardContainer{
+	width: 85%;
+	margin:0 auto;
+	padding:rem-calc(10);
+	margin : rem-calc(20);
+	border: rem-calc(0) solid #BFBFBF;
+    background-color: white;
+    box-shadow: 2px 2px 10px #dcdcdc;
+}
+.addressCardHeader {
+	padding:rem-calc(5);
+	border-bottom:1px ridge #dcdcdc;
+}
+.addressCardSection {
+	padding:rem-calc(5);
+}
+.addressCardFooter{
+	padding:rem-calc(5);
+	border-top:1px ridge #dcdcdc;
+}
+.cardLink {
+	margin-left:rem-calc(10);
+	margin-right:rem-calc(10);
+	text-decoration : underline;
 }

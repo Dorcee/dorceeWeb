@@ -67,4 +67,17 @@ export class AddressService {
     );
   }
 
+  public deleteAddress(access_token, address_id) {
+    httpOptions.headers=httpOptions.headers.set('Authorization',access_token);
+
+    return this.httpClient.delete<any>(`${API_URL}/web/address/${address_id}`,httpOptions)
+    .pipe(
+      map(res=> {
+       // console.log(res);
+         return res;
+      }),
+      catchError(error => this.handleError(error))
+    );
+  }
+
 }
