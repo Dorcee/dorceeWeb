@@ -5,25 +5,145 @@
 		</div>
 		<div class="small-6">
 			<div class="float-right">
-				<button class="button hollow customButton">+ Add New Address</button>	
+				<button class="button hollow customButton" data-open="addressUpdate" (click)="showModalToAddAddress('Add','noAddress')">+ Add New Address</button>	
 			</div>	
 		</div>
 	</div>
 
-	<div class="clearfix grid-x grid-padding-x">
-		<div class="small-12 medium-6">
-			<div class="cardContainer">
-				<div class="card">
-					<div class="card-section">
-					  	<div>Abhilash Bhargava</div>
-					  	<div>K-6 Ashok Marg C-Scheme</div>
-					  	<div>Opposite BSNL Office</div>
-					  	<div>Jaipur - 302001</div>
-					  	<div>Mobile - +91-9967758592</div>
+	<div class="reveal addressModalOuterContainer" id="addressUpdate" data-reveal>
+		<div class="grid-container addressModalContainer" *ngIf="userDetails">
+			<div class="text-center addressModalHeader">ADDRESS</div>
+			<form [formGroup]="addressForm">
+			  	<div class="grid-container">
+			  		<!-- <div class="grid-x grid-padding-x">
+					  	<div class="small-6 cell text-center">
+							<mat-form-field class="addressFormField">
+							    <input matInput placeholder="First Name" formControlName="firstName">
+							    <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
+						     		First Name is <strong>required</strong>
+						    	</mat-error>
+							</mat-form-field>
+						</div>
 
-						<a class="cardLink" href="">Edit</a>
-						<a class="cardLink" href="">Remove</a>
+						<div class="small-6 cell text-center">
+							<mat-form-field class="addressFormField">
+							    <input matInput placeholder="Last Name" formControlName="lastName">
+							    <mat-error *ngIf="addressForm.controls['lastName'].hasError('required')">
+						     		Last Name is <strong>required</strong>
+						    	</mat-error>
+							</mat-form-field>
+						</div>
+				  	</div>	
+-->
+				  	<div class="grid-x grid-padding-x">
+						<div class="medium-12 cell text-center">
+					  		<mat-form-field class="addressFormField">
+							    <input matInput placeholder="Code ( Pin or Postal )" formControlName="pin_code">
+							    <mat-error *ngIf="addressForm.controls['pin_code'].hasError('required')">
+						     		Pin code is <strong>required</strong>
+						    	</mat-error>
+						    	<mat-error *ngIf="addressForm.controls['pin_code'].invalid && addressForm.controls['pin_code'].dirty && !addressForm.controls['pin_code'].hasError('required')">
+							      Pin Code is <strong> not valid</strong>
+							    </mat-error>
+							</mat-form-field>
+					  	</div>
+				  	</div>
+				  	<div class="grid-x grid-padding-x">
+				  		<div class="medium-12 cell text-center">
+							<mat-form-field class="addressFormField">
+							    <input matInput placeholder="Flat No / Building / Road" formControlName="flat_number">
+							    <mat-error *ngIf="addressForm.controls['flat_number'].hasError('required')">
+						     		Flat number is <strong>required</strong>
+						    	</mat-error>
+							</mat-form-field>
+						</div>
+				  	</div>
+					<div class="grid-x grid-padding-x">
+					  	<div class="medium-12 cell text-center">
+							<mat-form-field class="addressFormField">
+								<textarea matInput
+									placeholder="Area / Locality / Landmark" 
+									formControlName="area"
+						            cdkTextareaAutosize
+						            #autosize="cdkTextareaAutosize"
+						            cdkAutosizeMinRows="1"
+						            cdkAutosizeMaxRows="5">
+					            </textarea>
+							    <mat-error *ngIf="addressForm.controls['area'].hasError('required')">
+						     		Area is <strong>required</strong>
+						    	</mat-error>
+							</mat-form-field>
+						</div>
 					</div>
+				  	<div class="grid-x grid-padding-x">
+					  	<div class="medium-6 cell text-center">
+					  		<mat-form-field class="addressFormField">
+							    <input matInput placeholder="City" formControlName="city">
+					        	<mat-error *ngIf="addressForm.controls['city'].hasError('required')">
+							     		City is <strong>required</strong>
+							    	</mat-error>
+					        </mat-form-field>
+						</div>
+						<div class="medium-6 cell text-center">
+					  		<mat-form-field class="addressFormField">
+							    <input matInput placeholder="State" formControlName="state">
+								<mat-error *ngIf="addressForm.controls['state'].hasError('required')">
+						     		State Name is <strong>required</strong>
+						    	</mat-error>
+							</mat-form-field>
+					  	</div>
+					</div>
+					<div class="grid-x grid-padding-x">
+					  	<div class="medium-12 cell text-center">
+					  		<mat-form-field class="addressFormField">
+							    <input matInput placeholder="Country" formControlName="type">
+								<mat-error *ngIf="addressForm.controls['type'].hasError('required')">
+						     		Country Name is <strong>required</strong>
+						    	</mat-error>
+							</mat-form-field>
+					  	</div>
+					</div>
+					<div class="grid-x grid-padding-x">
+						<div class="medium-12 cell">
+							<mat-radio-group formControlName="is_default">
+								<mat-radio-button value="1">Set as Default</mat-radio-button>
+							</mat-radio-group>
+						</div>
+				    </div>
+					<div class="grid-x grid-padding-x">
+						<div class="medium-5 cell text-right">
+							<input type="button" class="button" data-close value="CANCEL">
+						</div>
+						<div class="medium-5 cell text-center">
+							<!-- <button type="submit" class="button submitButton" [disabled]="uploadForm.invalid"> Submit </button> -->
+							<button type="submit" class="button" data-close aria-label="Close modal" (click)="onAddAddressSubmit(addressForm)" [disabled]="addressForm.invalid">SAVE</button>
+						</div>
+					</div>
+			  	</div>
+			</form>
+			<button class="close-button closeAddressModal" data-close aria-label="Close modal" type="button">
+			    <span aria-hidden="true">&times;</span>
+			</button>
+	    </div>
+    </div>
+
+	<div class="clearfix grid-x grid-padding-x">
+		<div class="small-12 medium-6" *ngFor="let address of addressDetail">
+			<div class="addressCardContainer">
+		<!-- 		<div class="addressCardHeader clearfix">
+					<span class="float-left">Default</span> 
+					<span class="float-right">Home</span> 
+				</div> -->
+				<div class="addressCardSection">
+					  	<!-- <div>{{address.firstName}} {{address.lastName}}</div> -->
+					  	<div>{{address.flat_number}}</div>
+					  	<div>{{address.area}}</div>
+					  	<div>{{address.city}} - {{address.pin_code}}, {{address.state}}</div>
+					  	<!-- <div>{{address.phone}}</div> -->
+				</div>
+				<div class="addressCardFooter">
+					<a class="cardLink" data-open="addressUpdate" (click)="showModalToAddAddress('Edit',address)">Edit</a>
+					<a class="cardLink" (click)="onDeleteAddress(address.id)">Remove</a>
 				</div>	
 			</div>
 		</div>

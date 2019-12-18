@@ -51,7 +51,7 @@ export class HomeService {
     return this.httpClient.get<any>(url)
       .pipe(
       map(res => {
-        //console.log(res); 
+       // console.log(res); 
         return res; }),  // make it as observable
       catchError(error => this.handleError(error.message || error))
     );

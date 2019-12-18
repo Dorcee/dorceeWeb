@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentChecked,AfterViewChecked,AfterContentInit,AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { WindowRef } from '../../services/windowRef';
 
@@ -61,23 +61,6 @@ export class ConfirmOrderComponent implements OnInit {
   }
 
   Razorpay: any; 
-
-  ngAfterContentInit(){
-    console.log("content init");
-  }
-
-  ngAfterContentChecked(){
-    console.log("content checked");
-  }
-
-  ngAfterViewInit(){
-    console.log("view init");
-  }
-
-  ngAfterViewChecked(){
-    console.log("view checked");
-  }
-
 
   payNow() {
     // TODO : create an api to send data and get order_id of razorpay, then use it in placing order.
