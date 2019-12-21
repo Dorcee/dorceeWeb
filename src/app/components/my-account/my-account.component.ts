@@ -14,6 +14,7 @@ declare var $:any;
 export class MyAccountComponent implements OnInit {
 	subPage='';
 	user_details:any;
+	
   constructor(private route:ActivatedRoute,
   			  private router : Router
   	) { }

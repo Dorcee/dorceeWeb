@@ -1,1 +1,38 @@
 @import '../../../assets/foundation-sites/global';
+.dropdownBtn{
+	position:relative;
+	left:50%;
+	transform:translate(-50%,0);
+}
+
+.TabsHeading {
+	font-size:rem-calc(20);
+	color:$primary-color;
+}
+
+::ng-deep .tabs-title > a:focus, .tabs-title > a[aria-selected=true] {
+	color:$primary-color;
+	font-size:rem-calc(18);
+	background-color:transparent;
+}
+::ng-deep .tabs{
+	border:transparent;
+}
+
+li>a:before {
+	display: inline-block;
+    content: '';
+    height: rem-calc(10);
+    width: rem-calc(10);
+    margin-right: rem-calc(10);
+    background-color: $primary-color;
+}
+
+.tabLink {
+	color:#808080;;
+	font-size:rem-calc(15);
+}
+
+::ng-deep .tabs-content{
+	border:transparent;
+}
