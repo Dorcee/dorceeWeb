@@ -5,24 +5,23 @@
 <div class="grid-container">
 	<div class="grid-x grid-padding-x">
 	  <div class="small-12 show-for-small-only">
-	  	<button class="dropdown button dropdownBtn" data-open="tabsList" (click)="tab=notSelected" data-toggle>ACCOUNT DETAILS</button>
-	  	<div [ngStyle]="{'display':tab=='selected' ? 'none' : 'block' }">
-	  		<div class="dropdown-pane" id="tabsList" data-dropdown  data-close-on-click="true" aria-hidden="true">
+	  	<button class="dropdown button dropdownBtn" data-open="tabsList" (click)="tab=0" data-toggle>ACCOUNT DETAILS</button>
+	  	<div [ngStyle]="{'display':tab=='1' ? 'none' : 'block' }">
+	  		<div class="dropdown-pane tabsPanel" style="left:rem-calc(75);" id="tabsList" data-dropdown data-close-on-click="true" aria-hidden="true">
 		  		<ul class="tabs tabsContainer vertical" data-tabs id="myAccountTabs"  data-open-on-click="true" >
-			      <li class="tabs-title tabs-title-category is-active" (click)="tab='selected'" data-close-on-click="true">
+			      <li class="tabs-title tabs-title-category is-active" (click)="tab=1">
 			        <a href="#myOrdersPanel" class="tabLink" (click)="moveToMyOrders()" aria-selected="true">My Orders</a>
 			      </li>
-			      <li class="tabs-title tabs-title-category" (click)="tab='selected'">
+			      <li class="tabs-title tabs-title-category" (click)="tab=1">
 			        <a href="#profilePanel" class="tabLink" (click)="moveToProfile()">Profile</a>
 			      </li>
 			      <!-- routerLink="/myAccount/profile" -->
-			      <li class="tabs-title tabs-title-category" (click)="tab='selected'">
+			      <li class="tabs-title tabs-title-category" (click)="tab=1">
 			        <a href="#addressesPanel" class="tabLink" (click)="moveToAddresses()">Addresses</a>
 			      </li>
 			    </ul>	
 		  	</div>	
-	  	</div>
-	  	
+	  	</div>  	
 	  </div>	
 
       <div class="cell medium-3 hide-for-small-only">

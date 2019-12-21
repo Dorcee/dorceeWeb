@@ -18,6 +18,7 @@
 ::ng-deep .tabs{
 	border:transparent;
 }
+
 li>a:before {
 	display: inline-block;
     content: '';
@@ -26,10 +27,12 @@ li>a:before {
     margin-right: rem-calc(10);
     background-color: $primary-color;
 }
+
 .tabLink {
-	color:#0a0a0a;
+	color:#808080;;
 	font-size:rem-calc(15);
 }
+
 ::ng-deep .tabs-content{
 	border:transparent;
 }
