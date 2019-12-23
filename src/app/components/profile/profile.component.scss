@@ -4,3 +4,28 @@
 	margin-right:rem-calc(15);
 }
 
+.inputField {
+	width:80%;
+}
+
+.inputRadioButton {
+	width:80%;	
+	margin:0 auto;
+}
+
+::ng-deep label {
+	color:#808080;	
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+	padding-bottom:rem-calc(30);
+}
+
+::ng-deep .inputRadioButton {
+	padding-bottom:rem-calc(20);	
+}
+
+.saveBtn {
+	margin-top:rem-calc(20);
+	margin-right:rem-calc(35);
+}
