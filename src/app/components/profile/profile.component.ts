@@ -31,24 +31,18 @@ export class ProfileComponent implements OnInit {
 	    phone_number:[this.user_details.phone_number, [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(7), Validators.maxLength(13)]],
 	  });
 
-    this.profileForm.disable();
+    // this.profileForm.disable();
   }
 
-  editProfile() {
-    if(!this.editable) {
-      this.editable=true;
-     // console.log(this.editable);
-      this.profileForm.enable();  
-    } else if(this.profileForm.valid) {
-      //console.log("saving Details");
+  onEditProfile() {
+    if(this.profileForm.valid) {
       this.editable=false;
       //console.log(this.editable);
-      this.profileForm.disable(); 
 
       //Api call for saving details of user
-      //console.log(this.profileForm.value);
+     // console.log(this.profileForm.value);
 
-    } else {
+    } else {  
       //console.log('Form is not valid');
     }
   }

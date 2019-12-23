@@ -9,6 +9,9 @@
 	font-size:rem-calc(20);
 	color:$primary-color;
 }
+::ng-deep .tabs-title > a{
+	padding:rem-calc(10);	
+}
 
 ::ng-deep .tabs-title > a:focus, .tabs-title > a[aria-selected=true] {
 	color:$primary-color;
