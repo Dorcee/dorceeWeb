@@ -23,25 +23,19 @@ export class FooterComponent implements OnInit {
   }
 
   footerNavigationToProfile(){
+    window.scroll(0,0);
     if(this.userDetails) {
       this.router.navigate(["/myAccount/profile"]);
-    	window.scroll(0,0);
     } else {
-      window.scroll(0,0);
-      //console.log('no user');
       $('#loginModal').foundation('open');
-      
-      //window.location.reload();
     }  
   }
 
   footerNavigationToMyOrders(){
+    window.scroll(0,0);
     if(this.userDetails) {
       this.router.navigate(["/myAccount/myOrders"]);
-      window.scroll(0,0);
     } else {
-      //console.log('no user');
-      window.scroll(0,0);
       $('#loginModal').foundation('open');
     }     
   }

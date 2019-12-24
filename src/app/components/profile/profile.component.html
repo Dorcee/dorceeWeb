@@ -5,14 +5,14 @@
 
         <div class="small-12 medium-6 cell text-center">
           <mat-form-field class="inputField">
-            <input matInput placeholder="First Name" formControlName="firstName" (click)="editable=true">
+            <input matInput placeholder="First Name" formControlName="firstName" (keyup)="editable=true">
             <mat-error *ngIf="profileForm.controls['firstName'].hasError('required')">First Name is required.</mat-error>
           </mat-form-field>
         </div>
 
         <div class="small-12 medium-6 cell text-center">
           <mat-form-field class="inputField">
-            <input matInput placeholder="Last Name" formControlName="lastName" (click)="editable=true">
+            <input matInput placeholder="Last Name" formControlName="lastName" (keyup)="editable=true">
             <mat-error *ngIf="profileForm.controls['lastName'].hasError('required')">Last Name is required.</mat-error>
           </mat-form-field>
         </div>
@@ -20,7 +20,7 @@
         <div class="small-12 medium-6 cell">
           <div class="inputRadioButton">
             <label>Gender</label>
-            <mat-radio-group formControlName="gender" (click)="editable=true">
+            <mat-radio-group formControlName="gender" (keyup)="editable=true">
               <mat-radio-button value="Male">Male</mat-radio-button>
               <mat-radio-button value="Female">Female</mat-radio-button>
             </mat-radio-group>
@@ -29,14 +29,14 @@
 
         <div class="small-12 medium-6 cell text-center">
           <mat-form-field class="inputField">
-            <input matInput placeholder="Email" formControlName="email" (click)="editable=true">
+            <input matInput placeholder="Email" formControlName="email" (keyup)="editable=true">
             <mat-error *ngIf="profileForm.controls['email'].hasError('email')">Please enter a valid email address.</mat-error>
           </mat-form-field>
         </div>
 
         <div class="small-12 medium-6 cell text-center">
           <mat-form-field class="inputField">
-            <input matInput placeholder="Number" formControlName="phone_number" (click)="editable=true">
+            <input matInput placeholder="Number" formControlName="phone_number" (keyup)="editable=true">
             <mat-error *ngIf="profileForm.controls['phone_number'].hasError('required')">Phone number is required.</mat-error>
             <mat-error *ngIf="profileForm.controls['phone_number'].invalid && profileForm.controls['phone_number'].dirty && !profileForm.controls['phone_number'].hasError('required')">Please enter a valid phone number.</mat-error>
           </mat-form-field>

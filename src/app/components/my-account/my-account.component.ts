@@ -26,8 +26,8 @@ export class MyAccountComponent implements OnInit {
   }
  
  	ngAfterViewChecked(){
- 		var prv = localStorage.getItem('previousSelectedTab');
- 		this.previousLink=document.getElementById(prv);
+ 		var prev = localStorage.getItem('previousSelectedTab');
+ 		this.previousLink=document.getElementById(prev);
  		this.previousLink.removeAttribute("aria-selected", "true");
 
  		this.subPage=this.route.snapshot.params.subPage;
@@ -47,26 +47,21 @@ export class MyAccountComponent implements OnInit {
 	  		selectedLink=document.getElementById('thirdLink');
 	  	}
 
-	  	//this.previousLink=selectedLink.id;
 	  	//console.log(this.previousLink);
 	  	localStorage.setItem('previousSelectedTab',selectedLink.id);
 
-		//this.previousLink=selectedLink;
 		selectedLink.setAttribute("aria-selected", "true");
 		//console.log(selectedLink);
  	}
 
  	moveToMyOrders(){
- 		//this.previousLink.removeAttribute("aria-selected", "true");
  		this.router.navigate(["/myAccount/myOrders"]);
  	}
 
  	moveToProfile(){
- 		//this.previousLink.removeAttribute("aria-selected", "true");
  		this.router.navigate(["/myAccount/profile"]);
  	}
  	moveToAddresses(){
- 		//this.previousLink.removeAttribute("aria-selected", "true");
  		this.router.navigate(["/myAccount/addresses"]);
  	}
 }
