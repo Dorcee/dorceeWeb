@@ -1,3 +1,5 @@
+<app-login></app-login>
+
 <div class="grid-container">
   <div class="grid-x text-center medium-text-left">
     <div class="small-6 medium-3 cell">
@@ -18,10 +20,9 @@
     <div class="small-6 medium-3 cell">
       <span class="footerCategoryHeader">Your Order</span>
       <div class="footerCategoryContainer">
-        <!-- [routerLink]="['/hero', hero.id] -->
-        <div class="footerCategory" (click)="footerNavigationToMyAccount()" routerLink="/myAccount/profile">My Account</div>
-        <div class="footerCategory" (click)="footerNavigationToMyAccount()" routerLink="/myAccount/myOrders">Order Status</div>
-        <div class="footerCategory" (click)="footerNavigationToMyAccount()" routerLink="/myAccount/myOrders">Request a Return</div>
+        <div class="footerCategory" (click)="footerNavigationToProfile()">My Account</div>
+        <div class="footerCategory" (click)="footerNavigationToMyOrders()">Order Status</div>
+        <div class="footerCategory" (click)="footerNavigationToMyOrders()">Request a Return</div>
       </div>
     </div>
     <div class="small-6 medium-3 cell">

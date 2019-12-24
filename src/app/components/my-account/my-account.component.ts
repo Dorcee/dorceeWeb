@@ -14,7 +14,7 @@ declare var $:any;
 export class MyAccountComponent implements OnInit {
 	subPage='';
 	userDetails:any;
-	
+	previousLink:any;
   constructor(private route:ActivatedRoute,
   			  private router : Router
   	) { }
@@ -22,25 +22,36 @@ export class MyAccountComponent implements OnInit {
   ngOnInit() {
   	$(document).foundation();
   	this.userDetails=JSON.parse(localStorage.getItem('user_details'));
-  	console.log(this.userDetails);
+  	//console.log(this.userDetails);
   }
  
  	ngAfterViewChecked(){
- 		//if(this.userDetails) {
-	 		this.subPage=this.route.snapshot.params.subPage;
-		  	//console.log("subPage "+this.subPage);  	
-		  if(this.subPage=="profile"){
-				$("#myAccountTabs").foundation("selectTab",$("#profilePanel"));
-			}
-			else if(this.subPage=="myOrders"){
-				$("#myAccountTabs").foundation("selectTab",$("#myOrdersPanel"));
-			}
-		  	else {
-		  		$("#myAccountTabs").foundation("selectTab",$("#addressesPanel"));
-		  	}
-		//} else {
-			//$('#loginModal').foundation('open');
-		//}
+ 		var prev = localStorage.getItem('previousSelectedTab');
+ 		this.previousLink=document.getElementById(prev);
+ 		this.previousLink.removeAttribute("aria-selected", "true");
+
+ 		this.subPage=this.route.snapshot.params.subPage;
+	  	//console.log("subPage "+this.subPage);  	
+	  	var selectedLink;
+
+	    if(this.subPage=="myOrders"){
+			$("#myAccountTabs").foundation("selectTab",$("#myOrdersPanel"));
+			selectedLink=document.getElementById('firstLink');
+		}
+		else if(this.subPage=="profile"){
+			$("#myAccountTabs").foundation("selectTab",$("#profilePanel"));
+			selectedLink=document.getElementById('secondLink');
+		}
+	  	else {
+	  		$("#myAccountTabs").foundation("selectTab",$("#addressesPanel"));
+	  		selectedLink=document.getElementById('thirdLink');
+	  	}
+
+	  	//console.log(this.previousLink);
+	  	localStorage.setItem('previousSelectedTab',selectedLink.id);
+
+		selectedLink.setAttribute("aria-selected", "true");
+		//console.log(selectedLink);
  	}
 
  	moveToMyOrders(){

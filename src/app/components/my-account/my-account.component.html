@@ -1,7 +1,6 @@
 <app-header></app-header>
-<app-login></app-login>
 
-<div class="grid-container" *ngIf="userDetails">
+<div class="grid-container">
 	<div class="grid-x grid-padding-x">
 	  <div class="small-12 show-for-small-only">
 	  	<button class="dropdown button dropdownBtn" data-open="tabsList" (click)="tab=0" data-toggle>ACCOUNT DETAILS</button>
@@ -23,18 +22,18 @@
 	  	</div>  	
 	  </div>	
 
-      <div class="cell medium-3 hide-for-small-only">
+    <div class="cell medium-3 hide-for-small-only">
 	    <ul class="tabs tabsContainer vertical" data-tabs id="myAccountTabs">
 	      <div class="TabsHeading">ACCOUNT DETAILS</div>
-	      <li class="tabs-title tabs-title-category is-active">
-	        <a href="#myOrdersPanel" class="tabLink" (click)="moveToMyOrders()" aria-selected="true">My Orders</a>
+	      <li class="tabs-title tabs-title-category">
+	        <a href="#myOrdersPanel" class="tabLink" (click)="moveToMyOrders()" id="firstLink">My Orders</a>
 	      </li>
 	      <li class="tabs-title tabs-title-category">
-	        <a href="#profilePanel" class="tabLink" (click)="moveToProfile()">Profile</a>
+	        <a href="#profilePanel" class="tabLink" (click)="moveToProfile()" id="secondLink">Profile</a>
 	      </li>
 	      <!-- routerLink="/myAccount/profile" -->
 	      <li class="tabs-title tabs-title-category">
-	        <a href="#addressesPanel" class="tabLink" (click)="moveToAddresses()">Addresses</a>
+	        <a href="#addressesPanel" class="tabLink" (click)="moveToAddresses()" id="thirdLink">Addresses</a>
 	      </li>
 	    </ul>
 	  </div>  
