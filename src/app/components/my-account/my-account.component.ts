@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileComponent } from '../profile/profile.component';
 import { MyOrdersComponent }  from '../my-orders/my-orders.component';
@@ -14,7 +14,8 @@ declare var $:any;
 export class MyAccountComponent implements OnInit {
 	subPage='';
 	userDetails:any;
-	previousLink:any;
+	previousSelectedTab:any;
+	selectedTab;
   constructor(private route:ActivatedRoute,
   			  private router : Router
   	) { }
@@ -27,31 +28,33 @@ export class MyAccountComponent implements OnInit {
  
  	ngAfterViewChecked(){
  		var prev = localStorage.getItem('previousSelectedTab');
- 		this.previousLink=document.getElementById(prev);
- 		this.previousLink.removeAttribute("aria-selected", "true");
+ 		if(prev) {
+ 			this.previousSelectedTab=document.getElementById(prev);
+	 		this.previousSelectedTab.setAttribute("aria-selected", "false");
+ 		}
 
  		this.subPage=this.route.snapshot.params.subPage;
 	  	//console.log("subPage "+this.subPage);  	
-	  	var selectedLink;
 
 	    if(this.subPage=="myOrders"){
 			$("#myAccountTabs").foundation("selectTab",$("#myOrdersPanel"));
-			selectedLink=document.getElementById('firstLink');
+			this.selectedTab=document.getElementById('myOrders');
 		}
 		else if(this.subPage=="profile"){
 			$("#myAccountTabs").foundation("selectTab",$("#profilePanel"));
-			selectedLink=document.getElementById('secondLink');
+			this.selectedTab=document.getElementById('profile');
 		}
 	  	else {
 	  		$("#myAccountTabs").foundation("selectTab",$("#addressesPanel"));
-	  		selectedLink=document.getElementById('thirdLink');
+	  		this.selectedTab=document.getElementById('addresses');
 	  	}
 
-	  	//console.log(this.previousLink);
-	  	localStorage.setItem('previousSelectedTab',selectedLink.id);
+	  	//console.log(this.selectedTab);
+	  	//console.log(this.previousSelectedTab);
+	  	localStorage.setItem('previousSelectedTab',this.selectedTab.id);
 
-		selectedLink.setAttribute("aria-selected", "true");
-		//console.log(selectedLink);
+		this.selectedTab.setAttribute("aria-selected", "true");
+		//console.log(this.selectedTab);
  	}
 
  	moveToMyOrders(){
