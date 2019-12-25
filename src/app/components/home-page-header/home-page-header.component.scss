@@ -11,12 +11,12 @@
 	padding-right: rem-calc(15);
 	cursor: pointer;
   outline: none;
+  
+  &:hover {
+  	color: $primary-color;
+  }
 }
-.currencyWeb, .userLogin {
-	padding-right: rem-calc(15);
-	cursor: pointer;
-	outline: none;
-}
+
 .brandLogo:focus {
 	outline: none;
 }

@@ -10,10 +10,10 @@
 			<img src="assets/images/dorceeLogo.svg" class="brandLogo" alt="Company Logo" routerLink="/" width="175">
 		</div>
 		<div class="small-4 cell text-right homePageLoginHeader">
-			<span class="currencyWeb">INR</span>
+			<span class="currencyWeb homepageHeading">INR</span>
 			<!-- <span class="" data-open="loginModal">Login</span> -->
-			<span class="userLogin" data-open="loginModal" *ngIf="!userDetails">Login</span>
-			<span class="userLogin" *ngIf="userDetails">{{userDetails.fname}} {{userDetails.lname}}</span> <!-- TODO : show a dropdown for my account or goto myaccount screen -->
+			<span class="userLogin homepageHeading" data-open="loginModal" *ngIf="!userDetails">Login</span>
+			<span class="userLogin homepageHeading" *ngIf="userDetails">{{userDetails.fname}} {{userDetails.lname}}</span> <!-- TODO : show a dropdown for my account or goto myaccount screen -->
 			<img src="assets/images/emptyShoppingBagBlack.svg" alt="Basket" width="30px" routerLink="/checkout">
 		</div>
 	</div>

@@ -102,10 +102,11 @@
 .productImageSlideContainer {
   overflow: hidden;
   position: relative;
+  height: rem-calc(400);
 
   .productImage {
-    min-height: rem-calc(400);
-    max-height: rem-calc(400);
+    height: rem-calc(400);
+    object-fit: cover;
   }
 }
 
