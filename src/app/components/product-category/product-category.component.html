@@ -92,19 +92,19 @@
 						</div>-->
 						<div class="productImageSlideContainer" id="slider{{product.id}}">
 					
-					        <img *ngIf="product.main_image" src="{{product.main_image}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)">
+			        <img *ngIf="product.main_image" src="{{product.main_image}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)" class="productImage">
 							
-							<img *ngIf="product.thumbnail_1" src="{{product.thumbnail_1}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)">
+							<img *ngIf="product.thumbnail_1" src="{{product.thumbnail_1}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)" class="productImage">
 							
-							<img *ngIf="product.thumbnail_2" src="{{product.thumbnail_2}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)">
+							<img *ngIf="product.thumbnail_2" src="{{product.thumbnail_2}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)" class="productImage">
 							
-							<img *ngIf="product.thumbnail_3" src="{{product.thumbnail_3}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)">
+							<img *ngIf="product.thumbnail_3" src="{{product.thumbnail_3}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)" class="productImage">
 							
-							<img *ngIf="product.thumbnail_4" src="{{product.thumbnail_4}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)">
+							<img *ngIf="product.thumbnail_4" src="{{product.thumbnail_4}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)" class="productImage">
 							
-							<img *ngIf="product.thumbnail_5" src="{{product.thumbnail_5}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)">
+							<img *ngIf="product.thumbnail_5" src="{{product.thumbnail_5}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)" class="productImage">
 							
-							<img *ngIf="product.thumbnail_6" src="{{product.thumbnail_6}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)">
+							<img *ngIf="product.thumbnail_6" src="{{product.thumbnail_6}}" (mouseenter)="changeStyle($event,product.id)" (mouseleave)="changeBackStyle($event,product.id)" class="productImage">
 						</div>	
 
 						<a class="alsoLikeProductDetailContainer text-center" (click)="goToProductDetailPage(product.id)">

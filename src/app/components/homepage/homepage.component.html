@@ -3,7 +3,7 @@
 </div>
 
 <div class="callout text-center minDeliveryHeader" data-closable>
-  <button class="close-button" aria-label="Close alert" type="button" data-close>
+  <button class="close-button closeDeliveryInfo" aria-label="Close alert" type="button" data-close>
     <span aria-hidden="true">&times;</span>
   </button>
   <p>Free Shipping to all the cities in India on order above Rs. 2000</p>
@@ -84,19 +84,19 @@
           <div *ngFor="let product of products" class="medium-3 large-3 cell image-hover-wrapper">
             <div class="productImageSlideContainer" id="slider{{product.id}}">
               
-              <img *ngIf="product.main_image" src="{{product.main_image}}" (click)="goToProductDetailPage(product.id)" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)">
+              <img *ngIf="product.main_image" src="{{product.main_image}}" (click)="goToProductDetailPage(product.id)" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)" class="productImage">
               
-              <img *ngIf="product.thumbnail_1" src="{{product.thumbnail_1}}" (click)="goToProductDetailPage(product.id)" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)">
+              <img *ngIf="product.thumbnail_1" src="{{product.thumbnail_1}}" (click)="goToProductDetailPage(product.id)" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)" class="productImage">
               
-              <img *ngIf="product.thumbnail_2" src="{{product.thumbnail_2}}" (click)="goToProductDetailPage(product.id)" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)">
+              <img *ngIf="product.thumbnail_2" src="{{product.thumbnail_2}}" (click)="goToProductDetailPage(product.id)" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)" class="productImage">
               
-              <img *ngIf="product.thumbnail_3" src="{{product.thumbnail_3}}" (click)="goToProductDetailPage(product.id)" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)">
+              <img *ngIf="product.thumbnail_3" src="{{product.thumbnail_3}}" (click)="goToProductDetailPage(product.id)" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)" class="productImage">
               
-              <img *ngIf="product.thumbnail_4" src="{{product.thumbnail_4}}" (click)="goToProductDetailPage(product.id)" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)">
+              <img *ngIf="product.thumbnail_4" src="{{product.thumbnail_4}}" (click)="goToProductDetailPage(product.id)" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)" class="productImage">
               
-              <img *ngIf="product.thumbnail_5" src="{{product.thumbnail_5}}" (click)="goToProductDetailPage(product.id)" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)">
+              <img *ngIf="product.thumbnail_5" src="{{product.thumbnail_5}}" (click)="goToProductDetailPage(product.id)" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)" class="productImage">
               
-              <img *ngIf="product.thumbnail_6" src="{{product.thumbnail_6}}" (click)="goToProductDetailPage(product.id)" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)">
+              <img *ngIf="product.thumbnail_6" src="{{product.thumbnail_6}}" (click)="goToProductDetailPage(product.id)" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)" class="productImage">
             </div>
           </div>
         </div>

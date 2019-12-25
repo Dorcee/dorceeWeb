@@ -12,6 +12,9 @@ $border-color: #ACACAC;
 .minDeliveryHeader {
   margin-bottom: 0;
 }
+.closeDeliveryInfo {
+  color: $black;
+}
 .image-hover-wrapper {
   position: relative;
 
@@ -126,6 +129,12 @@ $border-color: #ACACAC;
 .productImageSlideContainer {
   overflow: hidden;
   position: relative;
+  height: rem-calc(400);
+
+  .productImage {
+    height: rem-calc(400);
+    object-fit: cover;
+  }
 }
 
 //To remove the text of Previous and Next in Slick Slider
