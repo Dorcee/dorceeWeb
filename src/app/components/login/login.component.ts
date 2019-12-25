@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 declare var $:any;
+var navigateTo:string="/5/";
 
 @Component({
     selector: 'app-login',
@@ -10,8 +12,13 @@ declare var $:any;
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+    @Input('moveTo') moveTo:string;
 
-    constructor(public userService:UserService, public formBuilder: FormBuilder) { }
+    constructor(
+        public userService:UserService,
+        public formBuilder: FormBuilder,
+        private router:Router
+    ) { }
 
     phone_error = '';
     otp_field = 0;
@@ -19,6 +26,11 @@ export class LoginComponent implements OnInit {
     userDetails = localStorage.getItem('user_details'); 
 
     ngOnInit() {
+    }
+
+    ngAfterViewChecked(){
+        navigateTo=this.moveTo;
+        //console.log(navigateTo);
     }
 
     loginFormControl = this.formBuilder.group({
@@ -32,6 +44,7 @@ export class LoginComponent implements OnInit {
     }
 
     submit() {
+        //console.log(navigateTo);
         var formdata = this.loginFormControl.value;
         if(this.otp_field == 0) {
             this.userService.generateOtp(formdata).subscribe((data)=>{
@@ -45,11 +58,18 @@ export class LoginComponent implements OnInit {
                 this.userDetails = data.data.userDetails;
                 localStorage.setItem('user_details', JSON.stringify(data.data.userDetails));
                 $('#loginModal').foundation('close');
+                
+                if(navigateTo){
+                    this.router.navigate([navigateTo]);
+                }
+                
                 // TODO : error section of verify OTP
                 // TODO :  show successful login message
             }, (error:any) => {
                 this.otp_error = error.message;
             });
+            this.otp_field=0;
+            navigateTo='';
         }
     }
 

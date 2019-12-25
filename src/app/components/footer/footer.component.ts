@@ -10,6 +10,7 @@ declare var $:any;
 })
 export class FooterComponent implements OnInit {
   userDetails:any;
+  navigateTo:string;
 
   constructor( private router:Router ) { }
 
@@ -27,6 +28,7 @@ export class FooterComponent implements OnInit {
     if(this.userDetails) {
       this.router.navigate(["/myAccount/profile"]);
     } else {
+      this.navigateTo="/myAccount/profile";
       $('#loginModal').foundation('open');
     }  
   }
@@ -36,7 +38,9 @@ export class FooterComponent implements OnInit {
     if(this.userDetails) {
       this.router.navigate(["/myAccount/myOrders"]);
     } else {
+      this.navigateTo="/myAccount/myOrders";
       $('#loginModal').foundation('open');
+     // console.log(this.navigateTo);
     }     
   }
 }
