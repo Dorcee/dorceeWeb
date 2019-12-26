@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileComponent } from '../profile/profile.component';
 import { MyOrdersComponent }  from '../my-orders/my-orders.component';
@@ -16,56 +16,92 @@ export class MyAccountComponent implements OnInit {
 	userDetails:any;
 	previousSelectedTab:any;
 	selectedTab;
+	SelectedTabReference:any;
   constructor(private route:ActivatedRoute,
-  			  private router : Router
+  			  private router : Router,
   	) { }
+
+  	@ViewChild('myOrdersPanel', {static: false}) myOrdersPanel:ElementRef;
+	@ViewChild('profilePanel', {static: false}) profilePanel:ElementRef;
+	@ViewChild('addressesPanel', {static: false}) addressesPanel:ElementRef;
 
   ngOnInit() {
   	$(document).foundation();
   	this.userDetails=JSON.parse(localStorage.getItem('user_details'));
   	//console.log(this.userDetails);
+
   }
- 
- 	ngAfterViewChecked(){
- 		var prev = localStorage.getItem('previousSelectedTab');
- 		if(prev) {
- 			this.previousSelectedTab=document.getElementById(prev);
-	 		this.previousSelectedTab.setAttribute("aria-selected", "false");
- 		}
 
- 		this.subPage=this.route.snapshot.params.subPage;
-	  	//console.log("subPage "+this.subPage);  	
-
-	    if(this.subPage=="myOrders"){
-			$("#myAccountTabs").foundation("selectTab",$("#myOrdersPanel"));
-			this.selectedTab=document.getElementById('myOrders');
-		}
-		else if(this.subPage=="profile"){
-			$("#myAccountTabs").foundation("selectTab",$("#profilePanel"));
-			this.selectedTab=document.getElementById('profile');
-		}
-	  	else {
-	  		$("#myAccountTabs").foundation("selectTab",$("#addressesPanel"));
-	  		this.selectedTab=document.getElementById('addresses');
-	  	}
-
-	  	//console.log(this.selectedTab);
-	  	//console.log(this.previousSelectedTab);
-	  	localStorage.setItem('previousSelectedTab',this.selectedTab.id);
-
-		this.selectedTab.setAttribute("aria-selected", "true");
-		//console.log(this.selectedTab);
+ 	ngAfterViewInit(){	
+ 		if(this.userDetails){
+	 		this.subPage=this.route.snapshot.params.subPage;
+		  	//console.log("subPage "+this.subPage);  	
+		    if(this.subPage=="myOrders"){
+				$("#myAccountTabs").foundation("selectTab",$("#myOrdersPanel"));
+			}
+			else if(this.subPage=="profile"){
+				$("#myAccountTabs").foundation("selectTab",$("#profilePanel"));
+			}
+		  	else {
+		  		$("#myAccountTabs").foundation("selectTab",$("#addressesPanel"));
+		  	}
+		 } 	
  	}
 
  	moveToMyOrders(){
- 		this.router.navigate(["/myAccount/myOrders"]);
+ 		//this.router.navigate(["/myAccount/myOrders"]);
+ 		$("#myAccountTabs").foundation("selectTab",$("#myOrdersPanel"));
+		this.selectedTab=this.myOrdersPanel.nativeElement;
+		this.SelectedTabReference="#myOrdersPanel";
+		//console.log(this.SelectedTabReference);
+
+		//console.log(this.selectedTab);
+ 		this.changingTabs();
  	}
 
  	moveToProfile(){
- 		this.router.navigate(["/myAccount/profile"]);
+ 		//this.router.navigate(["/myAccount/profile"]);
+ 		$("#myAccountTabs").foundation("selectTab",$("#profilePanel"));
+		this.selectedTab=this.profilePanel.nativeElement;
+		this.SelectedTabReference="#profilePanel";
+		//console.log(this.SelectedTabReference);
+
+		//console.log(this.selectedTab);
+	  	
+ 		this.changingTabs();
  	}
  	moveToAddresses(){
- 		this.router.navigate(["/myAccount/addresses"]);
+ 		//this.router.navigate(["/myAccount/addresses"]);
+ 		$("#myAccountTabs").foundation("selectTab",$("#addressesPanel"));
+  		this.selectedTab=this.addressesPanel.nativeElement;
+  		this.SelectedTabReference="#addressesPanel";
+		//console.log(this.SelectedTabReference);
+
+	  	
+ 		this.changingTabs();
  	}
+
+ 	changingTabs() {
+ 		localStorage.setItem('previousSelectedTab',this.SelectedTabReference);
+ 		//console.log(this.selectedTab);
+		this.selectedTab.setAttribute("aria-selected", "true");
+		//console.log(this.selectedTab);
+
+ 		var prev = localStorage.getItem('previousSelectedTab');
+ 		//console.log(prev);
+
+ 		if(prev=='#myOrdersPanel') {
+ 			this.previousSelectedTab=this.myOrdersPanel.nativeElement;
+	 		this.previousSelectedTab.setAttribute("aria-selected", "false");
+ 		} else if(prev=='#profilePanel') {
+ 			this.previousSelectedTab=this.profilePanel.nativeElement;
+	 		this.previousSelectedTab.setAttribute("aria-selected", "false");
+ 		} else if(prev=='#addressesPanel') {
+ 			this.previousSelectedTab=this.addressesPanel.nativeElement;
+	 		this.previousSelectedTab.setAttribute("aria-selected", "false");
+ 		} 
+
+ 	}
+
 }
 

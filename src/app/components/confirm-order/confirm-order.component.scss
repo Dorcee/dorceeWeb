@@ -73,8 +73,8 @@
 	padding-top: rem-calc(15);
 }
 .addressModalHeader {
-  font-size:rem-calc(28);
-  padding-bottom: rem-calc(15);
+    font-size:rem-calc(28);
+    padding-bottom: rem-calc(15);
 }
 .addressFormField {
 	width: 100%;
@@ -83,15 +83,15 @@
 	overflow: visible;
 }
 .closeAddressModal {
-  position: absolute;
-  top: rem-calc(-14);
-  right: rem-calc(-14);
-  color: white;
-  background-color: $primary-color;
-  border-radius: 25px;
-  padding: rem-calc(3 7 5);
-  z-index: 9999;
-  font-size: rem-calc(20);
+    position: absolute;
+    top: rem-calc(-14);
+    right: rem-calc(-14);
+    color: white;
+    background-color: $primary-color;
+    border-radius: 25px;
+    padding: rem-calc(3 7 5);
+    z-index: 9999;
+    font-size: rem-calc(20);
 }
 .addressModalContainer {
 	padding: rem-calc(30 50);

@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<div class="grid-container">
+<div class="grid-container" *ngIf="userDetails">
 	<div class="grid-x grid-padding-x">
 	  <div class="small-12 show-for-small-only">
 	  	<button class="dropdown button dropdownBtn" data-open="tabsList" (click)="tab=0" data-toggle>ACCOUNT DETAILS</button>
@@ -26,14 +26,14 @@
 	    <ul class="tabs tabsContainer vertical" data-tabs id="myAccountTabs">
 	      <div class="TabsHeading">ACCOUNT DETAILS</div>
 	      <li class="tabs-title tabs-title-category">
-	        <a href="#myOrdersPanel" class="tabLink" (click)="moveToMyOrders()" id="myOrders">My Orders</a>
+	        <a href="#myOrdersPanel" class="tabLink" (click)="moveToMyOrders()" #myOrdersPanel>My Orders</a>
 	      </li>
 	      <li class="tabs-title tabs-title-category">
-	        <a href="#profilePanel" class="tabLink" (click)="moveToProfile()" id="profile">Profile</a>
+	        <a href="#profilePanel" class="tabLink" (click)="moveToProfile()" #profilePanel>Profile</a>
 	      </li>
 	      <!-- routerLink="/myAccount/profile" -->
 	      <li class="tabs-title tabs-title-category">
-	        <a href="#addressesPanel" class="tabLink" (click)="moveToAddresses()" id="addresses">Addresses</a>
+	        <a href="#addressesPanel" class="tabLink" (click)="moveToAddresses()" #addressesPanel>Addresses</a>
 	      </li>
 	    </ul>
 	  </div>  
@@ -56,4 +56,4 @@
 
 	</div>				
 </div>
-<app-footer></app-footer>
+<app-footer (LinkClickToMyOrders)="moveToMyOrders()" (LinkClickToProfile)="moveToProfile()"></app-footer>
