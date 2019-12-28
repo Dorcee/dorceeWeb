@@ -28,6 +28,13 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
     }
 
+    // ngOnChanges() {
+    //     navigateTo=this.moveTo;
+    //     console.log(navigateTo);
+    //     //this.is_changes=true;
+    //    // console.log(this.is_changes);
+    // }
+
     ngAfterViewChecked(){
         navigateTo=this.moveTo;
         //console.log(navigateTo);
@@ -44,7 +51,8 @@ export class LoginComponent implements OnInit {
     }
 
     submit() {
-        //console.log(navigateTo);
+        console.log(navigateTo);
+        
         var formdata = this.loginFormControl.value;
         if(this.otp_field == 0) {
             this.userService.generateOtp(formdata).subscribe((data)=>{
@@ -59,9 +67,13 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('user_details', JSON.stringify(data.data.userDetails));
                 $('#loginModal').foundation('close');
                 
-                if(navigateTo){
-                    this.router.navigate([navigateTo]);
-                }
+                console.log('navigate to one');
+                this.router.navigate([navigateTo]);        
+
+                // if(navigateTo){
+                //     console.log('navigate to');
+                //     this.router.navigate([navigateTo]);
+                // }
                 
                 // TODO : error section of verify OTP
                 // TODO :  show successful login message

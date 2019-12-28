@@ -37,56 +37,56 @@ export class MyAccountComponent implements OnInit {
 	 		this.subPage=this.route.snapshot.params.subPage;
 		  	//console.log("subPage "+this.subPage);  	
 		    if(this.subPage=="myOrders"){
-				$("#myAccountTabs").foundation("selectTab",$("#myOrdersPanel"));
+				this.moveToMyOrders();
 			}
 			else if(this.subPage=="profile"){
-				$("#myAccountTabs").foundation("selectTab",$("#profilePanel"));
+				this.moveToProfile();				
 			}
 		  	else {
-		  		$("#myAccountTabs").foundation("selectTab",$("#addressesPanel"));
+		  		this.moveToAddresses();
 		  	}
-		 } 	
+		} 	
  	}
 
  	moveToMyOrders(){
- 		//this.router.navigate(["/myAccount/myOrders"]);
+ 		this.changingTabs();
+
  		$("#myAccountTabs").foundation("selectTab",$("#myOrdersPanel"));
 		this.selectedTab=this.myOrdersPanel.nativeElement;
 		this.SelectedTabReference="#myOrdersPanel";
-		//console.log(this.SelectedTabReference);
 
+	  	localStorage.setItem('previousSelectedTab',this.SelectedTabReference);
+		this.selectedTab.setAttribute("aria-selected", "true");
 		//console.log(this.selectedTab);
- 		this.changingTabs();
  	}
 
  	moveToProfile(){
- 		//this.router.navigate(["/myAccount/profile"]);
+ 		this.changingTabs();
+
  		$("#myAccountTabs").foundation("selectTab",$("#profilePanel"));
 		this.selectedTab=this.profilePanel.nativeElement;
 		this.SelectedTabReference="#profilePanel";
-		//console.log(this.SelectedTabReference);
 
+	  	localStorage.setItem('previousSelectedTab',this.SelectedTabReference);
+		this.selectedTab.setAttribute("aria-selected", "true");
 		//console.log(this.selectedTab);
-	  	
- 		this.changingTabs();
+	
  	}
  	moveToAddresses(){
- 		//this.router.navigate(["/myAccount/addresses"]);
+ 		this.changingTabs();
+ 		
  		$("#myAccountTabs").foundation("selectTab",$("#addressesPanel"));
   		this.selectedTab=this.addressesPanel.nativeElement;
   		this.SelectedTabReference="#addressesPanel";
-		//console.log(this.SelectedTabReference);
 
+		localStorage.setItem('previousSelectedTab',this.SelectedTabReference);
+		this.selectedTab.setAttribute("aria-selected", "true");
+		//console.log(this.selectedTab);
 	  	
- 		this.changingTabs();
  	}
 
  	changingTabs() {
- 		localStorage.setItem('previousSelectedTab',this.SelectedTabReference);
- 		//console.log(this.selectedTab);
-		this.selectedTab.setAttribute("aria-selected", "true");
-		//console.log(this.selectedTab);
-
+ 		
  		var prev = localStorage.getItem('previousSelectedTab');
  		//console.log(prev);
 
