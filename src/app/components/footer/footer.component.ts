@@ -25,11 +25,9 @@ export class FooterComponent implements OnInit {
   footerNavigationToMyOrders(){
     window.scroll(0,0);
     if(this.userDetails) {
-      console.log("user found");
      this.LinkClickToMyOrders.emit();
      this.router.navigate(["/myAccount/myOrders"]);
     } else {
-      console.log("user not found");
       this.navigateTo="/myAccount/myOrders";
       $('#loginModal').foundation('open');
      // console.log(this.navigateTo);
@@ -39,11 +37,9 @@ export class FooterComponent implements OnInit {
   footerNavigationToProfile(){
     window.scroll(0,0);
     if(this.userDetails) {
-      console.log("user found");
      this.LinkClickToProfile.emit();
       this.router.navigate(["/myAccount/profile"]);
     } else {
-      console.log("user not found");
       this.navigateTo="/myAccount/profile";
       $('#loginModal').foundation('open');
     }  

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
@@ -28,14 +28,7 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
     }
 
-    // ngOnChanges() {
-    //     navigateTo=this.moveTo;
-    //     console.log(navigateTo);
-    //     //this.is_changes=true;
-    //    // console.log(this.is_changes);
-    // }
-
-    ngAfterViewChecked(){
+    ngOnChanges() {
         navigateTo=this.moveTo;
         //console.log(navigateTo);
     }
@@ -51,8 +44,6 @@ export class LoginComponent implements OnInit {
     }
 
     submit() {
-        console.log(navigateTo);
-        
         var formdata = this.loginFormControl.value;
         if(this.otp_field == 0) {
             this.userService.generateOtp(formdata).subscribe((data)=>{
@@ -67,13 +58,10 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('user_details', JSON.stringify(data.data.userDetails));
                 $('#loginModal').foundation('close');
                 
-                console.log('navigate to one');
-                this.router.navigate([navigateTo]);        
-
-                // if(navigateTo){
-                //     console.log('navigate to');
-                //     this.router.navigate([navigateTo]);
-                // }
+                if(navigateTo){
+                   // console.log('navigate to');
+                    this.router.navigate([navigateTo]);
+                }
                 
                 // TODO : error section of verify OTP
                 // TODO :  show successful login message
@@ -81,7 +69,6 @@ export class LoginComponent implements OnInit {
                 this.otp_error = error.message;
             });
             this.otp_field=0;
-            navigateTo='';
         }
     }
 
