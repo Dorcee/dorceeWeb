@@ -6,16 +6,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page-header.component.scss']
 })
 export class HomePageHeaderComponent implements OnInit {
-
+  isUserLoggedIN:boolean=false;
+  
   constructor() { }
 
   userDetails = JSON.parse(localStorage.getItem('user_details')); 
 
   ngOnInit() {
+    this.userDetails = JSON.parse(localStorage.getItem('user_details'));
+    this.isUserLoggedIN=true; 
   }
 
-  ngAfterContentChecked() {
-  	this.userDetails = JSON.parse(localStorage.getItem('user_details')); 
-    // TODO : find another hook that does not call again and again, it calls in miliseconds
+  logOut() {
+    localStorage.removeItem('user_details');
+    this.isUserLoggedIN=false;
+  }
+
+  gettingUserLoggedIn() {
+   this.isUserLoggedIN=true; 
   }
 }
