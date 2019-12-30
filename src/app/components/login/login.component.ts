@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
@@ -13,6 +13,7 @@ var navigateTo:string;
 })
 export class LoginComponent implements OnInit {
     @Input('moveTo') moveTo:string;
+    @Output() userLoggingIN = new EventEmitter();
 
     constructor(
         public userService:UserService,
@@ -58,6 +59,7 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('user_details', JSON.stringify(data.data.userDetails));
                 $('#loginModal').foundation('close');
                 
+                this.userLoggingIN.emit();                
                 if(navigateTo){
                    // console.log('navigate to');
                     this.router.navigate([navigateTo]);

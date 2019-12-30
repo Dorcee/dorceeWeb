@@ -10,11 +10,16 @@
 .homepageHeading {
 	padding-right: rem-calc(15);
 	cursor: pointer;
-  outline: none;
+    outline: none;
+    color:#0A0A0A;
   
-  &:hover {
-  	color: $primary-color;
-  }
+    &:hover {
+  		color: $primary-color;
+  	}
+}
+
+.customTab {
+	z-index: 1000;
 }
 
 .brandLogo:focus {
