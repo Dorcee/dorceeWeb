@@ -113,9 +113,8 @@
 								<div class="fitCategory">{{product.category}}</div>
 							</div>
 							<div class="alsoLikeProductPrice">
-								<!-- <span class="originalPrice itemDiscounted">{{(loc_type == indian_location) ? 'RS. '+product?.INR?.base_price : '$' + product?.USD?.base_price}}</span>
-								<span class="discountedPrice">{{(loc_type == indian_location) ? 'Rs. ' + product?.INR?.price : '$' + product?.USD?.price}}</span> -->
-								<span class="originalPrice">{{product.price}}</span>
+								<!-- <span class="originalPrice itemDiscounted">{{(loc_type == indian_location) ? 'RS.' : '$'}} {{product.base_price}}</span> -->
+								<span class="originalPrice">{{(loc_type == indian_location) ? 'RS.' : '$'}} {{product.price}}</span>
 							</div>
 						</a>
 					</div>

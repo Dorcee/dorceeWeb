@@ -42,8 +42,8 @@
 			{{productDetail?.name}}
 		</div>
 		<div class="pricingContainer">
-			<!-- <span class="itemOriginalPrice itemDiscounted">{{(loc_type == indian_location) ? 'RS. '+productDetail?.INR?.base_price : '$' + productDetail?.USD?.base_price}}</span> -->
-			<span class="itemDiscountedPrice">{{productDetail.price}}</span>
+			<!-- <span class="itemOriginalPrice itemDiscounted">{{(loc_type == indian_location) ? 'RS.' : '$'}} {{productDetail?.base_price}}</span> -->
+			<span class="itemDiscountedPrice">{{(loc_type == indian_location) ? 'RS.' : '$'}} {{productDetail?.price}}</span>
 			<!-- <span class="itemDiscountPercent">50% OFF</span> -->
 		</div>
 		<div class="sizingContainer">
@@ -138,14 +138,10 @@
 
 			<div class="errorMessageContainer">
 				<div class="errorMessage" *ngIf="sizeAcceptance==false">
-					<div>
-						Please select your size.
-					</div>
+					Please select your size.
 				</div>
 				<div class="errorMessage" *ngIf="fitAcceptance==false">
-					<div>
-						Please select your fit.
-					</div>
+					Please select your fit.
 				</div>
 			</div>
 		</div>
