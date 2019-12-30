@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 
 declare var $:any;
-var navigateTo:string="/5/";
+var navigateTo:string;
 
 @Component({
     selector: 'app-login',
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
     }
 
-    ngAfterViewChecked(){
+    ngOnChanges() {
         navigateTo=this.moveTo;
         //console.log(navigateTo);
     }
@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
     }
 
     submit() {
-        //console.log(navigateTo);
         var formdata = this.loginFormControl.value;
         if(this.otp_field == 0) {
             this.userService.generateOtp(formdata).subscribe((data)=>{
@@ -60,6 +59,7 @@ export class LoginComponent implements OnInit {
                 $('#loginModal').foundation('close');
                 
                 if(navigateTo){
+                   // console.log('navigate to');
                     this.router.navigate([navigateTo]);
                 }
                 
@@ -69,7 +69,6 @@ export class LoginComponent implements OnInit {
                 this.otp_error = error.message;
             });
             this.otp_field=0;
-            navigateTo='';
         }
     }
 
