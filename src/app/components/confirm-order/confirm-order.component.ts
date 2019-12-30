@@ -25,6 +25,7 @@ export class ConfirmOrderComponent implements OnInit {
   products: any;
   contentLoaded = 0;
   addressForm: FormGroup;
+  getUserDetails:any; 
   getUserAccessToken:any; 
   userDetails:any;
   addressDetail:any;
@@ -33,14 +34,19 @@ export class ConfirmOrderComponent implements OnInit {
 
   ngOnInit() {
   	$(document).foundation();
-    this.getUserAccessToken = JSON.parse(localStorage.getItem('user_details')).access_token;
-    //console.log(this.getUserAccessToken);
+    this.getUserDetails = JSON.parse(localStorage.getItem('user_details'));
 
-    this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
-      //console.log(data);
-      this.addressDetail = data;
-    });
+    if(this.getUserDetails) {
+      this.getUserAccessToken = JSON.parse(localStorage.getItem('user_details')).access_token;
+      //console.log(this.getUserAccessToken);
+      
+      this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
+        //console.log(data);
+        this.addressDetail = data;
+      });
 
+    }
+    
     if(this.cart_items) {
       this.homeService.getAllProducts().subscribe((data)=>{
         this.products = data;
