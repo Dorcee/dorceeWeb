@@ -30,6 +30,7 @@ export class ConfirmOrderComponent implements OnInit {
   addressDetail:any;
   addressToken:string;
   addressId:number;
+  editAddressDetail:any;
 
   ngOnInit() {
   	$(document).foundation();
@@ -95,8 +96,9 @@ export class ConfirmOrderComponent implements OnInit {
     this.userDetails = JSON.parse(localStorage.getItem('user_details'));
     //console.log(this.userDetails);
     this.addressToken=token;
+    this.editAddressDetail = addressDetail;
 
-    if(token=='Add'){
+    if(token=='Add' && this.editAddressDetail=='noAddress'){
       //console.log(token);
       this.addressForm = this.formBuilder.group({
         // firstName:['', [Validators.required]],
@@ -111,7 +113,7 @@ export class ConfirmOrderComponent implements OnInit {
       });
     } else {
      // console.log(token);
-      this.addressId=addressDetail.id;
+      this.addressId=this.editAddressDetail.id;
       if(addressDetail.type=='INR' || addressDetail.type.toLowerCase()=='india') {
         addressDetail.type='India';
       } else {

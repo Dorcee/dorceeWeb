@@ -48,13 +48,30 @@
 	color: $white;
 }
 
+.scrollBar {
+	height: rem-calc(190);
+	overflow-y: scroll;
+} 
+
+.scrollBar::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.scrollBar::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #C4A56A;
+}
+
 .deliveryDetailsHeader {
 	text-transform: uppercase;
 }
 
 .deliveryItemDetails {
 	padding-left: rem-calc(10);
-	overflow-y:scroll;
 }
 
 .addAddressContainer {
