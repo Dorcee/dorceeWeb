@@ -16,7 +16,6 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
               public router : Router
   ) { }
   
-  loading:boolean = true;
   p: number = 1;
   products : any;
   categories : any;
@@ -45,21 +44,15 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
     });  
   }
 
-  ngAfterContentInit(){
-   // console.log(this.loading);
-   //  this.loading=false;
-   //  console.log(this.loading); 
-  }
-
   ngAfterViewInit(){
-    setTimeout(function() {
-      $('.productImageSlideContainer').not('.slick-initialized').slick({
-        infinite: true,
-        arrows: false,
-        autoplaySpeed: 1000,
-      });
+    setTimeout(function () {
+       $('.productImageSlideContainer').not('.slick-initialized').slick({
+         infinite: true,
+         autoplaySpeed: 1000,
+         arrows: false,
+       });
+       $("#loading").css("display", "none");
     }, 1000);
-    this.loading=false;
   }
 
   changeStyle($event,ID){

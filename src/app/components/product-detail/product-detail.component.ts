@@ -14,7 +14,6 @@ var $scope;
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-  loading:boolean = true;
     
   constructor( private productDetailServices : ProductDetailService,
                private activatedRoute : ActivatedRoute,
@@ -75,43 +74,12 @@ export class ProductDetailComponent implements OnInit {
        
   }
 
-  // sizeSelecting(allSizes,SizeAve) {
-  //  // console.log(allSizes);
-  //   //console.log(SizeAve);
-  //   let z=0;
-  //   for(let y in allSizes){
-  //     start:
-  //     for(let x of SizeAve) {
-  //       if(allSizes[y].value==x){
-  //        this.sizesToShow[z]={"key":"Ave","value":allSizes[y].value};
-  //        z++;
-  //       }
-  //     }
-  //     if(this.sizesToShow[0].key=='Ave' || this.sizesToShow[0].key=='NotAve' ){
-  //       if(allSizes[y].value==this.sizesToShow[z-1].value) {
-  //        // console.log('duplicate value');
-  //         //console.log(allSizes[y].value);
-  //       } else {
-  //         //console.log(allSizes[y].value);
-  //         this.sizesToShow[z]={"key":"NotAve","value":allSizes[y].value};
-  //         z++;  
-  //       }
-  //     } else {
-  //       this.sizesToShow[z]={"key":"NotAve","value":allSizes[y].value};
-  //       z++;
-  //     } 
-  //   }
-  //   //console.log(this.sizesToShow);
-  // }
-
   ngAfterViewInit() {
     this.setSlickDesign();
-    this.loading=false;
     setTimeout(function () {
       $(document).foundation();
     }, 1000);
     
-    this.loading=false;
   }
 
   setSlickDesign(){
@@ -141,6 +109,7 @@ export class ProductDetailComponent implements OnInit {
         autoplay: true,
         autoplaySpeed: 2000,
       });
+      $("#loading").css("display", "none");
    }, 1000);
   }
 
