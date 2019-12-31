@@ -14,7 +14,6 @@ var $scope;
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-  loading:boolean = true;
     
   constructor( private productDetailServices : ProductDetailService,
                private activatedRoute : ActivatedRoute,
@@ -79,12 +78,10 @@ export class ProductDetailComponent implements OnInit {
 
   ngAfterViewInit() {
     this.setSlickDesign();
-    this.loading=false;
     setTimeout(function () {
       $(document).foundation();
     }, 1000);
     
-    this.loading=false;
   }
 
   setSlickDesign(){
@@ -114,6 +111,7 @@ export class ProductDetailComponent implements OnInit {
         autoplay: true,
         autoplaySpeed: 2000,
       });
+      $("#loading").css("display", "none");
    }, 1000);
   }
 

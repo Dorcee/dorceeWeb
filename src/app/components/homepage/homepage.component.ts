@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { HomeService } from '../../services/home.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
@@ -13,7 +13,8 @@ declare var $:any;
 })
 export class HomepageComponent implements OnInit, AfterViewInit {
 	
-	loading:boolean=true;
+	//@ViewChild('loading', {static:false}) loading:any;
+	//loadingElement:any;
 	products = [];
 
 	constructor(public homeservice:HomeService, public router:Router) { }
@@ -47,32 +48,36 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit(){
-    setTimeout(function () {
-     	$('.productImageSlideContainer').not('.slick-initialized').slick({
-     		infinite: true,
-     		autoplaySpeed: 1000,
-     		arrows: false,
-     	});
-  	}, 1000);
-  	this.loading=false;
+		//this.loadingElement = this.loading.nativeElement;
+
+	    setTimeout(function () {
+	     	$('.productImageSlideContainer').not('.slick-initialized').slick({
+	     		infinite: true,
+	     		autoplaySpeed: 1000,
+	     		arrows: false,
+	     	});
+	     //	console.log(this.loadingElement);
+	     	$("#loading").css("display", "none");
+	  	}, 1000);
 	}
 
-	changeStyle($event,ID){
-    // console.log(ID); 
-    if($event.type == 'mouseover'){ 
-      setTimeout(function () {
-        $('#slider'+ID+'.productImageSlideContainer').slick('slickPlay');
-      }, 10);
-    } 
-  }
-  changeBackStyle($event,id){
-    // console.log($event.type); 
-    if($event.type == 'mouseout'){ 
-      setTimeout(function () {
-        $('#slider'+id+'.productImageSlideContainer').slick('slickPause');
-      }, 10);
+		changeStyle($event,ID){
+	    // console.log(ID); 
+	    if($event.type == 'mouseover'){ 
+	      setTimeout(function () {
+	        $('#slider'+ID+'.productImageSlideContainer').slick('slickPlay');
+	      }, 10);
+	    } 
     }
-  }
+   
+    changeBackStyle($event,id){
+	    // console.log($event.type); 
+	    if($event.type == 'mouseout'){ 
+	      setTimeout(function () {
+	        $('#slider'+id+'.productImageSlideContainer').slick('slickPause');
+	      }, 10);
+	    }
+    }
 	
 	getProducts(loc_type) {
 		this.homeservice.getAllProducts('loc_type', loc_type).subscribe((data)=>{

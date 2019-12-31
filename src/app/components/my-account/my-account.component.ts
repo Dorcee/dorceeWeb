@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileComponent } from '../profile/profile.component';
 import { MyOrdersComponent }  from '../my-orders/my-orders.component';
 
-
 declare var $:any;
 
 @Component({
