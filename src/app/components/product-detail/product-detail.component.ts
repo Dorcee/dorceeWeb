@@ -34,6 +34,8 @@ export class ProductDetailComponent implements OnInit {
   selectedSize: any;
   sizeAcceptance:boolean=true;
   fitAcceptance:boolean=true;
+  productAdded:boolean=false;
+  productAddedMessage:string='';
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -74,35 +76,6 @@ export class ProductDetailComponent implements OnInit {
 
        
   }
-
-  // sizeSelecting(allSizes,SizeAve) {
-  //  // console.log(allSizes);
-  //   //console.log(SizeAve);
-  //   let z=0;
-  //   for(let y in allSizes){
-  //     start:
-  //     for(let x of SizeAve) {
-  //       if(allSizes[y].value==x){
-  //        this.sizesToShow[z]={"key":"Ave","value":allSizes[y].value};
-  //        z++;
-  //       }
-  //     }
-  //     if(this.sizesToShow[0].key=='Ave' || this.sizesToShow[0].key=='NotAve' ){
-  //       if(allSizes[y].value==this.sizesToShow[z-1].value) {
-  //        // console.log('duplicate value');
-  //         //console.log(allSizes[y].value);
-  //       } else {
-  //         //console.log(allSizes[y].value);
-  //         this.sizesToShow[z]={"key":"NotAve","value":allSizes[y].value};
-  //         z++;  
-  //       }
-  //     } else {
-  //       this.sizesToShow[z]={"key":"NotAve","value":allSizes[y].value};
-  //       z++;
-  //     } 
-  //   }
-  //   //console.log(this.sizesToShow);
-  // }
 
   ngAfterViewInit() {
     this.setSlickDesign();
@@ -172,17 +145,20 @@ export class ProductDetailComponent implements OnInit {
           item.fit == this.selectedFit;})) {
           //console.log(find_item);
           // TODO : we can auto increase quantity of that product from here by using findIndex().
-          alert('Already added this product.');
+          this.productAddedMessage='Already added this product.';
+          this.productAdded=true;
         } else {
           cart_items.push({id: id, size: this.selectedSize, fit: this.selectedFit, qty: 1});
           localStorage.setItem('cart_items', JSON.stringify(cart_items));
-          alert('Successfully added the product.');
+          this.productAddedMessage='Successfully added the product.';
+          this.productAdded=true;
         }
       } else {
         let cart_items = <any[]> Array();
         cart_items.push({id: id, size: this.selectedSize, fit: this.selectedFit, qty: 1});
         localStorage.setItem('cart_items', JSON.stringify(cart_items));
-        alert('Successfully added the product.');
+        this.productAddedMessage='Successfully added the product.';
+        this.productAdded=true;
       }
       //console.log(localStorage.getItem('cart_items'));
     }

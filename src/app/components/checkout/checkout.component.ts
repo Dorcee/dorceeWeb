@@ -39,7 +39,7 @@ export class CheckoutComponent implements OnInit {
 		console.log(index);
 		this.cart_items.splice(index, 1) ;
 		localStorage.setItem('cart_items', JSON.stringify(this.cart_items));
-		alert('Item removed successfully');
+		//alert('Item removed successfully');
 		// TODO : change price section also, if change qty , 
 		// TODO : successfully remove message
 	}

@@ -25,12 +25,12 @@ export class MyAccountComponent implements OnInit {
 	@ViewChild('profilePanel', {static: false}) profilePanel:ElementRef;
 	@ViewChild('addressesPanel', {static: false}) addressesPanel:ElementRef;
 
-  ngOnInit() {
-  	$(document).foundation();
-  	this.userDetails=JSON.parse(localStorage.getItem('user_details'));
-  	//console.log(this.userDetails);
+    ngOnInit() {
+  		$(document).foundation();
+  		this.userDetails=JSON.parse(localStorage.getItem('user_details'));
+  		//console.log(this.userDetails);
 
-  }
+  	}
 
  	ngAfterViewInit(){	
  		if(this.userDetails){
@@ -50,7 +50,7 @@ export class MyAccountComponent implements OnInit {
 
  	moveToMyOrders(){
  		this.changingTabs();
-
+ 		this.router.navigate(['/myAccount/myOrders']);
  		$("#myAccountTabs").foundation("selectTab",$("#myOrdersPanel"));
 		this.selectedTab=this.myOrdersPanel.nativeElement;
 		this.SelectedTabReference="#myOrdersPanel";
@@ -63,6 +63,7 @@ export class MyAccountComponent implements OnInit {
  	moveToProfile(){
  		this.changingTabs();
 
+ 		this.router.navigate(['/myAccount/profile']);
  		$("#myAccountTabs").foundation("selectTab",$("#profilePanel"));
 		this.selectedTab=this.profilePanel.nativeElement;
 		this.SelectedTabReference="#profilePanel";
@@ -74,7 +75,7 @@ export class MyAccountComponent implements OnInit {
  	}
  	moveToAddresses(){
  		this.changingTabs();
- 		
+ 		this.router.navigate(['/myAccount/addresses']);
  		$("#myAccountTabs").foundation("selectTab",$("#addressesPanel"));
   		this.selectedTab=this.addressesPanel.nativeElement;
   		this.SelectedTabReference="#addressesPanel";

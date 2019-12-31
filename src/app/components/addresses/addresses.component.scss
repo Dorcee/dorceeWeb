@@ -1,5 +1,7 @@
 @import '../../../assets/foundation-sites/global';
 
+$backgroundColor: #dcdcdc;
+
 .customButton {
 	border:dashed;
 	border-width:rem-calc(2);
@@ -37,14 +39,14 @@
 }
 .addressCardHeader {
 	padding:rem-calc(5);
-	border-bottom:1px ridge #dcdcdc;
+	border-bottom:1px ridge $backgroundColor;
 }
 .addressCardSection {
 	padding:rem-calc(5);
 }
 .addressCardFooter{
 	padding:rem-calc(5);
-	border-top:1px ridge #dcdcdc;
+	border-top:1px ridge $backgroundColor;
 }
 .cardLink {
 	margin-left:rem-calc(10);
