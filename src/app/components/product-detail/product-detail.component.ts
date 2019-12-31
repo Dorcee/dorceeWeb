@@ -35,7 +35,7 @@ export class ProductDetailComponent implements OnInit {
   sizeAcceptance:boolean=true;
   fitAcceptance:boolean=true;
   productAdded:boolean=false;
-  productAddedMessage:string;
+  productAddedMessage:string='';
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -76,35 +76,6 @@ export class ProductDetailComponent implements OnInit {
 
        
   }
-
-  // sizeSelecting(allSizes,SizeAve) {
-  //  // console.log(allSizes);
-  //   //console.log(SizeAve);
-  //   let z=0;
-  //   for(let y in allSizes){
-  //     start:
-  //     for(let x of SizeAve) {
-  //       if(allSizes[y].value==x){
-  //        this.sizesToShow[z]={"key":"Ave","value":allSizes[y].value};
-  //        z++;
-  //       }
-  //     }
-  //     if(this.sizesToShow[0].key=='Ave' || this.sizesToShow[0].key=='NotAve' ){
-  //       if(allSizes[y].value==this.sizesToShow[z-1].value) {
-  //        // console.log('duplicate value');
-  //         //console.log(allSizes[y].value);
-  //       } else {
-  //         //console.log(allSizes[y].value);
-  //         this.sizesToShow[z]={"key":"NotAve","value":allSizes[y].value};
-  //         z++;  
-  //       }
-  //     } else {
-  //       this.sizesToShow[z]={"key":"NotAve","value":allSizes[y].value};
-  //       z++;
-  //     } 
-  //   }
-  //   //console.log(this.sizesToShow);
-  // }
 
   ngAfterViewInit() {
     this.setSlickDesign();

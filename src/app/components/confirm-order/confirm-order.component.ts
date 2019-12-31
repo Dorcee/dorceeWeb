@@ -92,8 +92,8 @@ export class ConfirmOrderComponent implements OnInit {
 
 
   showModalToAddAddress(token,addressDetail){
-    $('#addressUpdate').foundation('open');
     this.userDetails = JSON.parse(localStorage.getItem('user_details'));
+    $('#addressUpdate').foundation('open');
     //console.log(this.userDetails);
     this.addressToken=token;
     this.editAddressDetail = addressDetail;

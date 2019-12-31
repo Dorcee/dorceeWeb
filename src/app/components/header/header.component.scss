@@ -10,11 +10,11 @@
 
 .cartItems {
 	position: absolute;
-    right: 0px;
-    top: 18px;
-    background: #600000;
-    color: white;
-    font-size: 10px;
+    right: rem-calc(0);
+    top: rem-calc(18);
+    background: $primary-color;
+    color: $white;
+    font-size: rem-calc(10);
     padding: rem-calc(2 6);
     border-radius: 50%;
 }
