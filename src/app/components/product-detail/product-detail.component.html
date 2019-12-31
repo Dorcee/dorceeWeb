@@ -136,12 +136,15 @@
 				</span>
 			</div>
 
-			<div class="errorMessageContainer">
-				<div class="errorMessage" *ngIf="sizeAcceptance==false">
+			<div class="messageContainer">
+				<div class="messageStyle" *ngIf="sizeAcceptance==false">
 					Please select your size.
 				</div>
-				<div class="errorMessage" *ngIf="fitAcceptance==false">
+				<div class="messageStyle" *ngIf="fitAcceptance==false">
 					Please select your fit.
+				</div>
+				<div class="messageStyle" *ngIf="productAdded">
+					{{productAddedMessage}}
 				</div>
 			</div>
 		</div>

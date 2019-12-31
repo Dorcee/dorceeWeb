@@ -34,6 +34,8 @@ export class ProductDetailComponent implements OnInit {
   selectedSize: any;
   sizeAcceptance:boolean=true;
   fitAcceptance:boolean=true;
+  productAdded:boolean=false;
+  productAddedMessage:string;
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -172,17 +174,20 @@ export class ProductDetailComponent implements OnInit {
           item.fit == this.selectedFit;})) {
           //console.log(find_item);
           // TODO : we can auto increase quantity of that product from here by using findIndex().
-          alert('Already added this product.');
+          this.productAddedMessage='Already added this product.';
+          this.productAdded=true;
         } else {
           cart_items.push({id: id, size: this.selectedSize, fit: this.selectedFit, qty: 1});
           localStorage.setItem('cart_items', JSON.stringify(cart_items));
-          alert('Successfully added the product.');
+          this.productAddedMessage='Successfully added the product.';
+          this.productAdded=true;
         }
       } else {
         let cart_items = <any[]> Array();
         cart_items.push({id: id, size: this.selectedSize, fit: this.selectedFit, qty: 1});
         localStorage.setItem('cart_items', JSON.stringify(cart_items));
-        alert('Successfully added the product.');
+        this.productAddedMessage='Successfully added the product.';
+        this.productAdded=true;
       }
       //console.log(localStorage.getItem('cart_items'));
     }
