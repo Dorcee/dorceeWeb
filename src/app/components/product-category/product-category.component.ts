@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from '../../services/home.service';
 import { environment } from 'src/environments/environment';
@@ -29,6 +29,7 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
   containerLoaded = true;
   loc_type = localStorage.getItem('loc_type');
   indian_location = environment.india_location;
+  @ViewChild('loading', {static:false}) loading:ElementRef;
 
   ngOnInit() {
     this.homeservice.getAllProducts().subscribe((data)=>{
@@ -45,14 +46,15 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(){
-    setTimeout(function () {
-       $('.productImageSlideContainer').not('.slick-initialized').slick({
-         infinite: true,
-         autoplaySpeed: 1000,
-         arrows: false,
-       });
-       $("#loading").css("display", "none");
-    }, 1000);
+      setTimeout(() => {
+         $('.productImageSlideContainer').not('.slick-initialized').slick({
+           infinite: true,
+           autoplaySpeed: 1000,
+           arrows: false,
+         });
+          //console.log(this.loadingElement);
+         this.loading.nativeElement.className = 'hidingLoader' ;
+      }, 1000);
   }
 
   changeStyle($event,ID){

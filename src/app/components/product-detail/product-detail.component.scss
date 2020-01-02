@@ -45,6 +45,10 @@ $image-hover-wrapper-icon-size: rem-calc(24);
   }
 }
 
+.hidingLoader{
+  display:none;
+}
+
 .sizeSelectorContainer, .fitSelectorContainer {
 	display: flex;
   flex-flow: row wrap;

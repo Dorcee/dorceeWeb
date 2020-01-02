@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 declare var $:any;
@@ -12,10 +12,16 @@ export class MyOrdersComponent implements OnInit {
 	
   constructor() { }
 
+  @ViewChild('loading', {static:false}) loading:ElementRef;
+  
   ngOnInit() {
-  	$(document).foundation();
-  	
-  	
+  	$(document).foundation();  	
+  }
+
+  ngAfterViewInit(){
+    setTimeout(()=> {
+      this.loading.nativeElement.className = 'hidingLoader' ;
+    },500);
   }
 
 }

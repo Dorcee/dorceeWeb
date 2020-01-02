@@ -6,23 +6,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page-header.component.scss']
 })
 export class HomePageHeaderComponent implements OnInit {
-  isUserLoggedIN:boolean=false;
+  isUserLoggedIn:boolean=true;
   
   constructor() { }
 
-  userDetails = JSON.parse(localStorage.getItem('user_details')); 
+  userDetails:any; 
 
   ngOnInit() {
     this.userDetails = JSON.parse(localStorage.getItem('user_details'));
-    this.isUserLoggedIN=true; 
+    if(!this.userDetails) {
+      this.isUserLoggedIn=false; 
+    }
   }
 
   logOut() {
     localStorage.removeItem('user_details');
-    this.isUserLoggedIN=false;
+    this.isUserLoggedIn=false;
   }
 
-  gettingUserLoggedIn() {
-   this.isUserLoggedIN=true; 
+  gettingUserLoggedIn(value) {
+    this.userDetails = JSON.parse(localStorage.getItem('user_details'));
+    this.isUserLoggedIn=value; 
   }
 }

@@ -2,6 +2,10 @@
 
 $border-color: #dcdcdc;
 
+.hidingLoader{
+  display:none;
+}
+
 .primaryBtn {
 	border-radius: rem-calc(20);
 }

@@ -2,6 +2,10 @@
 
 $backgroundColor: #dcdcdc;
 
+.hidingLoader{
+  display:none;
+}
+
 .customButton {
 	border:dashed;
 	border-width:rem-calc(2);

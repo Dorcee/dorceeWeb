@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { WindowRef } from '../../services/windowRef';
 
@@ -27,11 +27,12 @@ export class ConfirmOrderComponent implements OnInit {
   addressForm: FormGroup;
   getUserDetails:any;
   getUserAccessToken:any; 
-  userDetails:any;
   addressDetail:any;
   addressToken:string;
   addressId:number;
   editAddressDetail:any;
+  user:boolean=false;
+  @ViewChild('loading', {static:false}) loading:ElementRef;
 
   ngOnInit() {
   	$(document).foundation();
@@ -45,6 +46,19 @@ export class ConfirmOrderComponent implements OnInit {
         this.addressDetail = data;
       });  
     }
+
+    this.addressForm = this.formBuilder.group({
+      // firstName:['', [Validators.required]],
+      // lastName:['', [Validators.required]],
+      flat_number:['', [Validators.required]], 
+      area: ['', [Validators.required]], 
+      pin_code: ['', [Validators.required]], //USA regex-/^[0-9]{5}(?:-[0-9]{4})?$/ 
+      city: ['', [Validators.required]],
+      state: ['', [Validators.required]], 
+      type :['', [Validators.required]], 
+      is_default: ''
+    });
+
     if(this.cart_items) {
       this.homeService.getAllProducts().subscribe((data)=>{
         this.products = data;
@@ -62,6 +76,12 @@ export class ConfirmOrderComponent implements OnInit {
     } else {
       this.contentLoaded = 1;
     }
+  }
+
+  ngAfterViewInit(){
+    setTimeout(()=> {
+      this.loading.nativeElement.className = 'hidingLoader' ;
+    },1000);
   }
 
   Razorpay: any; 
@@ -94,45 +114,46 @@ export class ConfirmOrderComponent implements OnInit {
   }
 
 
-  showModalToAddAddress(token,addressDetail){
-    $('#addressUpdate').foundation('open');
-    this.userDetails = JSON.parse(localStorage.getItem('user_details'));
-    //console.log(this.userDetails);
+  showModalToAddAddress=(token,addressDetail)=>{
+    this.user=true;
+     
     this.addressToken=token;
     this.editAddressDetail = addressDetail;
 
     if(token=='Add' && this.editAddressDetail=='noAddress'){
       //console.log(token);
-      this.addressForm = this.formBuilder.group({
-        // firstName:['', [Validators.required]],
-        // lastName:['', [Validators.required]],
-        flat_number:['', [Validators.required]], 
-        area: ['', [Validators.required]], 
-        pin_code: ['', [Validators.required]], //USA regex-/^[0-9]{5}(?:-[0-9]{4})?$/ 
-        city: ['', [Validators.required]],
-        state: ['', [Validators.required]], 
-        type :['', [Validators.required]], 
-        is_default: ''
-      });
+      
+      //this.addressForm.controls['firstName'].setValue(addressDetail.firstName);
+      //this.addressForm.controls['lastName'].setValue(addressDetail.lastName);
+      this.addressForm.controls['flat_number'].setValue('');
+      this.addressForm.controls['area'].setValue('');
+      this.addressForm.controls['pin_code'].setValue('');
+      this.addressForm.controls['city'].setValue('');
+      this.addressForm.controls['state'].setValue('');
+      this.addressForm.controls['type'].setValue('');
+      this.addressForm.controls['is_default'].setValue('');
+      
+      $('#addressUpdate').foundation('open');
     } else {
-     // console.log(token);
+      //console.log(token);
       this.addressId=this.editAddressDetail.id;
       if(addressDetail.type=='INR' || addressDetail.type.toLowerCase()=='india') {
-        addressDetail.type='India';
+        this.addressForm.controls['type'].setValue('India');
       } else {
-        addressDetail.type='Outside India';
+        this.addressForm.controls['type'].setValue('Outside India');
       }
-      this.addressForm = this.formBuilder.group({
-        // firstName:['', [Validators.required]],
-        // lastName:['', [Validators.required]],
-        flat_number:[addressDetail.flat_number, [Validators.required]], 
-        area: [addressDetail.area, [Validators.required]], 
-        pin_code: [addressDetail.pin_code, [Validators.required]], //USA regex-/^[0-9]{5}(?:-[0-9]{4})?$/ 
-        city: [addressDetail.city, [Validators.required]],
-        state: [addressDetail.state, [Validators.required]], 
-        type :[addressDetail.type, [Validators.required]], 
-        is_default: [addressDetail.is_default]
-      });
+
+      //this.addressForm.controls['firstName'].setValue(addressDetail.firstName);
+      //this.addressForm.controls['lastName'].setValue(addressDetail.lastName);
+      this.addressForm.controls['flat_number'].setValue(addressDetail.flat_number);
+      this.addressForm.controls['area'].setValue(addressDetail.area);
+      this.addressForm.controls['pin_code'].setValue(addressDetail.pin_code);
+      this.addressForm.controls['city'].setValue(addressDetail.city);
+      this.addressForm.controls['state'].setValue(addressDetail.state);
+     
+      this.addressForm.controls['is_default'].setValue(addressDetail.is_default);
+
+      $('#addressUpdate').foundation('open');
     }
   }
 
@@ -193,7 +214,7 @@ export class ConfirmOrderComponent implements OnInit {
 
     // console.log(this.addressForm.controls['type'].value);
     // console.log(addressFormData);
-    // console.log(this.userDetails.id);
+    // console.log(this.getUserDetails.id);
    
     this.addressService.addAddress(addressFormData,this.getUserAccessToken).subscribe((data)=>{
       //console.log(data);
@@ -209,7 +230,7 @@ export class ConfirmOrderComponent implements OnInit {
     var addressFormData = this.addressForm.value;
     // console.log(this.addressForm.controls['type'].value);
     // console.log(addressFormData);
-    // console.log(this.userDetails.id);
+    // console.log(this.getUserDetails.id);
    
     this.addressService.EditAddress(addressFormData,this.getUserAccessToken,this.addressId).subscribe((data)=>{
       //console.log(data);

@@ -1,3 +1,8 @@
+<div #loading>
+  <app-loader></app-loader>
+</div>
+
+
 <app-header></app-header>
 <div class="grid-container">
 	<div class="grid-x">
@@ -56,7 +61,7 @@
 
 
 			<div class="reveal addressModalOuterContainer" id="addressUpdate" data-reveal>
-				<div class="grid-container addressModalContainer" *ngIf="userDetails">
+				<div class="grid-container addressModalContainer" *ngIf="user">
 				<div class="text-center addressModalHeader">ADDRESS</div>
 				<form [formGroup]="addressForm">
 				  	<div class="grid-container">
@@ -144,7 +149,7 @@
 						<div class="grid-x grid-padding-x">
 							<div class="medium-12 cell">
 								<mat-radio-group formControlName="is_default">
-									<mat-radio-button value="1">Set as Default</mat-radio-button>
+									<mat-radio-button>Set as Default</mat-radio-button>
 								</mat-radio-group>
 							</div>
 					    </div>
