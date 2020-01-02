@@ -36,7 +36,6 @@ export class ProductDetailComponent implements OnInit {
   productAdded:boolean=false;
   productAddedMessage:string='';
   @ViewChild('loading', {static:false}) loading:ElementRef;
-  loadingElement:any;
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -88,7 +87,6 @@ export class ProductDetailComponent implements OnInit {
 
   setSlickDesign(){
     // TODO : create common function to only one file and call it everywhere
-    this.loadingElement = this.loading.nativeElement;
 
     setTimeout(() => {
       $('.productDetailImagesContainer, .slick-next:before, .slick-prev:after').not('.slick-initialized').slick({
@@ -115,7 +113,7 @@ export class ProductDetailComponent implements OnInit {
         autoplay: true,
         autoplaySpeed: 2000,
       });
-      this.loadingElement.className = 'hidingLoader' ;
+      this.loading.nativeElement.className = 'hidingLoader' ;
    }, 1000);
   }
 
