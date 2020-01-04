@@ -17,7 +17,7 @@ export class FooterComponent implements OnInit {
   constructor( private router:Router ) { }
 
   ngOnInit() {
-  	$(document).foundation();
+  	//$(document).foundation();
     this.userDetails=localStorage.getItem('user_details');
     //console.log(this.userDetails);
   }

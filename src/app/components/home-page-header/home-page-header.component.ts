@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+declare var $:any;
+
 @Component({
   selector: 'app-home-page-header',
   templateUrl: './home-page-header.component.html',
@@ -13,6 +15,8 @@ export class HomePageHeaderComponent implements OnInit {
   userDetails:any; 
 
   ngOnInit() {
+   // $(document).foundation();
+
     this.userDetails = JSON.parse(localStorage.getItem('user_details'));
     if(!this.userDetails) {
       this.isUserLoggedIn=false; 
