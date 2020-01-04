@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl,FormBuilder, Validators } from '@angular/forms';
 import { User_Details } from '../../models/interfaceDirectory';
 
@@ -13,7 +13,8 @@ export class ProfileComponent implements OnInit {
 	user_details:any;
   profileForm : FormGroup;
   editable : Boolean = false;
-
+  @ViewChild('loading', {static:false}) loading:ElementRef;
+  
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -32,6 +33,12 @@ export class ProfileComponent implements OnInit {
 	  });
 
     // this.profileForm.disable();
+  }
+
+  ngAfterViewInit(){
+    setTimeout(()=> {
+      this.loading.nativeElement.className = 'hidingLoader' ;
+    },500);
   }
 
   onEditProfile() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { HomeService } from '../../services/home.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
@@ -13,8 +13,7 @@ declare var $:any;
 })
 export class HomepageComponent implements OnInit, AfterViewInit {
 	
-	//@ViewChild('loading', {static:false}) loading:any;
-	//loadingElement:any;
+	@ViewChild('loading', {static:false}) loading:ElementRef;
 	products = [];
 
 	constructor(public homeservice:HomeService, public router:Router) { }
@@ -38,7 +37,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 				if(ip_details.countryCode == 'IN') {
 					var loc_type = environment.india_location;
 				} else {
-					var loc_type = environment.india_location;
+					var loc_type = environment.other_location;
 				}
 				localStorage.setItem('loc_type', loc_type);
 				this.getProducts(loc_type);
@@ -48,16 +47,15 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit(){
-		//this.loadingElement = this.loading.nativeElement;
 
-	    setTimeout(function () {
+	    setTimeout(() => {
 	     	$('.productImageSlideContainer').not('.slick-initialized').slick({
 	     		infinite: true,
 	     		autoplaySpeed: 1000,
 	     		arrows: false,
 	     	});
-	     //	console.log(this.loadingElement);
-	     	$("#loading").css("display", "none");
+	        //console.log(this.loadingElement);
+	     	this.loading.nativeElement.className = 'hidingLoader' ;
 	  	}, 1000);
 	}
 

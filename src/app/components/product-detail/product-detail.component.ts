@@ -1,4 +1,4 @@
-import { Component, OnInit, Pipe } from '@angular/core';
+import { Component, OnInit, Pipe, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductDetailService } from '../../services/product-detail.service';
 import { HomeService } from '../../services/home.service';
@@ -35,6 +35,7 @@ export class ProductDetailComponent implements OnInit {
   fitAcceptance:boolean=true;
   productAdded:boolean=false;
   productAddedMessage:string='';
+  @ViewChild('loading', {static:false}) loading:ElementRef;
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -86,8 +87,9 @@ export class ProductDetailComponent implements OnInit {
 
   setSlickDesign(){
     // TODO : create common function to only one file and call it everywhere
-    setTimeout(function () {
-      $('.productDetailImagesContainer').not('.slick-initialized').slick({
+
+    setTimeout(() => {
+      $('.productDetailImagesContainer, .slick-next:before, .slick-prev:after').not('.slick-initialized').slick({
         infinite: true,
         slidesToShow: 2,
         slidesToScroll: 1,
@@ -111,7 +113,7 @@ export class ProductDetailComponent implements OnInit {
         autoplay: true,
         autoplaySpeed: 2000,
       });
-      $("#loading").css("display", "none");
+      this.loading.nativeElement.className = 'hidingLoader' ;
    }, 1000);
   }
 

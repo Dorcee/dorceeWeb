@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { HomeService } from '../../services/home.service';
 
 @Component({
@@ -14,6 +14,8 @@ export class CheckoutComponent implements OnInit {
 	fits: any;
 	products: any;
 	contentLoaded = 0;
+	@ViewChild('loading', {static:false}) loading:ElementRef;
+
 	ngOnInit() {
 		if(this.cart_items) {
 		//console.log(this.cart_items);
@@ -33,6 +35,12 @@ export class CheckoutComponent implements OnInit {
 		} else {
 			this.contentLoaded = 1;
 		}
+	}
+
+	ngAfterViewInit(){
+		setTimeout(()=> {
+			this.loading.nativeElement.className = 'hidingLoader' ;
+		},500);
 	}
 
 	removeFromCart(index) {

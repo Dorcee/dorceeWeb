@@ -13,7 +13,7 @@ var navigateTo:string;
 })
 export class LoginComponent implements OnInit {
     @Input('moveTo') moveTo:string;
-    @Output() userLoggingIN = new EventEmitter();
+    @Output() userLoggingIn = new EventEmitter();
 
     constructor(
         public userService:UserService,
@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
     userDetails = localStorage.getItem('user_details'); 
 
     ngOnInit() {
+       // console.log(this.moveTo);
     }
 
     ngOnChanges() {
@@ -57,9 +58,9 @@ export class LoginComponent implements OnInit {
             this.userService.verifyOtp(formdata).subscribe((data)=>{
                 this.userDetails = data.data.userDetails;
                 localStorage.setItem('user_details', JSON.stringify(data.data.userDetails));
+                this.userLoggingIn.emit(true);
                 $('#loginModal').foundation('close');
-                
-                this.userLoggingIN.emit();                
+                                
                 if(navigateTo){
                    // console.log('navigate to');
                     this.router.navigate([navigateTo]);
