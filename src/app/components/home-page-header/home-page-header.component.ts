@@ -15,12 +15,18 @@ export class HomePageHeaderComponent implements OnInit {
   userDetails:any; 
 
   ngOnInit() {
-   // $(document).foundation();
+    
+    $('#nameDropDown').foundation();
+    // $(document).foundation();
+    //console.log("home page");
 
     this.userDetails = JSON.parse(localStorage.getItem('user_details'));
     if(!this.userDetails) {
       this.isUserLoggedIn=false; 
     }
+  }
+  ngAfterViewInit() {
+
   }
 
   logOut() {

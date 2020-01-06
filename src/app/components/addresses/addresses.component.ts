@@ -29,7 +29,7 @@ export class AddressesComponent implements OnInit {
   @ViewChild('loading', {static:false}) loading:ElementRef;
   
   ngOnInit() {
-  	$(document).foundation();
+    $('#addressUpdate').foundation();
   	this.getUserAccessToken = JSON.parse(localStorage.getItem('user_details')).access_token;
     //console.log(this.getUserAccessToken);
 

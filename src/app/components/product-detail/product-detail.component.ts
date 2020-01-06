@@ -80,7 +80,7 @@ export class ProductDetailComponent implements OnInit {
   ngAfterViewInit() {
     this.setSlickDesign();
     setTimeout(function () {
-      $(document).foundation();
+      //$(document).foundation();
     }, 1000);
     
   }

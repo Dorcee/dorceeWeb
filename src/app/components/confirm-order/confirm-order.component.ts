@@ -35,7 +35,7 @@ export class ConfirmOrderComponent implements OnInit {
   @ViewChild('loading', {static:false}) loading:ElementRef;
 
   ngOnInit() {
-  	$(document).foundation();
+  	$('#addressUpdate').foundation();
     this.getUserDetails = JSON.parse(localStorage.getItem('user_details'));
     if(this.getUserDetails) {
       this.getUserAccessToken = JSON.parse(localStorage.getItem('user_details')).access_token;
@@ -139,22 +139,27 @@ export class ConfirmOrderComponent implements OnInit {
       this.addressId=this.editAddressDetail.id;
       if(addressDetail.type=='INR' || addressDetail.type.toLowerCase()=='india') {
         this.addressForm.controls['type'].setValue('India');
+        this.openAddressUpdate();
       } else {
         this.addressForm.controls['type'].setValue('Outside India');
+        this.openAddressUpdate();
       }
 
-      //this.addressForm.controls['firstName'].setValue(addressDetail.firstName);
-      //this.addressForm.controls['lastName'].setValue(addressDetail.lastName);
-      this.addressForm.controls['flat_number'].setValue(addressDetail.flat_number);
-      this.addressForm.controls['area'].setValue(addressDetail.area);
-      this.addressForm.controls['pin_code'].setValue(addressDetail.pin_code);
-      this.addressForm.controls['city'].setValue(addressDetail.city);
-      this.addressForm.controls['state'].setValue(addressDetail.state);
+    }
+  }
+
+  openAddressUpdate(){
+    //this.addressForm.controls['firstName'].setValue(this.editAddressDetail.firstName);
+      //this.addressForm.controls['lastName'].setValue(this.editAddressDetail.lastName);
+      this.addressForm.controls['flat_number'].setValue(this.editAddressDetail.flat_number);
+      this.addressForm.controls['area'].setValue(this.editAddressDetail.area);
+      this.addressForm.controls['pin_code'].setValue(this.editAddressDetail.pin_code);
+      this.addressForm.controls['city'].setValue(this.editAddressDetail.city);
+      this.addressForm.controls['state'].setValue(this.editAddressDetail.state);
      
-      this.addressForm.controls['is_default'].setValue(addressDetail.is_default);
+      this.addressForm.controls['is_default'].setValue(this.editAddressDetail.is_default);
 
       $('#addressUpdate').foundation('open');
-    }
   }
 
   onAddAddressSubmit(){

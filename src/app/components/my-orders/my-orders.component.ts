@@ -15,7 +15,6 @@ export class MyOrdersComponent implements OnInit {
   @ViewChild('loading', {static:false}) loading:ElementRef;
   
   ngOnInit() {
-  	$(document).foundation();  	
   }
 
   ngAfterViewInit(){
