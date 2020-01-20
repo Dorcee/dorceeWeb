@@ -9,7 +9,10 @@ export class HeaderComponent implements OnInit {
 
   constructor() { }
 
+  cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
+
   ngOnInit() {
+  	this.cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
   }
 
 }

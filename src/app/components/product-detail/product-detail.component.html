@@ -115,7 +115,7 @@
 
 			<div class="fitSelectorContainer">
 				<span *ngFor="let fit of allFits">
-					<a class="fitSelector" [ngClass]="{'selectedFit': selectedFit === fit.name}" (click)="fitSelected(fit.name)" *ngIf="(fitsAvailable | find:fit ) let find_fit">
+					<a class="fitSelector" [ngClass]="{'selectedFit': selectedFit === fit.value}" (click)="fitSelected(fit.value, fit.name)" *ngIf="(fitsAvailable | find:fit ) let find_fit">
 						{{fit.name }}
 					</a>
 

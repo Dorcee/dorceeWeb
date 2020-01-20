@@ -6,8 +6,8 @@ export const environment = {
   production: false,
   // URL of development API
   apiUrl: 'http://100.24.126.71',
-  razorpayKeyID : 'rzp_test_vJsArBMHk2Kp27',
-  razorpayKeySecret : '7hHvPkL8z19C7oi5D1JJ2tMc',
+  razorpayKeyID : 'rzp_test_lAedUBT6oAsEzc',
+  razorpayKeySecret : 'k0RbhCZEbjIaOxZQvGvwNYUn',
   india_location : 'INR',
   other_location : 'USD'
 };

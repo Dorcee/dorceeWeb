@@ -7,7 +7,7 @@
 		<div class="small-4 cell text-right">
 			<div class="cartItemsContainer">
 				<img src="assets/images/emptyShoppingBagBlack.svg" alt="Basket" width="30px" routerLink="/checkout">
-				<div class="cartItems">1</div>
+				<div class="cartItems" *ngIf="cartItems.length > 0">{{cartItems.length}}</div>
 			</div>
 		</div>
 

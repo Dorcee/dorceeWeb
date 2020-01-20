@@ -37,6 +37,7 @@ import { MyAccountComponent } from './components/my-account/my-account.component
 import { WindowRef } from './services/windowRef';
 import { HomeService } from './services/home.service';
 import { UserService } from './services/user.service';
+import { OrderService } from './services/order.service';
 
 import { FindPipe } from './tools/find.pipe';
 import { InfoHeaderComponent } from './components/info-header/info-header.component';
@@ -86,7 +87,8 @@ import { LoaderComponent } from './components/loader/loader.component';
   providers: [
     WindowRef,
     HomeService,
-    UserService
+    UserService,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })

@@ -14,11 +14,11 @@ var $scope;
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-    
+
   constructor( private productDetailServices : ProductDetailService,
-               private activatedRoute : ActivatedRoute,
-               private homeservice: HomeService
-   ) { }
+    private activatedRoute : ActivatedRoute,
+    private homeservice: HomeService
+    ) { }
 
   productDetail:any;
   product_id='';
@@ -30,6 +30,7 @@ export class ProductDetailComponent implements OnInit {
   allSizes = [];
   allFits = [];
   selectedFit: any;
+  selectedFitName: any;
   selectedSize: any;
   sizeAcceptance:boolean=true;
   fitAcceptance:boolean=true;
@@ -43,7 +44,7 @@ export class ProductDetailComponent implements OnInit {
       //console.log(`${this.product_id}`);
     });
 
-    /* TODO : make it via ommon function at every page */
+    /* TODO : make it via common function at every page */
     if(!this.loc_type) {
       this.homeservice.getCountryFromIp().subscribe((ip_details)=>{
         if(ip_details.countryCode == 'IN') {
@@ -73,8 +74,6 @@ export class ProductDetailComponent implements OnInit {
 
       }
     });
-
-       
   }
 
   ngAfterViewInit() {
@@ -96,13 +95,13 @@ export class ProductDetailComponent implements OnInit {
         autoplay: false,
         autoplaySpeed: 2000,
         responsive: [
-          {
-            breakpoint: 640,
-            settings: {
-              slidesToShow: 1,
-              infinite: true,
-            }
+        {
+          breakpoint: 640,
+          settings: {
+            slidesToShow: 1,
+            infinite: true,
           }
+        }
         ]
       });
 
@@ -114,53 +113,48 @@ export class ProductDetailComponent implements OnInit {
         autoplaySpeed: 2000,
       });
       this.loading.nativeElement.className = 'hidingLoader' ;
-   }, 1000);
+    }, 1000);
   }
 
   sizeSelected(size) {
     this.selectedSize = size;
-   // console.log(this.selectedSize);
     this.sizeAcceptance=true;
   }
 
-  fitSelected(fit) {
+  fitSelected(fit, fit_name) {
     this.selectedFit = fit;
-   // console.log(this.selectedFit);
+    this.selectedFitName = fit_name;
     this.fitAcceptance=true;
   }
 
   addToCart(id) {
     if(!this.selectedSize) {
       this.sizeAcceptance=false;
-      //alert('Please select your size.');
     } else if(!this.selectedFit) {
       this.fitAcceptance=false;
-      //alert('Please select your fit.');
     } else {
       var cart_items = JSON.parse(localStorage.getItem('cart_items'));
       if(cart_items) {
         var find_item = '';
-        if(find_item = cart_items.find(item => {return item.id == id && 
+        if(find_item = cart_items.find(item => {return item.product_id == id && 
           item.size == this.selectedSize && 
           item.fit == this.selectedFit;})) {
-          //console.log(find_item);
-          // TODO : we can auto increase quantity of that product from here by using findIndex().
           this.productAddedMessage='Already added this product.';
           this.productAdded=true;
         } else {
-          cart_items.push({id: id, size: this.selectedSize, fit: this.selectedFit, qty: 1});
+          cart_items.push({product_id: id, size: this.selectedSize, 
+            fit: this.selectedFit, fit_name: this.selectedFitName, qty: 1});
           localStorage.setItem('cart_items', JSON.stringify(cart_items));
           this.productAddedMessage='Successfully added the product.';
           this.productAdded=true;
         }
       } else {
         let cart_items = <any[]> Array();
-        cart_items.push({id: id, size: this.selectedSize, fit: this.selectedFit, qty: 1});
+        cart_items.push({product_id: id, size: this.selectedSize, fit: this.selectedFit, qty: 1});
         localStorage.setItem('cart_items', JSON.stringify(cart_items));
         this.productAddedMessage='Successfully added the product.';
         this.productAdded=true;
       }
-      //console.log(localStorage.getItem('cart_items'));
     }
   }
 }

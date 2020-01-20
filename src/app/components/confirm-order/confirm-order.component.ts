@@ -5,6 +5,8 @@ import { WindowRef } from '../../services/windowRef';
 import { environment } from 'src/environments/environment';
 import { HomeService } from '../../services/home.service';
 import { AddressService } from '../../services/address.service';
+import { ProductDetailService } from '../../services/product-detail.service';
+import { OrderService } from '../../services/order.service';
 
 declare var $:any;
 
@@ -18,9 +20,11 @@ export class ConfirmOrderComponent implements OnInit {
     public windowRef: WindowRef,
     private formBuilder:FormBuilder,
     private homeService: HomeService,
-    private addressService: AddressService
+    private addressService: AddressService,
+    private OrderService: OrderService,
+    private productDetailService: ProductDetailService
   ) { }
-  cart_items = JSON.parse(localStorage.getItem('cart_items')) || [];
+  cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
   fits: any;
   products: any;
   contentLoaded = 0;
@@ -31,7 +35,12 @@ export class ConfirmOrderComponent implements OnInit {
   addressToken:string;
   addressId:number;
   editAddressDetail:any;
+  selectedAddress:any;
   user:boolean=false;
+  itemTotal = 0;
+  shippingTotal = 0;
+  grandTotal = 0;
+  locType = localStorage.getItem('loc_type');
   @ViewChild('loading', {static:false}) loading:ElementRef;
 
   ngOnInit() {
@@ -39,10 +48,8 @@ export class ConfirmOrderComponent implements OnInit {
     this.getUserDetails = JSON.parse(localStorage.getItem('user_details'));
     if(this.getUserDetails) {
       this.getUserAccessToken = JSON.parse(localStorage.getItem('user_details')).access_token;
-      //console.log(this.getUserAccessToken);
 
       this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
-        //console.log(data);
         this.addressDetail = data;
       });  
     }
@@ -59,24 +66,34 @@ export class ConfirmOrderComponent implements OnInit {
       is_default: ''
     });
 
-    if(this.cart_items) {
-      this.homeService.getAllProducts().subscribe((data)=>{
-        this.products = data;
-        var types = {"type" : ["fits"]};
-        this.homeService.getAllEntities(types).subscribe((data)=>{
-          this.fits = data.fits;
-          this.cart_items.forEach((cart_item, index) => {
-              var product = this.products.find(product_item => (product_item.id == cart_item.id) );
-              this.cart_items[index]['product'] = product;
-          });
-          this.contentLoaded = 1;
-         // console.log(this.cart_items);
-        });
-      });
+    if(this.cartItems) {
+      this.setProductAndPrice();
     } else {
       this.contentLoaded = 1;
     }
   }
+
+  setProductAndPrice() {
+    //TODO : add loader till api calls
+    // this.loading.nativeElement.className = 'hidingLoader' ;
+    this.itemTotal = this.grandTotal = this.shippingTotal = 0;
+    var ids = this.cartItems.map(function (el) { return el.product_id; });
+    var postdata = {ids: ids, loc_type: this.locType};
+    this.productDetailService.getCartProductsDetail(postdata, this.getUserAccessToken).subscribe((data)=>{
+          console.log(data);
+          this.products = data.products;
+        this.shippingTotal = data.shipping_price;
+      this.cartItems.forEach((cart_item, index) => {
+          var product = this.products.find(product_item => (product_item.id == cart_item.product_id) );
+          this.cartItems[index]['product'] = product;
+          this.itemTotal += product.price;
+      });
+      this.grandTotal = this.itemTotal + this.shippingTotal;
+      this.contentLoaded = 1;
+      // this.loading.nativeElement.className = 'hidingLoader' ;
+    });
+  }
+
 
   ngAfterViewInit(){
     setTimeout(()=> {
@@ -84,35 +101,83 @@ export class ConfirmOrderComponent implements OnInit {
     },1000);
   }
 
+  changeDefaultAddress(address_id) {
+    this.selectedAddress = address_id;
+    // TODO : edit the same address to make it default address
+    // TODO : currently 2 addresses can be default.
+    console.log(address_id);
+  }
+
   Razorpay: any; 
 
   payNow() {
-    // TODO : create an api to send data and get order_id of razorpay, then use it in placing order.
-    var options = {
-      "key": environment.razorpayKeyID,
-      "amount": "2000", // 2000 paise = INR 20
-      "currency": "INR", // environment.india_location
-      "name": "Dorcee",
-      "description": "Purchase Description",
-      "handler": function (response){
-        //console.log(response);
-          alert(response.razorpay_payment_id);
-      },
-      "prefill": {
-        "name": "Milky Jain",
-        "email": "milkyjain812@gmail.com"
-      },
-      "order_id": 'order_DZBu0kr4Gyw8D3',
-      // "callback_url": 'https://your-site.com/callback-url',
-      // "notes": {
-      //     "address": "Hello World"
-      // }
-    };
+    if(this.selectedAddress) {
+      var postData = {'items' : this.cartItems, 'address_id' : this.selectedAddress, 
+        'loc_type' : this.locType};
+      this.OrderService.getOrderDetails(postData, this.getUserAccessToken).subscribe((order_data)=>{
+        var options = {
+          "key": environment.razorpayKeyID,
+          // "amount": "2000", // 2000 paise = INR 20
+          // "currency": "INR", // environment.india_location
+          // "name": "Dorcee",
+          "description": "Purchase Description",
+          "handler": function (response){
+              console.log(response);
+              alert(response.razorpay_payment_id);
+              // this.validateOrder(response);
+          },
+          "prefill": {
+            "name": "Milky Jain",
+            "email": "milkyjain812@gmail.com"
+          },
+          // "order_id": order_data.data.id,
+          "order_id": 'order_E17zeueDzZxp5I',
+          // "callback_url": 'https://your-site.com/callback-url',
+          // redirect: true
+          // "notes": {
+          //     "address": "Hello World"
+          // }
+        };
 
-    var rzp1 = new this.windowRef.nativeWindow.Razorpay(options);
-    rzp1.open();
+        // var rzp1 = new Razorpay(options);
+        var rzp1 = new this.windowRef.nativeWindow.Razorpay(options);
+        rzp1.once('ready', function(response) {
+          console.log('response');
+          console.log(response.methods);
+        })
+        rzp1.open();
+        // rzp1.createPayment(options);
+        rzp1.on('payment.success', function(resp) {
+          alert(resp.razorpay_payment_id);
+          this.validateOrder(resp);
+        }); // will pass payment ID, order ID, and Razorpay signature to success handler.
+           
+      });
+    } else {
+      alert('Please select an address');
+    }
+    console.log(this.selectedAddress);
+    
   }
 
+  validateOrder(response) {
+    console.log('in validate');
+    if(response.razorpay_payment_id) {
+      this.OrderService.validateOrder(response, this.getUserAccessToken).subscribe((result)=>{
+        console.log(result);
+        // TODO : goto home page
+      });
+    } else {
+      var error = function(response){
+        var error_obj = response.error;
+        console.log(error_obj.description);
+        if(error_obj.field)
+          $('input[name=' + error_obj.field+']').addClass('invalid');
+
+        alert(error_obj.field + ": " + error_obj.description);
+      }
+    }
+  }
 
   showModalToAddAddress=(token,addressDetail)=>{
     this.user=true;

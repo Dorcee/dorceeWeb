@@ -27,7 +27,7 @@
 					<div class="clearfix addressContainer" *ngFor="let address of addressDetail">
 						<div class="float-left">
 							<!-- .mat-radio-label - align-items:center --change this property to get the radio button to be at top align with text -->
-						  <mat-radio-button value="{{address.is_default}}">
+						  <mat-radio-button value="{{address.is_default}}" (change)="changeDefaultAddress(address.id)">
 						  	<div>{{address.flat_number | titlecase}}</div>
 						  	<div>{{address.area | titlecase}}</div>
 						  	<div>{{address.city | titlecase}} - {{address.pin_code}} {{address.state | titlecase}}</div>
@@ -84,7 +84,7 @@
 								</mat-form-field>
 							</div>
 					  	</div>	
- -->
+ 						-->
 					  	<div class="grid-x grid-padding-x">
 							<div class="medium-12 cell text-center">
 						  		<mat-form-field class="addressFormField">
@@ -170,10 +170,10 @@
 			  </div>
 		  </div>
 		</div>
-		<div class="small-12 medium-4 cell" *ngIf="contentLoaded && (cart_items.length > 0)">
-			<div [ngClass]="{'scrollBar' : cart_items.length > 1 }">
+		<div class="small-12 medium-4 cell" *ngIf="contentLoaded && (cartItems.length > 0)">
+			<div [ngClass]="{'scrollBar' : cartItems.length > 1 }">
 				<div class="deliveryDetailsHeader">Delivery Details</div>
-				<div *ngFor="let cart_item of cart_items; let index=index">
+				<div *ngFor="let cart_item of cartItems; let index=index">
 					<div class="grid-x grid-padding-y">
 						<div class="medium-3 cell">
 							<img *ngIf="cart_item.product.main_image" src="{{cart_item.product.main_image}}" alt="Bought Product">
@@ -202,7 +202,7 @@
 										Fit
 									</div>
 									<div class="medium-6 cell">
-										{{ (fits | find: {'value' : cart_item.fit})?.name }}
+										{{ cart_item.fit_name }}
 									</div>
 								</div>
 							</div>
@@ -216,20 +216,20 @@
 				<div class="orderSummaryContentContainer">
 					<div class="clearfix orderSummaryContent">
 						<span class="float-left">Sub Total</span>
-						<span class="float-right">Rs. 3000</span>
+						<span class="float-right">{{(locType == 'INR' ? 'Rs. ': '$') + itemTotal}}</span>
 					</div>
-					<div class="clearfix orderSummaryContent">
+					<!-- <div class="clearfix orderSummaryContent">
 						<span class="float-left">Discount</span>
 						<span class="float-right">- Rs. 1000</span>
-					</div>
+					</div> -->
 					<div class="clearfix orderSummaryContent">
 						<span class="float-left">Shipping Charges</span>
-						<span class="float-right">+ Rs. 90</span>
+						<span class="float-right">+ {{(locType == 'INR' ? 'Rs. ': '$') + shippingTotal}}</span>
 					</div>
 				</div>
 				<div class="clearfix orderSummaryContentResult">
 					<span class="float-left">Total</span>
-					<span class="float-right">Rs. 2090</span>
+					<span class="float-right">{{(locType == 'INR' ? 'Rs. ': '$') + grandTotal }}</span>
 				</div>
 				<div class="clearfix starConditions">
 					<span class="float-right">*GST included</span>
@@ -239,7 +239,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="small-12 medium-4 cell" *ngIf="contentLoaded && (cart_items.length == 0)"> No Items added to he Cart.
+		<div class="small-12 medium-4 cell" *ngIf="contentLoaded && (cartItems.length == 0)"> No Items added to the Cart.
 		</div>
 	</div>
 </div>

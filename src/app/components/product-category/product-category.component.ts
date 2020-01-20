@@ -41,6 +41,7 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
         this.categories = data.categories;
         this.fits = data.fits;
         this.containerLoaded = true;
+        console.log(this.sizes);
       });
     });  
   }
@@ -85,5 +86,9 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
       this.containerLoaded = true;
       console.log(this.products);
     });
+  }
+
+  doFilter(key, value) {
+
   }
 }
