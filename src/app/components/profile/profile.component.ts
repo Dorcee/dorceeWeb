@@ -18,7 +18,6 @@ export class ProfileComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-  	$(document).foundation();
     // user_details have data of a user who is logged in, which is saved in local storage
     
   	this.user_details=JSON.parse(localStorage.getItem('user_details'));  

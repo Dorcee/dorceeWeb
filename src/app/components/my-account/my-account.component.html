@@ -2,56 +2,56 @@
 
 <div class="grid-container" *ngIf="userDetails">
 	<div class="grid-x grid-padding-x">
-	  <div class="small-12 show-for-small-only">
-	  	<button class="dropdown button dropdownBtn" data-open="tabsList" (click)="tab=0" data-toggle>ACCOUNT DETAILS</button>
-	  	<div [ngStyle]="{'display':tab=='1' ? 'none' : 'block' }">
-	  		<div class="dropdown-pane tabsPanel" id="tabsList" data-dropdown data-close-on-click="true" aria-hidden="true">
-		  		<ul class="tabs tabsContainer vertical" data-tabs id="myAccountTabs">
-			      <li class="tabs-title tabs-title-category is-active" (click)="tab=1">
-			        <a href="#myOrdersPanel" class="tabLink" (click)="moveToMyOrders()" aria-selected="true">My Orders</a>
-			      </li>
-			      <li class="tabs-title tabs-title-category" (click)="tab=1">
-			        <a href="#profilePanel" class="tabLink" (click)="moveToProfile()">Profile</a>
-			      </li>
-			      <li class="tabs-title tabs-title-category" (click)="tab=1">
-			        <a href="#addressesPanel" class="tabLink" (click)="moveToAddresses()">Addresses</a>
-			      </li>
-			    </ul>	
-		  	</div>	
-	  	</div>  	
-	  </div>	
+	    <div class="small-12 show-for-small-only" id="smallScreenTab">
+		  	<button class="dropdown button dropdownBtn" data-open="tabsList" (click)="tab=0" data-toggle>ACCOUNT DETAILS</button>
+		  	<div [ngStyle]="{'display':tab=='1' ? 'none' : 'block' }">
+		  		<div class="dropdown-pane tabsPanel" id="tabsList" data-dropdown data-close-on-click="true" aria-hidden="true">
+			  		<ul class="tabs tabsContainer vertical" data-tabs id="myAccountTabs">
+				      <li class="tabs-title tabs-title-category is-active" (click)="tab=1">
+				        <a href="#myOrdersPanel" class="tabLink" (click)="moveToMyOrders()" aria-selected="true">My Orders</a>
+				      </li>
+				      <li class="tabs-title tabs-title-category" (click)="tab=1">
+				        <a href="#profilePanel" class="tabLink" (click)="moveToProfile()">Profile</a>
+				      </li>
+				      <li class="tabs-title tabs-title-category" (click)="tab=1">
+				        <a href="#addressesPanel" class="tabLink" (click)="moveToAddresses()">Addresses</a>
+				      </li>
+				    </ul>	
+			  	</div>	
+		  	</div>  	
+	    </div>	
 
-    <div class="cell medium-3 hide-for-small-only">
-	    <ul class="tabs tabsContainer vertical" data-tabs id="myAccountTabs">
-	      <div class="TabsHeading">ACCOUNT DETAILS</div>
-	      <li class="tabs-title tabs-title-category">
-	        <a href="#myOrdersPanel" class="tabLink" (click)="moveToMyOrders()" #myOrdersPanel>My Orders</a>
-	      </li>
-	      <li class="tabs-title tabs-title-category">
-	        <a href="#profilePanel" class="tabLink" (click)="moveToProfile()" #profilePanel>Profile</a>
-	      </li>
-	   
-	      <li class="tabs-title tabs-title-category">
-	        <a href="#addressesPanel" class="tabLink" (click)="moveToAddresses()" #addressesPanel>Addresses</a>
-	      </li>
-	    </ul>
-	  </div>  
+   		<div class="cell medium-3 hide-for-small-only"  id="mediumUpScreenTab">
+		    <ul class="tabs tabsContainer vertical" data-tabs id="myAccountTabs">
+		      <div class="TabsHeading">ACCOUNT DETAILS</div>
+		      <li class="tabs-title tabs-title-category">
+		        <a href="#myOrdersPanel" class="tabLink" (click)="moveToMyOrders()" #myOrdersPanel>My Orders</a>
+		      </li>
+		      <li class="tabs-title tabs-title-category">
+		        <a href="#profilePanel" class="tabLink" (click)="moveToProfile()" #profilePanel>Profile</a>
+		      </li>
+		   
+		      <li class="tabs-title tabs-title-category">
+		        <a href="#addressesPanel" class="tabLink" (click)="moveToAddresses()" #addressesPanel>Addresses</a>
+		      </li>
+		    </ul>
+		</div>  
 
-	  <div class="cell medium-9">
-		<div class="tabs-content tabsContentContainer" data-tabs-content="myAccountTabs">
-		    <div class="tabs-panel is-active" id="myOrdersPanel" routerLink="/myAccount/myOrders">  
-				<app-my-orders></app-my-orders>					
+	    <div class="cell medium-9">
+			<div class="tabs-content tabsContentContainer" data-tabs-content="myAccountTabs">
+			    <div class="tabs-panel is-active" id="myOrdersPanel" routerLink="/myAccount/myOrders">  
+					<app-my-orders></app-my-orders>					
+				</div>
+
+				<div class="tabs-panel" id="profilePanel">
+						<app-profile></app-profile>		      
+			    </div>
+
+			    <div class="tabs-panel" id="addressesPanel">
+			      <app-addresses></app-addresses>
+			    </div>
 			</div>
-
-			<div class="tabs-panel" id="profilePanel">
-					<app-profile></app-profile>		      
-		    </div>
-
-		    <div class="tabs-panel" id="addressesPanel">
-		      <app-addresses></app-addresses>
-		    </div>
-		</div>
-	  </div>
+	    </div>
 
 	</div>				
 </div>

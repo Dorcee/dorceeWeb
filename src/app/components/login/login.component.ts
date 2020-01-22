@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
     userDetails = localStorage.getItem('user_details'); 
 
     ngOnInit() {
+         $('#loginModal').foundation();
        // console.log(this.moveTo);
     }
 

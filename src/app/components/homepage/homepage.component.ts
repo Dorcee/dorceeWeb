@@ -19,7 +19,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 	constructor(public homeservice:HomeService, public router:Router) { }
 
 	ngOnInit() {
-		$(document).foundation();
 
 		$('.homePageSlick').not('.slick-initialized').slick({
 			infinite: true,

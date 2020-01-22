@@ -25,13 +25,17 @@ export class MyAccountComponent implements OnInit {
 	@ViewChild('addressesPanel', {static: false}) addressesPanel:ElementRef;
 
     ngOnInit() {
-  		$(document).foundation();
+  		
+
   		this.userDetails=JSON.parse(localStorage.getItem('user_details'));
   		//console.log(this.userDetails);
 
   	}
 
- 	ngAfterViewInit(){	
+ 	ngAfterViewInit(){
+ 		$('#smallScreenTab').foundation();	
+  		$('#mediumUpScreenTab').foundation();	
+  		
  		if(this.userDetails){
 	 		this.subPage=this.route.snapshot.params.subPage;
 		  	//console.log("subPage "+this.subPage);  	
