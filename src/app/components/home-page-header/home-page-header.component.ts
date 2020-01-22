@@ -25,9 +25,6 @@ export class HomePageHeaderComponent implements OnInit {
       this.isUserLoggedIn=false; 
     }
   }
-  ngAfterViewInit() {
-
-  }
 
   logOut() {
     localStorage.removeItem('user_details');
