@@ -20,6 +20,7 @@ export class ProductDetailComponent implements OnInit {
     private homeservice: HomeService
     ) { }
 
+  cart_items = JSON.parse(localStorage.getItem('cart_items')) || [];
   productDetail:any;
   product_id='';
   sizesAvailable:[];
@@ -134,24 +135,26 @@ export class ProductDetailComponent implements OnInit {
       this.fitAcceptance=false;
     } else {
       var cart_items = JSON.parse(localStorage.getItem('cart_items'));
-      if(cart_items) {
+      if(this.cart_items) {
         var find_item = '';
-        if(find_item = cart_items.find(item => {return item.product_id == id && 
-          item.size == this.selectedSize && 
-          item.fit == this.selectedFit;})) {
-          this.productAddedMessage='Already added this product.';
+        if(find_item = this.cart_items.find(item => {return item.product_id == id;
+        // && 
+          //item.size == this.selectedSize && 
+          //item.fit == this.selectedFit;
+        })) {
+          this.productAddedMessage='You can add only one quantity of one product at a time.';
           this.productAdded=true;
         } else {
-          cart_items.push({product_id: id, size: this.selectedSize, 
+          this.cart_items.push({product_id: id, size: this.selectedSize, 
             fit: this.selectedFit, fit_name: this.selectedFitName, qty: 1});
-          localStorage.setItem('cart_items', JSON.stringify(cart_items));
+          localStorage.setItem('cart_items', JSON.stringify(this.cart_items));
           this.productAddedMessage='Successfully added the product.';
           this.productAdded=true;
         }
       } else {
-        let cart_items = <any[]> Array();
-        cart_items.push({product_id: id, size: this.selectedSize, fit: this.selectedFit, qty: 1});
-        localStorage.setItem('cart_items', JSON.stringify(cart_items));
+        this.cart_items = <any[]> Array();
+        this.cart_items.push({product_id: id, size: this.selectedSize, fit: this.selectedFit, qty: 1});
+        localStorage.setItem('cart_items', JSON.stringify(this.cart_items));
         this.productAddedMessage='Successfully added the product.';
         this.productAdded=true;
       }

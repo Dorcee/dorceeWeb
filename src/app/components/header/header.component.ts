@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,11 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   constructor() { }
-
-  cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
+  @Input() input_cartitems: any;
+  cartItemsLength = this.input_cartitems ? this.input_cartitems : (JSON.parse(localStorage.getItem('cart_items')).length || []);
 
   ngOnInit() {
-  	this.cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
+  }
+
+  ngOnChanges() {
+  	this.cartItemsLength = this.input_cartitems ? this.input_cartitems : (JSON.parse(localStorage.getItem('cart_items')).length || []);
   }
 
 }

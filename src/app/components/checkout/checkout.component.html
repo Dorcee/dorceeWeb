@@ -3,7 +3,7 @@
 </div>
 
 
-<app-header></app-header>
+<app-header input_cartitems="{{cartItems.length}}"></app-header>
 <div class="grid-container">
 	<div class="grid-x">
 		<div class="small-12 cell">
@@ -107,7 +107,7 @@
 					<button class="button secondary expanded secondaryBtn" routerLink="/productCategory">CONTINUE SHOPPING</button>
 				</div>
 				<div class="text-center">
-					<button class="button expanded primaryBtn" routerLink="/confirmOrder">PROCEED TO PAYMENT</button>
+					<button class="button expanded primaryBtn" (click)="goToPayment()" >PROCEED TO PAYMENT</button>
 				</div>
 			</div>
 		</div>
@@ -117,4 +117,5 @@
 		<button class="button secondaryBtn" routerLink="/productCategory">CONTINUE SHOPPING</button>
 	</div>
 </div>
+<app-login [moveTo]="navigateTo"></app-login>
 <app-payment-footer></app-payment-footer>

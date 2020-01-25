@@ -34,10 +34,8 @@ export class ProductDetailService {
     );
   }
 
-  getCartProductsDetail(postData, access_token): Observable<any> {
-    httpOptions.headers=httpOptions.headers.set( 'Authorization',access_token );
-
-    return this.httpClient.post<any>(`${API_URL}/web/product`, postData, httpOptions
+  getCartProductsDetail(postData): Observable<any> {
+    return this.httpClient.post<any>(`${API_URL}/web/product`, postData
       ).pipe(
       map(res => {
         //console.log(res); 

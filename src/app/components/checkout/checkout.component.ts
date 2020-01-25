@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { ProductDetailService } from '../../services/product-detail.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
+declare var $:any;
 @Component({
 	selector: 'app-checkout',
 	templateUrl: './checkout.component.html',
@@ -9,11 +11,11 @@ import { ProductDetailService } from '../../services/product-detail.service';
 
 export class CheckoutComponent implements OnInit {
 
-	constructor(private productDetailService: ProductDetailService) { }
+	constructor(private productDetailService: ProductDetailService,
+		private router: Router) { }
 	cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
 	products: any;
 	contentLoaded = 0;
-	getUserAccessToken:any; 
 	getUserDetails: any;
 	itemTotal = 0;
 	shippingTotal = 0;
@@ -22,12 +24,8 @@ export class CheckoutComponent implements OnInit {
 	@ViewChild('loading', {static:false}) loading:ElementRef;
 
 	ngOnInit() {
-		this.getUserDetails = JSON.parse(localStorage.getItem('user_details'));
-		if(this.getUserDetails) {
-			this.getUserAccessToken = JSON.parse(localStorage.getItem('user_details')).access_token;
-			//console.log(this.getUserAccessToken);
-		}
-		if(this.cartItems) {
+		$(document).foundation();
+		if(this.cartItems.length > 0) {
 			this.setProductAndPrice();
 		} else {
 			this.contentLoaded = 1;
@@ -41,12 +39,10 @@ export class CheckoutComponent implements OnInit {
 	}
 
 	setProductAndPrice() {
-		//TODO : add loader till api calls
-		// this.loading.nativeElement.className = 'hidingLoader' ;
 		this.itemTotal = this.grandTotal = this.shippingTotal = 0;
 		var ids = this.cartItems.map(function (el) { return el.product_id; });
 		var postdata = {ids: ids, loc_type: this.locType};
-		this.productDetailService.getCartProductsDetail(postdata, this.getUserAccessToken).subscribe((data)=>{
+		this.productDetailService.getCartProductsDetail(postdata).subscribe((data)=>{
       		console.log(data);
       		this.products = data.products;
     		this.shippingTotal = data.shipping_price;
@@ -57,7 +53,6 @@ export class CheckoutComponent implements OnInit {
 			});
 			this.grandTotal = this.itemTotal + this.shippingTotal;
 			this.contentLoaded = 1;
-			// this.loading.nativeElement.className = 'hidingLoader' ;
 		});
 	}
 
@@ -78,5 +73,14 @@ export class CheckoutComponent implements OnInit {
 		localStorage.setItem('cart_items', JSON.stringify(this.cartItems));
 		// TODO : change price section also, if change qty , 
 		// TODO : Use loader if it takes time in updating price
+	}
+
+	goToPayment() {
+		var getUserDetails = JSON.parse(localStorage.getItem('user_details'));
+		if(getUserDetails) {
+			this.router.navigate(['confirmOrder']);
+		} else {
+			$('#loginModal').foundation('open');
+		}
 	}
 }

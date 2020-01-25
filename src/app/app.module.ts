@@ -33,6 +33,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AddressesComponent } from './components/addresses/addresses.component';
 import { InstapageComponent } from './components/instapage/instapage.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
+import { OrderSuccessComponent } from './components/order-success/order-success.component';
 
 import { WindowRef } from './services/windowRef';
 import { HomeService } from './services/home.service';
@@ -69,6 +70,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     MyAccountComponent,
     InfoHeaderComponent,
     LoaderComponent,
+    OrderSuccessComponent
   ],
   imports: [
     BrowserModule,

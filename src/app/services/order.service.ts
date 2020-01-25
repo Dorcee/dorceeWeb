@@ -27,7 +27,7 @@ export class OrderService {
 
   public getOrderDetails(data,access_token) {
     httpOptions.headers = httpOptions.headers.set( 'Authorization',access_token );
-
+    console.log(data);
     return this.httpClient.post<any>(`${API_URL}/web/order`, data, httpOptions)
     .pipe(
       map(res => {
@@ -40,7 +40,8 @@ export class OrderService {
 
   public validateOrder(data,access_token) {
     httpOptions.headers = httpOptions.headers.set( 'Authorization',access_token );
-
+    console.log('data')
+    console.log(data)
     return this.httpClient.post<any>(`${API_URL}/web/validate/checksum`, data, httpOptions)
     .pipe(
       map(res => {

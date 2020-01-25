@@ -7,6 +7,7 @@ import { HomeService } from '../../services/home.service';
 import { AddressService } from '../../services/address.service';
 import { ProductDetailService } from '../../services/product-detail.service';
 import { OrderService } from '../../services/order.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 declare var $:any;
 
@@ -18,10 +19,11 @@ declare var $:any;
 export class ConfirmOrderComponent implements OnInit {
   constructor(
     public windowRef: WindowRef,
+    private router: Router,
     private formBuilder:FormBuilder,
     private homeService: HomeService,
     private addressService: AddressService,
-    private OrderService: OrderService,
+    private orderService: OrderService,
     private productDetailService: ProductDetailService
   ) { }
   cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
@@ -44,32 +46,34 @@ export class ConfirmOrderComponent implements OnInit {
   @ViewChild('loading', {static:false}) loading:ElementRef;
 
   ngOnInit() {
-  	$(document).foundation();
-    this.getUserDetails = JSON.parse(localStorage.getItem('user_details'));
-    if(this.getUserDetails) {
-      this.getUserAccessToken = JSON.parse(localStorage.getItem('user_details')).access_token;
+    if(this.cartItems.length > 0) {
+    	$(document).foundation();
+      this.getUserDetails = JSON.parse(localStorage.getItem('user_details'));
+      if(this.getUserDetails) {
+        console.log(this.getUserDetails);
+        this.getUserAccessToken = JSON.parse(localStorage.getItem('user_details')).access_token;
 
-      this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
-        this.addressDetail = data;
-      });  
-    }
-
-    this.addressForm = this.formBuilder.group({
-      // firstName:['', [Validators.required]],
-      // lastName:['', [Validators.required]],
-      flat_number:['', [Validators.required]], 
-      area: ['', [Validators.required]], 
-      pin_code: ['', [Validators.required]], //USA regex-/^[0-9]{5}(?:-[0-9]{4})?$/ 
-      city: ['', [Validators.required]],
-      state: ['', [Validators.required]], 
-      type :['', [Validators.required]], 
-      is_default: ''
-    });
-
-    if(this.cartItems) {
-      this.setProductAndPrice();
+        this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
+          this.addressDetail = data;
+        });  
+        this.addressForm = this.formBuilder.group({
+          // firstName:['', [Validators.required]],
+          // lastName:['', [Validators.required]],
+          flat_number:['', [Validators.required]], 
+          area: ['', [Validators.required]], 
+          pin_code: ['', [Validators.required]], //USA regex-/^[0-9]{5}(?:-[0-9]{4})?$/ 
+          city: ['', [Validators.required]],
+          state: ['', [Validators.required]], 
+          type :['', [Validators.required]], 
+          is_default: ''
+        });
+      
+        this.setProductAndPrice();
+      } else {
+        this.router.navigate(['/']);
+      }
     } else {
-      this.contentLoaded = 1;
+      this.router.navigate(['/productCategory']);
     }
   }
 
@@ -79,7 +83,7 @@ export class ConfirmOrderComponent implements OnInit {
     this.itemTotal = this.grandTotal = this.shippingTotal = 0;
     var ids = this.cartItems.map(function (el) { return el.product_id; });
     var postdata = {ids: ids, loc_type: this.locType};
-    this.productDetailService.getCartProductsDetail(postdata, this.getUserAccessToken).subscribe((data)=>{
+    this.productDetailService.getCartProductsDetail(postdata).subscribe((data)=>{
           console.log(data);
           this.products = data.products;
         this.shippingTotal = data.shipping_price;
@@ -105,7 +109,6 @@ export class ConfirmOrderComponent implements OnInit {
     this.selectedAddress = address_id;
     // TODO : edit the same address to make it default address
     // TODO : currently 2 addresses can be default.
-    console.log(address_id);
   }
 
   Razorpay: any; 
@@ -114,58 +117,40 @@ export class ConfirmOrderComponent implements OnInit {
     if(this.selectedAddress) {
       var postData = {'items' : this.cartItems, 'address_id' : this.selectedAddress, 
         'loc_type' : this.locType};
-      this.OrderService.getOrderDetails(postData, this.getUserAccessToken).subscribe((order_data)=>{
+      this.orderService.getOrderDetails(postData, this.getUserAccessToken).subscribe((order_data)=>{
+        console.log(order_data);
         var options = {
           "key": environment.razorpayKeyID,
-          // "amount": "2000", // 2000 paise = INR 20
-          // "currency": "INR", // environment.india_location
-          // "name": "Dorcee",
+          "name": "Dorcee",
           "description": "Purchase Description",
-          "handler": function (response){
-              console.log(response);
-              alert(response.razorpay_payment_id);
-              // this.validateOrder(response);
-          },
           "prefill": {
             "name": "Milky Jain",
             "email": "milkyjain812@gmail.com"
           },
-          // "order_id": order_data.data.id,
-          "order_id": 'order_E17zeueDzZxp5I',
-          // "callback_url": 'https://your-site.com/callback-url',
-          // redirect: true
-          // "notes": {
-          //     "address": "Hello World"
-          // }
+          "order_id": order_data.id,
         };
+        options['handler'] = this.validateOrder.bind(this);
 
-        // var rzp1 = new Razorpay(options);
         var rzp1 = new this.windowRef.nativeWindow.Razorpay(options);
-        rzp1.once('ready', function(response) {
-          console.log('response');
-          console.log(response.methods);
-        })
         rzp1.open();
-        // rzp1.createPayment(options);
-        rzp1.on('payment.success', function(resp) {
-          alert(resp.razorpay_payment_id);
-          this.validateOrder(resp);
-        }); // will pass payment ID, order ID, and Razorpay signature to success handler.
-           
       });
     } else {
       alert('Please select an address');
     }
-    console.log(this.selectedAddress);
-    
   }
 
   validateOrder(response) {
-    console.log('in validate');
+    localStorage.removeItem('cart_items');
+    console.log(response);
     if(response.razorpay_payment_id) {
-      this.OrderService.validateOrder(response, this.getUserAccessToken).subscribe((result)=>{
+      this.loading.nativeElement.className = 'showLoader';
+      this.orderService.validateOrder(response, this.getUserAccessToken).subscribe((result)=>{
         console.log(result);
-        // TODO : goto home page
+        this.router.navigate(['/thankyou']);
+        this.loading.nativeElement.className = 'hidingLoader';
+      }, (err) => {
+        this.loading.nativeElement.className = 'hidingLoader';
+        alert('There is some issue in verify your order. Please wait, We will revert back to you.');
       });
     } else {
       var error = function(response){
