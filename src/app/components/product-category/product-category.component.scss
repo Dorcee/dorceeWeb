@@ -1,5 +1,9 @@
 @import '../../../assets/foundation-sites/global';
 
+.reveal.filterModalContainer {
+  overflow: visible;
+}
+
 .productSelectorHeading {
 	font-size: rem-calc(20);
 	border-bottom: 1px solid #dcdcdc;
@@ -66,8 +70,8 @@
   }
   
 }
-.hidingLoader{
-  display:none;
+.showLoader{
+  display:block;
 }
 .button.viewProductBtn {
 	background-color: rgba(96,0,0,.73);
@@ -86,7 +90,7 @@
 	margin-right: rem-calc(10);
 }
 
-::ng-deep  .slick-prev {
+::ng-deep  .slick-prev, .hidingLoader{
   display:none;
 }
 
@@ -126,7 +130,7 @@
   background-color: rgba(96,0,0,.2) !important;
 }
   
-::ng-deep .ngx-pagination.responsive .current {
+::ng-deep .ngx-pagination.responsive .current .customBtn{
   background: $primary-color;
   border-radius: 5px;
 }
