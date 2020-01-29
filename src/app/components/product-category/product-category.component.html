@@ -50,11 +50,11 @@
 							<ul [ngStyle]="{'cursor': (disabledCategory==false) ? 'auto' : 'not-allowed'}" class="menu vertical nested is-active productCategoryAccordionContent">
 								<li [ngStyle]="{'pointer-events': (disabledCategory==false) ? 'auto' : 'none'}" *ngFor="let type of category.types; let i = index">
 									<a (click)="getProducts('small','type', type)">
-										<mat-checkbox class="nameHover" [checked]="selectedModalCategory === i" (change)="selectedModalCategory = i">{{type}}</mat-checkbox>
+										<mat-checkbox [checked]="selectedModalCategory === i" (change)="selectedModalCategory = i">{{type}}</mat-checkbox>
 									</a>
 								</li>
 								<li><a (click)="getProducts('small')">
-									<mat-checkbox class="nameHover" (click)="selectedList(isChecked)" [(ngModel)]="isChecked">View All</mat-checkbox></a>
+									<mat-checkbox (click)="selectedList(isChecked)" [(ngModel)]="isChecked">View All</mat-checkbox></a>
 								</li>
 							</ul>
 						</li>
@@ -194,9 +194,8 @@
 					</div>
 				</div>
 			</div>		
-			<div class="grid-x grid-padding-x">
-				<div class="small-9"></div>
-				<div class="small-3">
+			<div class="grid-x grid-padding-x paginationSection">
+				<div class="small-12 text-right">
 					<pagination-controls (pageChange)="p=$event" directionLinks="true" responsive="true" previousLabel="Previous" nextLabel="Next" responsive="true"></pagination-controls>	
 				</div>
 			</div>
