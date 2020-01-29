@@ -19,9 +19,10 @@
 	</div>
 
 </div> -->
+
 <div class="grid-container" *ngIf="containerLoaded">
 	<div class="grid-x">
-		<div class="small-12 cell">
+		<div class="small-6 medium-12 cell">
 			<span class="sitePath">
 				<nav aria-label="You are here:" role="navigation">
 				  <ul class="breadcrumbs">
@@ -31,18 +32,88 @@
 				</nav>
 			</span>
 		</div>
+
+		<div class="small-6 cell text-right show-for-small-only">
+			<a data-open="filterModal">
+				<img src="../../../assets/images/filter.svg" alt="Filter icon">
+			</a>
+		</div>
 	</div>
 	<div class="grid-x grid-padding-x">
-		<div class="medium-3 cell">
+		<div class="reveal" id="filterModal" data-reveal>
+		  <div class="filterModalContainer">
+		  	<div class="productCategoryOuterContainer">
+					<div class="productSelectorHeading">Category</div>
+					<ul class="vertical menu accordion-menu productSelectorSubHeading" data-accordion-menu>
+						<li class="productCategoryAccordionHeaderContainer" *ngFor="let category of categories">
+							<a class="productCategoryAccordionHeader" (click)="getProducts('small','category', category.name)">{{category.name}}</a>
+							<ul [ngStyle]="{'cursor': (disabledCategory==false) ? 'auto' : 'not-allowed'}" class="menu vertical nested is-active productCategoryAccordionContent">
+								<li [ngStyle]="{'pointer-events': (disabledCategory==false) ? 'auto' : 'none'}" *ngFor="let type of category.types; let i = index">
+									<a (click)="getProducts('small','type', type)">
+										<mat-checkbox [checked]="selectedModalCategory === i" (change)="selectedModalCategory = i">{{type}}</mat-checkbox>
+									</a>
+								</li>
+								<li><a (click)="getProducts('small')">
+									<mat-checkbox (click)="selectedList(isChecked)" [(ngModel)]="isChecked">View All</mat-checkbox></a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="productFitOuterContainer">
+					<div class="productSelectorHeading">Fit</div>
+					<div class="productSelectorSubHeading">
+						<div class="fitCategoryContainer" *ngFor="let fit of fits">
+							<mat-checkbox class="fitCategorySelector">{{fit.name}}</mat-checkbox>
+						</div>
+					</div>
+				</div>
+				<div class="productSizeOuterContainer">
+					<div class="productSelectorHeading">Size</div>
+					<div class="productSelectorSubHeading">
+						<div class="sizeCategoryContainer">
+							<div class="grid-x">
+								<div class="small-6 medium-3 cell">
+									<mat-checkbox class="sizeCategorySelector">S</mat-checkbox>
+								</div>
+								<div class="small-6 medium-9 cell">
+									<mat-checkbox class="sizeCategorySelector">XL</mat-checkbox>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="productPriceOuterContainer">
+					<div class="productSelectorHeading">Price</div>
+					<div class="productSelectorSubHeading">
+						<div class="">
+						</div>
+					</div>
+				</div> -->
+				<div class="grid-x grid-padding-x">
+					<div class="small-6 cell text-center">
+						<button class="button customBtn" (click)="closeFilterModal()" data-close aria-label="Close modal">Apply</button>
+					</div>
+					<div class="small-6 cell">
+						<button class="button customBtn" (click)="closeFilterModal()" data-close aria-label="Close modal">Cancel</button>
+					</div>
+				</div>
+		  </div>
+		  <button class="close-button" (click)="closeFilterModal()" data-close aria-label="Close modal" type="button">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+
+		<div class="medium-3 cell hide-for-small-only">
 			<div class="productCategoryOuterContainer">
 				<div class="productSelectorHeading">Category</div>
 				<ul class="vertical menu accordion-menu productSelectorSubHeading" data-accordion-menu>
 					<li class="productCategoryAccordionHeaderContainer" *ngFor="let category of categories">
-						<a class="productCategoryAccordionHeader" (click)="getProducts('category', category.name)">{{category.name}}</a>
+						<a class="productCategoryAccordionHeader" (click)="getProducts('mediumUp','category', category.name)">{{category.name}}</a>
 						<ul class="menu vertical nested is-active productCategoryAccordionContent">
 							<li *ngFor="let type of category.types">
-								<a (click)="getProducts('type', type)">{{type}}</a></li>
-							<li><a (click)="getProducts()">View All</a></li>
+								<a (click)="getProducts('mediumUp','type', type)">{{type}}</a></li>
+							<li><a (click)="getProducts('mediumUp')">View All</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -78,9 +149,12 @@
 				</div>
 			</div> -->
 		</div>
-		<div class="medium-9 cell">
-			<div class="grid-x grid-padding-x grid-padding-y">
-				<div *ngFor="let product of products | paginate: { itemsPerPage: 12, currentPage: p }"  class="medium-4 cell">
+		<div class="small-12 medium-9 cell">
+			<div class="grid-x grid-padding-x productViewSection">
+				<div class="small-12 cell text-center noProductText" *ngIf="noProduct">
+					Sorry, There are no products in this category.
+				</div>
+				<div *ngFor="let product of products | paginate: { itemsPerPage: 12, currentPage: p }"  class="small-12 medium-6 large-4 cell">
 					<div class="productContainer">
 						<!-- <div class="image-hover-wrapper">
 							<a href="javascript:void(0)">
@@ -120,13 +194,13 @@
 					</div>
 				</div>
 			</div>		
-			<div class="grid-x grid-padding-x">
-				<div class="small-9"></div>
-				<div class="small-3">
+			<div class="grid-x grid-padding-x paginationSection">
+				<div class="small-12 text-right">
 					<pagination-controls (pageChange)="p=$event" directionLinks="true" responsive="true" previousLabel="Previous" nextLabel="Next" responsive="true"></pagination-controls>	
 				</div>
 			</div>
 		</div>
+
 	</div>
 </div>
 <app-footer></app-footer>

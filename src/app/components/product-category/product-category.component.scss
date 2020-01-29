@@ -1,5 +1,17 @@
 @import '../../../assets/foundation-sites/global';
 
+$breakpoints: (
+  small: rem-calc(0),
+  medium: rem-calc(640),
+  large: rem-calc(1200),
+  xlarge: rem-calc(1440),
+  xxlarge: rem-calc(1920),
+);
+
+.reveal.filterModalContainer {
+  overflow: visible;
+}
+
 .productSelectorHeading {
 	font-size: rem-calc(20);
 	border-bottom: 1px solid #dcdcdc;
@@ -66,8 +78,22 @@
   }
   
 }
-.hidingLoader{
-  display:none;
+.showLoader{
+  display:block;
+}
+
+.productViewSection {
+  display:flex;
+  height:95%;
+}
+
+.paginationSection{
+  height:5%; 
+}
+
+.noProductText{
+  color:$primary-color;  
+  align-self:center;
 }
 .button.viewProductBtn {
 	background-color: rgba(96,0,0,.73);
@@ -86,7 +112,7 @@
 	margin-right: rem-calc(10);
 }
 
-::ng-deep  .slick-prev {
+::ng-deep  .slick-prev, .hidingLoader{
   display:none;
 }
 
@@ -107,9 +133,17 @@
   position: relative;
   height: rem-calc(400);
 
+  @include breakpoint(small only) {
+    height: auto;  
+  }
+
   .productImage {
     height: rem-calc(400);
     object-fit: cover;
+
+    @include breakpoint(small only) {
+      height: auto;
+    }
   }
 }
 
@@ -126,7 +160,7 @@
   background-color: rgba(96,0,0,.2) !important;
 }
   
-::ng-deep .ngx-pagination.responsive .current {
+::ng-deep .ngx-pagination.responsive .current .customBtn{
   background: $primary-color;
   border-radius: 5px;
 }
@@ -139,8 +173,13 @@
   -webkit-box-shadow: 0px 2px 10px 2px rgba(227,227,227,1);
   -moz-box-shadow: 0px 2px 10px 2px rgba(227,227,227,1);
   box-shadow: 0px 2px 10px 2px rgba(227,227,227,1);
+
+  @include breakpoint(small only) {
+  margin:25px;
+  }
 }
 .alsoLikeProductDetailContainer {
+  cursor:pointer;
   padding: rem-calc(25);
 }
 .sitepath .breadcrumbs a {

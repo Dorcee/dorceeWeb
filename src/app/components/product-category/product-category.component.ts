@@ -18,6 +18,9 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
   
   p: number = 1;
   products : any;
+  noProduct: boolean;
+  isChecked:boolean;
+  disabledCategory:boolean = false;
   categories : any;
   sizes : any;
   fits : any;
@@ -27,6 +30,7 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
   labelPosition = 'after';
   disabled = false;
   containerLoaded = true;
+  selectedModalCategory ;
   loc_type = localStorage.getItem('loc_type');
   indian_location = environment.india_location;
   @ViewChild('loading', {static:false}) loading:ElementRef;
@@ -54,7 +58,8 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
          });
           //console.log(this.loadingElement);
          this.loading.nativeElement.className = 'hidingLoader' ;
-      }, 1000);
+         $('#filterModal').foundation();
+      }, 2000);
   }
 
   changeStyle($event,ID){
@@ -79,11 +84,42 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/productDetail', id]);
   }
 
-  getProducts(key='', value='') {
+  getProducts(screen,key='', value='') {
     this.homeservice.getAllProducts(key, value).subscribe((data)=>{
       this.products = data;
       this.containerLoaded = true;
-      console.log(this.products);
+      if(this.products.length==0){
+        this.noProduct = true;
+      } else {
+        this.noProduct = false;
+      }
+      //console.log(this.products);
+
+      if(screen=='mediumUp') {
+        this.closeFilterModal();
+      }
     });
+  }
+
+  closeFilterModal() {
+    this.loading.nativeElement.className = 'showLoader' ;
+    setTimeout(() => {
+      $('.productImageSlideContainer').not('.slick-initialized').slick({
+        infinite: true,
+        autoplaySpeed: 1000,
+        arrows: false,
+      });
+      this.loading.nativeElement.className = 'hidingLoader' ;
+    }, 1000);
+  }
+
+  selectedList(isClicked) {
+    //console.log(isClicked);
+    if(isClicked==true) {
+      this.disabledCategory = false;
+    } else {
+      this.disabledCategory = true;
+      this.selectedModalCategory='';
+    }
   }
 }
