@@ -46,13 +46,16 @@
 					<div class="productSelectorHeading">Category</div>
 					<ul class="vertical menu accordion-menu productSelectorSubHeading" data-accordion-menu>
 						<li class="productCategoryAccordionHeaderContainer" *ngFor="let category of categories">
-							<a class="productCategoryAccordionHeader" (click)="getProducts('category', category.name)">{{category.name}}</a>
-							<ul class="menu vertical nested is-active productCategoryAccordionContent">
-								<li *ngFor="let type of category.types; let i = index">
-									<a (click)="getProducts('type', type)">
-										<mat-checkbox [checked]="selectedModalCategory === i" (change)="selectedModalCategory = i">{{type}}</mat-checkbox>
-									</a></li>
-								<li><a (click)="getProducts()">View All</a></li>
+							<a class="productCategoryAccordionHeader" (click)="getProducts('small','category', category.name)">{{category.name}}</a>
+							<ul [ngStyle]="{'cursor': (disabledCategory==false) ? 'auto' : 'not-allowed'}" class="menu vertical nested is-active productCategoryAccordionContent">
+								<li [ngStyle]="{'pointer-events': (disabledCategory==false) ? 'auto' : 'none'}" *ngFor="let type of category.types; let i = index">
+									<a (click)="getProducts('small','type', type)">
+										<mat-checkbox class="nameHover" [checked]="selectedModalCategory === i" (change)="selectedModalCategory = i">{{type}}</mat-checkbox>
+									</a>
+								</li>
+								<li><a (click)="getProducts('small')">
+									<mat-checkbox class="nameHover" (click)="selectedList(isChecked)" [(ngModel)]="isChecked">View All</mat-checkbox></a>
+								</li>
 							</ul>
 						</li>
 					</ul>
@@ -106,11 +109,11 @@
 				<div class="productSelectorHeading">Category</div>
 				<ul class="vertical menu accordion-menu productSelectorSubHeading" data-accordion-menu>
 					<li class="productCategoryAccordionHeaderContainer" *ngFor="let category of categories">
-						<a class="productCategoryAccordionHeader" (click)="getProducts('category', category.name)">{{category.name}}</a>
+						<a class="productCategoryAccordionHeader" (click)="getProducts('mediumUp','category', category.name)">{{category.name}}</a>
 						<ul class="menu vertical nested is-active productCategoryAccordionContent">
 							<li *ngFor="let type of category.types">
-								<a (click)="getProducts('type', type)">{{type}}</a></li>
-							<li><a (click)="getProducts()">View All</a></li>
+								<a (click)="getProducts('mediumUp','type', type)">{{type}}</a></li>
+							<li><a (click)="getProducts('mediumUp')">View All</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -147,7 +150,10 @@
 			</div> -->
 		</div>
 		<div class="small-12 medium-9 cell">
-			<div class="grid-x grid-padding-x grid-padding-y">
+			<div class="grid-x grid-padding-x productViewSection">
+				<div class="small-12 cell text-center noProductText" *ngIf="noProduct">
+					Sorry, There are no products in this category.
+				</div>
 				<div *ngFor="let product of products | paginate: { itemsPerPage: 12, currentPage: p }"  class="small-12 medium-6 large-4 cell">
 					<div class="productContainer">
 						<!-- <div class="image-hover-wrapper">

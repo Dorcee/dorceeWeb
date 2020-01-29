@@ -18,6 +18,9 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
   
   p: number = 1;
   products : any;
+  noProduct: boolean;
+  isChecked:boolean;
+  disabledCategory:boolean = false;
   categories : any;
   sizes : any;
   fits : any;
@@ -81,11 +84,20 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/productDetail', id]);
   }
 
-  getProducts(key='', value='') {
+  getProducts(screen,key='', value='') {
     this.homeservice.getAllProducts(key, value).subscribe((data)=>{
       this.products = data;
       this.containerLoaded = true;
+      if(this.products.length==0){
+        this.noProduct = true;
+      } else {
+        this.noProduct = false;
+      }
       //console.log(this.products);
+
+      if(screen=='mediumUp') {
+        this.closeFilterModal();
+      }
     });
   }
 
@@ -99,5 +111,15 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
       });
       this.loading.nativeElement.className = 'hidingLoader' ;
     }, 1000);
+  }
+
+  selectedList(isClicked) {
+    //console.log(isClicked);
+    if(isClicked==true) {
+      this.disabledCategory = false;
+    } else {
+      this.disabledCategory = true;
+      this.selectedModalCategory='';
+    }
   }
 }

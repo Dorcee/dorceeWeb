@@ -73,6 +73,17 @@
 .showLoader{
   display:block;
 }
+
+.productViewSection {
+  display:flex;
+  height:100%;
+  width:100%;
+}
+
+.noProductText{
+  color:$primary-color;  
+  align-self:center;
+}
 .button.viewProductBtn {
 	background-color: rgba(96,0,0,.73);
 }
