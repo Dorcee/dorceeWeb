@@ -5,6 +5,9 @@ import { WindowRef } from '../../services/windowRef';
 import { environment } from 'src/environments/environment';
 import { HomeService } from '../../services/home.service';
 import { AddressService } from '../../services/address.service';
+import { ProductDetailService } from '../../services/product-detail.service';
+import { OrderService } from '../../services/order.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 declare var $:any;
 
@@ -16,11 +19,14 @@ declare var $:any;
 export class ConfirmOrderComponent implements OnInit {
   constructor(
     public windowRef: WindowRef,
+    private router: Router,
     private formBuilder:FormBuilder,
     private homeService: HomeService,
-    private addressService: AddressService
+    private addressService: AddressService,
+    private orderService: OrderService,
+    private productDetailService: ProductDetailService
   ) { }
-  cart_items = JSON.parse(localStorage.getItem('cart_items')) || [];
+  cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
   fits: any;
   products: any;
   contentLoaded = 0;
@@ -31,52 +37,69 @@ export class ConfirmOrderComponent implements OnInit {
   addressToken:string;
   addressId:number;
   editAddressDetail:any;
+  selectedAddress:any;
   user:boolean=false;
+  itemTotal = 0;
+  shippingTotal = 0;
+  grandTotal = 0;
+  locType = localStorage.getItem('loc_type');
   @ViewChild('loading', {static:false}) loading:ElementRef;
 
   ngOnInit() {
   	$('#addressUpdate').foundation();
-    this.getUserDetails = JSON.parse(localStorage.getItem('user_details'));
-    if(this.getUserDetails) {
-      this.getUserAccessToken = JSON.parse(localStorage.getItem('user_details')).access_token;
-      //console.log(this.getUserAccessToken);
 
-      this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
-        //console.log(data);
-        this.addressDetail = data;
-      });  
-    }
+    if(this.cartItems.length > 0) {
+    	$(document).foundation();
+      this.getUserDetails = JSON.parse(localStorage.getItem('user_details'));
+      if(this.getUserDetails) {
+        console.log(this.getUserDetails);
+        this.getUserAccessToken = JSON.parse(localStorage.getItem('user_details')).access_token;
 
-    this.addressForm = this.formBuilder.group({
-      // firstName:['', [Validators.required]],
-      // lastName:['', [Validators.required]],
-      flat_number:['', [Validators.required]], 
-      area: ['', [Validators.required]], 
-      pin_code: ['', [Validators.required]], //USA regex-/^[0-9]{5}(?:-[0-9]{4})?$/ 
-      city: ['', [Validators.required]],
-      state: ['', [Validators.required]], 
-      type :['', [Validators.required]], 
-      is_default: ''
-    });
-
-    if(this.cart_items) {
-      this.homeService.getAllProducts().subscribe((data)=>{
-        this.products = data;
-        var types = {"type" : ["fits"]};
-        this.homeService.getAllEntities(types).subscribe((data)=>{
-          this.fits = data.fits;
-          this.cart_items.forEach((cart_item, index) => {
-              var product = this.products.find(product_item => (product_item.id == cart_item.id) );
-              this.cart_items[index]['product'] = product;
-          });
-          this.contentLoaded = 1;
-         // console.log(this.cart_items);
+        this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
+          this.addressDetail = data;
+        });  
+        this.addressForm = this.formBuilder.group({
+          // firstName:['', [Validators.required]],
+          // lastName:['', [Validators.required]],
+          flat_number:['', [Validators.required]], 
+          area: ['', [Validators.required]], 
+          pin_code: ['', [Validators.required]], //USA regex-/^[0-9]{5}(?:-[0-9]{4})?$/ 
+          city: ['', [Validators.required]],
+          state: ['', [Validators.required]], 
+          type :['', [Validators.required]], 
+          is_default: ''
         });
-      });
+      
+        this.setProductAndPrice();
+      } else {
+        this.router.navigate(['/']);
+      }
     } else {
-      this.contentLoaded = 1;
+      this.router.navigate(['/productCategory']);
     }
   }
+
+  setProductAndPrice() {
+    //TODO : add loader till api calls
+    // this.loading.nativeElement.className = 'hidingLoader' ;
+    this.itemTotal = this.grandTotal = this.shippingTotal = 0;
+    var ids = this.cartItems.map(function (el) { return el.product_id; });
+    var postdata = {ids: ids, loc_type: this.locType};
+    this.productDetailService.getCartProductsDetail(postdata).subscribe((data)=>{
+          console.log(data);
+          this.products = data.products;
+        this.shippingTotal = data.shipping_price;
+      this.cartItems.forEach((cart_item, index) => {
+          var product = this.products.find(product_item => (product_item.id == cart_item.product_id) );
+          this.cartItems[index]['product'] = product;
+          this.itemTotal += product.price;
+      });
+      this.grandTotal = this.itemTotal + this.shippingTotal;
+      this.contentLoaded = 1;
+      // this.loading.nativeElement.className = 'hidingLoader' ;
+    });
+  }
+
 
   ngAfterViewInit(){
     setTimeout(()=> {
@@ -84,35 +107,64 @@ export class ConfirmOrderComponent implements OnInit {
     },1000);
   }
 
+  changeDefaultAddress(address_id) {
+    this.selectedAddress = address_id;
+    // TODO : edit the same address to make it default address
+    // TODO : currently 2 addresses can be default.
+  }
+
   Razorpay: any; 
 
   payNow() {
-    // TODO : create an api to send data and get order_id of razorpay, then use it in placing order.
-    var options = {
-      "key": environment.razorpayKeyID,
-      "amount": "2000", // 2000 paise = INR 20
-      "currency": "INR", // environment.india_location
-      "name": "Dorcee",
-      "description": "Purchase Description",
-      "handler": function (response){
-        //console.log(response);
-          alert(response.razorpay_payment_id);
-      },
-      "prefill": {
-        "name": "Milky Jain",
-        "email": "milkyjain812@gmail.com"
-      },
-      "order_id": 'order_DZBu0kr4Gyw8D3',
-      // "callback_url": 'https://your-site.com/callback-url',
-      // "notes": {
-      //     "address": "Hello World"
-      // }
-    };
+    if(this.selectedAddress) {
+      var postData = {'items' : this.cartItems, 'address_id' : this.selectedAddress, 
+        'loc_type' : this.locType};
+      this.orderService.getOrderDetails(postData, this.getUserAccessToken).subscribe((order_data)=>{
+        console.log(order_data);
+        var options = {
+          "key": environment.razorpayKeyID,
+          "name": "Dorcee",
+          "description": "Purchase Description",
+          "prefill": {
+            "name": "Milky Jain",
+            "email": "milkyjain812@gmail.com"
+          },
+          "order_id": order_data.id,
+        };
+        options['handler'] = this.validateOrder.bind(this);
 
-    var rzp1 = new this.windowRef.nativeWindow.Razorpay(options);
-    rzp1.open();
+        var rzp1 = new this.windowRef.nativeWindow.Razorpay(options);
+        rzp1.open();
+      });
+    } else {
+      alert('Please select an address');
+    }
   }
 
+  validateOrder(response) {
+    localStorage.removeItem('cart_items');
+    console.log(response);
+    if(response.razorpay_payment_id) {
+      this.loading.nativeElement.className = 'showLoader';
+      this.orderService.validateOrder(response, this.getUserAccessToken).subscribe((result)=>{
+        console.log(result);
+        this.router.navigate(['/thankyou']);
+        this.loading.nativeElement.className = 'hidingLoader';
+      }, (err) => {
+        this.loading.nativeElement.className = 'hidingLoader';
+        alert('There is some issue in verify your order. Please wait, We will revert back to you.');
+      });
+    } else {
+      var error = function(response){
+        var error_obj = response.error;
+        console.log(error_obj.description);
+        if(error_obj.field)
+          $('input[name=' + error_obj.field+']').addClass('invalid');
+
+        alert(error_obj.field + ": " + error_obj.description);
+      }
+    }
+  }
 
   showModalToAddAddress=(token,addressDetail)=>{
     this.user=true;

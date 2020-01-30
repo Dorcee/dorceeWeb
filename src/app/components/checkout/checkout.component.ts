@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { HomeService } from '../../services/home.service';
+import { ProductDetailService } from '../../services/product-detail.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
+declare var $:any;
 @Component({
 	selector: 'app-checkout',
 	templateUrl: './checkout.component.html',
@@ -9,29 +11,22 @@ import { HomeService } from '../../services/home.service';
 
 export class CheckoutComponent implements OnInit {
 
-	constructor(private homeService: HomeService) { }
-	cart_items = JSON.parse(localStorage.getItem('cart_items')) || [];
-	fits: any;
+	constructor(private productDetailService: ProductDetailService,
+		private router: Router) { }
+	cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
 	products: any;
 	contentLoaded = 0;
+	getUserDetails: any;
+	itemTotal = 0;
+	shippingTotal = 0;
+	grandTotal = 0;
+	locType = localStorage.getItem('loc_type');
 	@ViewChild('loading', {static:false}) loading:ElementRef;
 
 	ngOnInit() {
-		if(this.cart_items) {
-		//console.log(this.cart_items);
-			this.homeService.getAllProducts().subscribe((data)=>{
-	      		this.products = data;
-				var types = {"type" : ["fits"]};
-				this.homeService.getAllEntities(types).subscribe((data)=>{
-					this.fits = data.fits;
-					this.cart_items.forEach((cart_item, index) => {
-		    			var product = this.products.find(product_item => (product_item.id == cart_item.id) );
-		    			this.cart_items[index]['product'] = product;
-					});
-					this.contentLoaded = 1;
-					//console.log(this.cart_items);
-				});
-			});
+		$(document).foundation();
+		if(this.cartItems.length > 0) {
+			this.setProductAndPrice();
 		} else {
 			this.contentLoaded = 1;
 		}
@@ -43,19 +38,49 @@ export class CheckoutComponent implements OnInit {
 		},500);
 	}
 
+	setProductAndPrice() {
+		this.itemTotal = this.grandTotal = this.shippingTotal = 0;
+		var ids = this.cartItems.map(function (el) { return el.product_id; });
+		var postdata = {ids: ids, loc_type: this.locType};
+		this.productDetailService.getCartProductsDetail(postdata).subscribe((data)=>{
+      		console.log(data);
+      		this.products = data.products;
+    		this.shippingTotal = data.shipping_price;
+			this.cartItems.forEach((cart_item, index) => {
+    			var product = this.products.find(product_item => (product_item.id == cart_item.product_id) );
+    			this.cartItems[index]['product'] = product;
+    			this.itemTotal += product.price;
+			});
+			this.grandTotal = this.itemTotal + this.shippingTotal;
+			this.contentLoaded = 1;
+		});
+	}
+
 	removeFromCart(index) {
-		console.log(index);
-		this.cart_items.splice(index, 1) ;
-		localStorage.setItem('cart_items', JSON.stringify(this.cart_items));
-		//alert('Item removed successfully');
-		// TODO : change price section also, if change qty , 
-		// TODO : successfully remove message
+		var c = confirm('Are you sure you want to remove it?');
+		if(c) {
+			console.log(index);
+			this.cartItems.splice(index, 1) ;
+			localStorage.setItem('cart_items', JSON.stringify(this.cartItems));
+			this.setProductAndPrice();
+			//alert('Item removed successfully');
+			// TODO : change cart icon quantity in header
+		}
 	}
 
 	changeQty(event, index) {
-		this.cart_items[index]['qty'] = event.target.value;
-		localStorage.setItem('cart_items', JSON.stringify(this.cart_items));
+		this.cartItems[index]['qty'] = event.target.value;
+		localStorage.setItem('cart_items', JSON.stringify(this.cartItems));
 		// TODO : change price section also, if change qty , 
 		// TODO : Use loader if it takes time in updating price
+	}
+
+	goToPayment() {
+		var getUserDetails = JSON.parse(localStorage.getItem('user_details'));
+		if(getUserDetails) {
+			this.router.navigate(['confirmOrder']);
+		} else {
+			$('#loginModal').foundation('open');
+		}
 	}
 }

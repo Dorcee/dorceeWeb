@@ -122,22 +122,15 @@
 				<div class="productSelectorHeading">Fit</div>
 				<div class="productSelectorSubHeading">
 					<div class="fitCategoryContainer" *ngFor="let fit of fits">
-						<mat-checkbox class="fitCategorySelector">{{fit.name}}</mat-checkbox>
+						<mat-checkbox class="fitCategorySelector" (change)="getProducts('fit', fit.value)">{{fit.name}}</mat-checkbox>
 					</div>
 				</div>
 			</div>
 			<div class="productSizeOuterContainer">
 				<div class="productSelectorHeading">Size</div>
 				<div class="productSelectorSubHeading">
-					<div class="sizeCategoryContainer">
-						<div class="grid-x">
-							<div class="small-6 medium-3 cell">
-								<mat-checkbox class="sizeCategorySelector">S</mat-checkbox>
-							</div>
-							<div class="small-6 medium-9 cell">
-								<mat-checkbox class="sizeCategorySelector">XL</mat-checkbox>
-							</div>
-						</div>
+					<div class="sizeCategoryContainer" *ngFor="let size of sizes">
+						<mat-checkbox class="sizeCategorySelector" (change)="getProducts('size', size.value)">{{size.value}}</mat-checkbox>
 					</div>
 				</div>
 			</div>

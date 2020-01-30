@@ -5,7 +5,9 @@ $scrollColor:#C4A56A;
 .hidingLoader{
   display:none;
 }
-
+.showLoader{
+  display:block;
+}
 .addressHeader {
 	border-bottom: 1px solid #dcdcdc;
 	text-transform: uppercase;

@@ -3,7 +3,7 @@
 </div>
 
 
-<app-header></app-header>
+<app-header input_cartitems="{{cartItems.length}}"></app-header>
 <div class="grid-container">
 	<div class="grid-x">
 		<div class="small-12 cell">
@@ -18,9 +18,9 @@
 			</span>
 		</div>
 	</div>
-	<div class="grid-x grid-padding-x" *ngIf="contentLoaded && (cart_items.length > 0)">
+	<div class="grid-x grid-padding-x" *ngIf="contentLoaded && (cartItems.length > 0)">
 		<div class="small-12 medium-7 large-8 cell">
-			<div class="yourCartHeader">Your Cart ({{cart_items.length}} Item)</div>
+			<div class="yourCartHeader">Your Cart ({{cartItems.length}} Item)</div>
 		</div>
 		<div class="small-12 medium-7 large-8 cell">
 			<div class="grid-x yourCartContainer">
@@ -37,7 +37,7 @@
 					<div class="text-center">Fit</div>
 				</div>
 			</div>
-			<div class="grid-x" *ngFor="let cart_item of cart_items; let index=index">
+			<div class="grid-x" *ngFor="let cart_item of cartItems; let index=index">
 				<div class="medium-6 large-7 cell">
 					<div class="grid-x">
 						<div class="large-5 show-for-large cell">
@@ -48,7 +48,7 @@
 								<div class="itemName">{{cart_item.product.name}}</div>
 								<div class="itemPriceContainer">
 									<!-- <span class="itemOriginalPrice">{{'RS. '+cart_item.product.base_price}}</span> -->
-									<span class="itemDiscountedPrice">{{'Rs. ' + cart_item.product.price}}</span>
+									<span class="itemDiscountedPrice">{{(locType == 'INR' ? 'Rs. ': '$') + cart_item.product.price}}</span>
 									<!-- <span class="itemDiscountPercent">50% OFF</span> -->
 								</div>
 								<div class="itemModifier">
@@ -61,14 +61,14 @@
 				</div>
 				<div class="medium-2 large-2 cell text-center">
 					<div class="text-center">
-						<input type="number" value="{{ cart_item.qty }}" (change)="changeQty($event, index)">
+						<input type="number" value="{{ cart_item.qty }}" (change)="changeQty($event, index)" readonly="readonly">
 					</div>
 				</div>
 				<div class="medium-2 large-1 cell text-center">
 					<div class="text-center">{{ cart_item.size }}</div>
 				</div>
 				<div class="medium-2 large-1 cell text-center">
-					<div class="text-center">{{ (fits | find: {'value' : cart_item.fit})?.name }}</div>
+					<div class="text-center">{{ cart_item.fit_name }}</div>
 				</div>
 			</div>
 		</div>
@@ -85,20 +85,20 @@
 				<div class="orderSummaryContentContainer">
 					<div class="clearfix orderSummaryContent">
 						<span class="float-left">Sub Total</span>
-						<span class="float-right">Rs. 3000</span>
+						<span class="float-right">{{(locType == 'INR' ? 'Rs. ': '$') + itemTotal}}</span>
 					</div>
-					<div class="clearfix orderSummaryContent">
+					<!-- <div class="clearfix orderSummaryContent">
 						<span class="float-left">Discount</span>
 						<span class="float-right">- Rs. 1000</span>
-					</div>
+					</div -->
 					<div class="clearfix orderSummaryContent">
 						<span class="float-left">Shipping Charges</span>
-						<span class="float-right">+ Rs. 90</span>
+						<span class="float-right">+ {{(locType == 'INR' ? 'Rs. ': '$') + shippingTotal}}</span>
 					</div>
 				</div>
 				<div class="clearfix orderSummaryContentResult">
 					<span class="float-left">Total</span>
-					<span class="float-right">Rs. 2090</span>
+					<span class="float-right">{{(locType == 'INR' ? 'Rs. ': '$') + grandTotal }}</span>
 				</div>
 				<div class="clearfix starConditions">
 					<span class="float-right">*GST included</span>
@@ -107,14 +107,15 @@
 					<button class="button secondary expanded secondaryBtn" routerLink="/productCategory">CONTINUE SHOPPING</button>
 				</div>
 				<div class="text-center">
-					<button class="button expanded primaryBtn" routerLink="/confirmOrder">PROCEED TO PAYMENT</button>
+					<button class="button expanded primaryBtn" (click)="goToPayment()" >PROCEED TO PAYMENT</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="grid-x grid-padding-x align-center flash-error" *ngIf="contentLoaded && (cart_items.length == 0)">
+	<div class="grid-x grid-padding-x align-center flash-error" *ngIf="contentLoaded && (cartItems.length == 0)">
 		<div class="grid-x empty-cart-message">No items added to the cart</div>
 		<button class="button secondaryBtn" routerLink="/productCategory">CONTINUE SHOPPING</button>
 	</div>
 </div>
+<app-login [moveTo]="navigateTo"></app-login>
 <app-payment-footer></app-payment-footer>

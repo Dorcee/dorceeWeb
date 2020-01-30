@@ -5,7 +5,11 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 const API_URL = environment.apiUrl;
-const headers = new HttpHeaders();
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +34,13 @@ export class ProductDetailService {
     );
   }
 
-  
+  getCartProductsDetail(postData): Observable<any> {
+    return this.httpClient.post<any>(`${API_URL}/web/product`, postData
+      ).pipe(
+      map(res => {
+        //console.log(res); 
+        return res.data; }),
+      catchError(error => this.handleError(error.message || error))
+    );
+  }
 }

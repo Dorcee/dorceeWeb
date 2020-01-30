@@ -29,6 +29,7 @@ export class HomePageHeaderComponent implements OnInit {
   logOut() {
     localStorage.removeItem('user_details');
     this.isUserLoggedIn=false;
+    // TODO : cart items should be delete
   }
 
   gettingUserLoggedIn(value) {

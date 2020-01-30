@@ -45,6 +45,7 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
         this.categories = data.categories;
         this.fits = data.fits;
         this.containerLoaded = true;
+        console.log(this.sizes);
       });
     });  
   }
@@ -101,6 +102,7 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
     });
   }
 
+<<<<<<< HEAD
   closeFilterModal() {
     this.loading.nativeElement.className = 'showLoader' ;
     setTimeout(() => {
@@ -121,5 +123,4 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
       this.disabledCategory = true;
       this.selectedModalCategory='';
     }
-  }
 }
