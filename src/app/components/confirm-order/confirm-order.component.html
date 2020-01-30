@@ -19,7 +19,7 @@
 			</span>
 		</div>
 	</div>
-	<div class="grid-x grid-padding-x">
+	<div class="grid-x grid-padding-x align-center">
 		<div class="small-12 medium-8 cell">
 			<div class="addressHeader">Delivery Address</div>
 			<div class="addressOuterContainer">
@@ -83,8 +83,7 @@
 							    	</mat-error>
 								</mat-form-field>
 							</div>
-					  	</div>	
- -->
+					  	</div>	-->
 					  	<div class="grid-x grid-padding-x">
 							<div class="medium-12 cell text-center">
 						  		<mat-form-field class="addressFormField">
@@ -170,7 +169,10 @@
 			  </div>
 		  </div>
 		</div>
-		<div class="small-12 medium-4 cell" *ngIf="contentLoaded && (cart_items.length > 0)">
+		<div class="small-12 medium-8 cell text-center hide-for-large hide-for-xlarge" *ngIf="contentLoaded && (cart_items.length > 0)">
+			<button class="button expanded primaryBtn" (click)="payNow()">Place Order</button>
+		</div>
+		<div class="small-12 medium-4 cell hide-for-medium-only hide-for-small-only" *ngIf="contentLoaded && (cart_items.length > 0)">
 			<div [ngClass]="{'scrollBar' : cart_items.length > 1 }">
 				<div class="deliveryDetailsHeader">Delivery Details</div>
 				<div *ngFor="let cart_item of cart_items; let index=index">
