@@ -105,14 +105,6 @@ export class ProductDetailComponent implements OnInit {
         }
         ]
       });
-
-      $('.productImageSlideContainer').not('.slick-initialized').slick({
-        infinite: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-      });
       this.loading.nativeElement.className = 'hidingLoader' ;
     }, 1000);
   }
