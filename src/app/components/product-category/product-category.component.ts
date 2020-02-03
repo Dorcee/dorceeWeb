@@ -102,7 +102,6 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
     });
   }
 
-<<<<<<< HEAD
   closeFilterModal() {
     this.loading.nativeElement.className = 'showLoader' ;
     setTimeout(() => {
@@ -123,4 +122,5 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
       this.disabledCategory = true;
       this.selectedModalCategory='';
     }
+  }
 }
