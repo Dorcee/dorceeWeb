@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 declare var $:any;
 
@@ -10,12 +11,13 @@ declare var $:any;
 export class HomePageHeaderComponent implements OnInit {
   isUserLoggedIn:boolean=true;
   
-  constructor() { }
+  constructor(private router : Router) { }
+  @Input() inputCartItems: any;
+  cartItemsLength: any;
 
   userDetails:any; 
 
   ngOnInit() {
-    
     $('#nameDropDown').foundation();
     // $(document).foundation();
     //console.log("home page");
@@ -26,14 +28,19 @@ export class HomePageHeaderComponent implements OnInit {
     }
   }
 
+  ngOnChanges() {
+    this.cartItemsLength = this.inputCartItems ? this.inputCartItems : (JSON.parse(localStorage.getItem('cart_items')).length || []);
+  }
+
   logOut() {
     localStorage.removeItem('user_details');
     this.isUserLoggedIn=false;
+    //window.location.reload();
     // TODO : cart items should be delete
   }
 
   gettingUserLoggedIn(value) {
     this.userDetails = JSON.parse(localStorage.getItem('user_details'));
-    this.isUserLoggedIn=value; 
+    this.isUserLoggedIn = value; 
   }
 }

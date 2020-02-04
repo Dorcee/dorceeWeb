@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+
+declare var $:any;
 
 @Component({
   selector: 'app-header',
@@ -7,15 +10,24 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
-  @Input() input_cartitems: any;
-  cartItemsLength = this.input_cartitems ? this.input_cartitems : (JSON.parse(localStorage.getItem('cart_items')).length || []);
+  constructor(private router: Router) { }
+  @Input() inputHeaderCartItems: any;
+   cartItemsLength: string;
 
   ngOnInit() {
   }
 
   ngOnChanges() {
-  	this.cartItemsLength = this.input_cartitems ? this.input_cartitems : (JSON.parse(localStorage.getItem('cart_items')).length || []);
+  	this.cartItemsLength = this.inputHeaderCartItems ? this.inputHeaderCartItems : (JSON.parse(localStorage.getItem('cart_items')).length || []);
   }
 
+  onCart() {
+    var userDetails = localStorage.getItem('user_details');
+    //console.log('userDetails'+userDetails);
+    if(!userDetails) {
+      $('#loginModal').foundation('open');
+    } else {
+      this.router.navigate(['/checkout']);
+    }
+  }
 }

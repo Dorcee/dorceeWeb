@@ -2,9 +2,8 @@
   <app-loader></app-loader>
 </div>
 
-
-<app-header input_cartitems="{{cart_items.length}}"></app-header>
 <app-login></app-login>
+<app-header inputHeaderCartItems="{{cart_items.length}}"></app-header>
 
 <div class="grid-container">
 	<div class="grid-x">
@@ -149,7 +148,7 @@
 				</div>
 			</div>
 		</div>
-		<ul class="accordion productDetailContainer" data-accordion data-allow-all-closed="true">
+		<ul class="accordion productDetailContainer" id="accordionData" data-accordion data-allow-all-closed="true">
 			<li class="accordion-item" data-accordion-item>
 				<a class="accordion-title">Product Details</a>
 

@@ -3,7 +3,7 @@
 </div>
 
 
-<app-header></app-header>
+<app-header inputHeaderCartItems="{{cartItems.length}}"></app-header>
 <div class="grid-container">
 	<div class="grid-x">
 		<div class="small-12 cell">
@@ -61,7 +61,7 @@
 
 
 			<div class="reveal addressModalOuterContainer" id="addressUpdate" data-reveal>
-				<div class="grid-container addressModalContainer" *ngIf="user">
+				<div class="grid-container addressModalContainer">
 				<div class="text-center addressModalHeader">ADDRESS</div>
 				<form [formGroup]="addressForm">
 				  	<div class="grid-container">
@@ -172,11 +172,11 @@
 		  </div>
 		</div>
 
-		<div class="small-12 medium-8 cell text-center hide-for-large hide-for-xlarge" *ngIf="contentLoaded && (cart_items.length > 0)">
+		<div class="small-12 medium-8 cell text-center hide-for-large hide-for-xlarge" *ngIf="contentLoaded && (cartItems.length > 0)">
 			<button class="button expanded primaryBtn" (click)="payNow()">Place Order</button>
 		</div>
-		<div class="small-12 medium-4 cell hide-for-medium-only hide-for-small-only" *ngIf="contentLoaded && (cart_items.length > 0)">
-			<div [ngClass]="{'scrollBar' : cart_items.length > 1 }">
+		<div class="small-12 medium-4 cell hide-for-medium-only hide-for-small-only" *ngIf="contentLoaded && (cartItems.length > 0)">
+			<div [ngClass]="{'scrollBar' : cartItems.length > 1 }">
 				<div class="deliveryDetailsHeader">Delivery Details</div>
 				<div *ngFor="let cart_item of cartItems; let index=index">
 					<div class="grid-x grid-padding-y">

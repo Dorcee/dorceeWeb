@@ -33,6 +33,7 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
   selectedModalCategory ;
   loc_type = localStorage.getItem('loc_type');
   indian_location = environment.india_location;
+  cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
   @ViewChild('loading', {static:false}) loading:ElementRef;
 
   ngOnInit() {
@@ -45,7 +46,7 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
         this.categories = data.categories;
         this.fits = data.fits;
         this.containerLoaded = true;
-        console.log(this.sizes);
+       // console.log(this.sizes);
       });
     });  
   }
@@ -102,7 +103,6 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
     });
   }
 
-<<<<<<< HEAD
   closeFilterModal() {
     this.loading.nativeElement.className = 'showLoader' ;
     setTimeout(() => {
@@ -123,4 +123,5 @@ export class ProductCategoryComponent implements OnInit, AfterViewInit {
       this.disabledCategory = true;
       this.selectedModalCategory='';
     }
+  }  
 }
