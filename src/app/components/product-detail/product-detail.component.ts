@@ -59,7 +59,7 @@ export class ProductDetailComponent implements OnInit {
 
     this.productDetailServices.getProductDetail(this.product_id).subscribe(data => {
       this.containerLoaded = true;
-      console.log(data);
+      //console.log(data);
       if(data) {
         this.productDetail=data;
         //console.log(this.productDetail);
@@ -78,18 +78,10 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.setSlickDesign();
-    setTimeout(function () {
-      //$(document).foundation();
-    }, 1000);
-    
-  }
-
-  setSlickDesign(){
     // TODO : create common function to only one file and call it everywhere
 
     setTimeout(() => {
-      $('.productDetailImagesContainer, .slick-next:before, .slick-prev:after').not('.slick-initialized').slick({
+      $('.productDetailImagesContainer').not('.slick-initialized').slick({
         infinite: true,
         slidesToShow: 2,
         slidesToScroll: 1,
@@ -106,7 +98,8 @@ export class ProductDetailComponent implements OnInit {
         ]
       });
       this.loading.nativeElement.className = 'hidingLoader' ;
-    }, 1000);
+      $('#accordionData').foundation();
+    }, 1000);    
   }
 
   sizeSelected(size) {
@@ -121,7 +114,12 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCart(id) {
-    if(!this.selectedSize) {
+    var userDetails = localStorage.getItem('user_details');
+    //console.log(userDetails);
+    if(!userDetails) {
+      $('#loginModal').foundation('open');
+    }
+    else if(!this.selectedSize) {
       this.sizeAcceptance=false;
     } else if(!this.selectedFit) {
       this.fitAcceptance=false;

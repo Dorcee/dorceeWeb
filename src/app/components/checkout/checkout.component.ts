@@ -43,7 +43,7 @@ export class CheckoutComponent implements OnInit {
 		var ids = this.cartItems.map(function (el) { return el.product_id; });
 		var postdata = {ids: ids, loc_type: this.locType};
 		this.productDetailService.getCartProductsDetail(postdata).subscribe((data)=>{
-      		console.log(data);
+      		//console.log(data);
       		this.products = data.products;
     		this.shippingTotal = data.shipping_price;
 			this.cartItems.forEach((cart_item, index) => {
@@ -59,7 +59,7 @@ export class CheckoutComponent implements OnInit {
 	removeFromCart(index) {
 		var c = confirm('Are you sure you want to remove it?');
 		if(c) {
-			console.log(index);
+			//console.log(index);
 			this.cartItems.splice(index, 1) ;
 			localStorage.setItem('cart_items', JSON.stringify(this.cartItems));
 			this.setProductAndPrice();

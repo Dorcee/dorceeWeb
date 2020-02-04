@@ -15,7 +15,8 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 	
 	@ViewChild('loading', {static:false}) loading:ElementRef;
 	products = [];
-
+	cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
+	
 	constructor(public homeservice:HomeService, public router:Router) { }
 
 	ngOnInit() {
