@@ -56,7 +56,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 	     	});
 	        //console.log(this.loadingElement);
 	     	this.loading.nativeElement.className = 'hidingLoader' ;
-	  	}, 1000);
+	  	}, 1500);
 	}
 
 		changeStyle($event,ID){

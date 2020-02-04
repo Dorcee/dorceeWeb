@@ -66,7 +66,7 @@
       </div>
     </div>
   </div>
-  <div class="grid-container hide-for-small-only" *ngIf="products.length > 0">
+  <div class="grid-container" *ngIf="products.length > 0">
     <ul class="tabs text-center tabsContainer" data-tabs id="promotionalTabs">
       <li class="tabs-title tabs-title-category is-active">
         <div class="newArrivalHeader">NEW ARRIVAL</div>
@@ -81,7 +81,7 @@
     <div class="tabs-content tabsContentContainer" data-tabs-content="promotionalTabs">
       <div class="tabs-panel is-active">
         <div class="grid-x grid-padding-x">
-          <div *ngFor="let product of products" class="medium-3 large-3 cell image-hover-wrapper">
+          <div *ngFor="let product of products" class="small-6 medium-4 large-3 cell image-hover-wrapper">
             <div class="productImageSlideContainer" id="slider{{product.id}}">
               
               <img *ngIf="product.main_image" src="{{product.main_image}}" (click)="goToProductDetailPage(product.id)" (mouseover)="changeStyle($event,product.id)" (mouseout)="changeBackStyle($event,product.id)" class="productImage">
@@ -101,7 +101,7 @@
           </div>
         </div>
       </div>
-      <div class="tabs-panel" id="topSalePanel">
+      <!-- <div class="tabs-panel" id="topSalePanel">
         <div class="grid-x grid-padding-x">
           <div class="small-12 medium-6 large-3 cell image-hover-wrapper">
             <a href="javascript:void(0)">
@@ -228,7 +228,7 @@
             </a>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="grid-x align-center">

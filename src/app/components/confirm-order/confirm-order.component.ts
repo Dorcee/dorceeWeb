@@ -78,9 +78,12 @@ export class ConfirmOrderComponent implements OnInit {
   }
 
   ngAfterViewInit(){
+    //console.log(this.getUserDetails);
     setTimeout(()=> {
-      this.loading.nativeElement.className = 'hidingLoader' ;
-       $('#addressUpdate').foundation();
+      if(this.getUserDetails) {
+        this.loading.nativeElement.className = 'hidingLoader' ;
+        $('#addressUpdate').foundation();
+      }   
     },1500);
   }
 

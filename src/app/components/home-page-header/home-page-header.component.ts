@@ -10,7 +10,8 @@ declare var $:any;
 })
 export class HomePageHeaderComponent implements OnInit {
   isUserLoggedIn:boolean=true;
-  
+  locType:string = localStorage.getItem('loc_type');
+
   constructor(private router : Router) { }
   @Input() inputCartItems: any;
   cartItemsLength: any;
@@ -19,7 +20,6 @@ export class HomePageHeaderComponent implements OnInit {
 
   ngOnInit() {
     $('#nameDropDown').foundation();
-    // $(document).foundation();
     //console.log("home page");
 
     this.userDetails = JSON.parse(localStorage.getItem('user_details'));
