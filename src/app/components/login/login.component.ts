@@ -61,7 +61,8 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('user_details', JSON.stringify(data.data.userDetails));
                 this.userLoggingIn.emit(true);
                 $('#loginModal').foundation('close');
-                                
+                this.loginFormControl.reset();
+                                 
                 if(navigateTo){
                    // console.log('navigate to');
                     this.router.navigate([navigateTo]);
