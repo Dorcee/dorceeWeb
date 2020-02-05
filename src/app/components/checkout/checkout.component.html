@@ -5,8 +5,8 @@
 
 <app-header inputHeaderCartItems="{{cartItems.length}}"></app-header>
 <div class="grid-container">
-	<div class="grid-x">
-		<div class="small-12 cell">
+	<div class="grid-x grid-padding-x align-center">
+		<div class="small-12 medium-8 large-12 cell">
 			<span class="sitePath">
 				<nav aria-label="You are here:" role="navigation">
 				  <ul class="breadcrumbs">
@@ -18,32 +18,19 @@
 			</span>
 		</div>
 	</div>
-	<div class="grid-x grid-padding-x" *ngIf="contentLoaded && (cartItems.length > 0)">
-		<div class="small-12 medium-7 large-8 cell">
+	<div class="grid-x grid-padding-x align-center" *ngIf="contentLoaded && (cartItems.length > 0)">
+		<div class="small-12 medium-8 large-12 cell">
 			<div class="yourCartHeader">Your Cart ({{cartItems.length}} Item)</div>
 		</div>
-		<div class="small-12 medium-7 large-8 cell">
-			<div class="grid-x yourCartContainer">
-				<div class="medium-6 large-7 cell">
-					<div class="text-center medium-only-text-left">Item Description</div>
-				</div>
-				<div class="medium-2 large-2 cell">
-					<div class="text-center">Quantity</div>
-				</div>
-				<div class="medium-2 large-1 cell">
-					<div class="text-center">Size</div>
-				</div>
-				<div class="medium-2 large-1 cell">
-					<div class="text-center">Fit</div>
-				</div>
-			</div>
-			<div class="grid-x" *ngFor="let cart_item of cartItems; let index=index">
-				<div class="medium-6 large-7 cell">
+		<div class="small-12 medium-8 large-8 cell">
+			<div class="grid-x show-for-large" *ngFor="let cart_item of cartItems; let index=index">
+				<div class="small-6 cell">
+					<div class="text-center medium-only-text-left yourCartContainer">Item Description</div>
 					<div class="grid-x">
-						<div class="large-5 show-for-large cell">
+						<div class="small-5 cell">
 							<img *ngIf="cart_item?.product?.main_image" src="{{cart_item.product.main_image}}" alt="Bought Product">
 						</div>
-						<div class="medium-12 large-7 cell">
+						<div class="small-7 cell">
 							<div class="itemDetailContainer">
 								<div class="itemName">{{cart_item.product.name}}</div>
 								<div class="itemPriceContainer">
@@ -57,22 +44,83 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div>	
 				</div>
-				<div class="medium-2 large-2 cell text-center">
+
+				<div class="small-2 cell">
+					<div class="text-center yourCartContainer">Quantity</div>
 					<div class="text-center">
-						<input type="number" value="{{ cart_item.qty }}" (change)="changeQty($event, index)" readonly="readonly">
+						<div class="text-center">{{ cart_item.qty }}</div>
 					</div>
-				</div>
-				<div class="medium-2 large-1 cell text-center">
+				</div>	
+
+				<div class="small-2 cell">
+					<div class="text-center yourCartContainer">Size</div>
 					<div class="text-center">{{ cart_item.size }}</div>
 				</div>
-				<div class="medium-2 large-1 cell text-center">
+
+				<div class="small-2 cell">
+					<div class="text-center yourCartContainer">Fit</div>
 					<div class="text-center">{{ cart_item.fit_name }}</div>
 				</div>
-			</div>
+			</div>		
+
+			<div class="grid-x hide-for-large eachProduct" *ngFor="let cart_item of cartItems; let index=index">
+				<div class="small-3 cell">
+					<img *ngIf="cart_item?.product?.main_image" src="{{cart_item.product.main_image}}" alt="Bought Product">
+				</div>
+				<div class="small-9 cell">
+					<div class="row">
+						<div class="small-6">
+							<div class="fieldsHeading">ITEM DESCRIPTION</div>		
+						</div>
+						<div class="small-6">
+							<div class="itemDetailContainer">
+								<div class="itemName">{{cart_item.product.name}}</div>
+								<div class="itemPriceContainer">
+									<!-- <span class="itemOriginalPrice">{{'RS. '+cart_item.product.base_price}}</span> -->
+									<span class="itemDiscountedPrice">{{(locType == 'INR' ? 'Rs. ': '$') + cart_item.product.price}}</span>
+									<!-- <span class="itemDiscountPercent">50% OFF</span> -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="small-6">
+							<div class="fieldsHeading">QUANTITY</div>			
+						</div>
+						<div class="small-6">
+							<div class="text-center">{{ cart_item.qty }}</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="small-6">
+							<div class="fieldsHeading">SIZE</div>
+						</div>
+						<div class="small-6">
+							<div class="text-center">{{ cart_item.size }}</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="small-6">
+							<div class="fieldsHeading">FIT</div>		
+						</div>
+						<div class="small-6">
+							<div class="text-center">{{ cart_item.fit_name }}</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="small-12">
+							<div class="itemModifier">
+								<span class="itemRemoveModifier fieldsHeading" (click)="removeFromCart(index)"><a>Remove</a></span>
+								<!-- <span class="itemWishlistModifier"><a>Move to wishlist</a></span> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
 		</div>
-		<div class="small-12 medium-5 large-4 cell">
+		<div class="small-12 medium-8 large-4 cell">
 			<div class="deliveryInfoContainer">
 				<span class="deliveryTruckContainer"><img src="assets/images/deliveryTruck.svg" alt="Delivery Truck"></span>
 				<span class="deliveryMsg">Shop for Rs. 1500 or more to get free delivery</span>
@@ -107,14 +155,16 @@
 					<button class="button secondary expanded secondaryBtn" routerLink="/productCategory">CONTINUE SHOPPING</button>
 				</div>
 				<div class="text-center">
-					<button class="button expanded primaryBtn" (click)="goToPayment()" >PROCEED TO PAYMENT</button>
+					<button class="button expanded primaryBtn" routerLink="/confirmOrder">PROCEED TO PAYMENT</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="grid-x grid-padding-x align-center flash-error" *ngIf="contentLoaded && (cartItems.length == 0)">
-		<div class="grid-x empty-cart-message">No items added to the cart</div>
-		<button class="button secondaryBtn" routerLink="/productCategory">CONTINUE SHOPPING</button>
+		<div class="small-8 medium-4 cell">
+			<div class="grid-x empty-cart-message">No items added to the cart</div>
+			<button class="button secondaryBtn" routerLink="/productCategory">CONTINUE SHOPPING</button>
+		</div>
 	</div>
 </div>
 <app-login></app-login>

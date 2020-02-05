@@ -24,9 +24,14 @@ export class CheckoutComponent implements OnInit {
 	@ViewChild('loading', {static:false}) loading:ElementRef;
 
 	ngOnInit() {
-		$(document).foundation();
 		if(this.cartItems.length > 0) {
-			this.setProductAndPrice();
+			this.getUserDetails = JSON.parse(localStorage.getItem('user_details'));
+      		
+      		if(this.getUserDetails) {
+				this.setProductAndPrice();
+			} else {
+		        this.router.navigate(['/']);
+		    }	
 		} else {
 			this.contentLoaded = 1;
 		}
@@ -35,7 +40,7 @@ export class CheckoutComponent implements OnInit {
 	ngAfterViewInit(){
 		setTimeout(()=> {
 			this.loading.nativeElement.className = 'hidingLoader' ;
-		},500);
+		},1500);
 	}
 
 	setProductAndPrice() {
@@ -68,19 +73,4 @@ export class CheckoutComponent implements OnInit {
 		}
 	}
 
-	changeQty(event, index) {
-		this.cartItems[index]['qty'] = event.target.value;
-		localStorage.setItem('cart_items', JSON.stringify(this.cartItems));
-		// TODO : change price section also, if change qty , 
-		// TODO : Use loader if it takes time in updating price
-	}
-
-	goToPayment() {
-		var getUserDetails = JSON.parse(localStorage.getItem('user_details'));
-		if(getUserDetails) {
-			this.router.navigate(['confirmOrder']);
-		} else {
-			$('#loginModal').foundation('open');
-		}
-	}
 }

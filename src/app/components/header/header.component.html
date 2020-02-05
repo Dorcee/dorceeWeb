@@ -4,9 +4,9 @@
 		<div class="small-4 cell text-center">
 			<img src="assets/images/dorceeLogo.svg" class="brandLogo" alt="Company Logo" routerLink="/" width="175">
 		</div>
-		<div class="small-4 cell text-right">
+		<div class="small-4 cell text-right" (click)="onCart()">
 			<div class="cartItemsContainer">
-				<img src="assets/images/emptyShoppingBagBlack.svg" alt="Basket" width="30px" (click)="onCart()">
+				<img src="assets/images/emptyShoppingBagBlack.svg" alt="Basket" width="30px">
 				<div class="cartItems" *ngIf="cartItemsLength > 0">{{cartItemsLength}}</div>
 			</div>
 		</div>
