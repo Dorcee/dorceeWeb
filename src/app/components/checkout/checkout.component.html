@@ -18,10 +18,16 @@
 			</span>
 		</div>
 	</div>
-	<div class="grid-x grid-padding-x align-center" *ngIf="contentLoaded && (cartItems.length > 0)">
-		<div class="small-12 medium-8 large-12 cell">
+	<div class="grid-x grid-padding-x show-for-large" *ngIf="contentLoaded && (cartItems.length > 0)">
+		<div class="small-12 medium-8 large-8 cell">
 			<div class="yourCartHeader">Your Cart ({{cartItems.length}} Item)</div>
 		</div>
+	</div>	
+	<div class="grid-x grid-padding-x align-center" *ngIf="contentLoaded && (cartItems.length > 0)">
+		<div class="small-12 medium-8 cell hide-for-large">
+			<div class="yourCartHeader">Your Cart ({{cartItems.length}} Item)</div>
+		</div>
+
 		<div class="small-12 medium-8 large-8 cell">
 			<div class="grid-x show-for-large" *ngFor="let cart_item of cartItems; let index=index">
 				<div class="small-6 cell">
