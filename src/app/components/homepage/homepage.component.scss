@@ -134,9 +134,17 @@ $border-color: #ACACAC;
   position: relative;
   height: rem-calc(400);
 
+  @include breakpoint(small only) {
+    height: auto;  
+  }
+
   .productImage {
     height: rem-calc(400);
     object-fit: cover;
+
+    @include breakpoint(small only) {
+      height: auto;
+    }
   }
 }
 

@@ -24,12 +24,12 @@ export class MyAccountComponent implements OnInit {
 	@ViewChild('profilePanel', {static: false}) profilePanel:ElementRef;
 	@ViewChild('addressesPanel', {static: false}) addressesPanel:ElementRef;
 
-    ngOnInit() {
-  		
-
+    ngOnInit() {  		
   		this.userDetails=JSON.parse(localStorage.getItem('user_details'));
   		//console.log(this.userDetails);
-
+  		if(!this.userDetails) {
+	        this.router.navigate(['/']);
+	    }
   	}
 
  	ngAfterViewInit(){
