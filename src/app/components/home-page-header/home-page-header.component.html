@@ -28,8 +28,8 @@
 			    </ul>
 		    </span>
 
-		    <span class="cartItemsContainer" *ngIf="cartItemsLength > 0 && isUserLoggedIn">
-				<img src="assets/images/emptyShoppingBagBlack.svg" alt="Basket" width="30px" routerLink="/checkout">
+		    <span class="cartItemsContainer" *ngIf="cartItemsLength > 0 && isUserLoggedIn" routerLink="/checkout">
+				<img src="assets/images/emptyShoppingBagBlack.svg" alt="Basket" width="30px">
 				<div class="cartItems">{{cartItemsLength}}</div>
 			</span>
 		</div>

@@ -60,7 +60,7 @@
 			</div>
 
 
-			<div class="reveal addressModalOuterContainer" id="addressUpdate" data-reveal>
+			<div class="reveal addressModalOuterContainer" id="addressUpdate" data-reveal *ngIf="getUserDetails">
 				<div class="grid-container addressModalContainer">
 				<div class="text-center addressModalHeader">ADDRESS</div>
 				<form [formGroup]="addressForm">
