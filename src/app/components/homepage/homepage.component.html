@@ -238,10 +238,13 @@
         Sign up for our newsletter and be the first to learn about our collections, special offers and events.
       </div>
       <div class="input-group">
-        <input type="text" class="input-group-field subscriberEmail" name="email" placeholder="Enter your email...">
+        <input type="text" class="input-group-field subscriberEmail" name="email" placeholder="Enter your email..." [(ngModel)]="subscribeEmail">
         <div class="input-group-button">
-          <input type="submit" class="button subscriberEmailBtn" value="Subscribe">
+          <input type="submit" class="button subscriberEmailBtn" value="Subscribe" (click)="onSubscribe()">
         </div>
+      </div>
+      <div class="messageContainer" *ngIf="subscribeMessage && subscribeOn">
+        <div class="messageStyle">{{subscribeMessage}}</div>
       </div>
     </div>
   </div>

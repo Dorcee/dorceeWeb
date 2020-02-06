@@ -6,6 +6,12 @@ import { map, catchError } from 'rxjs/operators';
 
 const API_URL = environment.apiUrl;
 const headers = new HttpHeaders();
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+  })
+};
 	//.set("X-CustomHeader", "custom header value");
 
 @Injectable({
@@ -16,7 +22,7 @@ export class HomeService {
   constructor(private httpClient: HttpClient) { }
 
   private handleError (error) {
-	  console.error('ApiService::handleError', error);
+	 // console.error('ApiService::handleError', error);
 	  return throwError(error);
   }
 
@@ -55,5 +61,18 @@ export class HomeService {
         return res; }),  // make it as observable
       catchError(error => this.handleError(error.message || error))
     );
-}
+  }
+
+  emailSubscribe(email,subscribeMail) {
+    var formData = {email : subscribeMail};
+    //console.log(formData);
+   
+    return this.httpClient.post<any>(`${API_URL}/web/subscribe`, formData, httpOptions)
+    .pipe(
+      map(res => {
+        return res;
+      }),
+      catchError(error => this.handleError(error.message || error))
+    )
+  }
 }

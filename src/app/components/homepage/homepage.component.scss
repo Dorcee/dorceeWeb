@@ -176,6 +176,13 @@ $border-color: #ACACAC;
   padding-bottom: rem-calc(5);
 }
 
+.messageContainer {
+  background-color: #f0fff0;
+}
+
+.messageStyle {
+  color:$primary-color;
+}
 //Only Media Queries below this line -
 
 
