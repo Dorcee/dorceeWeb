@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ProductDetailService } from '../../services/product-detail.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -37,12 +37,6 @@ export class CheckoutComponent implements OnInit {
 		}
 	}
 
-	ngAfterViewInit(){
-		setTimeout(()=> {
-			this.loading.nativeElement.className = 'hidingLoader' ;
-		},1500);
-	}
-
 	setProductAndPrice() {
 		this.itemTotal = this.grandTotal = this.shippingTotal = 0;
 		var ids = this.cartItems.map(function (el) { return el.product_id; });
@@ -58,6 +52,8 @@ export class CheckoutComponent implements OnInit {
 			});
 			this.grandTotal = this.itemTotal + this.shippingTotal;
 			this.contentLoaded = 1;
+
+			this.loading.nativeElement.className = 'hidingLoader' ;
 		});
 	}
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { WindowRef } from '../../services/windowRef';
 
@@ -55,6 +55,7 @@ export class ConfirmOrderComponent implements OnInit {
 
         this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
           this.addressDetail = data;
+          this.loading.nativeElement.className = 'hidingLoader' ;
         });  
         this.addressForm = this.formBuilder.group({
           // firstName:['', [Validators.required]],
@@ -78,13 +79,7 @@ export class ConfirmOrderComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    //console.log(this.getUserDetails);
-    setTimeout(()=> {
-      if(this.getUserDetails) {
-        this.loading.nativeElement.className = 'hidingLoader' ;
-        $('#addressUpdate').foundation();
-      }   
-    },1500);
+    $('#addressUpdate').foundation();
   }
 
   setProductAndPrice() {
