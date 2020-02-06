@@ -9,15 +9,6 @@ $image-hover-wrapper-banner-bg: rgba($primary-color ,0.8);
 $image-hover-wrapper-icon-size: rem-calc(24);
 $border-color: #ACACAC;
 
-$breakpoints: (
-  small: rem-calc(0),
-  medium: rem-calc(640),
-  large: rem-calc(1200),
-  xlarge: rem-calc(1440),
-  xxlarge: rem-calc(1920),
-);
-
-
 .minDeliveryHeader {
   margin-bottom: 0;
 }
@@ -143,9 +134,17 @@ $breakpoints: (
   position: relative;
   height: rem-calc(400);
 
+  @include breakpoint(small only) {
+    height: auto;  
+  }
+
   .productImage {
     height: rem-calc(400);
     object-fit: cover;
+
+    @include breakpoint(small only) {
+      height: auto;
+    }
   }
 }
 
@@ -187,8 +186,7 @@ $breakpoints: (
 
 //Only Media Queries below this line -
 
-
-@media (max-width: 640px) {
+@include breakpoint(small only) {
   .productImageSlideContainer, .productImageSlideContainer .productImage{
     height: auto;
   }  

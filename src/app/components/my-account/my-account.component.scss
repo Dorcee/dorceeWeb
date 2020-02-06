@@ -22,7 +22,7 @@
 	border:transparent;
 }
 
-li>a.tabLink:before {
+li>a:before {
 	display: inline-block;
     content: '';
     height: rem-calc(10);
