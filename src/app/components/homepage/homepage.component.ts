@@ -16,10 +16,11 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 	@ViewChild('loading', {static:false}) loading:ElementRef;
 	products = [];
 	cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
+
 	subscribeEmail:string;
 	subscribeMessage: string;
 	subscribeOn:boolean = false;
-
+	isUserLoggedInFromHeader:boolean;
 	constructor(public homeservice:HomeService, public router:Router) { }
 
 	ngOnInit() {
@@ -103,4 +104,10 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 			}, 2000);
     	});
   	}
+
+  	userLoggingInDetail($event){
+  		this.isUserLoggedInFromHeader =$event ;
+  		//console.log(this.isUserLoggedInFromHeader);
+  	}
+
 }

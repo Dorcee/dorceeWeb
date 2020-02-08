@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 declare var $:any;
@@ -14,6 +14,7 @@ export class HomePageHeaderComponent implements OnInit {
 
   constructor(private router : Router) { }
   @Input() inputCartItems: any;
+  @Output() isUserLoggedInToFooter = new EventEmitter<boolean>();
   cartItemsLength: any;
 
   userDetails:any; 
@@ -25,6 +26,7 @@ export class HomePageHeaderComponent implements OnInit {
     this.userDetails = JSON.parse(localStorage.getItem('user_details'));
     if(!this.userDetails) {
       this.isUserLoggedIn=false; 
+      this.isUserLoggedInToFooter.emit(this.isUserLoggedIn);
     }
   }
 
@@ -35,6 +37,7 @@ export class HomePageHeaderComponent implements OnInit {
   logOut() {
     localStorage.removeItem('user_details');
     this.isUserLoggedIn=false;
+    this.isUserLoggedInToFooter.emit(this.isUserLoggedIn);
     //window.location.reload();
     // TODO : cart items should be delete
   }
@@ -42,5 +45,6 @@ export class HomePageHeaderComponent implements OnInit {
   gettingUserLoggedIn(value) {
     this.userDetails = JSON.parse(localStorage.getItem('user_details'));
     this.isUserLoggedIn = value; 
+    this.isUserLoggedInToFooter.emit(this.isUserLoggedIn);
   }
 }

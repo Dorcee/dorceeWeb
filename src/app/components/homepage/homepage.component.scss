@@ -8,6 +8,7 @@ $image-hover-wrapper-banner-topspace: 25%;
 $image-hover-wrapper-banner-bg: rgba($primary-color ,0.8);
 $image-hover-wrapper-icon-size: rem-calc(24);
 $border-color: #ACACAC;
+$messageBackground: #f0fff0;
 
 .minDeliveryHeader {
   margin-bottom: 0;
@@ -177,7 +178,7 @@ $border-color: #ACACAC;
 }
 
 .messageContainer {
-  background-color: #f0fff0;
+  background-color: $messageBackground;
 }
 
 .messageStyle {
