@@ -52,4 +52,17 @@ export class OrderService {
     );
   }
 
+  getPlacedOrderDetailsOfUser(access_token) {
+    //console.log(access_token);
+    httpOptions.headers = httpOptions.headers.set('Authorization',access_token);
+    return this.httpClient.get<any>(`${API_URL}/web/user/order`, httpOptions)
+    .pipe(
+      map(res => { 
+       // console.log(res);
+        return res;
+      }),
+      catchError(error => this.handleError(error))
+    );
+  }
+
 }

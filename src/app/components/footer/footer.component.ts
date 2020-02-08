@@ -25,7 +25,7 @@ export class FooterComponent implements OnInit {
   footerNavigationToMyOrders(){
     //console.log(this.isUserLoggedInFromHeader);
     window.scroll(0,0);
-    if(this.isUserLoggedInFromHeader) {
+    if(this.isUserLoggedInFromHeader || this.userDetails) {
      this.LinkClickToMyOrders.emit();
      this.router.navigate(["/myAccount/myOrders"]);
     } else {
@@ -38,7 +38,7 @@ export class FooterComponent implements OnInit {
   footerNavigationToProfile(){
     //console.log(this.isUserLoggedInFromHeader);
     window.scroll(0,0);
-    if(this.isUserLoggedInFromHeader) {
+    if(this.isUserLoggedInFromHeader || this.userDetails) {
      this.LinkClickToProfile.emit();
       this.router.navigate(["/myAccount/profile"]);
     } else {
