@@ -10,6 +10,15 @@ $border-color: #dcdcdc;
   display:block;
 }
 
+.fieldsHeading {
+	padding-left : rem-calc(10);	
+}
+
+.eachProduct {
+	padding-top: rem-calc(10);
+	padding-bottom: rem-calc(30);
+}
+
 .primaryBtn {
 	border-radius: rem-calc(20);
 }
@@ -46,6 +55,7 @@ $border-color: #dcdcdc;
 
 .deliveryInfoContainer {
 	text-align: center;
+	padding-Top: rem-calc(10);
 	padding-bottom: rem-calc(20);
 }
 

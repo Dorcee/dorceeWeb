@@ -25,3 +25,18 @@
 .brandLogo:focus {
 	outline: none;
 }
+
+.cartItemsContainer {
+	position : relative;	
+}
+
+.cartItems {
+	position: absolute;
+    right: rem-calc(0);
+    top: rem-calc(18);
+    background: $primary-color;
+    color: $white;
+    font-size: rem-calc(10);
+    padding: rem-calc(2 6);
+    border-radius: 50%;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { environment } from 'src/environments/environment';
@@ -36,13 +36,8 @@ export class AddressesComponent implements OnInit {
     this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
      // console.log(data);
       this.addressDetail = data;
-    });
-  }
-
-  ngAfterViewInit(){
-    setTimeout(()=> {
       this.loading.nativeElement.className = 'hidingLoader' ;
-    },500);
+    });
   }
 
   showModalToAddAddress(token,addressDetail){

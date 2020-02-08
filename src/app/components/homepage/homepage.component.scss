@@ -8,6 +8,7 @@ $image-hover-wrapper-banner-topspace: 25%;
 $image-hover-wrapper-banner-bg: rgba($primary-color ,0.8);
 $image-hover-wrapper-icon-size: rem-calc(24);
 $border-color: #ACACAC;
+$messageBackground: #f0fff0;
 
 .minDeliveryHeader {
   margin-bottom: 0;
@@ -176,8 +177,18 @@ $border-color: #ACACAC;
   padding-bottom: rem-calc(5);
 }
 
+.messageContainer {
+  background-color: $messageBackground;
+}
+
+.messageStyle {
+  color:$primary-color;
+}
 //Only Media Queries below this line -
 
-@include breakpoint(medium only) {
-  
+
+@include breakpoint(small only) {
+  .productImageSlideContainer, .productImageSlideContainer .productImage{
+    height: auto;
+  }  
 }

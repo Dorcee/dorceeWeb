@@ -7,6 +7,12 @@ import { map, catchError } from 'rxjs/operators';
 const API_URL = environment.apiUrl;
 const headers = new HttpHeaders().set("Content-Type", "application/json");
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+  })
+};
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -56,6 +62,31 @@ export class UserService {
 				return res; 
 			}),
 			catchError(error => this.handleError(error))
+		);
+	}
+
+	public getUserDetails(access_token) {
+		httpOptions.headers = httpOptions.headers.set('Authorization',access_token);
+
+		return this.httpClient.get<any>(`${API_URL}/web/user`, httpOptions)
+		.pipe(
+			map(res =>{
+				return res;
+			}),
+			catchError(error => this.handleError(error))
+		);
+	}
+
+	public updateUserDetails(formData, access_token) {
+		httpOptions.headers =  httpOptions.headers.set('Content-Type', 'application/json')
+		httpOptions.headers =  httpOptions.headers.set('Authorization', access_token)
+		//console.log(formData);
+		return this.httpClient.put<any>(`${API_URL}/web/user`, formData, httpOptions)
+		.pipe(
+			map(res => {
+				return res;
+			}),
+			catchError(error => this.handleError(error))	
 		);
 	}
 }

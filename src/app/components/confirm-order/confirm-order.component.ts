@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { WindowRef } from '../../services/windowRef';
 
@@ -46,17 +46,16 @@ export class ConfirmOrderComponent implements OnInit {
   @ViewChild('loading', {static:false}) loading:ElementRef;
 
   ngOnInit() {
-  	$('#addressUpdate').foundation();
-
+    //console.log(this.cartItems.length);
     if(this.cartItems.length > 0) {
-    	$(document).foundation();
       this.getUserDetails = JSON.parse(localStorage.getItem('user_details'));
       if(this.getUserDetails) {
-        console.log(this.getUserDetails);
+       // console.log(this.getUserDetails);
         this.getUserAccessToken = JSON.parse(localStorage.getItem('user_details')).access_token;
 
         this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
           this.addressDetail = data;
+          this.loading.nativeElement.className = 'hidingLoader' ;
         });  
         this.addressForm = this.formBuilder.group({
           // firstName:['', [Validators.required]],
@@ -79,6 +78,10 @@ export class ConfirmOrderComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit(){
+    $('#addressUpdate').foundation();
+  }
+
   setProductAndPrice() {
     //TODO : add loader till api calls
     // this.loading.nativeElement.className = 'hidingLoader' ;
@@ -86,7 +89,7 @@ export class ConfirmOrderComponent implements OnInit {
     var ids = this.cartItems.map(function (el) { return el.product_id; });
     var postdata = {ids: ids, loc_type: this.locType};
     this.productDetailService.getCartProductsDetail(postdata).subscribe((data)=>{
-          console.log(data);
+          //console.log(data);
           this.products = data.products;
         this.shippingTotal = data.shipping_price;
       this.cartItems.forEach((cart_item, index) => {
@@ -98,13 +101,6 @@ export class ConfirmOrderComponent implements OnInit {
       this.contentLoaded = 1;
       // this.loading.nativeElement.className = 'hidingLoader' ;
     });
-  }
-
-
-  ngAfterViewInit(){
-    setTimeout(()=> {
-      this.loading.nativeElement.className = 'hidingLoader' ;
-    },1000);
   }
 
   changeDefaultAddress(address_id) {
@@ -120,7 +116,7 @@ export class ConfirmOrderComponent implements OnInit {
       var postData = {'items' : this.cartItems, 'address_id' : this.selectedAddress, 
         'loc_type' : this.locType};
       this.orderService.getOrderDetails(postData, this.getUserAccessToken).subscribe((order_data)=>{
-        console.log(order_data);
+        //console.log(order_data);
         var options = {
           "key": environment.razorpayKeyID,
           "name": "Dorcee",
@@ -143,11 +139,11 @@ export class ConfirmOrderComponent implements OnInit {
 
   validateOrder(response) {
     localStorage.removeItem('cart_items');
-    console.log(response);
+    //console.log(response);
     if(response.razorpay_payment_id) {
       this.loading.nativeElement.className = 'showLoader';
       this.orderService.validateOrder(response, this.getUserAccessToken).subscribe((result)=>{
-        console.log(result);
+        //console.log(result);
         this.router.navigate(['/thankyou']);
         this.loading.nativeElement.className = 'hidingLoader';
       }, (err) => {
@@ -157,7 +153,7 @@ export class ConfirmOrderComponent implements OnInit {
     } else {
       var error = function(response){
         var error_obj = response.error;
-        console.log(error_obj.description);
+       // console.log(error_obj.description);
         if(error_obj.field)
           $('input[name=' + error_obj.field+']').addClass('invalid');
 

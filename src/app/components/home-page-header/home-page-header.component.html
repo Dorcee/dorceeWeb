@@ -10,26 +10,28 @@
 			<img src="assets/images/dorceeLogo.svg" class="brandLogo" alt="Company Logo" routerLink="/" width="175">
 		</div>
 		<div class="small-4 cell text-right homePageLoginHeader">
-			<span class="currencyWeb homepageHeading">INR</span>
+			<span class="currencyWeb homepageHeading">{{locType}}</span>
 			<!-- <span class="" data-open="loginModal">Login</span> -->
 			
-
-			<span class="userLogin homepageHeading nameHover">	
-	 			<ul class="dropdown menu" data-dropdown-menu id="nameDropDown">
-			      <li *ngIf="!isUserLoggedIn">
-			      	<span class="userLogin homepageHeading" data-open="loginModal">Login</span>
-			      </li>
-			      <li>
-			        <a class="userLogin homepageHeading" *ngIf="isUserLoggedIn">{{userDetails.fname}} {{userDetails.lname}}</a>
-			        <ul class="menu customTab">
-			          <li><a routerLink="/myAccount/profile" *ngIf="isUserLoggedIn">My Account</a></li>
-			          <li><a (click)="logOut()" *ngIf="isUserLoggedIn">Log Out</a></li>
-			        </ul>
-			      </li>
+			<span class="userLogin homepageHeading nameHover" id="nameDropDown">	
+	 			<ul class="dropdown menu" data-dropdown-menu>
+			        <li *ngIf="!isUserLoggedIn">
+			      		<span class="userLogin homepageHeading" data-open="loginModal">Login</span>
+			        </li>
+			        <li>
+			        	<a class="userLogin homepageHeading" *ngIf="isUserLoggedIn">{{userDetails.fname}} {{userDetails.lname}}</a>
+			        	<ul class="menu customTab">
+			          		<li><a routerLink="/myAccount/profile" *ngIf="isUserLoggedIn">My Account</a></li>
+			          		<li><a (click)="logOut()" *ngIf="isUserLoggedIn">Log Out</a></li>
+			        	</ul>
+			      	</li>
 			    </ul>
 		    </span>
 
-			<img src="assets/images/emptyShoppingBagBlack.svg" alt="Basket" width="30px" routerLink="/checkout">
+		    <span class="cartItemsContainer" *ngIf="cartItemsLength > 0 && isUserLoggedIn" routerLink="/checkout">
+				<img src="assets/images/emptyShoppingBagBlack.svg" alt="Basket" width="30px">
+				<div class="cartItems">{{cartItemsLength}}</div>
+			</span>
 		</div>
 	</div>
 </div>

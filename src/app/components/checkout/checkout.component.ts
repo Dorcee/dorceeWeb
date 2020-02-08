@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ProductDetailService } from '../../services/product-detail.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -24,18 +24,20 @@ export class CheckoutComponent implements OnInit {
 	@ViewChild('loading', {static:false}) loading:ElementRef;
 
 	ngOnInit() {
-		$(document).foundation();
 		if(this.cartItems.length > 0) {
-			this.setProductAndPrice();
+			this.getUserDetails = JSON.parse(localStorage.getItem('user_details'));
+      		
+      		if(this.getUserDetails) {
+				this.setProductAndPrice();
+			} else {
+		        this.router.navigate(['/']);
+		    }	
 		} else {
 			this.contentLoaded = 1;
+			setTimeout(()=>{
+				this.loading.nativeElement.className = 'hidingLoader' ;
+			},1500);
 		}
-	}
-
-	ngAfterViewInit(){
-		setTimeout(()=> {
-			this.loading.nativeElement.className = 'hidingLoader' ;
-		},500);
 	}
 
 	setProductAndPrice() {
@@ -43,7 +45,7 @@ export class CheckoutComponent implements OnInit {
 		var ids = this.cartItems.map(function (el) { return el.product_id; });
 		var postdata = {ids: ids, loc_type: this.locType};
 		this.productDetailService.getCartProductsDetail(postdata).subscribe((data)=>{
-      		console.log(data);
+      		//console.log(data);
       		this.products = data.products;
     		this.shippingTotal = data.shipping_price;
 			this.cartItems.forEach((cart_item, index) => {
@@ -53,13 +55,15 @@ export class CheckoutComponent implements OnInit {
 			});
 			this.grandTotal = this.itemTotal + this.shippingTotal;
 			this.contentLoaded = 1;
+
+			this.loading.nativeElement.className = 'hidingLoader' ;
 		});
 	}
 
 	removeFromCart(index) {
 		var c = confirm('Are you sure you want to remove it?');
 		if(c) {
-			console.log(index);
+			//console.log(index);
 			this.cartItems.splice(index, 1) ;
 			localStorage.setItem('cart_items', JSON.stringify(this.cartItems));
 			this.setProductAndPrice();
@@ -68,19 +72,4 @@ export class CheckoutComponent implements OnInit {
 		}
 	}
 
-	changeQty(event, index) {
-		this.cartItems[index]['qty'] = event.target.value;
-		localStorage.setItem('cart_items', JSON.stringify(this.cartItems));
-		// TODO : change price section also, if change qty , 
-		// TODO : Use loader if it takes time in updating price
-	}
-
-	goToPayment() {
-		var getUserDetails = JSON.parse(localStorage.getItem('user_details'));
-		if(getUserDetails) {
-			this.router.navigate(['confirmOrder']);
-		} else {
-			$('#loginModal').foundation('open');
-		}
-	}
 }

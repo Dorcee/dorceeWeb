@@ -2,31 +2,31 @@
   <app-loader></app-loader>
 </div>
 
-<div *ngIf="user_details"> 
+<div *ngIf="user"> 
   <form [formGroup]="profileForm">  
     <div class="grid-x">
       <div class="grid-x grid-padding-x">
 
         <div class="small-12 medium-6 cell text-center">
           <mat-form-field class="inputField">
-            <input matInput placeholder="First Name" formControlName="firstName" (keyup)="editable=true">
-            <mat-error *ngIf="profileForm.controls['firstName'].hasError('required')">First Name is required.</mat-error>
+            <input matInput placeholder="First Name" formControlName="fname" (keyup)="editable=true">
+            <mat-error *ngIf="profileForm.controls['fname'].hasError('required')">First Name is required.</mat-error>
           </mat-form-field>
         </div>
 
         <div class="small-12 medium-6 cell text-center">
           <mat-form-field class="inputField">
-            <input matInput placeholder="Last Name" formControlName="lastName" (keyup)="editable=true">
-            <mat-error *ngIf="profileForm.controls['lastName'].hasError('required')">Last Name is required.</mat-error>
+            <input matInput placeholder="Last Name" formControlName="lname" (keyup)="editable=true">
+            <mat-error *ngIf="profileForm.controls['lname'].hasError('required')">Last Name is required.</mat-error>
           </mat-form-field>
         </div>
 
         <div class="small-12 medium-6 cell">
           <div class="inputRadioButton">
             <label>Gender</label>
-            <mat-radio-group formControlName="gender" (keyup)="editable=true">
-              <mat-radio-button value="Male">Male</mat-radio-button>
-              <mat-radio-button value="Female">Female</mat-radio-button>
+            <mat-radio-group formControlName="gender">
+              <mat-radio-button (click)="editable=true" value="Male">Male</mat-radio-button>
+              <mat-radio-button (click)="editable=true" value="Femal">Female</mat-radio-button>
             </mat-radio-group>
           </div>
         </div>
@@ -40,7 +40,7 @@
 
         <div class="small-12 medium-6 cell text-center">
           <mat-form-field class="inputField">
-            <input matInput placeholder="Number" formControlName="phone_number" (keyup)="editable=true">
+            <input matInput placeholder="Number" formControlName="phone_number" (keyup)="editable=true" readonly="readonly">
             <mat-error *ngIf="profileForm.controls['phone_number'].hasError('required')">Phone number is required.</mat-error>
             <mat-error *ngIf="profileForm.controls['phone_number'].invalid && profileForm.controls['phone_number'].dirty && !profileForm.controls['phone_number'].hasError('required')">Please enter a valid phone number.</mat-error>
           </mat-form-field>
@@ -57,7 +57,7 @@
         </div> -->
 
         <div *ngIf="editable" class="small-12 medium-6 cell text-right">
-            <button class="button saveBtn" (click)="onEditProfile()" id="saveProfile">Save</button>
+            <button class="button saveBtn" (click)="onEditProfile(profileForm)" id="saveProfile">Save</button>
         </div>
 
       </div>
