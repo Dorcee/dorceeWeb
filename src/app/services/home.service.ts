@@ -52,7 +52,7 @@ export class HomeService {
     );
   }
 
-  getCountryFromIp() {
+  public getCountryFromIp() {
     var url = 'http://ip-api.com/json';
     return this.httpClient.get<any>(url)
       .pipe(
@@ -63,7 +63,7 @@ export class HomeService {
     );
   }
 
-  emailSubscribe(email,subscribeMail) {
+  public emailSubscribe(email,subscribeMail) {
     var formData = {email : subscribeMail};
     //console.log(formData);
    
