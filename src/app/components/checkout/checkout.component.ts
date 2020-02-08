@@ -34,6 +34,9 @@ export class CheckoutComponent implements OnInit {
 		    }	
 		} else {
 			this.contentLoaded = 1;
+			setTimeout(()=>{
+				this.loading.nativeElement.className = 'hidingLoader' ;
+			},1500);
 		}
 	}
 

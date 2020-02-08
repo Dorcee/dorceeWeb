@@ -6,6 +6,7 @@ $image-hover-wrapper-banner-width: 75%;
 $image-hover-wrapper-banner-topspace: 25%;
 $image-hover-wrapper-banner-bg: rgba($primary-color ,0.8);
 $image-hover-wrapper-icon-size: rem-calc(24);
+$messageBackground: #f0fff0;
 
 .image-hover-wrapper {
   position: relative;
@@ -207,7 +208,7 @@ $image-hover-wrapper-icon-size: rem-calc(24);
 }
 
 .messageContainer {
-  background-color: #f0fff0;
+  background-color: $messageBackground ;
 }
 
 .messageStyle {

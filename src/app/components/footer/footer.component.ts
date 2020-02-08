@@ -1,4 +1,4 @@
-import { Component, OnInit,Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 declare var $:any;
@@ -11,6 +11,7 @@ declare var $:any;
 export class FooterComponent implements OnInit {
   userDetails:any;
   navigateTo:string;
+  @Input() isUserLoggedInFromHeader:boolean ;
   @Output() LinkClickToMyOrders = new EventEmitter();
   @Output() LinkClickToProfile = new EventEmitter();
 
@@ -22,8 +23,9 @@ export class FooterComponent implements OnInit {
   }
 
   footerNavigationToMyOrders(){
+    //console.log(this.isUserLoggedInFromHeader);
     window.scroll(0,0);
-    if(this.userDetails) {
+    if(this.isUserLoggedInFromHeader) {
      this.LinkClickToMyOrders.emit();
      this.router.navigate(["/myAccount/myOrders"]);
     } else {
@@ -34,8 +36,9 @@ export class FooterComponent implements OnInit {
   }
 
   footerNavigationToProfile(){
+    //console.log(this.isUserLoggedInFromHeader);
     window.scroll(0,0);
-    if(this.userDetails) {
+    if(this.isUserLoggedInFromHeader) {
      this.LinkClickToProfile.emit();
       this.router.navigate(["/myAccount/profile"]);
     } else {

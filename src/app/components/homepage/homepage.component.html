@@ -8,7 +8,7 @@
   </button>
   <p>Free Shipping to all the cities in India on order above Rs. 2000</p>
 </div>
-<app-home-page-header inputCartItems="{{cartItems.length}}"></app-home-page-header>
+<app-home-page-header inputCartItems="{{cartItems.length}}" (isUserLoggedInToFooter)="userLoggingInDetail($event)"></app-home-page-header>
   <div class="grid-x">
     <!-- <div class="grid-x grid-padding-y grid-padding-x">
       <div class="small-12 medium-6 cell">
@@ -238,10 +238,13 @@
         Sign up for our newsletter and be the first to learn about our collections, special offers and events.
       </div>
       <div class="input-group">
-        <input type="text" class="input-group-field subscriberEmail" name="email" placeholder="Enter your email...">
+        <input type="text" class="input-group-field subscriberEmail" name="email" placeholder="Enter your email..." [(ngModel)]="subscribeEmail">
         <div class="input-group-button">
-          <input type="submit" class="button subscriberEmailBtn" value="Subscribe">
+          <input type="submit" class="button subscriberEmailBtn" value="Subscribe" (click)="onSubscribe()">
         </div>
+      </div>
+      <div class="messageContainer" *ngIf="subscribeMessage && subscribeOn">
+        <div class="messageStyle">{{subscribeMessage}}</div>
       </div>
     </div>
   </div>
@@ -249,7 +252,7 @@
     <div class="instagramPhotoSection">
     </div>
   </div>
-<app-footer></app-footer>
+<app-footer [isUserLoggedInFromHeader]="isUserLoggedInFromHeader"></app-footer>
 
 <!-- <script type="text/javascript">
   $(document).foundation();
