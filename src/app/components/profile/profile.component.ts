@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
       //console.log(this.getUserAccessToken);
 
       this.userService.getUserDetails(this.getUserAccessToken).subscribe(data => {
-        this.user = data.data[0];
+        this.user = data.data;
         //console.log(this.user);
 
         if(this.user) {

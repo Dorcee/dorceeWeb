@@ -46,6 +46,12 @@ export class LoginComponent implements OnInit {
         this.loginFormControl.removeControl('otp');
     }
 
+    gettingUserRegistered(value) {
+       // console.log(value);
+        if(value) {
+            this.userLoggingIn.emit(true);
+        }
+    }
     submit() {
         var formdata = this.loginFormControl.value;
         if(this.otp_field == 0) {
