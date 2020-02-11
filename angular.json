@@ -145,5 +145,8 @@
       }
     }
   },
-  "defaultProject": "dorcee"
+  "defaultProject": "dorcee",
+  "cli": {
+    "analytics": false
+  }
 }
