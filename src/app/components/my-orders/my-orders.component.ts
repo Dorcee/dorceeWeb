@@ -22,7 +22,7 @@ export class MyOrdersComponent implements OnInit {
     }
     //console.log(this.userAccessToken);
     this.orderService.getPlacedOrderDetailsOfUser(this.userAccessToken).subscribe(data=> {
-      console.log(data);
+      //console.log(data);
    
       this.loading.nativeElement.className = 'hidingLoader' ;
     });
