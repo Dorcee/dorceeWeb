@@ -45,8 +45,9 @@ export class OrderService {
     return this.httpClient.post<any>(`${API_URL}/web/validate/checksum`, data, httpOptions)
     .pipe(
       map(res => {
-        //console.log(res); 
-        return res.data; 
+        console.log('response after order validation'); 
+        console.log(res); 
+        return res.message; 
       }),  // make it as observable
       catchError(error => this.handleError(error))
     );

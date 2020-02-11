@@ -115,8 +115,11 @@ export class ConfirmOrderComponent implements OnInit {
     if(this.selectedAddress) {
       var postData = {'items' : this.cartItems, 'address_id' : this.selectedAddress, 
         'loc_type' : this.locType};
+        console.log('postData on proceed to payment');
+        console.log(postData);
       this.orderService.getOrderDetails(postData, this.getUserAccessToken).subscribe((order_data)=>{
-        //console.log(order_data);
+        console.log("getOrderDetails API `${API_URL}/web/order`response");
+        console.log(order_data);
         var options = {
           "key": environment.razorpayKeyID,
           "name": "Dorcee",
@@ -139,11 +142,12 @@ export class ConfirmOrderComponent implements OnInit {
 
   validateOrder(response) {
     localStorage.removeItem('cart_items');
-    //console.log(response);
+    console.log('Details passing for validation of order');
+    console.log(response);
     if(response.razorpay_payment_id) {
       this.loading.nativeElement.className = 'showLoader';
       this.orderService.validateOrder(response, this.getUserAccessToken).subscribe((result)=>{
-        //console.log(result);
+        console.log(result);
         this.router.navigate(['/thankyou']);
         this.loading.nativeElement.className = 'hidingLoader';
       }, (err) => {

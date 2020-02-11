@@ -149,5 +149,6 @@ export class ProductDetailComponent implements OnInit {
         this.productAdded=true;
       }
     }
+    console.log(JSON.parse(localStorage.getItem('cart_items')));
   }
 }

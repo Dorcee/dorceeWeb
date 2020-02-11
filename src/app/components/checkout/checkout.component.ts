@@ -24,6 +24,7 @@ export class CheckoutComponent implements OnInit {
 	@ViewChild('loading', {static:false}) loading:ElementRef;
 
 	ngOnInit() {
+		console.log(this.locType);
 		if(this.cartItems.length > 0) {
 			this.getUserDetails = JSON.parse(localStorage.getItem('user_details'));
       		
@@ -44,6 +45,7 @@ export class CheckoutComponent implements OnInit {
 		this.itemTotal = this.grandTotal = this.shippingTotal = 0;
 		var ids = this.cartItems.map(function (el) { return el.product_id; });
 		var postdata = {ids: ids, loc_type: this.locType};
+		console.log(postdata);
 		this.productDetailService.getCartProductsDetail(postdata).subscribe((data)=>{
       		//console.log(data);
       		this.products = data.products;
@@ -53,6 +55,7 @@ export class CheckoutComponent implements OnInit {
     			this.cartItems[index]['product'] = product;
     			this.itemTotal += product.price;
 			});
+			console.log(this.cartItems);
 			this.grandTotal = this.itemTotal + this.shippingTotal;
 			this.contentLoaded = 1;
 
