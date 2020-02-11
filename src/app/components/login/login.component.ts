@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     }
 
     gettingUserRegistered(value) {
-        console.log(value);
+       // console.log(value);
         if(value) {
             this.userLoggingIn.emit(true);
         }
