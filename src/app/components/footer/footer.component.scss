@@ -21,11 +21,19 @@
 	padding-bottom: rem-calc(10);
 }
 
-@include breakpoint(small only) {
+@include breakpoint(medium only) {
 	.footerCategoryHeader {
-    font-size: rem-calc(20);
+    font-size: rem-calc(24);
   }
   .footerCategory, .footerCategoryEnd {
-  	font-size: rem-calc(10);
+  	font-size: rem-calc(14);
+  }
+}
+@include breakpoint(small only) {
+	.footerCategoryHeader {
+    font-size: rem-calc(22);
+  }
+  .footerCategory, .footerCategoryEnd {
+  	font-size: rem-calc(12);
   }
 }

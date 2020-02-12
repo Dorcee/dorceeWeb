@@ -2,9 +2,9 @@
 <div class="reveal loginModalOuterContainer" id="loginModal" data-reveal>
 	<div class="grid-container loginModalContainer">
 		<div class="text-center loginHeader">LOGIN</div>
-		<form class="loginForm" [formGroup]="loginFormControl">
+		<form class="loginForm" [formGroup]="loginFormControl" autocomplete="off">
 			<mat-form-field class="loginFormField">
-				<input matInput placeholder="Enter Mobile Number" formControlName="phone_number" (change)="removeErrors()">
+				<input matInput placeholder="Enter Mobile Number" formControlName="phone_number" (change)="removeErrors()" value="">
 		    	<mat-hint *ngIf="phone_error">{{phone_error}}</mat-hint>
 				<mat-error *ngIf="loginFormControl.controls['phone_number'].hasError('required')">
 		      		Phone number is <strong>required</strong>

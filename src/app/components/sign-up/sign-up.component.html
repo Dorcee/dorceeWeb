@@ -1,7 +1,7 @@
 <div class="reveal signUpModalOuterContainer" id="signUpModal" data-reveal>
 	<div class="grid-container signUpModalContainer">
 		<div class="text-center signUpHeader">Sign-Up</div>
-		<form class="example-form" [formGroup]="signUpFormControl">
+		<form class="example-form" [formGroup]="signUpFormControl" autocomplete="off">
 			<mat-form-field class="example-full-width">
 				<input matInput placeholder="First Name" formControlName="fname">
 				<mat-error *ngIf="signUpFormControl.controls['fname'].hasError('required')">
