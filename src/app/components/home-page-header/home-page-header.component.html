@@ -10,8 +10,15 @@
 			<img src="assets/images/dorceeLogo.svg" class="brandLogo" alt="Company Logo" routerLink="/" width="175">
 		</div>
 		<div class="small-4 cell text-right homePageLoginHeader">
-			<span class="currencyWeb homepageHeading">{{locType}}</span>
-			<!-- <span class="" data-open="loginModal">Login</span> -->
+
+			<ul class="dropdown menu" data-dropdown-menu id="locTypeDropDown">
+			  <li>
+			    <a class="currencyWeb homepageHeading">{{ locType}}</a>
+			    <ul class="menu customTab">
+			      <li><a (click)="leftLocTypeClick(leftLocType)">{{leftLocType}}</a></li>
+			    </ul>
+			  </li>
+			</ul>
 			
 			<span class="userLogin homepageHeading nameHover" id="nameDropDown">	
 	 			<ul class="dropdown menu" data-dropdown-menu>
