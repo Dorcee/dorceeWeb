@@ -56,7 +56,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 	     	$('.productImageSlideContainer').not('.slick-initialized').slick({
 	     		infinite: true,
 	     		autoplaySpeed: 1000,
-	     		arrows: false,
+	     		arrows: false
 	     	});
 	        //console.log(this.loadingElement);
 	     	this.loading.nativeElement.className = 'hidingLoader' ;

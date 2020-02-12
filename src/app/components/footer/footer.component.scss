@@ -1,17 +1,31 @@
 @import '../../../assets/foundation-sites/global';
 
+.footerContainer {
+	padding-top: rem-calc(35);
+}
 .footerCategoryContainer { 
 	font-family: Helvetica-light, Roboto, Sans-serif;
+	padding-top: rem-calc(20);
 }
 .footerCategoryHeader {
 	font-family: Helvetica, Roboto, Sans-serif;	
 	font-weight: 200;
-	font-size: 30px;
+	font-size: rem-calc(26);
 }
 .footerCategory {
-	padding-bottom: rem-calc(5);
+	padding-bottom: rem-calc(10);
 	cursor: pointer;
+	font-size: rem-calc(16);
 }
 .footerCategoryEnd {
-	padding-bottom: rem-calc(5);
+	padding-bottom: rem-calc(10);
+}
+
+@include breakpoint(small only) {
+	.footerCategoryHeader {
+    font-size: rem-calc(20);
+  }
+  .footerCategory, .footerCategoryEnd {
+  	font-size: rem-calc(10);
+  }
 }

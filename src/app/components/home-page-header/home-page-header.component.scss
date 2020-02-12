@@ -40,3 +40,17 @@
     padding: rem-calc(2 6);
     border-radius: 50%;
 }
+@include breakpoint(small only) {
+  .homepageHeading {
+    font-size: rem-calc(10);
+  }
+  .nameHover {
+    padding-right: 0;
+  }
+  .userLogin ul li a.userLoginInner {
+    padding-left: 0;
+  }
+  .currencyWeb {
+    padding-right: rem-calc(5);
+  }
+}
