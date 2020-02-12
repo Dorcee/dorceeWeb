@@ -25,7 +25,7 @@ export class HomePageHeaderComponent implements OnInit {
   userDetails:any; 
 
   ngOnInit() {
-    
+
     $('#locTypeDropDown').foundation();
     $('#nameDropDown').foundation();
     //console.log("home page");
