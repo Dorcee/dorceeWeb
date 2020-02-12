@@ -3,8 +3,17 @@
 .footerCategoryHeader {
 	font-family: Helvetica, Roboto, Sans-serif;	
 	font-weight: 200;
+	font-size: rem-calc(26);
 }
 
 .paymentFooterContainer {
 	padding-top: rem-calc(35);
+}
+@include breakpoint(small only) {
+	.footerCategoryHeader {
+    font-size: rem-calc(18);
+  }
+  .rightState {
+  	font-size: rem-calc(10);
+  }
 }
