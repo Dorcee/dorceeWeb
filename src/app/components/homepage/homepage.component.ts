@@ -51,8 +51,11 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit(){
+		this.slickInitialized();
+	}
 
-	    setTimeout(() => {
+	slickInitialized() {
+		setTimeout(() => {
 	     	$('.productImageSlideContainer').not('.slick-initialized').slick({
 	     		infinite: true,
 	     		autoplaySpeed: 1000,
@@ -63,7 +66,14 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 	  	}, 1500);
 	}
 
-		changeStyle($event,ID){
+	locTypeChangedFromHeaderTo(selectedLocType) {
+		//console.log(selectedLocType);
+		this.loading.nativeElement.className = 'showLoader' ;
+		this.getProducts(selectedLocType);
+		this.slickInitialized();
+	}
+
+	changeStyle($event,ID){
 	    // console.log(ID); 
 	    if($event.type == 'mouseover'){ 
 	      setTimeout(function () {
