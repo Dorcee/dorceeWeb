@@ -46,7 +46,7 @@ export class OrderService {
     .pipe(
       map(res => {
         //console.log(res); 
-        return res.data; 
+        return res.message; 
       }),  // make it as observable
       catchError(error => this.handleError(error))
     );

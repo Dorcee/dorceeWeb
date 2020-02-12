@@ -8,7 +8,7 @@
   </button>
   <p>Free Shipping to all the cities in India on order above Rs. 2000</p>
 </div>
-<app-home-page-header inputCartItems="{{cartItems.length}}" (isUserLoggedInToFooter)="userLoggingInDetail($event)"></app-home-page-header>
+<app-home-page-header inputCartItems="{{cartItems.length}}" (isUserLoggedInToFooter)="userLoggingInDetail($event)" (locTypeChangedTo)="locTypeChangedFromHeaderTo($event)"></app-home-page-header>
   <div class="grid-x">
     <!-- <div class="grid-x grid-padding-y grid-padding-x">
       <div class="small-12 medium-6 cell">
