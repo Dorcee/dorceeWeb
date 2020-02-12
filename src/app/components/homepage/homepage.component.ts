@@ -53,6 +53,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 	ngAfterViewInit(){
 		this.slickInitialized();
 	}
+	
 
 	slickInitialized() {
 		setTimeout(() => {
