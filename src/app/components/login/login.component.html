@@ -2,7 +2,7 @@
 <div class="reveal loginModalOuterContainer" id="loginModal" data-reveal data-close-on-click="false" data-close-on-esc="false">
 	<div class="grid-container loginModalContainer">
 		<div class="text-center loginHeader">LOGIN</div>
-		<form class="loginForm" [formGroup]="loginFormControl" #formDirective="ngForm" (ngSubmit)="onSubmit(loginFormControl, formDirective)">
+		<form class="loginForm" [formGroup]="loginFormControl" #formDirective="ngForm" (ngSubmit)="onSubmit(loginFormControl, formDirective)" autocomplete="off">
 			<mat-form-field class="loginFormField">
 				<input matInput placeholder="Enter Mobile Number" formControlName="phone_number">
 		    	<mat-hint *ngIf="phone_error">{{phone_error}}</mat-hint>
