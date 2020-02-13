@@ -14,4 +14,8 @@ export class AppComponent {
     //or document.body.scrollTop = 0;
     //or document.querySelector('body').scrollTo(0,0)
   }
+
+  gettingUserLoggedIn(value) {
+  	//console.log(value);
+  }
 }

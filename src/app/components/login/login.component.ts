@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
                 if(navigateTo){
                     this.router.navigate([navigateTo]);
                 }
-                
+                window.location.reload();
                 // TODO : error section of verify OTP
                 // TODO :  show successful login message
             }, (error:any) => {
