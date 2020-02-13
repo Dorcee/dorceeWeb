@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormControl, Validators, FormBuilder,FormGroup, FormGroupDirective } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 
@@ -26,9 +26,14 @@ export class LoginComponent implements OnInit {
     otp_error = '';
     userDetails = localStorage.getItem('user_details'); 
 
+    loginFormControl:FormGroup;
+
     ngOnInit() {
-      $('#loginModal').foundation();
-      // console.log(this.moveTo);
+        $('#loginModal').foundation();
+        // console.log(this.moveTo);
+        this.loginFormControl = this.formBuilder.group({
+            phone_number: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(7), Validators.maxLength(13)]]
+        });
     }
 
     ngOnChanges() {
@@ -36,48 +41,56 @@ export class LoginComponent implements OnInit {
       //console.log(navigateTo);
     }
 
-    loginFormControl = this.formBuilder.group({
-      phone_number: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(7), Validators.maxLength(13)]]
-    });
-
     removeErrors() {
-      this.otp_field = 0;
-      this.phone_error = '';
-      this.loginFormControl.removeControl('otp');
+        this.otp_error = '';
+        this.otp_field = 0;
+        this.phone_error = '';
+        this.loginFormControl.removeControl('otp');
     }
 
     gettingUserRegistered(value) {
-      if(value) {
-        this.userLoggingIn.emit(true);
-      }
+        if(value) {
+            this.userLoggingIn.emit(true);
+        }
     }
-    submit() {
-      var formdata = this.loginFormControl.value;
-      if(this.otp_field == 0) {
-        this.userService.generateOtp(formdata).subscribe((data)=>{
-          this.otp_field = 1;
-          this.loginFormControl.addControl('otp',  new FormControl('', Validators.required));
-      }, (error:any) => {
-          this.phone_error = error.message;
-        });
-      } else {
-        this.userService.verifyOtp(formdata).subscribe((data)=>{
-          this.userDetails = data.data.userDetails;
-          localStorage.setItem('user_details', JSON.stringify(data.data.userDetails));
-          this.userLoggingIn.emit(true);
-          $('#loginModal').foundation('close');
-          this.loginFormControl.reset();                               
-          if(navigateTo){
-            // console.log('navigate to');
-            this.router.navigate([navigateTo]);
-          }                
-          // TODO : error section of verify OTP
-          // TODO :  show successful login message
-        }, (error:any) => {
-          this.otp_error = error.message;
-        });
-        this.otp_field=0;
-      }
+
+    onSubmit(form:any, formDirective: FormGroupDirective): void {
+        var formdata = this.loginFormControl.value;
+        if(this.otp_field == 0) {
+            this.userService.generateOtp(formdata).subscribe((data)=>{
+                this.otp_field = 1;
+                this.loginFormControl.addControl('otp',  new FormControl('', Validators.required));
+            }, (error:any) => {
+                this.phone_error = error.message;
+            });
+        } else {
+            this.userService.verifyOtp(formdata).subscribe((data)=>{
+                this.userDetails = data.data.userDetails;
+                localStorage.setItem('user_details', JSON.stringify(data.data.userDetails));
+                this.userLoggingIn.emit(true);
+
+                this.otp_field = 0;
+                this.removeErrors();
+                formDirective.resetForm();
+                this.loginFormControl.reset();   
+                $('#loginModal').foundation('close');
+                if(navigateTo){
+                    this.router.navigate([navigateTo]);
+                }
+                window.location.reload();
+                // TODO : error section of verify OTP
+                // TODO :  show successful login message
+            }, (error:any) => {
+                this.otp_error = error.message;
+            });
+        }
+    }
+
+    closeModal(formDirective: FormGroupDirective) {
+       // console.log("on close");
+        this.removeErrors();
+        this.loginFormControl.reset();
+        formDirective.resetForm();
     }
 
     // TODO : Resend OTP functionality

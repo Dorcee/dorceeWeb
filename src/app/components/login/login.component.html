@@ -2,9 +2,9 @@
 <div class="reveal loginModalOuterContainer" id="loginModal" data-reveal>
 	<div class="grid-container loginModalContainer">
 		<div class="text-center loginHeader">LOGIN</div>
-		<form class="loginForm" [formGroup]="loginFormControl" autocomplete="off">
+		<form class="loginForm" [formGroup]="loginFormControl" #formDirective="ngForm" (ngSubmit)="onSubmit(loginFormControl, formDirective)" autocomplete="off">
 			<mat-form-field class="loginFormField">
-				<input matInput placeholder="Enter Mobile Number" formControlName="phone_number" (change)="removeErrors()" value="">
+				<input matInput placeholder="Enter Mobile Number" formControlName="phone_number">
 		    	<mat-hint *ngIf="phone_error">{{phone_error}}</mat-hint>
 				<mat-error *ngIf="loginFormControl.controls['phone_number'].hasError('required')">
 		      		Phone number is <strong>required</strong>
@@ -25,7 +25,7 @@
 			    </mat-error>
 			</mat-form-field>
 			<div class="text-center dorceeLoginBtnContainer">
-				<button type="submit" (click)="submit()" [disabled]="!loginFormControl.valid" class="button dorceeLoginBtn">{{(otp_field == 0) ? 'Send OTP' : 'LOGIN' }}</button>
+				<button type="submit" [disabled]="!loginFormControl.valid" class="button dorceeLoginBtn">{{(otp_field == 0) ? 'Send OTP' : 'LOGIN' }}</button>
 			</div>
 			<div class="text-center">
 				New to dorcee? <span data-close data-open="signUpModal" class="signUpLink">Sign up</span>
@@ -35,7 +35,7 @@
 		<button class="close-button show-for-small-only" data-close aria-label="Close modal" type="button">
 			<span aria-hidden="true">&times;</span>
 		</button>
-		<button class="close-button closeLoginModal hide-for-small-only" data-close aria-label="Close modal" type="button">
+		<button class="close-button closeLoginModal hide-for-small-only" (click)="closeModal(formDirective)" data-close aria-label="Close modal" type="button">
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>
