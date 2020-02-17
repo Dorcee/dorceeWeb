@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
     userDetails = localStorage.getItem('user_details'); 
 
     loginFormControl:FormGroup;
+    otpValidation:boolean = false;
 
     ngOnInit() {
         $('#loginModal').foundation();
@@ -56,10 +57,12 @@ export class LoginComponent implements OnInit {
 
     onSubmit(form:any, formDirective: FormGroupDirective): void {
         var formdata = this.loginFormControl.value;
+        //console.log(formdata);
         if(this.otp_field == 0) {
             this.userService.generateOtp(formdata).subscribe((data)=>{
                 this.otp_field = 1;
-                this.loginFormControl.addControl('otp',  new FormControl('', Validators.required));
+                this.otpValidation = true;
+                this.loginFormControl.addControl('otp',  new FormControl(''));
             }, (error:any) => {
                 this.phone_error = error.message;
             });
@@ -84,6 +87,22 @@ export class LoginComponent implements OnInit {
                 this.otp_error = error.message;
             });
         }
+    }
+
+    addOtpValidations() {
+        this.otp_error='';
+        this.loginFormControl.controls['otp'].setValidators([Validators.required]);
+        this.otpValidation = false;
+    }
+
+    resendOtp() {
+        var formdata = this.loginFormControl.value;
+        //console.log(formdata);
+        this.userService.generateOtp(formdata).subscribe((data)=>{
+            //console.log(data);
+        }, (error:any) => {
+            this.phone_error = error.message;
+        });
     }
 
     closeModal(formDirective: FormGroupDirective) {

@@ -4,7 +4,7 @@
 		<div class="text-center loginHeader">LOGIN</div>
 		<form class="loginForm" [formGroup]="loginFormControl" #formDirective="ngForm" (ngSubmit)="onSubmit(loginFormControl, formDirective)" autocomplete="off">
 			<mat-form-field class="loginFormField">
-				<input matInput placeholder="Enter Mobile Number" formControlName="phone_number">
+				<input matInput placeholder="Enter Mobile Number" (keyup)="phone_error=''" formControlName="phone_number">
 		    	<mat-hint *ngIf="phone_error">{{phone_error}}</mat-hint>
 				<mat-error *ngIf="loginFormControl.controls['phone_number'].hasError('required')">
 		      		Phone number is <strong>required</strong>
@@ -15,7 +15,7 @@
 			</mat-form-field>
 
 			<mat-form-field class="loginFormField" *ngIf="otp_field">
-				<input matInput placeholder="Enter OTP" formControlName="otp">
+				<input matInput placeholder="Enter OTP" (keyup)="addOtpValidations()" formControlName="otp">
 				<mat-hint *ngIf="otp_error">{{otp_error}}</mat-hint>
 				<mat-error *ngIf="loginFormControl.controls['otp'].hasError('required')">
 		      		OTP is <strong>required</strong>
@@ -24,11 +24,14 @@
 			     	OTP is <strong> not valid</strong>
 			    </mat-error>
 			</mat-form-field>
+			<div *ngIf="otp_field">
+				<div class="link" (click)="resendOtp()">Resend Otp</div>
+			</div>
 			<div class="text-center dorceeLoginBtnContainer">
-				<button type="submit" [disabled]="!loginFormControl.valid" class="button dorceeLoginBtn">{{(otp_field == 0) ? 'Send OTP' : 'LOGIN' }}</button>
+				<button type="submit" [disabled]="!loginFormControl.valid || otpValidation == true" class="button dorceeLoginBtn">{{(otp_field == 0) ? 'Send OTP' : 'LOGIN' }}</button>
 			</div>
 			<div class="text-center">
-				New to dorcee? <span data-close data-open="signUpModal" class="signUpLink">Sign up</span>
+				New to dorcee? <span data-close data-open="signUpModal" class="link">Sign up</span>
 			</div>
 		</form>
 	

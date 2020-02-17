@@ -66,7 +66,9 @@ export class CheckoutComponent implements OnInit {
 			//console.log(index);
 			this.cartItems.splice(index, 1) ;
 			localStorage.setItem('cart_items', JSON.stringify(this.cartItems));
-			this.setProductAndPrice();
+			if(this.cartItems.length > 0) {
+				this.setProductAndPrice();
+			}
 			//alert('Item removed successfully');
 			// TODO : change cart icon quantity in header
 		}

@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angula
 import { HomeService } from '../../services/home.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { LoaderComponent } from '../loader/loader.component';
 
 declare var $:any;
@@ -17,13 +19,23 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 	products = [];
 	cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
 
-	subscribeEmail:string;
+	isUserLoggedInFromHeader:boolean;
+	
+	constructor( 
+		public homeservice:HomeService, 
+		public router:Router,
+		public formBuilder: FormBuilder
+    ) { }
+
+	subscribeForm:FormGroup;
+	emailClicked:boolean = false;
 	subscribeMessage: string;
 	subscribeOn:boolean = false;
-	isUserLoggedInFromHeader:boolean;
-	constructor(public homeservice:HomeService, public router:Router) { }
 
 	ngOnInit() {
+		this.subscribeForm = this.formBuilder.group({
+			email:['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$") ]]
+		}) 
 
 		$('.homePageSlick').not('.slick-initialized').slick({
 			infinite: true,
@@ -103,8 +115,8 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   	}
 
   	onSubscribe() {
-  		//console.log(this.subscribeEmail);
-  		this.homeservice.emailSubscribe('email',this.subscribeEmail).subscribe((data)=>{
+  		//console.log(this.subscribeForm.value);
+  		this.homeservice.emailSubscribe(this.subscribeForm.value).subscribe((data)=>{
 			//console.log(data);
 			this.subscribeMessage = data.data;
 			this.subscribeOn = true;

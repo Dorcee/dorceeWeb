@@ -72,6 +72,16 @@ export class SignUpComponent implements OnInit {
       });
     }
   }
+
+  resendOtp() {
+    var formdata = this.signUpFormControl.value;
+     //console.log(formdata);
+      this.userService.registerUser(formdata).subscribe((data)=>{
+        this.signUpFormControl.addControl('otp',  new FormControl('', Validators.required));
+      }, (error:any) => {
+        this.phone_error = error.message;
+      });
+  }
   // TODO : Resend OTP functionality
   // TODO : IF clicked button already - should not click again login button
 }

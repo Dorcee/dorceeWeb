@@ -63,8 +63,7 @@ export class HomeService {
     );
   }
 
-  public emailSubscribe(email,subscribeMail) {
-    var formData = {email : subscribeMail};
+  public emailSubscribe(formData) {
     //console.log(formData);
    
     return this.httpClient.post<any>(`${API_URL}/web/subscribe`, formData, httpOptions)
