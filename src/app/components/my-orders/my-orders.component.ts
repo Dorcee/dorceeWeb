@@ -28,7 +28,7 @@ export class MyOrdersComponent implements OnInit {
       var myOrdersResponse = data.data
       //console.log(myOrdersResponse);
       var currentId;
-      myOrdersResponse.forEach((element,key) => {
+      myOrdersResponse.forEach((element) => {
         if(element.id == currentId) {
           this.myOrdersArray.forEach((insideSameId,index) => {
             //console.log(this.myOrdersArray[index][element.id]);

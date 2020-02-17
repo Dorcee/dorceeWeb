@@ -77,7 +77,6 @@ export class SignUpComponent implements OnInit {
     var formdata = this.signUpFormControl.value;
      //console.log(formdata);
       this.userService.registerUser(formdata).subscribe((data)=>{
-        this.otp_field = 1;
         this.signUpFormControl.addControl('otp',  new FormControl('', Validators.required));
       }, (error:any) => {
         this.phone_error = error.message;

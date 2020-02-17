@@ -15,7 +15,7 @@
 			</mat-form-field>
 
 			<mat-form-field class="loginFormField" *ngIf="otp_field">
-				<input matInput placeholder="Enter OTP" formControlName="otp">
+				<input matInput placeholder="Enter OTP" (keyup)="addOtpValidations()" formControlName="otp">
 				<mat-hint *ngIf="otp_error">{{otp_error}}</mat-hint>
 				<mat-error *ngIf="loginFormControl.controls['otp'].hasError('required')">
 		      		OTP is <strong>required</strong>
@@ -28,7 +28,7 @@
 				<div class="link" (click)="resendOtp()">Resend Otp</div>
 			</div>
 			<div class="text-center dorceeLoginBtnContainer">
-				<button type="submit" [disabled]="!loginFormControl.valid" class="button dorceeLoginBtn">{{(otp_field == 0) ? 'Send OTP' : 'LOGIN' }}</button>
+				<button type="submit" [disabled]="!loginFormControl.valid || otpValidation == true" class="button dorceeLoginBtn">{{(otp_field == 0) ? 'Send OTP' : 'LOGIN' }}</button>
 			</div>
 			<div class="text-center">
 				New to dorcee? <span data-close data-open="signUpModal" class="link">Sign up</span>
