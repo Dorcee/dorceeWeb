@@ -11,6 +11,8 @@ declare var $:any;
 })
 export class MyOrdersComponent implements OnInit {
 	userAccessToken: any;
+  myOrdersArray:any=[];
+
   constructor(private orderService : OrderService) { }
 
   @ViewChild('loading', {static:false}) loading:ElementRef;
@@ -23,7 +25,25 @@ export class MyOrdersComponent implements OnInit {
     //console.log(this.userAccessToken);
     this.orderService.getPlacedOrderDetailsOfUser(this.userAccessToken).subscribe(data=> {
       //console.log(data);
-   
+      var myOrdersResponse = data.data
+      //console.log(myOrdersResponse);
+      var currentId;
+      myOrdersResponse.forEach((element,key) => {
+        if(element.id == currentId) {
+          this.myOrdersArray.forEach((insideSameId,index) => {
+            //console.log(this.myOrdersArray[index][element.id]);
+            if(this.myOrdersArray[index].hasOwnProperty(element.id)){
+              this.myOrdersArray[index][element.id].push(element);
+            }            
+          });
+        } else {
+          this.myOrdersArray.push({[element.id]:Array(element)});
+          currentId = element.id;
+        }  
+        //console.log(currentId);
+      });
+      //console.log(this.myOrdersArray);
+
       this.loading.nativeElement.className = 'hidingLoader' ;
     });
   }

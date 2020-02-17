@@ -16,6 +16,7 @@ export class MyAccountComponent implements OnInit {
 	previousSelectedTab:any;
 	selectedTab;
 	SelectedTabReference:any;
+	cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
   constructor(private route:ActivatedRoute,
   			  private router : Router,
   	) { }

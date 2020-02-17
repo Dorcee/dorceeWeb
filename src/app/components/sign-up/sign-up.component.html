@@ -46,11 +46,14 @@
 					OTP is <strong> not valid</strong>
 				</mat-error>
 			</mat-form-field>
+			<div *ngIf="otp_field">
+				<div class="link" (click)="resendOtp()">Resend Otp</div>
+			</div>
 			<div class=" text-center dorceeSignUpBtnContainer">
 				<button class="button dorceeSignUpContinueBtn" (click)="signup()" [disabled]="!signUpFormControl.valid">Continue</button>
 			</div>
 			<div class="text-center">
-				Existing User? <span data-close data-open="loginModal" class="logInLink">Login</span>
+				Existing User? <span data-close data-open="loginModal" class="link">Login</span>
 			</div>
 		</form>
 

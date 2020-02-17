@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
 
     onSubmit(form:any, formDirective: FormGroupDirective): void {
         var formdata = this.loginFormControl.value;
+        //console.log(formdata);
         if(this.otp_field == 0) {
             this.userService.generateOtp(formdata).subscribe((data)=>{
                 this.otp_field = 1;
@@ -84,6 +85,16 @@ export class LoginComponent implements OnInit {
                 this.otp_error = error.message;
             });
         }
+    }
+
+    resendOtp() {
+        var formdata = this.loginFormControl.value;
+        //console.log(formdata);
+        this.userService.generateOtp(formdata).subscribe((data)=>{
+            //console.log(data);
+        }, (error:any) => {
+            this.phone_error = error.message;
+        });
     }
 
     closeModal(formDirective: FormGroupDirective) {
