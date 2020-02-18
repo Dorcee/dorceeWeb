@@ -51,7 +51,7 @@ export class ProductDetailComponent implements OnInit {
         if(ip_details.countryCode == 'IN') {
           var loc_type = environment.india_location;
         } else {
-          var loc_type = environment.india_location;
+          var loc_type = environment.other_location;
         }
         localStorage.setItem('loc_type', loc_type);
       });

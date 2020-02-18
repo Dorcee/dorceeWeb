@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import { environment } from '../../../../src/environments/environment';
 import { OrderService } from '../../services/order.service';
 
 declare var $:any;
@@ -12,6 +13,8 @@ declare var $:any;
 export class MyOrdersComponent implements OnInit {
 	userAccessToken: any;
   myOrdersArray:any=[];
+  locType:any = localStorage.getItem('loc_type');
+  indian_location = environment.india_location;
 
   constructor(private orderService : OrderService) { }
 
@@ -31,13 +34,13 @@ export class MyOrdersComponent implements OnInit {
       myOrdersResponse.forEach((element) => {
         if(element.id == currentId) {
           this.myOrdersArray.forEach((insideSameId,index) => {
-            //console.log(this.myOrdersArray[index][element.id]);
-            if(this.myOrdersArray[index].hasOwnProperty(element.id)){
-              this.myOrdersArray[index][element.id].push(element);
+            //console.log();
+            if(this.myOrdersArray[index][0].id==element.id){
+              this.myOrdersArray[index].push(element);
             }            
           });
         } else {
-          this.myOrdersArray.push({[element.id]:Array(element)});
+          this.myOrdersArray.push(Array(element));
           currentId = element.id;
         }  
         //console.log(currentId);
