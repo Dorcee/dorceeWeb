@@ -13,7 +13,6 @@ declare var $:any;
 export class MyOrdersComponent implements OnInit {
 	userAccessToken: any;
   myOrdersArray:any=[];
-  locType:any = localStorage.getItem('loc_type');
   indian_location = environment.india_location;
 
   constructor(private orderService : OrderService) { }
@@ -34,7 +33,6 @@ export class MyOrdersComponent implements OnInit {
       myOrdersResponse.forEach((element) => {
         if(element.id == currentId) {
           this.myOrdersArray.forEach((insideSameId,index) => {
-            //console.log();
             if(this.myOrdersArray[index][0].id==element.id){
               this.myOrdersArray[index].push(element);
             }            
