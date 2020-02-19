@@ -13,6 +13,7 @@ $messageBackground: #f0fff0;
 .minDeliveryHeader {
   margin-bottom: 0;
 }
+
 .closeDeliveryInfo {
   color: $black;
 }
@@ -209,7 +210,6 @@ $messageBackground: #f0fff0;
   color:$primary-color;
 }
 //Only Media Queries below this line -
-
 
 @include breakpoint(small only) {
   .productImageSlideContainer, .productImageSlideContainer .productImage{
