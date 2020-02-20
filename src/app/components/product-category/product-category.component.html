@@ -41,8 +41,8 @@
 	</div>
 	<div class="grid-x grid-padding-x">
 		<div class="reveal" id="filterModal" data-reveal>
-		  <div class="filterModalContainer">
-		  	<div class="productCategoryOuterContainer">
+		    <div class="filterModalContainer">
+			  	<div class="productCategoryOuterContainer">
 					<div class="productSelectorHeading">Category</div>
 					<ul class="vertical menu accordion-menu productSelectorSubHeading" data-accordion-menu>
 						<li class="productCategoryAccordionHeaderContainer" *ngFor="let category of categories">
@@ -64,20 +64,17 @@
 					<div class="productSelectorHeading">Fit</div>
 					<div class="productSelectorSubHeading">
 						<div class="fitCategoryContainer" *ngFor="let fit of fits">
-							<mat-checkbox class="fitCategorySelector">{{fit.name}}</mat-checkbox>
+							<mat-checkbox  (click)="getProducts('small','fit', fit.value)" class="fitCategorySelector">{{fit.name}}</mat-checkbox>
 						</div>
 					</div>
 				</div>
 				<div class="productSizeOuterContainer">
 					<div class="productSelectorHeading">Size</div>
 					<div class="productSelectorSubHeading">
-						<div class="sizeCategoryContainer">
+						<div class="sizeCategoryContainer" *ngFor="let size of sizes">
 							<div class="grid-x">
 								<div class="small-6 medium-3 cell">
-									<mat-checkbox class="sizeCategorySelector">S</mat-checkbox>
-								</div>
-								<div class="small-6 medium-9 cell">
-									<mat-checkbox class="sizeCategorySelector">XL</mat-checkbox>
+									<mat-checkbox class="sizeCategorySelector" (change)="getProducts('small','size', size.value)">{{size.value}}</mat-checkbox>
 								</div>
 							</div>
 						</div>
@@ -98,7 +95,7 @@
 						<button class="button customBtn" (click)="closeFilterModal()" data-close aria-label="Close modal">Cancel</button>
 					</div>
 				</div>
-		  </div>
+		    </div>
 		  <button class="close-button" (click)="closeFilterModal()" data-close aria-label="Close modal" type="button">
 		    <span aria-hidden="true">&times;</span>
 		  </button>
@@ -121,17 +118,21 @@
 			<div class="productFitOuterContainer">
 				<div class="productSelectorHeading">Fit</div>
 				<div class="productSelectorSubHeading">
-					<div class="fitCategoryContainer" *ngFor="let fit of fits">
-						<mat-checkbox class="fitCategorySelector" (change)="getProducts('fit', fit.value)">{{fit.name}}</mat-checkbox>
-					</div>
+					<ul class="menu vertical nested is-active">
+						<li *ngFor="let fit of fits">
+							<a (click)="getProducts('mediumUp','fit', fit.value)">{{fit.name}}</a>
+						</li>
+					</ul>
 				</div>
 			</div>
 			<div class="productSizeOuterContainer">
 				<div class="productSelectorHeading">Size</div>
 				<div class="productSelectorSubHeading">
-					<div class="sizeCategoryContainer" *ngFor="let size of sizes">
-						<mat-checkbox class="sizeCategorySelector" (change)="getProducts('size', size.value)">{{size.value}}</mat-checkbox>
-					</div>
+					<ul class="menu vertical nested is-active">
+						<li *ngFor="let size of sizes">
+							<a (click)="getProducts('mediumUp','size', size.value)">{{size.value}}</a>
+						</li>
+					</ul>
 				</div>
 			</div>
 			<!-- <div class="productPriceOuterContainer">

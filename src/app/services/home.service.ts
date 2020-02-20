@@ -27,6 +27,7 @@ export class HomeService {
   }
 
   public getAllProducts(key='', value='') {
+    console.log(key,value);
     var loc_type = localStorage.getItem('loc_type');
     var params = {'loc_type' : loc_type};  //TODO : dynamic
     if(key == '' || value == '') {
@@ -34,6 +35,7 @@ export class HomeService {
     } else {
       params[key] = value;
     }
+    console.log(params);
   	return this.httpClient.get<any>(`${API_URL}/web/product`, {params, headers})
   	.pipe(
       map(res => {
