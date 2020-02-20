@@ -46,6 +46,12 @@ export class MyOrdersComponent implements OnInit {
       //console.log(this.myOrdersArray);
 
       this.loading.nativeElement.className = 'hidingLoader' ;
+    },
+    (error) => {
+      //console.log(error);
+      localStorage.removeItem('user_details');
+      $('#loginModal').foundation('open');
+      this.loading.nativeElement.className = 'hidingLoader' ;
     });
   }
 

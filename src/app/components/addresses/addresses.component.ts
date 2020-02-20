@@ -37,6 +37,12 @@ export class AddressesComponent implements OnInit {
      // console.log(data);
       this.addressDetail = data;
       this.loading.nativeElement.className = 'hidingLoader' ;
+    },
+    (error) => {
+      //console.log(error);
+      localStorage.removeItem('user_details');
+      $('#loginModal').foundation('open');
+      this.loading.nativeElement.className = 'hidingLoader' ;
     });
   }
 

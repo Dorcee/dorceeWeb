@@ -20,9 +20,14 @@ export class OrderService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private handleError (error) {
-    //console.error('ApiService::handleError', error);
-    return throwError(error);
+  private handleError (res) {
+    if (res.status === 400) {
+      //console.error(res.error);
+      return throwError({status: false, message: res.error.message || res.message});
+    } else {
+      //console.error('ApiService::handleError', error);
+      return throwError(res);
+    }
   }
 
   public getOrderDetails(data,access_token) {
