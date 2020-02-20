@@ -23,7 +23,7 @@ export class UserService {
 	private handleError (res) {
 		if (res.status === 400) {
             //console.error(res.error);
-			return throwError({status: false, message: res.error.data || res.error.error});
+			return throwError({status: false, message: res.error.message || res.message});
         } else {
 			//console.error('ApiService::handleError', res);
 			return throwError(res);

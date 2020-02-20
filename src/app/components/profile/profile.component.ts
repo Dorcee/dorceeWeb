@@ -30,9 +30,9 @@ export class ProfileComponent implements OnInit {
       this.getUserAccessToken =  this.user_details.access_token
       //console.log(this.getUserAccessToken);
 
-      this.userService.getUserDetails(this.getUserAccessToken).subscribe(data => {
+      this.userService.getUserDetails(this.getUserAccessToken).subscribe((data) => {
         this.user = data.data;
-        //console.log(this.user);
+        //console.log(data);
 
         if(this.user) {
           this.profileForm = this.formBuilder.group({
@@ -43,6 +43,12 @@ export class ProfileComponent implements OnInit {
             phone_number:[this.user.phone_number, [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(7), Validators.maxLength(13)]],
           }); 
         }    
+        this.loading.nativeElement.className = 'hidingLoader' ;
+      },
+      (error) => {
+        //console.log(error);
+        localStorage.removeItem('user_details');
+        $('#loginModal').foundation('open');
         this.loading.nativeElement.className = 'hidingLoader' ;
       });
     }

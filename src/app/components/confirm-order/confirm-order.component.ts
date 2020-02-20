@@ -56,6 +56,12 @@ export class ConfirmOrderComponent implements OnInit {
         this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
           this.addressDetail = data;
           this.loading.nativeElement.className = 'hidingLoader' ;
+        },
+        (error) => {
+          //console.log(error);
+          localStorage.removeItem('user_details');
+          $('#loginModal').foundation('open');
+          this.loading.nativeElement.className = 'hidingLoader' ;
         });  
         this.addressForm = this.formBuilder.group({
           // firstName:['', [Validators.required]],
