@@ -23,11 +23,11 @@
 		<div class="small-12 medium-8 cell">
 			<div class="addressHeader">Delivery Address</div>
 			<div class="addressOuterContainer">
-				<mat-radio-group>
+				<mat-radio-group [(ngModel)]="selectedAddress" >
 					<div class="clearfix addressContainer" *ngFor="let address of addressDetail">
 						<div class="float-left">
 							<!-- .mat-radio-label - align-items:center --change this property to get the radio button to be at top align with text -->
-						  <mat-radio-button value="{{address.is_default}}" (change)="changeDefaultAddress(address.id)">
+						  <mat-radio-button value="{{address.is_default}}" [value]="address.id">
 						  	<div>{{address.flat_number | titlecase}}</div>
 						  	<div>{{address.area | titlecase}}</div>
 						  	<div>{{address.city | titlecase}} - {{address.pin_code}} {{address.state | titlecase}}</div>

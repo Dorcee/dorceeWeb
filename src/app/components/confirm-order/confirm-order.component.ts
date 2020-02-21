@@ -109,16 +109,11 @@ export class ConfirmOrderComponent implements OnInit {
     });
   }
 
-  changeDefaultAddress(address_id) {
-    this.selectedAddress = address_id;
-    // TODO : edit the same address to make it default address
-    // TODO : currently 2 addresses can be default.
-  }
-
   Razorpay: any; 
 
   payNow() {
     if(this.selectedAddress) {
+      //console.log(this.selectedAddress);
       var postData = {'items' : this.cartItems, 'address_id' : this.selectedAddress, 
         'loc_type' : this.locType};
       this.orderService.getOrderDetails(postData, this.getUserAccessToken).subscribe((order_data)=>{
@@ -191,7 +186,7 @@ export class ConfirmOrderComponent implements OnInit {
     } else {
       //console.log(token);
       this.addressId=this.editAddressDetail.id;
-      if(addressDetail.type=='INR' || addressDetail.type.toLowerCase()=='india') {
+      if(this.editAddressDetail.type=='INR' || this.editAddressDetail.type.toLowerCase()=='india') {
         this.addressForm.controls['type'].setValue('India');
         this.openAddressUpdate();
       } else {
