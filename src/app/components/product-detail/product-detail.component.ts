@@ -87,6 +87,9 @@ export class ProductDetailComponent implements OnInit {
         slidesToScroll: 1,
         autoplay: false,
         autoplaySpeed: 2000,
+        arrows: true,
+        prevArrow:"<button type='button' class='slick-prev pull-left'> < </button>",
+        nextArrow:"<button type='button' class='slick-next pull-right'> > </button>",
         responsive: [
         {
           breakpoint: 640,
