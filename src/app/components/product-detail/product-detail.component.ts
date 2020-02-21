@@ -87,6 +87,9 @@ export class ProductDetailComponent implements OnInit {
         slidesToScroll: 1,
         autoplay: false,
         autoplaySpeed: 2000,
+        arrows: true,
+        prevArrow:"<button type='button' class='slick-prev pull-left'> < </button>",
+        nextArrow:"<button type='button' class='slick-next pull-right'> > </button>",
         responsive: [
         {
           breakpoint: 640,
@@ -97,6 +100,23 @@ export class ProductDetailComponent implements OnInit {
         }
         ]
       });
+
+      $('.left').click(function(){
+        $('.slider').slick('slickPrev');
+      })
+
+      $('.right').click(function(){
+        $('.slider').slick('slickNext');
+      })
+      // document.querySelector('.slick-prev').innerHTML = '<';
+      // document.querySelector('.slick-prev').style.display='block';
+      // document.querySelector('.slick-next').innerHTML = '>';
+      // document.querySelector('.slick-next').style.display='block';
+
+      //  $('.carousel-content').slick({
+      //     prevArrow:"<img class='a-left control-c prev slick-prev' src='../images/shoe_story/arrow-left.png'>",
+      //     nextArrow:"<img class='a-right control-c next slick-next' src='../images/shoe_story/arrow-right.png'>"
+      // });
       this.loading.nativeElement.className = 'hidingLoader' ;
       $('#accordionData').foundation();
     }, 1000);    

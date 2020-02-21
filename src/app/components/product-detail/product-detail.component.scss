@@ -167,7 +167,7 @@ $messageBackground: #f0fff0;
   font-size: 0;
 }
 
-::ng-deep  .slick-prev:after {
+::ng-deep  .slick-prev, .slick-arrow:after {
   content: "<";
   color: $primary-color;
   font-size: 30px;
@@ -182,7 +182,7 @@ $messageBackground: #f0fff0;
   padding: rem-calc(5 10);
 }
 
-::ng-deep  .slick-next:before {
+::ng-deep  .slick-next, .slick-arrow:before {
   content: ">";
   color: $primary-color;
   font-size: 30px;
