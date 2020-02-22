@@ -6,14 +6,22 @@
 	<div class="grid-x grid-padding-x">
     <div class="small-12 cell">
       
-      <div class="myAccountOrderOuterContainer" *ngFor="let allOrders of myOrdersArray| keyvalue; let index = index">
-        <div class="orderStatusContainer">
-          <div class="orderStatus"><strong>Delivered</strong></div>
-          <div>Order Number: {{index +1}}</div>
-          <div>Ordered on {{allOrders.value[0].order_date | date}} / {{ (allOrders.value[0].loc_type==indian_location) ? 'RS.' : '$' }} {{allOrders.value[0].total_amount}} / {{allOrders.value.length}} items</div>
+      <div class="myAccountOrderOuterContainer" *ngFor="let allOrders of myOrdersArray; let index = index">
+        <div class="grid-x orderStatusContainer">
+          <div class="small-12 medium-6">
+            <div class="orderStatus" *ngIf="allOrders[0].payment_status!='pending'">Order Status: <strong>Delivered</strong></div>
+            <div class="orderStatus" *ngIf="allOrders[0].payment_status=='pending'">Payment Status: <strong>Pending</strong></div>
+            <div>Order Number: {{index +1}}</div>
+            <div>Ordered on {{allOrders[0].order_date | date}} / {{ (allOrders[0].loc_type==indian_location) ? 'RS.' : '$' }} {{allOrders[0].total_amount}} / {{allOrders.length}} items</div>
+          </div>
+          <div class="small-12 medium-6">
+            <div>Address: {{allOrders[0].flat_number}} {{allOrders[0].area| titlecase}}</div>
+            <div>{{allOrders[0].city| titlecase}} {{allOrders[0].state| titlecase}} - {{allOrders[0].pin_code}}</div>
+          </div>
         </div>
+        
 
-        <div class="grid-x grid-padding-x hide-for-small-only orderDetailContainer" *ngFor="let orders of allOrders.value">
+        <div class="grid-x grid-padding-x hide-for-small-only orderDetailContainer" *ngFor="let orders of allOrders">
           <div class="medium-2 cell">
             <img class="productImage" src={{orders.main_image}} alt="product_image">
           </div>
@@ -27,14 +35,17 @@
                {{ (orders.loc_type==indian_location) ? 'RS.' : '$' }} {{orders.price}}
             </div>
           </div>
-          <div class="medium-4 cell">  
+          <div class="medium-4 cell" *ngIf="orders.payment_status!='pending'">  
             <div class="myOrdersDeliveredDate">Delivered on Thu, May 20th'19</div>  
             <!-- //TODO: need to change according to delivery date-->
             <div class="myOrdersReturnPolicy">Return Policy ended on May 29th'19</div>
           </div>
+          <div class="medium-4 cell" *ngIf="orders.payment_status=='pending'">  
+            <div class="myOrdersDeliveredDate">Payment Pending</div>  
+          </div>
         </div>
 
-        <div class="grid-x grid-padding-x show-for-small-only orderDetailContainer" *ngFor="let orders of allOrders.value">
+        <div class="grid-x grid-padding-x show-for-small-only orderDetailContainer" *ngFor="let orders of allOrders">
           <div class="small-3 cell">
             <img class="productImage" src={{orders.main_image}} alt="product_image">
           </div>

@@ -43,7 +43,7 @@ export class MyOrdersComponent implements OnInit {
         }  
         //console.log(currentId);
       });
-      //console.log(this.myOrdersArray);
+     // console.log(this.myOrdersArray);
 
       this.loading.nativeElement.className = 'hidingLoader' ;
     },
