@@ -23,11 +23,13 @@ export class LoginComponent implements OnInit {
 
     phone_error = '';
     otp_field = 0;
+    enableResendOtp:boolean;
     otp_error = '';
     userDetails = localStorage.getItem('user_details'); 
 
     loginFormControl:FormGroup;
     otpValidation:boolean = false;
+    counter:number;
 
     ngOnInit() {
         $('#loginModal').foundation();
@@ -63,6 +65,7 @@ export class LoginComponent implements OnInit {
                 this.otp_field = 1;
                 this.otpValidation = true;
                 this.loginFormControl.addControl('otp',  new FormControl(''));
+                this.timer();
             }, (error:any) => {
                 this.phone_error = error.message;
             });
@@ -84,9 +87,22 @@ export class LoginComponent implements OnInit {
                 // TODO : error section of verify OTP
                 // TODO :  show successful login message
             }, (error:any) => {
-                this.otp_error = error.message;
+                this.otp_error = 'OTP entered is wrong';
             });
         }
+    }
+
+    timer() {
+        this.counter = 30;
+        this.enableResendOtp = false;
+        var interval = setInterval(() => {
+            this.counter--;
+            if(this.counter == 0 ){
+              this.enableResendOtp = true;
+              
+              clearInterval(interval);
+            };
+        }, 1000);
     }
 
     addOtpValidations() {
@@ -96,6 +112,7 @@ export class LoginComponent implements OnInit {
     }
 
     resendOtp() {
+        this.timer();
         var formdata = this.loginFormControl.value;
         //console.log(formdata);
         this.userService.generateOtp(formdata).subscribe((data)=>{

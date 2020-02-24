@@ -24,15 +24,20 @@
 			     	OTP is <strong> not valid</strong>
 			    </mat-error>
 			</mat-form-field>
-			<div *ngIf="otp_field">
+			<div *ngIf="enableResendOtp">
 				<div class="link" (click)="resendOtp()">Resend Otp</div>
 			</div>
+			<div class="float-right" *ngIf="enableResendOtp == false">
+				<div>{{counter}} Sec</div>
+			</div>
+			
 			<div class="text-center dorceeLoginBtnContainer">
 				<button type="submit" [disabled]="!loginFormControl.valid || otpValidation == true" class="button dorceeLoginBtn">{{(otp_field == 0) ? 'Send OTP' : 'LOGIN' }}</button>
 			</div>
 			<div class="text-center">
 				New to dorcee? <span data-close data-open="signUpModal" class="link">Sign up</span>
 			</div>
+			
 		</form>
 	
 		<button class="close-button show-for-small-only" data-close aria-label="Close modal" type="button">
