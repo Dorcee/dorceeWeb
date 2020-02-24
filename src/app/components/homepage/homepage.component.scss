@@ -113,6 +113,14 @@ $messageBackground: #f0fff0;
     }
   }
 }
+
+
+@mixin subscribeBtnCommon{
+  background: none;
+  color: $black;
+  border-left: none;
+}
+
 .subscriberBoxContainer {
   padding: rem-calc(35) 0;
 
@@ -131,20 +139,24 @@ $messageBackground: #f0fff0;
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
   }
-  input.button {
-    background: none;
-    color: $black;
+  .enabledBtn {
     border: 1px solid $border-color;
-    border-left: none;
+    @include subscribeBtnCommon;
     &:hover {
       background-color: $primary-color;
       color: $white;
       border: 1px solid $primary-color;
     }
   }
+  .disabledBtn {
+    @include subscribeBtnCommon;
+    border: 1px solid $black;
+    border-left: none;
+  }
   .input-group {
     margin-bottom: 0;
   }
+  
 }
 .productImageSlideContainer {
   overflow: hidden;

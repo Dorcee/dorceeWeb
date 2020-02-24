@@ -60,10 +60,13 @@
                   {{ (orders.loc_type==indian_location) ? 'RS.' : '$' }} {{orders.price}}
               </div>
             </div>
-            <div class="row">  
+            <div class="row" *ngIf="orders.payment_status!='pending'">  
               <div class="myOrdersContent">Delivered on Thu, May 20th'19</div>
               <!-- //TODO: need to change according to delivery date-->
               <div class="myOrdersReturnPolicy myOrdersContent">Return Policy ended on May 29th'19</div>
+            </div>
+            <div class="row" *ngIf="orders.payment_status=='pending'">  
+              <div class="myOrdersDeliveredDate">Payment Pending</div> 
             </div>
           </div>          
         </div>

@@ -238,10 +238,11 @@
         <div class="signUpTextContainer">
           Sign up for our newsletter and be the first to learn about our collections, special offers and events.
         </div>
+        <div id="test">content</div>
         <div class="input-group">
           <input type="text" class="input-group-field subscriberEmail" name="email" placeholder="Enter your email..." (keyup)="emailClicked = true" (mouseout)="emailClicked = false" formControlName="email">
           <div class="input-group-button">
-            <input type="submit" class="button subscriberEmailBtn" value="Subscribe" (click)="onSubscribe()" [disabled]="subscribeForm.invalid">
+            <input type="submit" [ngClass]="subscribeForm.invalid ? 'disabledBtn' : 'enabledBtn'" ng-disabled="subscribeForm.invalid" class="button subscriberEmailBtn" value="Subscribe" (click)="onSubscribe()" [disabled]="subscribeForm.invalid">
           </div>
         </div>
         <div class="messageContainer" *ngIf=" subscribeForm.controls['email'].invalid && emailClicked == true">
