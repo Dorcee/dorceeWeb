@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormControl, Validators, FormBuilder,FormGroup, FormGroupDirective } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 
 declare var $:any;
@@ -22,6 +22,9 @@ export class SignUpComponent implements OnInit {
   userDetails = '';
   otp_field = 0;
   otp_error = '';
+  enableResendOtp:boolean;
+  counter:number;
+
   verifyOtpForm = this.formBuilder.group({
     phone_number: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(7), Validators.maxLength(13)]],
     otp: ['', [Validators.required, Validators.pattern(/^[0-9]{4}$/)]],
@@ -50,15 +53,16 @@ export class SignUpComponent implements OnInit {
     this.signUpFormControl.removeControl('otp');
   }
 
-  signup() {
+  signup(form:any, formDirective: FormGroupDirective): void {
     var formdata = this.signUpFormControl.value;
     //console.log(formdata);
     if(this.otp_field == 0) {
       this.userService.registerUser(formdata).subscribe((data)=>{
         this.otp_field = 1;
         this.signUpFormControl.addControl('otp',  new FormControl('', Validators.required));
+        this.timer();
       }, (error:any) => {
-        this.phone_error = error.message;
+        this.phone_error = 'Please, check the number you have entered';
       });
     } else {
       this.userService.verifyOtp(formdata).subscribe((data)=>{
@@ -66,21 +70,46 @@ export class SignUpComponent implements OnInit {
         localStorage.setItem('user_details', JSON.stringify(data.data.userDetails));
         $('#signUpModal').foundation('close');
         this.userSignedUp.emit(true);
+        this.removeErrors();
+        formDirective.resetForm();
+        this.signUpFormControl.reset();
+        window.location.reload();
         // TODO :  show successful register message
       }, (error:any) => {
-        this.otp_error = error.message;
+        this.otp_error = 'OTP entered is wrong';
       });
     }
   }
 
+  timer() {
+    this.counter = 30;
+    this.enableResendOtp = false;
+    var interval = setInterval(() => {
+        this.counter--;
+        if(this.counter == 0 ){
+          this.enableResendOtp = true;
+          
+          clearInterval(interval);
+        };
+    }, 1000);
+  }
+
   resendOtp() {
+    this.timer();
     var formdata = this.signUpFormControl.value;
      //console.log(formdata);
       this.userService.registerUser(formdata).subscribe((data)=>{
-        this.signUpFormControl.addControl('otp',  new FormControl('', Validators.required));
+        //console.log(data);
       }, (error:any) => {
-        this.phone_error = error.message;
+        this.phone_error = 'Please, check the number you have entered';
       });
+  }
+
+  closeModal(formDirective: FormGroupDirective) {
+    // console.log("on close");
+    this.removeErrors();
+    this.signUpFormControl.reset();
+    formDirective.resetForm();
   }
   // TODO : Resend OTP functionality
   // TODO : IF clicked button already - should not click again login button

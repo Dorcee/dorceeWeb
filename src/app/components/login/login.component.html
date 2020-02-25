@@ -40,7 +40,7 @@
 			
 		</form>
 	
-		<button class="close-button show-for-small-only" data-close aria-label="Close modal" type="button">
+		<button class="close-button show-for-small-only" (click)="closeModal(formDirective)" data-close aria-label="Close modal" type="button">
 			<span aria-hidden="true">&times;</span>
 		</button>
 		<button class="close-button closeLoginModal hide-for-small-only" (click)="closeModal(formDirective)" data-close aria-label="Close modal" type="button">

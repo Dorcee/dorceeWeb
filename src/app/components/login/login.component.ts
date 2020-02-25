@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
                 this.loginFormControl.addControl('otp',  new FormControl(''));
                 this.timer();
             }, (error:any) => {
-                this.phone_error = error.message;
+                this.phone_error = 'Please, check the number you have entered';
             });
         } else {
             this.userService.verifyOtp(formdata).subscribe((data)=>{
@@ -118,7 +118,7 @@ export class LoginComponent implements OnInit {
         this.userService.generateOtp(formdata).subscribe((data)=>{
             //console.log(data);
         }, (error:any) => {
-            this.phone_error = error.message;
+            this.phone_error = 'Please, check the number you have entered';
         });
     }
 

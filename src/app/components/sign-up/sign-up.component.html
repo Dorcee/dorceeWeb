@@ -1,7 +1,7 @@
 <div class="reveal signUpModalOuterContainer" id="signUpModal" data-reveal>
 	<div class="grid-container signUpModalContainer">
 		<div class="text-center signUpHeader">Sign-Up</div>
-		<form class="example-form" [formGroup]="signUpFormControl" autocomplete="off">
+		<form class="example-form" #formDirective="ngForm" (ngSubmit)="signup(signUpFormControl, formDirective)" [formGroup]="signUpFormControl" autocomplete="off">
 			<mat-form-field class="example-full-width">
 				<input matInput placeholder="First Name" formControlName="fname">
 				<mat-error *ngIf="signUpFormControl.controls['fname'].hasError('required')">
@@ -46,18 +46,25 @@
 					OTP is <strong> not valid</strong>
 				</mat-error>
 			</mat-form-field>
-			<div *ngIf="otp_field">
+			<div *ngIf="enableResendOtp">
 				<div class="link" (click)="resendOtp()">Resend Otp</div>
 			</div>
+			<div class="float-right" *ngIf="enableResendOtp == false">
+				<div>{{counter}} Sec</div>
+			</div>
 			<div class=" text-center dorceeSignUpBtnContainer">
-				<button class="button dorceeSignUpContinueBtn" (click)="signup()" [disabled]="!signUpFormControl.valid">Continue</button>
+				<button type="submit" class="button dorceeSignUpContinueBtn" [disabled]="!signUpFormControl.valid">Continue</button>
 			</div>
 			<div class="text-center">
 				Existing User? <span data-close data-open="loginModal" class="link">Login</span>
 			</div>
 		</form>
 
-		<button class="close-button closeSignUpModal" data-close aria-label="Close modal" type="button">
+		<button class="close-button show-for-small-only" (click)="closeModal(formDirective)" data-close aria-label="Close modal" type="button">
+			<span aria-hidden="true">&times;</span>
+		</button>
+
+		<button class="close-button closeSignUpModal hide-for-small-only" (click)="closeModal(formDirective)" data-close aria-label="Close modal" type="button">
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>
