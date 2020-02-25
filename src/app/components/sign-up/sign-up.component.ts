@@ -51,23 +51,23 @@ export class SignUpComponent implements OnInit {
   }
 
   removeErrors() {
-    console.log('remove error');
+    //console.log('remove error');
     this.otp_field = 0;
     this.phone_error = '';
     this.signUpFormControl.removeControl('otp');
   }
 
   signup(form:any, formDirective: FormGroupDirective): void {
-   console.log(this.otp_field); 
+   //console.log(this.otp_field); 
     var formdata = this.signUpFormControl.value;
-    console.log(formdata);
+    //console.log(formdata);
     if(this.otp_field == 0) {
       this.userService.registerUser(formdata).subscribe((data)=>{
         this.otp_field = 1;
         this.signUpFormControl.addControl('otp',  new FormControl('', Validators.required));
         this.timer();
       }, (error:any) => {
-        console.log(error.error);
+        //console.log(error.error);
         if(error.error.message) {
             this.phone_error = error.error.message;
         } else if(error.error) {
@@ -90,7 +90,7 @@ export class SignUpComponent implements OnInit {
         window.location.reload();
         // TODO :  show successful register message
       }, (error:any) => {
-        console.log(error);
+         //console.log(error);
         if(error.error) {
           this.otp_error = error.error;    
         } else {
@@ -101,7 +101,6 @@ export class SignUpComponent implements OnInit {
   }
 
   timer() {
-    console.log('timer');
     this.counter = 30;
     this.enableResendOtp = false;
     var interval = setInterval(() => {
@@ -121,7 +120,6 @@ export class SignUpComponent implements OnInit {
       this.userService.registerUser(formdata).subscribe((data)=>{
         //console.log(data);
       }, (error:any) => {
-        console.log(error.error);
         if(error.error.message) {
             this.phone_error = error.error.message;
         } else if(error.error) {
@@ -134,7 +132,7 @@ export class SignUpComponent implements OnInit {
   }
 
   closeModal() {
-    console.log("on close sign up");
+   // console.log("on close sign up");
     this.removeErrors();
     this.enableResendOtp = false;
     this.signUpFormControl.reset();

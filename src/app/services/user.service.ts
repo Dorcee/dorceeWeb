@@ -32,7 +32,7 @@ export class UserService {
 
 	private handleLoginError (res) {
 		//console.error('ApiService::handleError', res);
-		console.error(res.error);
+		//console.error(res.error);
 		return throwError(res.error);
 	}
 

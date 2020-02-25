@@ -2,8 +2,6 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ViewChild} f
 import { FormControl, Validators, FormBuilder,FormGroup, FormGroupDirective } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
-import {SignUpComponent} from '../sign-up/sign-up.component' ;
-
 
 declare var $:any;
 var navigateTo:string;
@@ -16,7 +14,6 @@ var navigateTo:string;
 export class LoginComponent implements OnInit {
     @Input('moveTo') moveTo:string;
     @Output() userLoggingIn = new EventEmitter();
-    //@ViewChild('formDirective') public loginModalFormDirective;
     @ViewChild('formDirective') public formDirective;
 
     constructor(
