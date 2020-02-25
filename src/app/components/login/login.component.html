@@ -24,10 +24,10 @@
 			     	OTP is <strong> not valid</strong>
 			    </mat-error>
 			</mat-form-field>
-			<div *ngIf="enableResendOtp">
+			<div *ngIf="enableResendOtp && otp_field">
 				<div class="link" (click)="resendOtp()">Resend Otp</div>
 			</div>
-			<div class="float-right" *ngIf="enableResendOtp == false">
+			<div class="float-right" *ngIf="enableResendOtp == false && otp_field">
 				<div>{{counter}} Sec</div>
 			</div>
 			
@@ -40,12 +40,12 @@
 			
 		</form>
 	
-		<button class="close-button show-for-small-only" (click)="closeModal(formDirective)" data-close aria-label="Close modal" type="button">
+		<button class="close-button show-for-small-only" (click)="closeModal(); signUp.closeModal()" data-close aria-label="Close modal" type="button">
 			<span aria-hidden="true">&times;</span>
 		</button>
-		<button class="close-button closeLoginModal hide-for-small-only" (click)="closeModal(formDirective)" data-close aria-label="Close modal" type="button">
+		<button class="close-button closeLoginModal hide-for-small-only" (click)="closeModal(); signUp.closeModal()" data-close aria-label="Close modal" type="button">
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>
 </div>
-<app-sign-up (userSignedUp)="gettingUserRegistered($event)"></app-sign-up>
+<app-sign-up (userSignedUp)="gettingUserRegistered($event)" (DataOfLogin)="closeModal()" #signUp></app-sign-up>

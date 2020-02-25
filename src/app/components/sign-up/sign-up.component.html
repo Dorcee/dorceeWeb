@@ -46,10 +46,10 @@
 					OTP is <strong> not valid</strong>
 				</mat-error>
 			</mat-form-field>
-			<div *ngIf="enableResendOtp">
+			<div *ngIf="enableResendOtp && otp_field">
 				<div class="link" (click)="resendOtp()">Resend Otp</div>
 			</div>
-			<div class="float-right" *ngIf="enableResendOtp == false">
+			<div class="float-right" *ngIf="enableResendOtp == false && otp_field">
 				<div>{{counter}} Sec</div>
 			</div>
 			<div class=" text-center dorceeSignUpBtnContainer">
@@ -60,11 +60,11 @@
 			</div>
 		</form>
 
-		<button class="close-button show-for-small-only" (click)="closeModal(formDirective)" data-close aria-label="Close modal" type="button">
+		<button class="close-button show-for-small-only" (click)="closeModal()" data-close aria-label="Close modal" type="button">
 			<span aria-hidden="true">&times;</span>
 		</button>
 
-		<button class="close-button closeSignUpModal hide-for-small-only" (click)="closeModal(formDirective)" data-close aria-label="Close modal" type="button">
+		<button class="close-button closeSignUpModal hide-for-small-only" (click)="closeModal()" data-close aria-label="Close modal" type="button">
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>

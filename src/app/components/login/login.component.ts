@@ -1,7 +1,9 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ViewChild} from '@angular/core';
 import { FormControl, Validators, FormBuilder,FormGroup, FormGroupDirective } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import {SignUpComponent} from '../sign-up/sign-up.component' ;
+
 
 declare var $:any;
 var navigateTo:string;
@@ -14,6 +16,8 @@ var navigateTo:string;
 export class LoginComponent implements OnInit {
     @Input('moveTo') moveTo:string;
     @Output() userLoggingIn = new EventEmitter();
+    //@ViewChild('formDirective') public loginModalFormDirective;
+    @ViewChild('formDirective') public formDirective;
 
     constructor(
       public userService:UserService,
@@ -67,7 +71,14 @@ export class LoginComponent implements OnInit {
                 this.loginFormControl.addControl('otp',  new FormControl(''));
                 this.timer();
             }, (error:any) => {
-                this.phone_error = 'Please, check the number you have entered';
+                //console.log(error);
+                if(error.error.message) {
+                    this.phone_error = error.error.message;
+                } else if(error.error) {
+                    this.phone_error = error.error;
+                } else {
+                  this.phone_error = 'Please, check the number you have entered';
+                }
             });
         } else {
             this.userService.verifyOtp(formdata).subscribe((data)=>{
@@ -87,7 +98,11 @@ export class LoginComponent implements OnInit {
                 // TODO : error section of verify OTP
                 // TODO :  show successful login message
             }, (error:any) => {
-                this.otp_error = 'OTP entered is wrong';
+                if(error.error) {
+                  this.otp_error = error.error;    
+                } else {
+                  this.otp_error = 'OTP entered is wrong';
+                }                
             });
         }
     }
@@ -118,15 +133,22 @@ export class LoginComponent implements OnInit {
         this.userService.generateOtp(formdata).subscribe((data)=>{
             //console.log(data);
         }, (error:any) => {
-            this.phone_error = 'Please, check the number you have entered';
+            if(error.error.message) {
+                this.phone_error = error.error.message;
+            } else if(error.error) {
+                this.phone_error = error.error;
+            } else {
+              this.phone_error = 'Please, check the number you have entered';
+            }
         });
     }
 
-    closeModal(formDirective: FormGroupDirective) {
+    closeModal() {
        // console.log("on close");
         this.removeErrors();
+        this.enableResendOtp = false;
         this.loginFormControl.reset();
-        formDirective.resetForm();
+        this.formDirective.resetForm();
     }
 
     // TODO : Resend OTP functionality
