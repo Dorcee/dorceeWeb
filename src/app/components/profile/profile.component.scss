@@ -1,5 +1,7 @@
 @import '../../../assets/foundation-sites/global';
 
+$tooltipBackground : #808080;
+
 .hidingLoader{
   display:none;
 }
@@ -27,6 +29,31 @@
 
 ::ng-deep .inputRadioButton {
 	padding-bottom:rem-calc(20);	
+}
+
+.disabledPhoneNumber {
+	background-color:#fefefe;
+}
+
+.tooltipShow{
+	position:relative;
+	display:inline-block;
+}
+.tooltipText {
+  visibility: hidden;
+  width: rem-calc(200);
+  background-color: $tooltipBackground;
+  color: $white;
+  text-align: center;
+  border-radius: 6px;
+  padding: rem-calc(5 0);
+
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltipShow:hover .tooltipText {
+  visibility: visible;
 }
 
 .saveBtn {

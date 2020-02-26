@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
             lname: [this.user.lname,[Validators.required]],
             gender:this.user.gender,
             email:[this.user.email,[ Validators.email]],
-            phone_number:[this.user.phone_number, [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(7), Validators.maxLength(13)]],
+            phone_number:[this.user.phone_number],
           }); 
         }    
         this.loading.nativeElement.className = 'hidingLoader' ;
