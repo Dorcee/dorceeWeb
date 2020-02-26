@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
 import { FormControl, Validators, FormBuilder,FormGroup, FormGroupDirective } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 
@@ -20,7 +20,7 @@ export class SignUpComponent implements OnInit {
     $('#signUpModal').foundation();
     $('#verifyModal').foundation();
   }
-  
+
   phone_error = '';
   userDetails = '';
   otp_field = 0;
@@ -58,7 +58,10 @@ export class SignUpComponent implements OnInit {
   }
 
   signup(form:any, formDirective: FormGroupDirective): void {
-   //console.log(this.otp_field); 
+   //console.log(this.otp_field);
+   this.signUpFormControl.value.isd_code='+91';
+   //console.log(this.signUpFormControl.value); 
+   
     var formdata = this.signUpFormControl.value;
     //console.log(formdata);
     if(this.otp_field == 0) {
@@ -87,6 +90,7 @@ export class SignUpComponent implements OnInit {
         this.removeErrors();
         formDirective.resetForm();
         this.signUpFormControl.reset();
+        
         window.location.reload();
         // TODO :  show successful register message
       }, (error:any) => {

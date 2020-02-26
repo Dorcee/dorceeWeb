@@ -146,6 +146,7 @@ export class LoginComponent implements OnInit {
         this.enableResendOtp = false;
         this.loginFormControl.reset();
         this.formDirective.resetForm();
+        this.otpValidation = false;
     }
 
     // TODO : Resend OTP functionality
