@@ -24,23 +24,28 @@
 			     	OTP is <strong> not valid</strong>
 			    </mat-error>
 			</mat-form-field>
-			<div *ngIf="otp_field">
+			<div *ngIf="enableResendOtp && otp_field">
 				<div class="link" (click)="resendOtp()">Resend Otp</div>
 			</div>
+			<div class="float-right" *ngIf="enableResendOtp == false && otp_field">
+				<div>{{counter}} Sec</div>
+			</div>
+			
 			<div class="text-center dorceeLoginBtnContainer">
 				<button type="submit" [disabled]="!loginFormControl.valid || otpValidation == true" class="button dorceeLoginBtn">{{(otp_field == 0) ? 'Send OTP' : 'LOGIN' }}</button>
 			</div>
 			<div class="text-center">
 				New to dorcee? <span data-close data-open="signUpModal" class="link">Sign up</span>
 			</div>
+			
 		</form>
 	
-		<button class="close-button show-for-small-only" data-close aria-label="Close modal" type="button">
+		<button class="close-button show-for-small-only" (click)="closeModal(); signUp.closeModal()" data-close aria-label="Close modal" type="button">
 			<span aria-hidden="true">&times;</span>
 		</button>
-		<button class="close-button closeLoginModal hide-for-small-only" (click)="closeModal(formDirective)" data-close aria-label="Close modal" type="button">
+		<button class="close-button closeLoginModal hide-for-small-only" (click)="closeModal(); signUp.closeModal()" data-close aria-label="Close modal" type="button">
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>
 </div>
-<app-sign-up (userSignedUp)="gettingUserRegistered($event)"></app-sign-up>
+<app-sign-up (userSignedUp)="gettingUserRegistered($event)" (DataOfLogin)="closeModal()" #signUp></app-sign-up>

@@ -30,6 +30,13 @@ export class UserService {
         }
 	}
 
+	private handleLoginError (res) {
+		//console.error('ApiService::handleError', res);
+		//console.error(res.error);
+		return throwError(res.error);
+	}
+
+
 	public registerUser(postData) {
 		return this.httpClient.post<any>(`${API_URL}/web/register`, postData, {headers})
 		.pipe(
@@ -37,7 +44,7 @@ export class UserService {
 				//console.log(res); 
 				return res.data; 
 			}),  // make it as observable
-			catchError(error => this.handleError(error))
+			catchError(error => this.handleLoginError(error))
 		);
 	}
 
@@ -49,7 +56,7 @@ export class UserService {
 				//console.log(res); 
 				return res; 
 			}),
-			catchError(error => this.handleError(error))
+			catchError(error => this.handleLoginError(error))
 		);
 	}
 
@@ -61,7 +68,7 @@ export class UserService {
 				//console.log(res); 
 				return res; 
 			}),
-			catchError(error => this.handleError(error))
+			catchError(error => this.handleLoginError(error))
 		);
 	}
 

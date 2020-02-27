@@ -15,8 +15,7 @@
             <div>Ordered on {{allOrders[0].order_date | date}} / {{ (allOrders[0].loc_type==indian_location) ? 'RS.' : '$' }} {{allOrders[0].total_amount}} / {{allOrders.length}} items</div>
           </div>
           <div class="small-12 medium-6">
-            <div>Address: {{allOrders[0].flat_number}} {{allOrders[0].area| titlecase}}</div>
-            <div>{{allOrders[0].city| titlecase}} {{allOrders[0].state| titlecase}} - {{allOrders[0].pin_code}}</div>
+            <div>Address: {{allOrders[0].flat_number}} {{allOrders[0].area| titlecase}} {{allOrders[0].city| titlecase}} {{allOrders[0].state| titlecase}} - {{allOrders[0].pin_code}}</div>
           </div>
         </div>
         
@@ -60,10 +59,13 @@
                   {{ (orders.loc_type==indian_location) ? 'RS.' : '$' }} {{orders.price}}
               </div>
             </div>
-            <div class="row">  
+            <div class="row" *ngIf="orders.payment_status!='pending'">  
               <div class="myOrdersContent">Delivered on Thu, May 20th'19</div>
               <!-- //TODO: need to change according to delivery date-->
               <div class="myOrdersReturnPolicy myOrdersContent">Return Policy ended on May 29th'19</div>
+            </div>
+            <div class="row" *ngIf="orders.payment_status=='pending'">  
+              <div class="myOrdersDeliveredDate">Payment Pending</div> 
             </div>
           </div>          
         </div>

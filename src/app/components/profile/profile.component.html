@@ -40,9 +40,10 @@
 
         <div class="small-12 medium-6 cell text-center">
           <mat-form-field class="inputField">
-            <input matInput placeholder="Number" formControlName="phone_number" readonly="readonly">
-            <mat-error *ngIf="profileForm.controls['phone_number'].hasError('required')">Phone number is required.</mat-error>
-            <mat-error *ngIf="profileForm.controls['phone_number'].invalid && profileForm.controls['phone_number'].dirty && !profileForm.controls['phone_number'].hasError('required')">Please enter a valid phone number.</mat-error>
+            <div class="tooltipShow">
+              <input class="disabledPhoneNumber" matInput placeholder="Number" formControlName="phone_number" readonly="readonly">
+              <span class="tooltipText">Phone number can not be changed.</span>
+            </div>
           </mat-form-field>
         </div>
 
