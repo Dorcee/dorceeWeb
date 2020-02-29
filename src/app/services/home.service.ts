@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -20,20 +20,35 @@ const httpOptions = {
 export class HomeService {
 
   constructor(private httpClient: HttpClient) { }
+  
+  locType = localStorage.getItem('loc_type');
+  params = new HttpParams().set('loc_type', this.locType);
 
   private handleError (error) {
 	 // console.error('ApiService::handleError', error);
 	  return throwError(error);
   }
 
-  public getAllProducts(key='', value='') {
-    var loc_type = localStorage.getItem('loc_type');
-    var params = {'loc_type' : loc_type};  //TODO : dynamic
+  public getAllProducts(isChecked, key='', value='') {
+
     if(key == '' || value == '') {
-      params['is_sort'] = 'newest';
+      this.params = new HttpParams().set('loc_type', this.locType);
+      if(isChecked ==  false) {
+        this.params = this.params.delete('is_sort','newest');
+      } else {
+        this.params = this.params.set('is_sort','newest');
+      }      
+
     } else {
-      params[key] = value;
+      this.params = this.params.delete('is_sort','newest');
+      if(isChecked ==  false) {
+        this.params = this.params.delete(key,value);
+      } else {
+        this.params = this.params.set(key,value);
+      }      
     }
+    var params = this.params;
+    //console.log(params);
   	return this.httpClient.get<any>(`${API_URL}/web/product`, {params, headers})
   	.pipe(
       map(res => {

@@ -62,10 +62,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 		//console.log(loc_type);
 	}
 
-	ngAfterViewInit(){
-		this.slickInitialized();
-	}
-
 	slickInitialized() {
 		setTimeout(() => {
 	     	$('.productImageSlideContainer').not('.slick-initialized').slick({
@@ -75,7 +71,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 	     	});
 	        //console.log(this.loadingElement);
 	     	this.loading.nativeElement.className = 'hidingLoader' ;
-	  	}, 1500);
+	  	}, 500);
 	}
 
 	locTypeChangedFromHeaderTo(selectedLocType) {
@@ -107,6 +103,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 		this.homeservice.getAllProducts('loc_type', loc_type).subscribe((data)=>{
 			this.products = data.slice(0, 4);
 			//console.log(this.products);
+			this.slickInitialized();
     	});
 	}
 

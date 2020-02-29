@@ -97,6 +97,10 @@ $border-color: #dcdcdc;
 	border-right: 1px solid $border-color;
 	padding-right: rem-calc(5);
 }
+.itemModifier {
+	margin-top:rem-calc(15);
+}
+
 .itemWishlistModifier {
 	padding-left: rem-calc(5);
 }

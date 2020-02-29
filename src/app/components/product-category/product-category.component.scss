@@ -14,14 +14,6 @@
   a {
     color: $black;
   }
-
-  li:hover {
-    background-color: $primary-color;
-    
-    a {
-      color: $white;
-    }
-  }
 }
 
 .productCategoryAccordionHeader {
@@ -97,6 +89,7 @@
 .productSelectorSubHeading {
 	font-size: rem-calc(16);
   padding-bottom: rem-calc(20);
+  padding-left:rem-calc(15);  
 }
 .itemDiscounted {
 	color: $discountPriceColor;
@@ -112,7 +105,10 @@
   display:none;
 }
 
-::ng-deep .fitCategorySelector .mat-checkbox-inner-container, ::ng-deep .sizeCategorySelector  .mat-checkbox-inner-container{
+::ng-deep .productCategoryAccordionHeader .mat-checkbox-inner-container,
+::ng-deep .typeCategorySelector .mat-checkbox-inner-container,
+::ng-deep .fitCategorySelector .mat-checkbox-inner-container, 
+::ng-deep .sizeCategorySelector  .mat-checkbox-inner-container{
 	width: rem-calc(13);
 	height: rem-calc(13);
 }
