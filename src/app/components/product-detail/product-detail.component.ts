@@ -71,15 +71,14 @@ export class ProductDetailComponent implements OnInit {
           this.allFits = data.fits;
           //console.log(this.allFits);
           //console.log(this.fitsAvailable);
+          this.slickInitialization();
         });
 
       }
     });
   }
 
-  ngAfterViewInit() {
-    // TODO : create common function to only one file and call it everywhere
-
+  slickInitialization() {
     setTimeout(() => {
       $('.productDetailImagesContainer').not('.slick-initialized').slick({
         infinite: true,
@@ -102,7 +101,7 @@ export class ProductDetailComponent implements OnInit {
       });
       this.loading.nativeElement.className = 'hidingLoader' ;
       $('#accordionData').foundation();
-    }, 1000);    
+    }, 500);    
   }
 
   sizeSelected(size) {
