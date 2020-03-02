@@ -81,13 +81,10 @@ export class ProductCategoryComponent implements OnInit {
   }
 
   getProducts(isChecked,key='', value='', device) {
-    if(key != ''|| value !='') {
+    if(key == 'type') {
       //console.log(this.isViewAllChecked);
       this.isViewAllChecked =  false;
     }
-    //console.log(isChecked.checked);
-    // this.isChecked = !this.isChecked;
-    // console.log(this.isChecked);
     this.homeservice.getAllProducts(isChecked.checked, key, value).subscribe((data)=>{
       this.products = data;
       this.containerLoaded = true;

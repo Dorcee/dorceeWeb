@@ -32,10 +32,11 @@ export class HomeService {
   public getAllProducts(isChecked, key='', value='') {
 
     if(key == '' || value == '') {
-      this.params = new HttpParams().set('loc_type', this.locType);
+      //this.params = this.params.set('loc_type', this.locType);
       if(isChecked ==  false) {
         this.params = this.params.delete('is_sort','newest');
       } else {
+        this.params = this.params.delete('type');
         this.params = this.params.set('is_sort','newest');
       }      
 
