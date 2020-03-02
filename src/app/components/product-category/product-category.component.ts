@@ -19,6 +19,7 @@ export class ProductCategoryComponent implements OnInit {
   p: number = 1;
   products : any;
   noProduct: boolean;
+  isViewAllChecked:boolean = false;
 
   categories : any;
   sizes : any;
@@ -30,9 +31,8 @@ export class ProductCategoryComponent implements OnInit {
   cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
 
   @ViewChild('loading', {static:false}) loading:ElementRef;
-  @ViewChildren('filterCategoryType') filterCategoryType: QueryList<ElementRef>;
-  @ViewChild('viewAllBtn', {static:false}) viewAllBtn:ElementRef;
-
+  @ViewChildren('filterCategoryType') filterCategoryType: QueryList<any>;
+ 
   ngOnInit() {
     this.homeservice.getAllProducts(true).subscribe((data)=>{
       this.products = data;
@@ -82,7 +82,8 @@ export class ProductCategoryComponent implements OnInit {
 
   getProducts(isChecked,key='', value='', device) {
     if(key != ''|| value !='') {
-      this.viewAllBtn._checked = false;
+      //console.log(this.isViewAllChecked);
+      this.isViewAllChecked =  false;
     }
     //console.log(isChecked.checked);
     // this.isChecked = !this.isChecked;
@@ -116,11 +117,12 @@ export class ProductCategoryComponent implements OnInit {
   }
 
   selectedList(event) {
+    //console.log(event);
     if(event.checked == true){
-      //console.log(this.filterCategoryType._results);
-      this.filterCategoryType._results.forEach(element => {
-        element._checked = false;
-      })
+      this.filterCategoryType.forEach(element => {
+        //console.log(element);
+        element.checked = false;
+      });
     }
   }
 }

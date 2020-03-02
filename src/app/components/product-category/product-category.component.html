@@ -52,7 +52,7 @@
 									<mat-checkbox class="typeCategorySelector" (change)="getProducts($event,'type', type,'small')" #filterCategoryType>{{type}}</mat-checkbox>
 								</li>
 								<li>
-									<mat-checkbox class="typeCategorySelector" (change)="getProducts($event,'','','small'); selectedList($event)" #viewAllBtn>View All</mat-checkbox>
+									<mat-checkbox class="typeCategorySelector" (change)="getProducts($event,'','','small'); selectedList($event)" [(ngModel)]="isViewAllChecked" [checked]="isViewAllChecked">View All</mat-checkbox>
 								</li>
 							</ul>
 						</li>
@@ -106,7 +106,7 @@
 								<mat-checkbox class="typeCategorySelector" (change)="getProducts($event,'type', type)" #filterCategoryType>{{type}}</mat-checkbox>
 							</li>
 							<li>
-								<mat-checkbox class="typeCategorySelector" (change)="getProducts($event); selectedList($event)" #viewAllBtn>View All</mat-checkbox>
+								<mat-checkbox class="typeCategorySelector" (change)="getProducts($event); selectedList($event)" [(ngModel)]="isViewAllChecked" [checked]="isViewAllChecked">View All</mat-checkbox>
 							</li>
 						</ul>
 					</li>
