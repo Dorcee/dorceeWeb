@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HomeService } from '../../services/home.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ declare var $:any;
 	templateUrl: './homepage.component.html',
 	styleUrls: ['./homepage.component.scss']
 })
-export class HomepageComponent implements OnInit, AfterViewInit {
+export class HomepageComponent implements OnInit {
 	
 	@ViewChild('loading', {static:false}) loading:ElementRef;
 	products = [];
