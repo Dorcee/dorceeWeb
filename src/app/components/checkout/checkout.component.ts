@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ProductDetailService } from '../../services/product-detail.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -21,6 +21,7 @@ export class CheckoutComponent implements OnInit {
 	shippingTotal = 0;
 	grandTotal = 0;
 	locType = localStorage.getItem('loc_type');
+	indexToRemove: number;
 	@ViewChild('loading', {static:false}) loading:ElementRef;
 
 	ngOnInit() {
@@ -38,6 +39,15 @@ export class CheckoutComponent implements OnInit {
 				this.loading.nativeElement.className = 'hidingLoader' ;
 			},1500);
 		}
+		$('.confirmClass').on('click', function () {
+            console.log('222222');
+        })
+	}
+
+	ngAfterViewInit() {
+		setTimeout(()=> {
+			$('#modalOfConfirmationForRemove').foundation();
+		},1000);
 	}
 
 	setProductAndPrice() {
@@ -60,18 +70,23 @@ export class CheckoutComponent implements OnInit {
 		});
 	}
 
-	removeFromCart(index) {
-		var c = confirm('Are you sure you want to remove it?');
-		if(c) {
-			//console.log(index);
-			this.cartItems.splice(index, 1) ;
-			localStorage.setItem('cart_items', JSON.stringify(this.cartItems));
-			if(this.cartItems.length > 0) {
-				this.setProductAndPrice();
-			}
-			//alert('Item removed successfully');
-			// TODO : change cart icon quantity in header
+	openModalForRemove(index) {
+		this.indexToRemove = index;
+		console.log(this.indexToRemove);
+		$('#modalOfConfirmationForRemove').foundation('open');
+	}
+
+	removeFromCart() {
+		console.log('12');
+		console.log(this.indexToRemove);
+		this.cartItems.splice(this.indexToRemove, 1) ;
+		localStorage.setItem('cart_items', JSON.stringify(this.cartItems));
+		if(this.cartItems.length > 0) {
+			this.setProductAndPrice();
 		}
+		//alert('Item removed successfully');
+		// TODO : change cart icon quantity in header
 	}
 
 }
+

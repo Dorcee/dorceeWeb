@@ -97,6 +97,23 @@ $border-color: #dcdcdc;
 	border-right: 1px solid $border-color;
 	padding-right: rem-calc(5);
 }
+
+.reveal.modalOuterContainer {
+	overflow: visible;
+}
+
+.closeModal {
+    position: absolute;
+    top: rem-calc(-14);
+    right: rem-calc(-14);
+    color: white;
+    background-color: $primary-color;
+    border-radius: 25px;
+    padding: rem-calc(3 7 5);
+    z-index: 9999;
+    font-size: rem-calc(20);
+}
+
 .itemModifier {
 	margin-top:rem-calc(15);
 }
