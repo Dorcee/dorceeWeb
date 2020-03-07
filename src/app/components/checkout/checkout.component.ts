@@ -3,6 +3,8 @@ import { ProductDetailService } from '../../services/product-detail.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 declare var $:any;
+var indexToRemove:number;
+
 @Component({
 	selector: 'app-checkout',
 	templateUrl: './checkout.component.html',
@@ -21,7 +23,6 @@ export class CheckoutComponent implements OnInit {
 	shippingTotal = 0;
 	grandTotal = 0;
 	locType = localStorage.getItem('loc_type');
-	indexToRemove: number;
 	@ViewChild('loading', {static:false}) loading:ElementRef;
 
 	ngOnInit() {
@@ -39,15 +40,16 @@ export class CheckoutComponent implements OnInit {
 				this.loading.nativeElement.className = 'hidingLoader' ;
 			},1500);
 		}
-		$('.confirmClass').on('click', function () {
-            console.log('222222');
+		$('.confirmClass').on('click', () => {
+            //console.log(indexToRemove);
+            this.removeFromCart();
         })
 	}
 
 	ngAfterViewInit() {
 		setTimeout(()=> {
 			$('#modalOfConfirmationForRemove').foundation();
-		},1000);
+		},2000);
 	}
 
 	setProductAndPrice() {
@@ -71,20 +73,18 @@ export class CheckoutComponent implements OnInit {
 	}
 
 	openModalForRemove(index) {
-		this.indexToRemove = index;
-		console.log(this.indexToRemove);
+		indexToRemove = index;
+		//console.log(indexToRemove);
 		$('#modalOfConfirmationForRemove').foundation('open');
 	}
 
 	removeFromCart() {
-		console.log('12');
-		console.log(this.indexToRemove);
-		this.cartItems.splice(this.indexToRemove, 1) ;
+		//console.log(indexToRemove);
+		this.cartItems.splice(indexToRemove, 1) ;
 		localStorage.setItem('cart_items', JSON.stringify(this.cartItems));
 		if(this.cartItems.length > 0) {
 			this.setProductAndPrice();
 		}
-		//alert('Item removed successfully');
 		// TODO : change cart icon quantity in header
 	}
 

@@ -61,7 +61,7 @@
 									<!-- <span class="itemDiscountPercent">50% OFF</span> -->
 								</div>
 								<div class="itemModifier">
-									<span class="itemRemoveModifier" data-open="modalOfConfirmationForRemove"><a>Remove</a></span>
+									<span class="itemRemoveModifier" (click)="openModalForRemove(index)"><a>Remove</a></span>
 
 									<!-- <span class="itemWishlistModifier"><a>Move to wishlist</a></span> -->
 								</div>
@@ -137,7 +137,7 @@
 					<div class="row">
 						<div class="small-12">
 							<div class="itemModifier">
-								<span class="itemRemoveModifier fieldsHeading" data-open="modalOfConfirmationForRemove"><a>Remove</a></span>
+								<span class="itemRemoveModifier fieldsHeading" (click)="openModalForRemove(index)"><a>Remove</a></span>
 								<!-- <span class="itemWishlistModifier"><a>Move to wishlist</a></span> -->
 							</div>
 						</div>
@@ -148,10 +148,10 @@
 			<div id="modalOfConfirmationForRemove" class="reveal modalOuterContainer" data-reveal aria-hidden="true">
 				<div class="grid-x grid-padding-x align-center">
 					<div class="small-12">
-					    <H4>Are you sure you want to remove it?</H4>
+					    <H4>Are you sure you want to remove it? </H4>
 					</div>
 					<div class="small-3">
-					    <button class="close-reveal-modal confirmClass button" data-close aria-label="Close modal" (click)="removeFromCart(index)">Confirm</button>
+					    <button class="close-reveal-modal confirmClass button" data-close aria-label="Close modal" (click)="removeFromCart()">Confirm</button>
 					</div>
 					<div class="small-3">
 					    <button class="close-reveal-modal button" data-close aria-label="Close modal" aria-label="Close">Cancel</button>
