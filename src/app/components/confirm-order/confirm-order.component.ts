@@ -267,6 +267,7 @@ export class ConfirmOrderComponent implements OnInit {
       this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
         //console.log(data);
         this.addressDetail = data;
+        $('#addressUpdate').foundation('close');
       });
     });
   }
@@ -283,6 +284,7 @@ export class ConfirmOrderComponent implements OnInit {
       this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
         //console.log(data);
         this.addressDetail = data;
+        $('#addressUpdate').foundation('close');
       });
     });
   }

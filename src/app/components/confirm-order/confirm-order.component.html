@@ -160,7 +160,7 @@
 							</div>
 							<div class="medium-5 cell text-center">
 								<!-- <button type="submit" class="button submitButton" [disabled]="uploadForm.invalid"> Submit </button> -->
-								<button type="submit" class="button" data-close aria-label="Close modal" (click)="onAddAddressSubmit(addressForm)" [disabled]="addressForm.invalid">SAVE</button>
+								<button type="submit" class="button" (click)="onAddAddressSubmit(addressForm)" [disabled]="addressForm.invalid">SAVE</button>
 							</div>
 						</div>
 				  	</div>
@@ -175,7 +175,7 @@
 		    </div>
 
 			
-			<div id="modalOfConfirmationForAddressTyped" class="reveal modalOuterContainer" data-reveal aria-hidden="true">
+			<div id="modalOfConfirmationForAddressTyped" class="reveal modalOuterContainer" data-reveal aria-hidden="true" data-multiple-opened="true">
 				<div class="grid-x grid-padding-x align-center">
 					<div class="small-12">
 					    <H4>Are you sure about the address you typed?</H4>

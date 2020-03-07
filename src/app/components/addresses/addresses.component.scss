@@ -17,10 +17,10 @@ $backgroundColor: #dcdcdc;
 .addressFormField {
 	width: 100%;
 }
-.reveal.addressModalOuterContainer {
+.reveal.modalOuterContainer {
 	overflow: visible;
 }
-.closeAddressModal {
+.closeModal {
   position: absolute;
   top: rem-calc(-14);
   right: rem-calc(-14);
@@ -56,4 +56,13 @@ $backgroundColor: #dcdcdc;
 	margin-left:rem-calc(10);
 	margin-right:rem-calc(10);
 	text-decoration : underline;
+}
+
+
+@include breakpoint(small only) {
+  .reveal.modalOuterContainer {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  } 
 }
