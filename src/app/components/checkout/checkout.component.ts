@@ -36,9 +36,6 @@ export class CheckoutComponent implements OnInit {
 		    }	
 		} else {
 			this.contentLoaded = 1;
-			setTimeout(()=>{
-				this.loading.nativeElement.className = 'hidingLoader' ;
-			},1500);
 		}
 		$('.confirmClass').on('click', () => {
             //console.log(indexToRemove);
@@ -49,6 +46,7 @@ export class CheckoutComponent implements OnInit {
 	ngAfterViewInit() {
 		setTimeout(()=> {
 			$('#modalOfConfirmationForRemove').foundation();
+			this.loading.nativeElement.className = 'hidingLoader' ;
 		},2000);
 	}
 
@@ -67,8 +65,6 @@ export class CheckoutComponent implements OnInit {
 			});
 			this.grandTotal = this.itemTotal + this.shippingTotal;
 			this.contentLoaded = 1;
-
-			this.loading.nativeElement.className = 'hidingLoader' ;
 		});
 	}
 
