@@ -131,3 +131,11 @@ $border-color: #dcdcdc;
 		padding-left: 0;
 	}
 }
+
+@include breakpoint(small only) {
+  .reveal.modalOuterContainer {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  } 
+}

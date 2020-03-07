@@ -43,6 +43,7 @@ export class ConfirmOrderComponent implements OnInit {
   shippingTotal = 0;
   grandTotal = 0;
   locType = localStorage.getItem('loc_type');
+  alertMessage:string='';
   @ViewChild('loading', {static:false}) loading:ElementRef;
 
   ngOnInit() {
@@ -86,11 +87,10 @@ export class ConfirmOrderComponent implements OnInit {
 
   ngAfterViewInit(){
     $('#addressUpdate').foundation();
+    $('#modalOfConfirmationForAddressTyped').foundation();
   }
 
   setProductAndPrice() {
-    //TODO : add loader till api calls
-    // this.loading.nativeElement.className = 'hidingLoader' ;
     this.itemTotal = this.grandTotal = this.shippingTotal = 0;
     var ids = this.cartItems.map(function (el) { return el.product_id; });
     var postdata = {ids: ids, loc_type: this.locType};
@@ -105,13 +105,12 @@ export class ConfirmOrderComponent implements OnInit {
       });
       this.grandTotal = this.itemTotal + this.shippingTotal;
       this.contentLoaded = 1;
-      // this.loading.nativeElement.className = 'hidingLoader' ;
     });
   }
 
   Razorpay: any; 
 
-  payNow() {
+  payNow = () => {
     if(this.selectedAddress) {
       //console.log(this.selectedAddress);
       var postData = {'items' : this.cartItems, 'address_id' : this.selectedAddress, 
@@ -134,7 +133,12 @@ export class ConfirmOrderComponent implements OnInit {
         rzp1.open();
       });
     } else {
-      alert('Please select an address');
+      this.alertMessage = "Please select an address";
+      $('#modalForAlert').foundation();
+      if(this.alertMessage!='') {
+        $('#modalForAlert').foundation('open');
+        //console.log(this.alertMessage);
+      }
     }
   }
 
@@ -149,7 +153,8 @@ export class ConfirmOrderComponent implements OnInit {
         this.loading.nativeElement.className = 'hidingLoader';
       }, (err) => {
         this.loading.nativeElement.className = 'hidingLoader';
-        alert('There is some issue in verify your order. Please wait, We will revert back to you.');
+        this.alertMessage = 'There is some issue in verify your order. Please wait, We will revert back to you.';
+        $('#modalForAlert').foundation('open');
       });
     } else {
       var error = function(response){
@@ -158,7 +163,8 @@ export class ConfirmOrderComponent implements OnInit {
         if(error_obj.field)
           $('input[name=' + error_obj.field+']').addClass('invalid');
 
-        alert(error_obj.field + ": " + error_obj.description);
+          this.alertMessage = error_obj.field + ": " + error_obj.description; 
+          $('#modalForAlert').foundation('open');  
       }
     }
   }
@@ -227,45 +233,30 @@ export class ConfirmOrderComponent implements OnInit {
            this.UpdatingAddress();
          }
       }
-      // else if(confirm("Are you sure about the address you typed?")) {
-      //   if(this.addressForm.controls['type'].value.toLowerCase()=='india') {
-      //     this.addressForm.controls['type'].setValue(environment.india_location);
-      //   } else {
-      //     this.addressForm.controls['type'].setValue(environment.other_location);
-      //   }   
-      //   if(this.addressToken=='Add'){
-      //     this.AddingAddress();
-      //   }
-      //   else {
-      //     this.UpdatingAddress();
-      //   }
-      // }
       else {
-        if(confirm("Are you sure about the address you typed?")) {
-          if(this.addressForm.controls['type'].value.toLowerCase()=='india') {
-            this.addressForm.controls['type'].setValue(environment.india_location);
-          } else {
-            this.addressForm.controls['type'].setValue(environment.other_location);
-          }   
-          if(this.addressToken=='Add'){
-            this.AddingAddress();
-          }
-          else {
-            this.UpdatingAddress();
-          }
-        }
-        // else {
-        //   console.log("Adding Address canceled");
-        // }
+        $('#modalOfConfirmationForAddressTyped').foundation('open');
       }
     
      });
 
   }
   
+  addressTypedConfirmation() {
+    if(this.addressForm.controls['type'].value.toLowerCase()=='india') {
+      this.addressForm.controls['type'].setValue(environment.india_location);
+    } else {
+      this.addressForm.controls['type'].setValue(environment.other_location);
+    }   
+    if(this.addressToken=='Add'){
+      this.AddingAddress();
+    }
+    else {
+      this.UpdatingAddress();
+    }
+  }
+
   AddingAddress(){
     var addressFormData = this.addressForm.value;
-
     // console.log(this.addressForm.controls['type'].value);
     // console.log(addressFormData);
     // console.log(this.getUserDetails.id);

@@ -60,7 +60,7 @@
 			</div>
 
 
-			<div class="reveal addressModalOuterContainer" id="addressUpdate" data-reveal *ngIf="getUserDetails">
+			<div class="reveal modalOuterContainer" id="addressUpdate" data-reveal *ngIf="getUserDetails">
 				<div class="grid-container addressModalContainer">
 				<div class="text-center addressModalHeader">ADDRESS</div>
 				<form [formGroup]="addressForm">
@@ -168,11 +168,51 @@
 				<button class="close-button show-for-small-only" data-close aria-label="Close modal" type="button">
 				    <span aria-hidden="true">&times;</span>
 				</button>
-				<button class="close-button closeAddressModal hide-for-small-only" data-close aria-label="Close modal" type="button">
+				<button class="close-button closeModal hide-for-small-only" data-close aria-label="Close modal" type="button">
 				    <span aria-hidden="true">&times;</span>
 				</button>
 			  </div>
-		  </div>
+		    </div>
+
+			
+			<div id="modalOfConfirmationForAddressTyped" class="reveal modalOuterContainer" data-reveal aria-hidden="true">
+				<div class="grid-x grid-padding-x align-center">
+					<div class="small-12">
+					    <H4>Are you sure about the address you typed?</H4>
+					</div>
+					<div class="small-3">
+					    <button class="close-reveal-modal confirmClass button" data-close aria-label="Close modal" (click)="addressTypedConfirmation()">Confirm</button>
+					</div>
+					<div class="small-3">
+					    <button class="close-reveal-modal button" data-close aria-label="Close modal" aria-label="Close">Cancel</button>
+					</div>
+				</div>
+				<button class="close-button show-for-small-only" data-close aria-label="Close modal" type="button">
+				    <span aria-hidden="true">&times;</span>
+				</button>
+				<button class="close-button closeModal hide-for-small-only" data-close aria-label="Close modal" type="button">
+				    <span aria-hidden="true">&times;</span>
+				</button>
+			</div>	
+
+			<div id="modalForAlert" class="reveal modalOuterContainer" data-reveal aria-hidden="true">
+				<div class="grid-x grid-padding-x align-center">
+					<div class="small-12">
+					    <H4>{{alertMessage}}</H4>
+					</div>
+					
+					<div class="small-8">
+					    <button class="close-reveal-modal button" data-close aria-label="Close modal" aria-label="Close">Ok</button>
+					</div>
+				</div>
+				<button class="close-button show-for-small-only" data-close aria-label="Close modal" type="button">
+				    <span aria-hidden="true">&times;</span>
+				</button>
+				<button class="close-button closeModal hide-for-small-only" data-close aria-label="Close modal" type="button">
+				    <span aria-hidden="true">&times;</span>
+				</button>
+			</div>		    
+
 		</div>
 
 		<div class="small-12 medium-8 cell text-center hide-for-large" *ngIf="contentLoaded && (cartItems.length > 0)">
