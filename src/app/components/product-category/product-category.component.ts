@@ -50,7 +50,7 @@ export class ProductCategoryComponent implements OnInit {
             autoplaySpeed: 1000,
             arrows: false,
           });
-           //console.log(this.loadingElement);
+           //console.log(this.loading);
           this.loading.nativeElement.className = 'hidingLoader' ;
           $('#filterModal').foundation();
         }, 500);
