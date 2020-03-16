@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { environment } from 'src/environments/environment';
@@ -44,6 +44,10 @@ export class AddressesComponent implements OnInit {
       $('#loginModal').foundation('open');
       this.loading.nativeElement.className = 'hidingLoader' ;
     });
+  }
+
+  ngAfterViewInit() {
+    $('#modalOfConfirmationForAddressTyped').foundation();
   }
 
   showModalToAddAddress(token,addressDetail){
@@ -103,41 +107,28 @@ export class AddressesComponent implements OnInit {
            this.UpdatingAddress();
          }
       }
-      // else if(confirm("Are you sure about the address you typed?")) {
-      //   if(this.addressForm.controls['type'].value.toLowerCase()=='india') {
-      //     this.addressForm.controls['type'].setValue(environment.india_location);
-      //   } else {
-      //     this.addressForm.controls['type'].setValue(environment.other_location);
-      //   }   
-      //   if(this.addressToken=='Add'){
-      //     this.AddingAddress();
-      //   }
-      //   else {
-      //     this.UpdatingAddress();
-      //   }
-      // }
       else {
-        if(confirm("Are you sure about the address you typed?")) {
-          if(this.addressForm.controls['type'].value.toLowerCase()=='india') {
-            this.addressForm.controls['type'].setValue(environment.india_location);
-          } else {
-            this.addressForm.controls['type'].setValue(environment.other_location);
-          }   
-          if(this.addressToken=='Add'){
-            this.AddingAddress();
-          }
-          else {
-            this.UpdatingAddress();
-          }
-        }
-        // else {
-        //   console.log("Adding Address canceled");
-        // }
+        $('#modalOfConfirmationForAddressTyped').foundation('open');
       }
     
      });
 
   }
+
+  addressTypedConfirmation() {
+    if(this.addressForm.controls['type'].value.toLowerCase()=='india') {
+      this.addressForm.controls['type'].setValue(environment.india_location);
+    } else {
+      this.addressForm.controls['type'].setValue(environment.other_location);
+    }   
+    if(this.addressToken=='Add'){
+      this.AddingAddress();
+    }
+    else {
+      this.UpdatingAddress();
+    }
+  }
+
   
   AddingAddress(){
     var addressFormData = this.addressForm.value;
@@ -152,6 +143,7 @@ export class AddressesComponent implements OnInit {
       this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
         //console.log(data);
         this.addressDetail = data;
+        $('#addressUpdate').foundation('close');
       });
     });
   }
@@ -168,6 +160,7 @@ export class AddressesComponent implements OnInit {
       this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
         //console.log(data);
         this.addressDetail = data;
+        $('#addressUpdate').foundation('close');
       });
     });
   }

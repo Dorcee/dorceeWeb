@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { LoaderComponent } from '../loader/loader.component';
 
 declare var $:any;
+var isCheckedInSmall:boolean;
 
 @Component({
   selector: 'app-product-category',
@@ -32,9 +33,11 @@ export class ProductCategoryComponent implements OnInit {
 
   @ViewChild('loading', {static:false}) loading:ElementRef;
   @ViewChildren('filterCategoryType') filterCategoryType: QueryList<any>;
+  @ViewChildren('filterCategoryTypeInSmall') filterCategoryTypeInSmall: QueryList<any>;
  
   ngOnInit() {
     this.homeservice.getAllProducts(true).subscribe((data)=>{
+      $('.modalCheckboxes').each(function() { $(this).prop('checked', false) });
       this.products = data;
       // TODO - get it from local storage
       var types = {"type" : ["sizes", "categories", "fits"]};
@@ -50,12 +53,40 @@ export class ProductCategoryComponent implements OnInit {
             autoplaySpeed: 1000,
             arrows: false,
           });
-           //console.log(this.loadingElement);
+           //console.log(this.loading);
           this.loading.nativeElement.className = 'hidingLoader' ;
           $('#filterModal').foundation();
         }, 500);
       });
-    });  
+    }); 
+
+    $('.modalCheckboxes').click(function(){
+      if($(this).prop("checked") == true){
+          isCheckedInSmall = true;
+      }
+      else if($(this).prop("checked") == false){
+          isCheckedInSmall = false;
+      }
+    });
+
+    $('.modalCheckboxes').on('change', (event) => {
+      //console.log(isCheckedInSmall);
+      // console.log(event.currentTarget.name);
+      // console.log(event.currentTarget.value);
+      this.getProducts(isCheckedInSmall, event.currentTarget.name, event.currentTarget.value,'small');
+      if(event.currentTarget.name == 'type') {
+        //console.log(this.isViewAllChecked);
+        $('.viewAllOnSmall').each(function() { $(this).prop('checked', false) });
+      }
+    });
+
+    $('.applyOnSmall').on('click', () => {
+      this.closeFilterModal();
+    });
+
+    $('.viewAllOnSmall').on('click', () => {
+      $('.typeCheckBox').each(function() { $(this).prop('checked', false) });
+    });
   }
 
   changeStyle($event,ID){
@@ -66,6 +97,7 @@ export class ProductCategoryComponent implements OnInit {
       }, 10);
     } 
   }
+
   changeBackStyle($event,id){
     // console.log($event.type); 
     if($event.type == 'mouseleave'){ 
@@ -85,20 +117,32 @@ export class ProductCategoryComponent implements OnInit {
       //console.log(this.isViewAllChecked);
       this.isViewAllChecked =  false;
     }
-    this.homeservice.getAllProducts(isChecked.checked, key, value).subscribe((data)=>{
-      this.products = data;
-      this.containerLoaded = true;
-      if(this.products.length==0){
-        this.noProduct = true;
-      } else {
-        this.noProduct = false;
-      }
-      //console.log(this.products);
-
-      if(device!='small') {
+    if(device == 'small') {
+      //console.log(isChecked);
+      this.homeservice.getAllProducts(isChecked, key, value).subscribe((data)=>{
+        this.products = data;
+        this.containerLoaded = true;
+        if(this.products.length==0){
+          this.noProduct = true;
+        } else {
+          this.noProduct = false;
+        }
+        //console.log(this.products);
+      });  
+    } else {
+      this.homeservice.getAllProducts(isChecked.checked, key, value).subscribe((data)=>{
+        this.products = data;
+        this.containerLoaded = true;
+        if(this.products.length==0){
+          this.noProduct = true;
+        } else {
+          this.noProduct = false;
+        }
+        //console.log(this.products);
         this.closeFilterModal();
-      }
-    });
+      });
+    }
+    
   }
 
   closeFilterModal() {
@@ -113,13 +157,23 @@ export class ProductCategoryComponent implements OnInit {
     }, 1000);
   }
 
-  selectedList(event) {
+  selectedList(event,device) {
     //console.log(event);
-    if(event.checked == true){
+    if(device == 'small' ) {
+      if(event == true){
+        this.filterCategoryTypeInSmall.forEach(element => {
+         // console.log(element);
+          element.nativeElement.checked = false;
+        });
+      }  
+    } else {
+      if(event.checked == true){
       this.filterCategoryType.forEach(element => {
         //console.log(element);
         element.checked = false;
       });
     }
+    }
+    
   }
 }

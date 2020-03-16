@@ -104,10 +104,11 @@ $scrollColor:#C4A56A;
 .addressFormField {
 	width: 100%;
 }
-.reveal.addressModalOuterContainer {
+
+.reveal.modalOuterContainer {
 	overflow: visible;
 }
-.closeAddressModal {
+.closeModal {
     position: absolute;
     top: rem-calc(-14);
     right: rem-calc(-14);
@@ -120,4 +121,12 @@ $scrollColor:#C4A56A;
 }
 .addressModalContainer {
 	padding: rem-calc(10 30);
+}
+
+@include breakpoint(small only) {
+  .reveal.modalOuterContainer {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  } 
 }

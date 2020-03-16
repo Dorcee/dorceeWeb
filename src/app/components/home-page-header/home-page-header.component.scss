@@ -48,6 +48,23 @@
     padding: rem-calc(2 6);
     border-radius: 50%;
 }
+
+.reveal.modalOuterContainer {
+  overflow: visible;
+}
+
+.closeModal {
+    position: absolute;
+    top: rem-calc(-14);
+    right: rem-calc(-14);
+    color: white;
+    background-color: $primary-color;
+    border-radius: 25px;
+    padding: rem-calc(3 7 5);
+    z-index: 9999;
+    font-size: rem-calc(20);
+}
+
 @include breakpoint(small only) {
   .homepageHeading {
     font-size: rem-calc(10);
@@ -61,4 +78,10 @@
   .currencyWeb {
     padding-right: rem-calc(5);
   }
+  .reveal.modalOuterContainer {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  } 
+
 }

@@ -22,21 +22,41 @@
 			
 			<span class="userLogin homepageHeading nameHover" id="nameDropDown">	
 	 			<ul class="dropdown menu" data-dropdown-menu>
-	        <li *ngIf="!isUserLoggedIn">
-	      		<span class="userLogin homepageHeading" data-open="loginModal">Login</span>
-	        </li>
-	        <li>
-	        	<!-- <a class="userLogin homepageHeading" *ngIf="isUserLoggedIn">{{userDetails.fname}} {{userDetails.lname}}</a> -->
-	        	<a class="userLogin homepageHeading userLoginInner" *ngIf="isUserLoggedIn">{{userDetails.fname}}</a>
-	        	<ul class="menu customTab">
-	          		<li><a routerLink="/myAccount/profile" *ngIf="isUserLoggedIn" class="accountDropdown">My Account</a></li>
-	          		<li><a (click)="logOut()" *ngIf="isUserLoggedIn" class="accountDropdown">Log Out</a></li>
-	        	</ul>
-	      	</li>
-		    </ul>
-	    </span>
+			        <li *ngIf="!isUserLoggedIn">
+			      		<span class="userLogin homepageHeading" data-open="loginModal">Login</span>
+			        </li>
+			        <li>
+			        	<!-- <a class="userLogin homepageHeading" *ngIf="isUserLoggedIn">{{userDetails.fname}} {{userDetails.lname}}</a> -->
+			        	<a class="userLogin homepageHeading userLoginInner" *ngIf="isUserLoggedIn">{{userDetails.fname}}</a>
+			        	<ul class="menu customTab">
+			          		<li><a routerLink="/myAccount/profile" *ngIf="isUserLoggedIn" class="accountDropdown">My Account</a></li>
+			          		<li><a (click)="logOut()" *ngIf="isUserLoggedIn" class="accountDropdown">Log Out</a></li>
+			        	</ul>
+			      	</li>
+			    </ul>
+		    </span>
 
-	    <span class="cartItemsContainer" *ngIf="cartItemsLength > 0 && isUserLoggedIn" routerLink="/checkout">
+		    <div id="modalForChngingLocType" class="reveal modalOuterContainer" data-reveal aria-hidden="true">
+				<div class="grid-x grid-padding-x align-center">
+					<div class="small-12">
+					    <p>All the products in your cart will be removed, If you change the location type.</p>
+					</div>
+					<div class="small-3">
+					    <button class="close-reveal-modal confirmChangeLocType button" data-close aria-label="Close modal" (click)="locTypeChangeConfirmed()">Confirm</button>
+					</div>
+					<div class="small-3">
+					    <button class="close-reveal-modal button" data-close aria-label="Close modal" aria-label="Close">Cancel</button>
+					</div>
+				</div>
+				<button class="close-button show-for-small-only" data-close aria-label="Close modal" type="button">
+				    <span aria-hidden="true">&times;</span>
+				</button>
+				<button class="close-button closeModal hide-for-small-only" data-close aria-label="Close modal" type="button">
+				    <span aria-hidden="true">&times;</span>
+				</button>
+			</div>		
+
+	    	<span class="cartItemsContainer" *ngIf="cartItemsLength > 0 && isUserLoggedIn" routerLink="/checkout">
 				<img src="assets/images/emptyShoppingBagBlack.svg" alt="Basket" width="30px">
 				<div class="cartItems">{{cartItemsLength}}</div>
 			</span>
