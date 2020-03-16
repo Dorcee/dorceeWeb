@@ -49,10 +49,15 @@
 							<div class="productCategoryAccordionHeader">{{category.name}}</div>
 							<ul class="menu vertical nested is-active productCategoryAccordionContent">
 								<li *ngFor="let type of category.types">
-									<mat-checkbox class="typeCategorySelector" (change)="getProducts($event,'type', type,'small')" #filterCategoryType>{{type}}</mat-checkbox>
+									<label for="{{type}}">
+										<input id="{{type}}" type="checkbox" class="typeCategorySelector modalCheckboxes typeCheckBox" (change)="getProducts($event.target.checked,'type', type,'small')" #filterCategoryTypeInSmall value="{{type}}" name="type">
+									{{type}}</label>
 								</li>
 								<li>
-									<mat-checkbox class="typeCategorySelector" (change)="getProducts($event,'','','small'); selectedList($event)" [(ngModel)]="isViewAllChecked" [checked]="isViewAllChecked">View All</mat-checkbox>
+									<label for="viewAll">
+										<input id="viewAll" type="checkbox" class="typeCategorySelector modalCheckboxes viewAllOnSmall" (change)="getProducts($event.target.checked,'viewAll', 'viewAll','small'); selectedList($event.target.checked,'small')" [(ngModel)]="isViewAllChecked" [checked]="isViewAllChecked" value="viewAll" name="viewAll">
+									View All</label>
+									<!-- <mat-checkbox class="typeCategorySelector" (change)="getProducts($event,'','','small'); selectedList($event)" [(ngModel)]="isViewAllChecked" [checked]="isViewAllChecked">View All</mat-checkbox> -->
 								</li>
 							</ul>
 						</li>
@@ -62,7 +67,9 @@
 					<div class="productSelectorHeading">Fit</div>
 					<div class="productSelectorSubHeading">
 						<div class="fitCategoryContainer" *ngFor="let fit of fits">
-							<mat-checkbox (change)="getProducts($event,'fit', fit.value,'small')" class="fitCategorySelector">{{fit.name}}</mat-checkbox>
+							<label for="{{fit.name}}">
+								<input id="{{fit.name}}" type="checkbox" class="fitCategorySelector modalCheckboxes" (change)="getProducts($event.target.checked,'fit', fit.value,'small')" value="{{fit.value}}" name="fit">
+							{{fit.name}}</label>
 						</div>
 					</div>
 				</div>
@@ -70,7 +77,9 @@
 					<div class="productSelectorHeading">Size</div>
 					<div class="productSelectorSubHeading">
 						<div class="sizeCategoryContainer" *ngFor="let size of sizes">
-							<mat-checkbox class="sizeCategorySelector" (change)="getProducts($event,'size', size.value,'small')">{{size.value}}</mat-checkbox>
+							<label for="{{size.value}}">
+								<input id="{{size.value}}" type="checkbox" class="sizeCategorySelector modalCheckboxes" (change)="getProducts($event.target.checked,'size', size.value,'small')" value="{{size.value}}" name="size">
+							{{size.value}}</label>
 						</div>
 					</div>
 				</div>
@@ -83,10 +92,10 @@
 				</div> -->
 				<div class="grid-x grid-padding-x">
 					<div class="small-6 cell text-center">
-						<button class="button customBtn" (click)="closeFilterModal()" data-close aria-label="Close modal">Apply</button>
+						<button class="button customBtn applyOnSmall" (click)="closeFilterModal()" data-close aria-label="Close modal">Apply</button>
 					</div>
 					<div class="small-6 cell">
-						<button class="button customBtn" (click)="closeFilterModal()" data-close aria-label="Close modal">Cancel</button>
+						<button class="button customBtn applyOnSmall" (click)="closeFilterModal()" data-close aria-label="Close modal">Cancel</button>
 					</div>
 				</div>
 		    </div>
@@ -106,7 +115,7 @@
 								<mat-checkbox class="typeCategorySelector" (change)="getProducts($event,'type', type)" #filterCategoryType>{{type}}</mat-checkbox>
 							</li>
 							<li>
-								<mat-checkbox class="typeCategorySelector" (change)="getProducts($event); selectedList($event)" [(ngModel)]="isViewAllChecked" [checked]="isViewAllChecked">View All</mat-checkbox>
+								<mat-checkbox class="typeCategorySelector" (change)="getProducts($event,'viewAll', 'viewAll'); selectedList($event,'mediumUp')" [(ngModel)]="isViewAllChecked" [checked]="isViewAllChecked">View All</mat-checkbox>
 							</li>
 						</ul>
 					</li>

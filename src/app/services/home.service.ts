@@ -30,8 +30,13 @@ export class HomeService {
   }
 
   public getAllProducts(isChecked, key='', value='') {
-
+    // console.log(isChecked);
+    // console.log(key);
+    // console.log(value);
     if(key == '' || value == '') {
+      this.params = this.params.set('loc_type', this.locType);
+      this.params = this.params.set('is_sort','newest');     
+    } else if(key == 'viewAll' || value == 'viewAll') {
       //this.params = this.params.set('loc_type', this.locType);
       if(isChecked ==  false) {
         this.params = this.params.delete('is_sort','newest');
@@ -52,6 +57,21 @@ export class HomeService {
     //console.log(params);
   	return this.httpClient.get<any>(`${API_URL}/web/product`, {params, headers})
   	.pipe(
+      map(res => {
+        return res.data; }),  // make it as observable
+      catchError(error => this.handleError(error.message || error))
+    );
+  }
+
+  getAllProductsForHomePage( key='', value='') {
+    this.params = this.params.delete('type');
+    this.params = this.params.delete('fit');
+    this.params = this.params.delete('size');
+    var paramsHome = new HttpParams().set(key, value);
+    paramsHome = this.params.set('is_sort','newest');     
+    //console.log(paramsHome);
+    return this.httpClient.get<any>(`${API_URL}/web/product`, {params:paramsHome, headers})
+    .pipe(
       map(res => {
         return res.data; }),  // make it as observable
       catchError(error => this.handleError(error.message || error))
