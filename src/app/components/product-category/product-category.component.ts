@@ -37,7 +37,6 @@ export class ProductCategoryComponent implements OnInit {
  
   ngOnInit() {
     this.homeservice.getAllProducts(true).subscribe((data)=>{
-      console.log('render category');
       $('.modalCheckboxes').each(function() { $(this).prop('checked', false) });
       this.products = data;
       // TODO - get it from local storage

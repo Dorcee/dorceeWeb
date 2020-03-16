@@ -57,7 +57,6 @@
 									<label for="viewAll">
 										<input id="viewAll" type="checkbox" class="typeCategorySelector modalCheckboxes viewAllOnSmall" (change)="getProducts($event.target.checked,'viewAll', 'viewAll','small'); selectedList($event.target.checked,'small')" [(ngModel)]="isViewAllChecked" [checked]="isViewAllChecked" value="viewAll" name="viewAll">
 									View All</label>
-									<!-- <mat-checkbox class="typeCategorySelector" (change)="getProducts($event,'','','small'); selectedList($event)" [(ngModel)]="isViewAllChecked" [checked]="isViewAllChecked">View All</mat-checkbox> -->
 								</li>
 							</ul>
 						</li>
@@ -99,7 +98,7 @@
 					</div>
 				</div>
 		    </div>
-		  <button class="close-button" (click)="closeFilterModal()" data-close aria-label="Close modal" type="button">
+		  <button class="close-button applyOnSmall" (click)="closeFilterModal()" data-close aria-label="Close modal" type="button">
 		    <span aria-hidden="true">&times;</span>
 		  </button>
 		</div>
