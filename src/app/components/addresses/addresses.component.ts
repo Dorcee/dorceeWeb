@@ -184,7 +184,7 @@ export class AddressesComponent implements OnInit {
   }
 
   closeModal() {
-    console.log(this.formDirective);
+    //console.log(this.formDirective);
     this.formDirective.resetForm();
     this.addressFormControl.reset();
   }
