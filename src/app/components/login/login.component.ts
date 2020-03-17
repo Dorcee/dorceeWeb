@@ -38,6 +38,10 @@ export class LoginComponent implements OnInit {
         this.loginFormControl = this.formBuilder.group({
             phone_number: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(7), Validators.maxLength(13)]]
         });
+        $('#loginModal').on('closed.zf.reveal', () => {
+            this.closeModal();
+        });
+
     }
 
     ngOnChanges() {

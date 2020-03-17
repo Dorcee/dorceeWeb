@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { WindowRef } from '../../services/windowRef';
 
 import { environment } from 'src/environments/environment';
@@ -45,6 +45,7 @@ export class ConfirmOrderComponent implements OnInit {
   locType = localStorage.getItem('loc_type');
   alertMessage:string='';
   @ViewChild('loading', {static:false}) loading:ElementRef;
+  @ViewChild('formDirective') public formDirective;
 
   ngOnInit() {
     //console.log(this.cartItems.length);
@@ -56,7 +57,10 @@ export class ConfirmOrderComponent implements OnInit {
 
         this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
           this.addressDetail = data;
-          this.loading.nativeElement.className = 'hidingLoader' ;
+          setTimeout(()=> {
+            $('#modalForAlert').foundation();
+            this.loading.nativeElement.className = 'hidingLoader' ;
+          },1500);
         },
         (error) => {
           //console.log(error);
@@ -83,10 +87,16 @@ export class ConfirmOrderComponent implements OnInit {
     } else {
       this.router.navigate(['/productCategory']);
     }
+
+    if(this.addressForm) {
+      $(document).on('closed.zf.reveal', () => {
+          this.closeModal();
+      });
+    }
   }
 
   ngAfterViewInit(){
-    $('#addressUpdate').foundation();
+    $('#addressUpdateModal').foundation();
     $('#modalOfConfirmationForAddressTyped').foundation();
   }
 
@@ -188,7 +198,7 @@ export class ConfirmOrderComponent implements OnInit {
       this.addressForm.controls['type'].setValue('');
       this.addressForm.controls['is_default'].setValue('');
       
-      $('#addressUpdate').foundation('open');
+      $('#addressUpdateModal').foundation('open');
     } else {
       //console.log(token);
       this.addressId=this.editAddressDetail.id;
@@ -214,10 +224,10 @@ export class ConfirmOrderComponent implements OnInit {
      
       this.addressForm.controls['is_default'].setValue(this.editAddressDetail.is_default);
 
-      $('#addressUpdate').foundation('open');
+      $('#addressUpdateModal').foundation('open');
   }
 
-  onAddAddressSubmit(){
+  onAddAddressSubmit(form:any, formDirective: FormGroupDirective){
     this.homeService.getCountryFromIp().subscribe((data)=>{
      // console.log(data);
       if(data.country.toLowerCase()==this.addressForm.controls['type'].value.toLowerCase()) {
@@ -267,9 +277,10 @@ export class ConfirmOrderComponent implements OnInit {
       this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
         //console.log(data);
         this.addressDetail = data;
-        $('#addressUpdate').foundation('close');
+        $('#addressUpdateModal').foundation('close');
       });
     });
+    this.closeModal();
   }
 
   UpdatingAddress() {
@@ -284,8 +295,15 @@ export class ConfirmOrderComponent implements OnInit {
       this.addressService.getAllAddresses(this.getUserAccessToken).subscribe((data)=>{
         //console.log(data);
         this.addressDetail = data;
-        $('#addressUpdate').foundation('close');
+        $('#addressUpdateModal').foundation('close');
       });
     });
+    this.closeModal();
+  }
+
+  closeModal() {
+    //console.log(this.formDirective);
+    this.formDirective.resetForm();
+    this.addressForm.reset();
   }
 }

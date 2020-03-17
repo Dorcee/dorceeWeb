@@ -19,6 +19,9 @@ export class SignUpComponent implements OnInit {
   ngOnInit() {
     $('#signUpModal').foundation();
     $('#verifyModal').foundation();
+    $('#signUpModal').on('closed.zf.reveal', () => {
+        this.closeModal();
+    });
   }
 
   phone_error = '';

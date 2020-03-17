@@ -17,13 +17,13 @@
 	<div class="reveal modalOuterContainer" id="addressUpdate" data-reveal>
 		<div class="grid-container addressModalContainer" *ngIf="userDetails">
 			<div class="text-center addressModalHeader">ADDRESS</div>
-			<form [formGroup]="addressForm">
+			<form [formGroup]="addressFormControl" #formDirective="ngForm" (ngSubmit)="onAddAddressSubmition(addressFormControl, formDirective)">
 			  	<div class="grid-container">
 			  		<!-- <div class="grid-x grid-padding-x">
 					  	<div class="small-6 cell text-center">
 							<mat-form-field class="addressFormField">
 							    <input matInput placeholder="First Name" formControlName="firstName">
-							    <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
+							    <mat-error *ngIf="addressFormControl.controls['firstName'].hasError('required')">
 						     		First Name is <strong>required</strong>
 						    	</mat-error>
 							</mat-form-field>
@@ -32,7 +32,7 @@
 						<div class="small-6 cell text-center">
 							<mat-form-field class="addressFormField">
 							    <input matInput placeholder="Last Name" formControlName="lastName">
-							    <mat-error *ngIf="addressForm.controls['lastName'].hasError('required')">
+							    <mat-error *ngIf="addressFormControl.controls['lastName'].hasError('required')">
 						     		Last Name is <strong>required</strong>
 						    	</mat-error>
 							</mat-form-field>
@@ -43,10 +43,10 @@
 						<div class="medium-12 cell text-center">
 					  		<mat-form-field class="addressFormField">
 							    <input matInput placeholder="Code ( Pin or Postal )" formControlName="pin_code">
-							    <mat-error *ngIf="addressForm.controls['pin_code'].hasError('required')">
+							    <mat-error *ngIf="addressFormControl.controls['pin_code'].hasError('required')">
 						     		Pin code is <strong>required</strong>
 						    	</mat-error>
-						    	<mat-error *ngIf="addressForm.controls['pin_code'].invalid && addressForm.controls['pin_code'].dirty && !addressForm.controls['pin_code'].hasError('required')">
+						    	<mat-error *ngIf="addressFormControl.controls['pin_code'].invalid && addressFormControl.controls['pin_code'].dirty && !addressFormControl.controls['pin_code'].hasError('required')">
 							      Pin Code is <strong> not valid</strong>
 							    </mat-error>
 							</mat-form-field>
@@ -56,7 +56,7 @@
 				  		<div class="medium-12 cell text-center">
 							<mat-form-field class="addressFormField">
 							    <input matInput placeholder="Flat No / Building / Road" formControlName="flat_number">
-							    <mat-error *ngIf="addressForm.controls['flat_number'].hasError('required')">
+							    <mat-error *ngIf="addressFormControl.controls['flat_number'].hasError('required')">
 						     		Flat number is <strong>required</strong>
 						    	</mat-error>
 							</mat-form-field>
@@ -66,7 +66,7 @@
 					  	<div class="medium-12 cell text-center">
 							<mat-form-field class="addressFormField">
 								<input matInput placeholder="Area / Locality / Landmark" formControlName="area">
-							    <mat-error *ngIf="addressForm.controls['area'].hasError('required')">
+							    <mat-error *ngIf="addressFormControl.controls['area'].hasError('required')">
 						     		Area is <strong>required</strong>
 						    	</mat-error>
 							</mat-form-field>
@@ -76,7 +76,7 @@
 					  	<div class="medium-6 cell text-center">
 					  		<mat-form-field class="addressFormField">
 							    <input matInput placeholder="City" formControlName="city">
-					        	<mat-error *ngIf="addressForm.controls['city'].hasError('required')">
+					        	<mat-error *ngIf="addressFormControl.controls['city'].hasError('required')">
 							     		City is <strong>required</strong>
 							    	</mat-error>
 					        </mat-form-field>
@@ -84,7 +84,7 @@
 						<div class="medium-6 cell text-center">
 					  		<mat-form-field class="addressFormField">
 							    <input matInput placeholder="State" formControlName="state">
-								<mat-error *ngIf="addressForm.controls['state'].hasError('required')">
+								<mat-error *ngIf="addressFormControl.controls['state'].hasError('required')">
 						     		State Name is <strong>required</strong>
 						    	</mat-error>
 							</mat-form-field>
@@ -94,7 +94,7 @@
 					  	<div class="medium-12 cell text-center">
 					  		<mat-form-field class="addressFormField">
 							    <input matInput placeholder="Country" formControlName="type">
-								<mat-error *ngIf="addressForm.controls['type'].hasError('required')">
+								<mat-error *ngIf="addressFormControl.controls['type'].hasError('required')">
 						     		Country Name is <strong>required</strong>
 						    	</mat-error>
 							</mat-form-field>
@@ -113,7 +113,7 @@
 						</div>
 						<div class="medium-5 cell text-center">
 							<!-- <button type="submit" class="button submitButton" [disabled]="uploadForm.invalid"> Submit </button> -->
-							<button type="submit" class="button" (click)="onAddAddressSubmit(addressForm)" [disabled]="addressForm.invalid">SAVE</button>
+							<button type="submit" class="button" [disabled]="addressFormControl.invalid">SAVE</button>
 						</div>
 					</div>
 			  	</div>
