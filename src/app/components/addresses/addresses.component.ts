@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 
 import { environment } from 'src/environments/environment';
 import { HomeService } from '../../services/home.service';
@@ -20,13 +20,14 @@ export class AddressesComponent implements OnInit {
     private addressService: AddressService
   ) { }
 
-  addressForm: FormGroup;
+  addressFormControl: FormGroup;
   getUserAccessToken:any; 
   userDetails:any;
   addressDetail:any;
   addressToken:string;
   addressId:number;
   @ViewChild('loading', {static:false}) loading:ElementRef;
+  @ViewChild('formDirective') public formDirective;
   
   ngOnInit() {
     $('#addressUpdate').foundation();
@@ -44,6 +45,11 @@ export class AddressesComponent implements OnInit {
       $('#loginModal').foundation('open');
       this.loading.nativeElement.className = 'hidingLoader' ;
     });
+    if(this.addressFormControl) {
+      $('#addressUpdate').on('closed.zf.reveal', () => {
+          this.closeModal();
+      });
+    }
   }
 
   ngAfterViewInit() {
@@ -58,7 +64,7 @@ export class AddressesComponent implements OnInit {
 
     if(token=='Add'){
       //console.log(token);
-      this.addressForm = this.formBuilder.group({
+      this.addressFormControl = this.formBuilder.group({
         // firstName:['', [Validators.required]],
         // lastName:['', [Validators.required]],
         flat_number:['', [Validators.required]], 
@@ -77,7 +83,7 @@ export class AddressesComponent implements OnInit {
       } else {
         addressDetail.type='Outside India';
       }
-      this.addressForm = this.formBuilder.group({
+      this.addressFormControl = this.formBuilder.group({
         // firstName:['', [Validators.required]],
         // lastName:['', [Validators.required]],
         flat_number:[addressDetail.flat_number, [Validators.required]], 
@@ -91,14 +97,14 @@ export class AddressesComponent implements OnInit {
     }
   }
 
-  onAddAddressSubmit(){
+  onAddAddressSubmition(form:any, formDirective: FormGroupDirective){
     this.homeService.getCountryFromIp().subscribe((data)=>{
      // console.log(data);
-      if(data.country.toLowerCase()==this.addressForm.controls['type'].value.toLowerCase()) {
+      if(data.country.toLowerCase()==this.addressFormControl.controls['type'].value.toLowerCase()) {
         if(data.country.toLowerCase()=='india') {
-          this.addressForm.controls['type'].setValue(environment.india_location);
+          this.addressFormControl.controls['type'].setValue(environment.india_location);
         } else {
-          this.addressForm.controls['type'].setValue(environment.other_location);
+          this.addressFormControl.controls['type'].setValue(environment.other_location);
         } 
          if(this.addressToken=='Add'){
            this.AddingAddress();
@@ -116,10 +122,10 @@ export class AddressesComponent implements OnInit {
   }
 
   addressTypedConfirmation() {
-    if(this.addressForm.controls['type'].value.toLowerCase()=='india') {
-      this.addressForm.controls['type'].setValue(environment.india_location);
+    if(this.addressFormControl.controls['type'].value.toLowerCase()=='india') {
+      this.addressFormControl.controls['type'].setValue(environment.india_location);
     } else {
-      this.addressForm.controls['type'].setValue(environment.other_location);
+      this.addressFormControl.controls['type'].setValue(environment.other_location);
     }   
     if(this.addressToken=='Add'){
       this.AddingAddress();
@@ -131,9 +137,9 @@ export class AddressesComponent implements OnInit {
 
   
   AddingAddress(){
-    var addressFormData = this.addressForm.value;
+    var addressFormData = this.addressFormControl.value;
 
-    // console.log(this.addressForm.controls['type'].value);
+    // console.log(this.addressFormControl.controls['type'].value);
     // console.log(addressFormData);
     // console.log(this.userDetails.id);
    
@@ -146,11 +152,12 @@ export class AddressesComponent implements OnInit {
         $('#addressUpdate').foundation('close');
       });
     });
+    this.closeModal();
   }
 
   UpdatingAddress() {
-    var addressFormData = this.addressForm.value;
-    // console.log(this.addressForm.controls['type'].value);
+    var addressFormData = this.addressFormControl.value;
+    // console.log(this.addressFormControl.controls['type'].value);
     // console.log(addressFormData);
     // console.log(this.userDetails.id);
    
@@ -163,6 +170,7 @@ export class AddressesComponent implements OnInit {
         $('#addressUpdate').foundation('close');
       });
     });
+    this.closeModal();
   }
 
   onDeleteAddress(address_id) {
@@ -173,5 +181,11 @@ export class AddressesComponent implements OnInit {
         this.addressDetail = data;
       });
     });
+  }
+
+  closeModal() {
+    //console.log(this.formDirective);
+    this.formDirective.resetForm();
+    this.addressFormControl.reset();
   }
 }

@@ -50,7 +50,7 @@
 				  		</div>
 				  	
 					  	<div class="float-right">
-							<button class="button secondary secondaryBtn" data-open="addressUpdate" (click)="showModalToAddAddress('Edit')">EDIT</button>
+							<button class="button secondary secondaryBtn" data-open="addressUpdateModal" (click)="showModalToAddAddress('Edit')">EDIT</button>
 					  	</div>
 				  	</div> -->
 				</mat-radio-group>
@@ -60,10 +60,10 @@
 			</div>
 
 
-			<div class="reveal modalOuterContainer" id="addressUpdate" data-reveal *ngIf="getUserDetails">
+			<div class="reveal modalOuterContainer" id="addressUpdateModal" data-reveal *ngIf="getUserDetails">
 				<div class="grid-container addressModalContainer">
 				<div class="text-center addressModalHeader">ADDRESS</div>
-				<form [formGroup]="addressForm">
+				<form [formGroup]="addressForm" #formDirective="ngForm" (ngSubmit)="onAddAddressSubmit(addressForm, formDirective)">
 				  	<div class="grid-container">
 				  		<!-- <div class="grid-x grid-padding-x">
 						  	<div class="small-6 cell text-center">
@@ -154,13 +154,13 @@
 								</mat-radio-group>
 							</div>
 					    </div>
-						<div class="grid-x grid-padding-x">
-							<div class="medium-5 cell text-right">
+						<div class="grid-x grid-padding-x grid-padding-y">
+							<div class="small-6 medium-5 cell text-right">
 								<input type="button" class="button" data-close value="CANCEL">
 							</div>
-							<div class="medium-5 cell text-center">
+							<div class="small-6 medium-5 cell text-center">
 								<!-- <button type="submit" class="button submitButton" [disabled]="uploadForm.invalid"> Submit </button> -->
-								<button type="submit" class="button" (click)="onAddAddressSubmit(addressForm)" [disabled]="addressForm.invalid">SAVE</button>
+								<button type="submit" class="button" [disabled]="addressForm.invalid">SAVE</button>
 							</div>
 						</div>
 				  	</div>
