@@ -16,6 +16,7 @@ declare var $:any;
 export class HomepageComponent implements OnInit {
 	
 	@ViewChild('loading', {static:false}) loading:ElementRef;
+	@ViewChild('loadingBanner', {static:false}) loadingBanner:ElementRef;
 	products = [];
 	cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
 
@@ -31,19 +32,28 @@ export class HomepageComponent implements OnInit {
 	emailClicked:boolean = false;
 	subscribeMessage: string;
 	subscribeOn:boolean = false;
+	getAllBanners:string;
 
 	ngOnInit() {
+
+		this.homeservice.getAllBanners().subscribe(data => {
+	        this.getAllBanners = data.data;
+	        //console.log(this.getAllBanners);
+	        setTimeout(() => {
+	        	$('.homePageSlick').not('.slick-initialized').slick({
+					infinite: true,
+					autoplay: true,
+					autoplaySpeed: 2000,
+					arrows: false,
+					fade: true
+				});
+				this.loadingBanner.nativeElement.className = 'hidingLoader' ;
+	        },500);
+	    });
+
 		this.subscribeForm = this.formBuilder.group({
 			email:['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$") ]]
 		}) 
-
-		$('.homePageSlick').not('.slick-initialized').slick({
-			infinite: true,
-			autoplay: true,
-			autoplaySpeed: 2000,
-			arrows: false,
-			fade: true
-		});
 
 		if(localStorage.getItem('loc_type')) {
 			var loc_type = localStorage.getItem('loc_type');
@@ -69,7 +79,6 @@ export class HomepageComponent implements OnInit {
 	     		autoplaySpeed: 1000,
 	     		arrows: false
 	     	});
-	        //console.log(this.loadingElement);
 	     	this.loading.nativeElement.className = 'hidingLoader' ;
 	  	}, 500);
 	}
