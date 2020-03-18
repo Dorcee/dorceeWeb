@@ -78,6 +78,16 @@ export class HomeService {
     );
   }
 
+  getAllBanners() {
+    return this.httpClient.get<any>(`${API_URL}/banner`).pipe(
+      map(res => {
+        return res;
+        //console.log(res);
+      }),
+      catchError(error => this.handleError(error.message || error))
+    );
+  }
+
   public getAllEntities(postData) {
     return this.httpClient.post<any>(`${API_URL}/cms/entity`, postData, {headers})
     .pipe(

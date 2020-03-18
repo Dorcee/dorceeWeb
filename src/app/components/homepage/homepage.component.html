@@ -1,3 +1,7 @@
+<div #loadingBanner>
+  <app-loader></app-loader>
+</div>
+
 <div #loading>
   <app-loader></app-loader>
 </div>
@@ -42,26 +46,8 @@
     </div> -->
     <div class="small-12 cell">
       <div class="homePageSlick">
-        <div class="homepageBanner">
-          <img src="../assets/images/homepage-images/backgroundImages/ajrak.png" routerLink="/productCategory">
-        </div>
-        <div class="homepageBanner">
-          <img src="../assets/images/homepage-images/backgroundImages/batik.png" routerLink="/productCategory">
-        </div>
-        <div class="homepageBanner">
-          <img src="../assets/images/homepage-images/backgroundImages/handloomTextured.png" routerLink="/productCategory">
-        </div>
-        <div class="homepageBanner">
-          <img src="../assets/images/homepage-images/backgroundImages/ikat.png" routerLink="/productCategory">
-        </div>
-        <div class="homepageBanner">
-          <img src="../assets/images/homepage-images/backgroundImages/indigo.png" routerLink="/productCategory">
-        </div>
-        <div class="homepageBanner">
-          <img src="../assets/images/homepage-images/backgroundImages/kalamkari.png" routerLink="/productCategory">
-        </div>
-        <div class="homepageBanner">
-          <img src="../assets/images/homepage-images/backgroundImages/lizzyBizzy.png" routerLink="/productCategory">
+        <div class="homepageBanner" *ngFor="let banner of getAllBanners">
+          <img src="{{banner.image_url}}" routerLink="/productCategory">
         </div>
       </div>
     </div>
