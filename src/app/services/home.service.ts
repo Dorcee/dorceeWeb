@@ -84,7 +84,7 @@ export class HomeService {
         return res;
         //console.log(res);
       }),
-      catchError(this.handleError<any>('getting all banners'))
+      catchError(error => this.handleError(error.message || error))
     );
   }
 
